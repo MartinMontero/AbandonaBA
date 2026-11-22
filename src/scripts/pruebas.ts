@@ -17,5 +17,5 @@ if (out) {
       rows.push(`<tr><td>${v.id}</td><td>${k}</td><td>${fmtNum(e)}</td><td>${fmtNum(got[k])}</td><td>${fmtNum(d)}</td><td class="${ok ? 'pass' : 'fail'}"><strong>${ok ? 'PASS' : 'FAIL'}</strong></td></tr>`);
     }
   }
-  out.innerHTML = `<p id="resumen"><strong>${pass} PASS, ${fail} FAIL</strong> (tolerancia ±${vec.tolerance.toFixed(2)} MXN)</p><div class="table-wrap"><table><thead><tr><th>Vector</th><th>Valor</th><th>Esperado</th><th>Calculado</th><th>Diferencia</th><th>Resultado</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+  out.innerHTML = `<p id="resumen"><strong>${pass} PASS, ${fail} FAIL</strong> (tolerancia ±${vec.tolerance.toFixed(2)} MXN)</p><div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table><thead><tr><th>Vector</th><th>Valor</th><th>Esperado</th><th>Calculado</th><th>Diferencia</th><th>Resultado</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
 }

@@ -7,7 +7,7 @@ function update() {
   const msg = `Hola. Somos ${n} personas que estamos pensando en armar algo juntas: un trabajo nuevo, un negocio o una cooperativa. ¿Nos vemos en persona esta semana para platicarlo? Habilidades que ya tenemos: ${picked.length ? picked.join(', ') : 'por definir'}. Escríbeme por Signal, no por equipos del trabajo.`;
   $('e-msg').textContent = msg;
   const rows = picked.map((p) => `<tr><th scope="row">${p}</th><td></td><td></td><td></td></tr>`).join('');
-  document.getElementById('e-matrix')!.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Habilidad</th><th>Quién la tiene</th><th>Quién quiere aprender</th><th>Primer paso</th></tr></thead><tbody>${rows || '<tr><td colspan="4">Marca las habilidades arriba.</td></tr>'}</tbody></table></div>`;
+  document.getElementById('e-matrix')!.innerHTML = `<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table><thead><tr><th>Habilidad</th><th>Quién la tiene</th><th>Quién quiere aprender</th><th>Primer paso</th></tr></thead><tbody>${rows || '<tr><td colspan="4">Marca las habilidades arriba.</td></tr>'}</tbody></table></div>`;
   document.getElementById('e-copy')!.dataset.copy = msg;
 }
 ['e-n'].forEach((id) => $(id).addEventListener('input', update));

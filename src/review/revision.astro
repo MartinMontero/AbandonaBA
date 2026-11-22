@@ -34,7 +34,7 @@ const tiers: Record<string, string> = { A: 'Prioridad A: Art. 439 y reducciones 
   <div id="decisiones-out" aria-live="polite"></div>
 
   <h2>Matriz de afirmaciones</h2>
-  <div class="table-wrap"><table id="matriz">
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table id="matriz">
     <thead><tr><th>Id</th><th>Afirmación</th><th>Estado</th><th>Fuentes (fecha de lectura)</th><th>Conflicto abierto</th><th>Pregunta para el abogado</th><th>Páginas</th></tr></thead>
     <tbody>
       {reg.map((c: any) => (

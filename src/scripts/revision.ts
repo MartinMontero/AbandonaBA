@@ -21,7 +21,7 @@ function render() {
     // D5 afecta la prima; D1, D3 y D4 afectan el Art. 439 completo. Se muestra el total del Art. 439 en ambos casos.
     return `<tr><th scope="row">${d.id}</th><td>${d.text}</td><td id="${d.id}-a">${d.a}: ${fmtMXN(ta)}</td><td id="${d.id}-b">${d.b}: ${fmtMXN(tb)}</td><td id="${d.id}-diff">${fmtMXN(Math.abs(tb - ta))}</td></tr>`;
   }).join('');
-  document.getElementById('decisiones-out')!.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Id</th><th>Decisión</th><th>Opción 1 (Art. 439 total)</th><th>Opción 2 (Art. 439 total)</th><th>Diferencia</th></tr></thead><tbody>${out}</tbody></table></div>`;
+  document.getElementById('decisiones-out')!.innerHTML = `<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table><thead><tr><th>Id</th><th>Decisión</th><th>Opción 1 (Art. 439 total)</th><th>Opción 2 (Art. 439 total)</th><th>Diferencia</th></tr></thead><tbody>${out}</tbody></table></div>`;
 }
 function reset() {
   $('r-base').value = String(EXAMPLE.weeklyBase); $('r-comm').value = String(EXAMPLE.commissions); $('r-years').value = String(EXAMPLE.yearsProportional);

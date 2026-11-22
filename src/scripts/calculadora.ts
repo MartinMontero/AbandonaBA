@@ -61,7 +61,7 @@ export function renderResult(r: Result): string {
     return `<li>${esc(r.A.exits[e].label)}: ${fmtMXN(t)} <div class="bar" aria-hidden="true"><span data-w="${Math.max(1, (t / (max + fin.total)) * 100).toFixed(1)}"></span></div></li>`;
   }).join('');
   const steps = (s: Result['A']) => `<h4>Método ${s.method} ${s.method === 'A' ? '(comisión ÷ 7)' : '(comisión ÷ días trabajados)'}</h4>
-    <div class="table-wrap"><table><thead><tr><th>Concepto</th><th>Cuenta</th><th>Valor</th><th>Artículo</th></tr></thead><tbody>${
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table><thead><tr><th>Concepto</th><th>Cuenta</th><th>Valor</th><th>Artículo</th></tr></thead><tbody>${
       s.steps.map((x, i) => `<tr><th scope="row">${esc(x.label)}</th><td>${esc(x.formula)}</td><td id="step-${s.method}-${i}">${x.unit.startsWith('MXN') ? fmtMXN(x.value) : fmtNum(x.value)} ${x.unit.startsWith('MXN') ? '' : esc(x.unit)}</td><td>${esc(x.article)}</td></tr>`).join('')
     }</tbody></table></div>`;
   const prop = r.A.nUsed;
@@ -69,7 +69,7 @@ export function renderResult(r: Result): string {
   <div class="assumptions" role="note">Estimación con valores de 2026. Pendiente de revisión legal. Lleva esta hoja a PROFEDET.</div>
   <div class="print-only">Información general. En revisión por abogado laboral. No es asesoría legal.</div>
   <h2>Resultado por salida</h2>
-  <div class="table-wrap"><table><thead><tr><th>Salida</th><th>Método A</th><th>Método B</th><th>Rango</th><th>Cuenta y aviso</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table><thead><tr><th>Salida</th><th>Método A</th><th>Método B</th><th>Rango</th><th>Cuenta y aviso</th></tr></thead><tbody>${rows}</tbody></table></div>
   <p><small>Método A: comisión entre 7. Método B: comisión entre los días que trabajas a la semana. Esta diferencia (D2) está pendiente de revisión legal. Años usados en la prima: ${fmtNum(prop)}. SDI método A: ${fmtMXN(r.A.sdi)}; método B: ${fmtMXN(r.B.sdi)}${r.A.capped ? '. El SDI pasa el tope; la prima usa el tope.' : '.'}</small></p>
   <h2>Finiquito (se suma a cualquier salida)</h2>
   <ul><li>Sueldo y comisiones pendientes: <span id="out-fin-wages">${fmtMXN(fin.wages)}</span></li>
@@ -87,11 +87,13 @@ export function renderResult(r: Result): string {
 export function mount() {
   const out = $('resultado');
   const update = () => {
+    const wasOpen = (document.getElementById('pasos') as HTMLDetailsElement | null)?.open ?? false;
     out.innerHTML = renderResult(calcular(readInputs()));
+    if (wasOpen) (document.getElementById('pasos') as HTMLDetailsElement).open = true;
     // CSP: sin estilos en línea; el ancho se pone por CSSOM.
     out.querySelectorAll<HTMLElement>('[data-w]').forEach((el) => { el.style.width = (el.dataset.w || '0') + '%'; });
   };
-  document.querySelectorAll('#calc input, #calc select').forEach((el) => { el.addEventListener('input', update); el.addEventListener('change', update); });
+  document.querySelectorAll('#calc input, #calc select').forEach((el) => { el.addEventListener('input', update); }); // solo «input»: «change» al salir del campo re-dibujaba el resultado y se comía el primer toque en otro control
   $('calc').addEventListener('submit', (e) => { e.preventDefault(); update(); });
   $('example').addEventListener('click', () => {
     ($('weeklyBase') as HTMLInputElement).value = '2205.28';
