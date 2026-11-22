@@ -111,7 +111,8 @@ function scenario(i: Inputs, method: Method, v: Values): Scenario {
   ];
   const completed = Math.floor(i.yearsCompleted);
   const fracPart = Math.max(0, (i.yearsProportional ?? completed) - completed);
-  return { method, baseDaily, commissionDaily: cd, vacationDays: V, sdi, cap, capped, nUsed: n, premium, exits, steps, isrExempt: per * v.uma * completed, isrExemptAlt: per * v.uma * (completed + (fracPart > 0.5 ? 1 : 0)) };
+  return { method, baseDaily, commissionDaily: cd, vacationDays: V, sdi, cap, capped, nUsed: n, premium, exits, steps, // LISR Art. 93 fr. XIII (leído): toda fracción de más de seis meses se considera año completo.
+    isrExempt: per * v.uma * (completed + (fracPart > 0.5 ? 1 : 0)), isrExemptAlt: per * v.uma * completed };
 }
 
 export function calcular(input: Inputs, v: Values = defaultValues): Result {

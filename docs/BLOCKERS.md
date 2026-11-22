@@ -2,9 +2,9 @@
 
 | Tema | Estado | Causa raíz / qué falta |
 |---|---|---|
-| **Exención de ISR (C08): UMA o salario mínimo** | Abierto, **puede cambiar la fórmula** | LISR Art. 93 fr. XIII dice «salario mínimo general». El sitio usa 90 × UMA (vector del prompt). Necesita decisión del abogado. Se muestra como información, nunca como cálculo de impuestos. |
+| **Exención de ISR (C08)** | Resuelto con fuente primaria | Transitorio Tercero del decreto del DOF 27-01-2016 (leído) reconduce «salario mínimo» a UMA. Falta que el abogado confirme la aplicación y el criterio del SAT. |
 | Artículos transitorios de la reforma de 40 horas (C09) | Abierto | El texto consolidado no los trae; falta leer el decreto del DOF 01-05-2026. |
-| Primarias aún no leídas: INEGI/UMA, CDMX Seguro de Desempleo, INFONAVIT, FINABIEN (decreto) | Abierto | Se intentaron en la segunda ronda y no cargaron (ver VERIFICATION.md). Conasami, IMSS (DOF), INAES, LGSC y LFT Arts. 33, 80, 486, 521 y 685 Ter sí se leyeron. Para UMA y CDMX hace falta abrirlos en un navegador real. |
+| Primarias aún no leídas: CDMX Seguro de Desempleo (el sitio oficial no respondió), INFONAVIT (403 a robots) | Abierto | Leídas en la tercera ronda: INEGI (UMA), DOF 2016 (desindexación), Ley de la UMA y DOF 18-11-2026 (FINABIEN). Ver VERIFICATION.md. |
 | Noticias de `/situacion` | Abierto | Solo se comprobó que los enlaces cargan; el texto no se releyó. Los enlaces de Instagram y deprecated.now no se usaron. |
 | Teléfonos y direcciones del directorio (F08) | No hecho | No se leyeron en los sitios oficiales; se omitieron según la regla. Faltan tribunales laborales federales y CONDUSEF (su sitio no respondió). |
 | Enlaces que fallaron la revisión | Esperan tu aprobación o revisión a mano | Indeed México, OCC Mundial, Coppel (403 a robots) y CONDUSEF (sin respuesta). Se quitaron de los listados. |

@@ -49,6 +49,14 @@ Se corrieron en orden: verify (producción), verify:review, verify (producción)
 | C05 | LFT Art. 685 Ter completo | lista confirmada |
 | C21 | LFT Art. 33 completo y encabezado del Art. 5 | ratificación y nulidad confirmadas |
 
+## Tercera ronda (2026-11-22)
+| Afirmación | Qué se leyó | Resultado |
+|---|---|---|
+| C08 ISR | DOF 27-01-2016 decreto de desindexación (Transitorios 2 y 3); Ley para Determinar el Valor de la UMA; LISR Art. 93 fr. XIII completo | **Resuelto**: Transitorio Tercero reconduce «salario mínimo» a UMA; fracción de más de seis meses = año completo. La calculadora ya aplica la fracción. Queda pendiente el criterio del SAT (no leído) |
+| C07 UMA | INEGI, Comunicado de prensa 1/26 (8-ene-2026) | 117.31 / 3,566.22 / 42,794.64, vigente desde el 1-feb-2026 → **verificado-primaria**. La publicación en el DOF del 9-ene no se leyó |
+| C15 FINABIEN | DOF 18-11-2026 vía SIDOF, texto completo | **verificado-primaria**: vigor al día siguiente; 180 + 180 días; sin montos ni tasas |
+| C13 CDMX | `segurodedesempleo.cdmx.gob.mx` (aviso de segunda convocatoria 2026, PDF) | el servidor **no respondió** (tiempo agotado). No se desactivó la verificación de certificados |
+
 ## SIGUE sin verificar (se intentó y no se pudo, o no se intentó)
 | Afirmación | Intento | Motivo |
 |---|---|---|

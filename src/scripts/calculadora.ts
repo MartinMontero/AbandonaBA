@@ -79,7 +79,7 @@ export function renderResult(r: Result): string {
   <p>Total del finiquito: <strong id="out-fin-total">${fmtMXN(fin.total)}</strong></p>
   <h2>Lo que te llevas, salida por salida (método A, con finiquito)</h2><ul class="plain">${bars}</ul>
   <h2>Parte exenta de ISR (solo información)</h2>
-  <p>90 × UMA × años completos = <strong id="out-isr">${fmtMXN(r.A.isrExempt)}</strong>. Si cuentas la fracción de más de seis meses como año: ${fmtMXN(r.A.isrExemptAlt)}. No es un cálculo de impuestos. El texto de la ley dice «salario mínimo»; ver la página de revisión legal.</p>
+  <p>90 × UMA × años de servicio = <strong id="out-isr">${fmtMXN(r.A.isrExempt)}</strong>. La fracción de más de seis meses cuenta como año completo (LISR Art. 93 fr. XIII). Sin contar fracciones: ${fmtMXN(r.A.isrExemptAlt)}. No es un cálculo de impuestos. La ley dice «salario mínimo», pero el Transitorio Tercero del decreto del 27 de enero de 2016 manda leerlo como UMA. Confírmalo con un contador.</p>
   <details id="pasos"><summary>Ver el cálculo paso a paso</summary>${steps(r.A)}${steps(r.B)}
   <p><small>El promedio de pago variable usa la ventana que elegiste (semanal o total de 30 días). Supuesto D4: Art. 89 habla de 30 días efectivamente trabajados.</small></p></details>`;
 }

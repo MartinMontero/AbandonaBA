@@ -86,31 +86,31 @@ Salario mínimo general 2026: 315.04 pesos al día; zona libre de la frontera no
 
 **Páginas:** /actualizaciones/, /calculadora/
 
-## C07 · verificado-secundaria · prioridad B
+## C07 · verificado-primaria · prioridad B
 
 UMA 2026: 117.31 pesos al día y 3,566.22 al mes, vigente del 1 de febrero de 2026 al 31 de enero de 2027.
 
-**Fuentes:** [INEGI, DOF 9 de enero de 2026 (no leído)](https://www.inegi.org.mx/temas/uma/) (leída 2026-11-22)
+**Fuentes:** [INEGI, Comunicado de prensa 1/26 (8 de enero de 2026): UMA diaria 117.31, mensual 3,566.22, anual 42,794.64, vigente desde el 1 de febrero de 2026](https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2026/uma/uma2026.pdf) (leída 2026-11-22); [Ley para Determinar el Valor de la UMA, Arts. 4 y 5 (mensual = diaria × 30.4; INEGI publica en el DOF en enero; rige el 1 de febrero)](https://www.ordenjuridico.gob.mx/Documentos/Federal/html/wo120912.html) (leída 2026-11-22)
 
-**Conflicto abierto:** Ninguno conocido.
+**Conflicto abierto:** Leído el comunicado de INEGI. La publicación en el DOF del 9 de enero de 2026 no se leyó; esa fecha viene de la prensa. La vigencia hasta el 31 de enero de 2027 es consecuencia de la regla de actualización anual, no una frase leída.
 
-**Debe confirmar:** El aviso de INEGI en el DOF.
+**Debe confirmar:** Nada pendiente en las cifras.
 
 **Pregunta para el abogado:** ¿Los valores de la UMA 2026 son los publicados por INEGI?
 
 **Páginas:** /actualizaciones/, /calculadora/
 
-## C08 · verificado-secundaria · prioridad A
+## C08 · verificado-primaria · prioridad A
 
-Exención de ISR de pagos por separación (LISR Art. 93 fr. XIII): hasta noventa veces el valor por cada año de servicio; las fracciones se tratan según el propio artículo. El sitio muestra 90 UMA por año como información, no como cálculo de impuestos.
+Exención de ISR de pagos por separación (LISR Art. 93 fr. XIII): hasta noventa veces el salario mínimo general del área geográfica del contribuyente por cada año de servicio; toda fracción de más de seis meses se considera año completo; por el excedente se paga el impuesto. El Transitorio Tercero del decreto de desindexación (DOF 27-01-2016) manda entender todas las menciones al salario mínimo como unidad de cuenta, índice, base, medida o referencia en las leyes federales como referidas a la UMA. El sitio calcula 90 × UMA × años (con la regla de la fracción) como información, no como cálculo de impuestos.
 
-**Fuentes:** [LISR Art. 93 fr. XIII (texto vigente)](https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf) (leída 2026-11-22)
+**Fuentes:** [LISR Art. 93 fr. XIII (texto vigente)](https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf) (leída 2026-11-22); [DOF 27-01-2016, Decreto de desindexación del salario mínimo, Transitorios Segundo y Tercero](https://dof.gob.mx/nota_detalle_popup.php?codigo=5423663) (leída 2026-11-22); [Ley para Determinar el Valor de la UMA, Art. 2 fr. III](https://www.ordenjuridico.gob.mx/Documentos/Federal/html/wo120912.html) (leída 2026-11-22)
 
-**Conflicto abierto:** El texto leído dice 'noventa veces el salario mínimo general del área geográfica del contribuyente', no UMA. El sitio usa UMA por la desindexación de 2016 (no leída). Con salario mínimo la cifra sería mucho mayor. Ver DISCREPANCIES.md.
+**Conflicto abierto:** El texto de la LISR sigue diciendo «salario mínimo»; no se encontró que se haya reformado a «UMA». La regla que lo reconduce a la UMA está en el Transitorio Tercero del decreto de 2016 (leído). Queda sin leer cualquier criterio del SAT o de un tribunal sobre esta exención.
 
-**Debe confirmar:** Si hoy se aplica UMA o salario mínimo, y el tratamiento de fracciones.
+**Debe confirmar:** Que el Art. 93 fr. XIII sea un «supuesto» al que aplica el Transitorio Tercero (la lectura natural del texto) y cómo trata el SAT el cálculo.
 
-**Pregunta para el abogado:** Para la exención de ISR del Art. 93 fr. XIII, ¿se multiplica por UMA o por salario mínimo, y cuenta la fracción de más de seis meses?
+**Pregunta para el abogado:** ¿Confirma que, por el Transitorio Tercero de 2016, la exención del Art. 93 fr. XIII se calcula con UMA y no con salario mínimo, y que la fracción de más de seis meses cuenta como año completo?
 
 **Páginas:** /calculadora/, /revision/
 
@@ -198,17 +198,17 @@ INFONAVIT: Fondo de Protección de Pagos y prórroga, con 0% de interés durante
 
 **Páginas:** /puente/, /checklist-salida/
 
-## C15 · verificado-secundaria · prioridad C
+## C15 · verificado-primaria · prioridad C
 
-FINABIEN: el decreto de crédito directo se publicó en el DOF el 18 de noviembre de 2026 y entró en vigor el 19; no fija montos, tasas, plazos ni requisitos; FINABIEN tiene 180 días para adaptar su estatuto. Aún no hay ventanilla de crédito directo.
+FINABIEN: el decreto que reforma el decreto de creación de Financiera para el Bienestar se publicó en el DOF el 18 de noviembre de 2026 (firmado el 13 de noviembre) y entra en vigor al día siguiente de su publicación. Da a la Junta Directiva la facultad de aprobar reglas de operación y términos y condiciones de los servicios de financiamiento, y criterios de descuentos, quitas y reestructuras. No fija montos, tasas ni requisitos. FINABIEN tiene 180 días naturales para ajustar su estatuto y, después, otros 180 días naturales tras publicarlo para emitir los criterios de elegibilidad, evaluación crediticia y recuperación. Por eso aún no hay ventanilla de crédito directo.
 
-**Fuentes:** [Prensa; decreto no leído](https://www.finabien.gob.mx/) (leída 2026-11-22)
+**Fuentes:** [DOF 18-11-2026, Decreto que reforma el decreto de creación de Financiera para el Bienestar](https://sidof.segob.gob.mx/notas/5804097) (leída 2026-11-22)
 
-**Conflicto abierto:** Ninguno conocido.
+**Conflicto abierto:** Leído el texto del decreto (Transitorios Primero a Quinto). Que no haya ventanilla abierta hoy es deducción del texto: los criterios aún no se emiten. No se revisó el portal de crédito de FINABIEN.
 
-**Debe confirmar:** El decreto en el DOF.
+**Debe confirmar:** Que no se haya abierto un programa piloto antes de los criterios.
 
-**Pregunta para el abogado:** ¿El decreto de FINABIEN establece algún requisito o plazo que el sitio omita?
+**Pregunta para el abogado:** No requiere dictamen laboral; confirma con FINABIEN cuándo abrirá.
 
 **Páginas:** /negocio/, /puente/, /actualizaciones/
 
