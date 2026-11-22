@@ -12,7 +12,14 @@
     "build": "node scripts/build.mjs",
     "build:review": "node scripts/build.mjs review",
     "preview": "wrangler dev --port 8787",
-    "preview:review": "wrangler dev --env review --port 8788"
+    "preview:review": "wrangler dev --env review --port 8788",
+    "verify": "node scripts/verify.mjs",
+    "verify:review": "node scripts/verify.mjs review",
+    "link-check": "node scripts/link-check.mjs",
+    "cards": "node scripts/build-cards.mjs",
+    "review-pack": "node scripts/build-review-pack.mjs",
+    "legal-register": "node scripts/gen-legal-register.mjs",
+    "test:e2e": "node scripts/e2e.mjs"
   },
   "repository": {
     "type": "git",
@@ -37,5 +44,8 @@
     "typescript": "^7.0.2",
     "vitest": "^5.1.1",
     "wrangler": "^4.166.0"
+  },
+  "engines": {
+    "node": ">=22.23.4"
   }
 }

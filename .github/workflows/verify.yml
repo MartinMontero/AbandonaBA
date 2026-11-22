@@ -1,0 +1,18 @@
+name: verify
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    # El runner de e2e usa PowerShell y taskkill (Windows).
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npx playwright install chromium
+      - run: npm run verify
+      - run: npm run verify:review
