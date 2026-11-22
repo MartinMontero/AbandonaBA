@@ -55,7 +55,12 @@ Se corrieron en orden: verify (producción), verify:review, verify (producción)
 | C08 ISR | DOF 27-01-2016 decreto de desindexación (Transitorios 2 y 3); Ley para Determinar el Valor de la UMA; LISR Art. 93 fr. XIII completo | **Resuelto**: Transitorio Tercero reconduce «salario mínimo» a UMA; fracción de más de seis meses = año completo. La calculadora ya aplica la fracción. Queda pendiente el criterio del SAT (no leído) |
 | C07 UMA | INEGI, Comunicado de prensa 1/26 (8-ene-2026) | 117.31 / 3,566.22 / 42,794.64, vigente desde el 1-feb-2026 → **verificado-primaria**. La publicación en el DOF del 9-ene no se leyó |
 | C15 FINABIEN | DOF 18-11-2026 vía SIDOF, texto completo | **verificado-primaria**: vigor al día siguiente; 180 + 180 días; sin montos ni tasas |
-| C13 CDMX | `segurodedesempleo.cdmx.gob.mx` (aviso de segunda convocatoria 2026, PDF) | el servidor **no respondió** (tiempo agotado). No se desactivó la verificación de certificados |
+| C13 CDMX | `segurodedesempleo.cdmx.gob.mx` y `tramites.cdmx.gob.mx` con curl y con Chromium sin interfaz | ambos **agotan el tiempo a nivel de red** (ERR_CONNECTION_TIMED_OUT); no es un problema de la herramienta de lectura. No se desactivó la verificación de certificados |
+| C09 jornada | Decreto DOF 01-05-2026 (PDF de la Cámara de Diputados), texto completo | **verificado-primaria; corrige un error de la primera versión**: en 2026 rige 48 horas, no 40 (ver DISCREPANCIES #8) |
+| C06 salario mínimo | Resolución de Conasami 2026 (PDF), extraído con pdftotext | 315.04 y 440.87 aparecen en el texto de la resolución |
+| Directorio | `centrolaboral.gob.mx` | **error corregido**: `www.centrolaboral.gob.mx` lleva al portal del Comité de Ética del CFCRL; el sitio del CFCRL es `gob.mx/cfcrl` |
+| INFONAVIT | curl y Chromium | el cortafuegos del sitio devuelve «Access Denied» (403) también a un navegador real; no se intentó evadirlo |
+| PROFEDET, CONSAR | Chromium sin interfaz | la página carga pero entrega texto vacío; contenido **sin leer** |
 
 ## SIGUE sin verificar (se intentó y no se pudo, o no se intentó)
 | Afirmación | Intento | Motivo |

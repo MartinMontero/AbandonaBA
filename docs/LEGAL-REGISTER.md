@@ -114,17 +114,17 @@ Exención de ISR de pagos por separación (LISR Art. 93 fr. XIII): hasta noventa
 
 **Páginas:** /calculadora/, /revision/
 
-## C09 · verificado-secundaria · prioridad B
+## C09 · verificado-primaria · prioridad B
 
-Reforma de 40 horas: el Art. 59 vigente dice que la jornada ordinaria máxima es de cuarenta horas semanales (reformado DOF 01-05-2026). El calendario de transición (48 horas en 2026, 46 en 2027, 44 en 2028, 42 en 2029 y 40 en 2030) viene de fuentes secundarias. El Art. 66 fija un máximo de doce horas extra por semana.
+Reducción de la jornada (decreto DOF 01-05-2026, en vigor ese día): el Art. 59 fija la jornada ordinaria máxima en cuarenta horas semanales, pero el Transitorio Segundo dice que se alcanza de forma gradual, a partir del 1 de enero de cada año: 48 horas en 2026, 46 en 2027, 44 en 2028, 42 en 2029 y 40 en 2030. El Transitorio Cuarto escalona las horas extra: 9 en 2026 y 2027, 10 en 2028, 11 en 2029 y 12 en 2030 (el Art. 66 ya habla de 12 como tope final). El Transitorio Séptimo dice que la reducción no implica disminución de sueldos, salarios ni prestaciones. El Art. 61 dice que la jornada diaria es de ocho horas la diurna, siete la nocturna y siete y media la mixta.
 
-**Fuentes:** [LFT Arts. 59, 61 y 66 (texto consolidado)](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22); [Decreto de reducción de jornada, DOF 01-05-2026 (transitorios no leídos)](https://www.diputados.gob.mx/LeyesBiblio/ref/lft.htm) (leída 2026-11-22)
+**Fuentes:** [DOF 01-05-2026, Decreto que reforma la LFT en materia de reducción de la jornada laboral (Edición Vespertina), Transitorios Primero a Séptimo](https://www.diputados.gob.mx/LeyesBiblio/ref/lft/LFT_ref52_01may26.pdf) (leída 2026-11-22); [LFT texto consolidado, Arts. 59, 61 y 66](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22)
 
-**Conflicto abierto:** El texto consolidado ya dice cuarenta; el calendario gradual está en los transitorios del decreto, que no se leyeron.
+**Conflicto abierto:** Corrección: el borrador y la primera versión del sitio decían que ya rige un máximo de 40 horas. En 2026 el máximo que rige es 48. Lo que sigue sin leerse es la parte del decreto sobre la fracción XXXIV del Art. 132 (registro electrónico de jornada), que entra en vigor el 1 de enero de 2027 según el Transitorio Quinto.
 
-**Debe confirmar:** Los artículos transitorios del decreto del 01-05-2026.
+**Debe confirmar:** El texto de los Arts. 132 fr. XXXIV (control de jornada) y 994 fr. IV Bis (multas) y su vigencia.
 
-**Pregunta para el abogado:** ¿Cuál es el máximo semanal que rige hoy en 2026 y cómo baja cada año según los transitorios del decreto?
+**Pregunta para el abogado:** ¿Cuál es el máximo semanal y de horas extra que rige cada año de 2026 a 2030 y qué consecuencias tiene para quien trabaja rotando turnos de ocho horas y descansos distintos?
 
 **Páginas:** /actualizaciones/
 
