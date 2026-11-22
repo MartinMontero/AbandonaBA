@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+const sources = [
+  { title: 'Ley Federal del Trabajo, Arts. 48, 50, 51, 76, 84, 87, 89, 162 y 439', url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf', read: '2026-11-22' },
+  { title: 'Ley del Impuesto sobre la Renta, Art. 93 fr. XIII', url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf', read: '2026-11-22' },
+];
+---
+<Base title="Calcula lo que te toca" description="Calculadora de liquidación en tu teléfono. Nada sale de tu dispositivo." path="/calculadora/" legal claims={['C01','C02','C03','C06','C07','C08','C19','C20']} decisions={['D1','D2','D3','D4','D5']} sources={sources} wide>
+  <p>Escribe tus datos. Todo se calcula aquí, en tu aparato. Nada se envía ni se guarda.</p>
+  <form id="calc" class="calc" novalidate>
+    <fieldset>
+      <legend>Tu pago</legend>
+      <label for="weeklyBase">Sueldo base a la semana (pesos)<span class="hint">Lo que dice tu recibo, sin comisiones.</span></label>
+      <input id="weeklyBase" inputmode="decimal" autocomplete="off" />
+      <label for="commissions">Comisiones promedio (pesos)<span class="hint">Escribe el promedio a la semana, o el total de 30 días si eliges esa opción.</span></label>
+      <input id="commissions" inputmode="decimal" autocomplete="off" />
+      <label for="commissionPeriod">Las comisiones que escribí son…</label>
+      <select id="commissionPeriod"><option value="semana">promedio por semana</option><option value="treinta">total de 30 días</option></select>
+      <label for="zone">Zona</label>
+      <select id="zone"><option value="general">General</option><option value="frontera">Frontera norte</option></select>
+    </fieldset>
+    <fieldset>
+      <legend>Tu antigüedad</legend>
+      <label for="entry">Fecha de ingreso</label><input id="entry" type="date" />
+      <label for="exit">Fecha de salida (o estimada)</label><input id="exit" type="date" />
+      <label for="years">Años completos (si no pones fechas)</label><input id="years" inputmode="numeric" autocomplete="off" />
+    </fieldset>
+    <fieldset>
+      <legend>Lo que el banco te debe todavía (finiquito)</legend>
+      <label for="wageDays">Días de sueldo sin pagar</label><input id="wageDays" inputmode="numeric" autocomplete="off" />
+      <label for="vacDays">Días de vacaciones pendientes</label><input id="vacDays" inputmode="numeric" autocomplete="off" />
+      <label for="daysYear">Días trabajados este año<span class="hint">Si pones fechas, se calcula solo.</span></label><input id="daysYear" inputmode="numeric" autocomplete="off" />
+    </fieldset>
+    <fieldset>
+      <legend>Cómo se cuenta (decisiones D1 a D5)</legend>
+      <p class="hint">Todavía no hay dictamen de un abogado sobre estas cinco decisiones. Cámbialas para ver el resultado de las dos maneras.</p>
+      <label for="art439Days">D1. Art. 439: cuatro meses cuentan como…</label>
+      <select id="art439Days"><option value="120">120 días</option><option value="121.6">121.6 días (4 × 30.4)</option></select>
+      <label for="daysPerWeek">D2. Método B: días que trabajas a la semana</label><input id="daysPerWeek" inputmode="numeric" value="6" />
+      <label for="vacationBasis">D3. Vacaciones para el cálculo</label>
+      <select id="vacationBasis"><option value="completos">del último año completo</option><option value="encurso">del año en curso</option></select>
+      <label for="fractionMode">D5. Fracciones de año</label>
+      <select id="fractionMode"><option value="completos">solo años completos</option><option value="proporcional">proporcional</option></select>
+      <label for="aguinaldoDays">Días de aguinaldo (avanzado)</label><input id="aguinaldoDays" inputmode="numeric" placeholder="15" />
+      <p class="hint">D4: el promedio de pago variable cambia si escribes un total de 30 días en lugar de un promedio semanal. Usa la opción de arriba.</p>
+    </fieldset>
+    <p class="no-print">
+      <button type="button" class="btn secondary" id="example">Cargar ejemplo: cajero con 5 años (datos inventados)</button>
+      <button type="button" class="btn secondary" id="reset">Borrar todo</button>
+      <button type="button" class="btn" data-print>Imprimir o guardar como PDF</button>
+    </p>
+  </form>
+  <div id="resultado" aria-live="polite"></div>
+  <script>import '../scripts/calculadora.ts';</script>
+</Base>

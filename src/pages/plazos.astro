@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+const sources = [
+  { title: 'Ley Federal del Trabajo, Arts. 516, 517, 518 y 52', url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf', read: '2026-11-22' },
+  { title: 'Ley del Seguro Social, Arts. 109 y 191', url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf', read: '2026-11-22' },
+];
+---
+<Base title="Mis plazos" description="Fechas límite según tu salida. Todo se calcula en tu aparato." path="/plazos/" legal claims={['C04','C05','C10','C11','C19']} sources={sources} card="plazos">
+  <p>Los plazos para reclamar son cortos. Calcula los tuyos hoy.</p>
+  <label for="p-date" class="field">Fecha de salida (o estimada)</label>
+  <input id="p-date" type="date" />
+  <label for="p-type" class="field">Cómo saliste</label>
+  <select id="p-type">
+    <option value="despido">Me despidieron</option>
+    <option value="rescision">Me separé por culpa del patrón (Art. 51)</option>
+    <option value="reduccion">Mi puesto desapareció (Art. 439)</option>
+    <option value="renuncia">Renuncié</option>
+  </select>
+  <div id="p-out" aria-live="polite"></div>
+  <p class="no-print"><button type="button" class="btn" id="p-ics" disabled>Descargar recordatorios (.ics)</button></p>
+  <p><strong>Importante:</strong> pedir la conciliación en el Centro de Conciliación suspende el plazo de dos meses (Art. 518). Hasta cuándo dura la suspensión debes confirmarlo con PROFEDET. Mira <a href="/ayuda-gratis/">Ayuda gratis</a>.</p>
+  <script>import '../scripts/plazos.ts';</script>
+</Base>

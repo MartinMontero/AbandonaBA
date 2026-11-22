@@ -1,0 +1,424 @@
+{
+ "date": "2026-11-22",
+ "results": [
+  {
+   "url": "https://capacitateparaelempleo.org",
+   "status": 200,
+   "final": "https://capacitateparaelempleo.org/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://jovenesconstruyendoelfuturo.stps.gob.mx",
+   "status": 200,
+   "final": "https://jovenesconstruyendoelfuturo.stps.gob.mx/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://mx.computrabajo.com",
+   "status": 200,
+   "final": "https://mx.computrabajo.com/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://mx.indeed.com",
+   "status": 403,
+   "final": "https://mx.indeed.com/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://nu.com.mx",
+   "status": 200,
+   "final": "https://nubank.com.mx/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://torre.ai",
+   "status": 200,
+   "final": "https://torre.ai/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.afirme.com",
+   "status": 200,
+   "final": "https://www.afirme.com/afirme",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.banamex.com",
+   "status": 200,
+   "final": "https://www.banamex.com/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.bancoppel.com",
+   "status": 200,
+   "final": "https://www.bancoppel.com/main/index.html",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.banorte.com",
+   "status": 200,
+   "final": "https://www.banorte.com/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.bbva.mx/bolsa-de-trabajo.html",
+   "status": 200,
+   "final": "https://www.bbva.mx/bolsa-de-trabajo.html",
+   "files": [
+    "src/data/claims-register.json",
+    "src/data/empleadores.json",
+    "src/data/valores-2026.json"
+   ]
+  },
+  {
+   "url": "https://www.centrolaboral.gob.mx",
+   "status": 200,
+   "final": "https://etica.centrolaboral.gob.mx/",
+   "files": [
+    "src/data/directorio.json"
+   ]
+  },
+  {
+   "url": "https://www.compartamos.com.mx",
+   "status": 200,
+   "final": "https://www.compartamos.com.mx/compartamos",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.condusef.gob.mx",
+   "status": 0,
+   "error": "UND_ERR_CONNECT_TIMEOUT",
+   "files": [
+    "src/data/directorio.json"
+   ]
+  },
+  {
+   "url": "https://www.coppel.com",
+   "status": 403,
+   "final": "https://www.coppel.com/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf",
+   "status": 200,
+   "final": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf",
+   "files": [
+    "src/content/es/no-firmes.md",
+    "src/content/es/salidas.md",
+    "src/data/claims-register.json",
+    "src/data/valores-2026.json",
+    "src/pages/calculadora.astro",
+    "src/pages/checklist-salida.astro",
+    "src/pages/plazos.astro"
+   ]
+  },
+  {
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf",
+   "status": 200,
+   "final": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf",
+   "files": [
+    "src/data/claims-register.json",
+    "src/data/valores-2026.json",
+    "src/pages/calculadora.astro"
+   ]
+  },
+  {
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf",
+   "status": 200,
+   "final": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf",
+   "files": [
+    "src/data/claims-register.json",
+    "src/pages/plazos.astro"
+   ]
+  },
+  {
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/ref/lft.htm",
+   "status": 200,
+   "final": "https://www.diputados.gob.mx/LeyesBiblio/ref/lft.htm",
+   "files": [
+    "src/data/claims-register.json"
+   ]
+  },
+  {
+   "url": "https://www.empleo.gob.mx",
+   "status": 200,
+   "final": "https://www.empleo.gob.mx/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.finabien.gob.mx",
+   "status": 200,
+   "final": "https://www.gob.mx/finabien",
+   "files": [
+    "src/data/directorio.json",
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.finabien.gob.mx/",
+   "status": 200,
+   "final": "https://www.gob.mx/finabien",
+   "files": [
+    "src/data/claims-register.json"
+   ]
+  },
+  {
+   "url": "https://www.getonbrd.com",
+   "status": 200,
+   "final": "https://www.getonbrd.com/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.gob.mx/",
+   "status": 200,
+   "final": "https://www.gob.mx/",
+   "files": [
+    "src/data/claims-register.json",
+    "src/data/site.config.ts",
+    "src/data/valores-2026.json",
+    "src/scripts/site.ts"
+   ]
+  },
+  {
+   "url": "https://www.gob.mx/conasami",
+   "status": 200,
+   "final": "https://www.gob.mx/conasami",
+   "files": [
+    "src/data/claims-register.json",
+    "src/data/valores-2026.json"
+   ]
+  },
+  {
+   "url": "https://www.gob.mx/consar",
+   "status": 200,
+   "final": "https://www.gob.mx/consar",
+   "files": [
+    "src/data/directorio.json"
+   ]
+  },
+  {
+   "url": "https://www.gob.mx/inaes",
+   "status": 200,
+   "final": "https://www.gob.mx/inaes",
+   "files": [
+    "src/data/directorio.json"
+   ]
+  },
+  {
+   "url": "https://www.gob.mx/inaes/prensa/el-inaes-lanza-el-sistema-electronico-del-padron-nacional-de-sociedades-cooperativas",
+   "status": 200,
+   "final": "https://www.gob.mx/inaes/prensa/el-inaes-lanza-el-sistema-electronico-del-padron-nacional-de-sociedades-cooperativas",
+   "files": [
+    "src/data/claims-register.json"
+   ]
+  },
+  {
+   "url": "https://www.gob.mx/profedet",
+   "status": 200,
+   "final": "https://www.gob.mx/profedet",
+   "files": [
+    "src/content/es/salidas.md",
+    "src/data/directorio.json"
+   ]
+  },
+  {
+   "url": "https://www.gob.mx/stps",
+   "status": 200,
+   "final": "https://www.gob.mx/stps",
+   "files": [
+    "src/data/directorio.json"
+   ]
+  },
+  {
+   "url": "https://www.hsbc.com.mx",
+   "status": 200,
+   "final": "https://www.hsbc.com.mx/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.imss.gob.mx",
+   "status": 200,
+   "final": "https://www.imss.gob.mx/",
+   "files": [
+    "src/data/directorio.json"
+   ]
+  },
+  {
+   "url": "https://www.imss.gob.mx/",
+   "status": 200,
+   "final": "https://www.imss.gob.mx/",
+   "files": [
+    "src/data/claims-register.json"
+   ]
+  },
+  {
+   "url": "https://www.inbursa.com",
+   "status": 200,
+   "final": "https://www.inbursa.com/sites/gfi/home",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.inegi.org.mx/temas/uma/",
+   "status": 200,
+   "final": "https://www.inegi.org.mx/temas/uma/",
+   "files": [
+    "src/data/claims-register.json",
+    "src/data/valores-2026.json"
+   ]
+  },
+  {
+   "url": "https://www.infonavit.org.mx",
+   "status": 200,
+   "final": "https://portalmx.infonavit.org.mx/wps/portal/infonavitmx/mx2/derechohabientes/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizdwNDDycTQz9LMIsHA0C_Sz9jLzNjI28HM31wwkpiAJKG-AAjgZA_VFgJThNMIMqsLR0MTH0tjAwCjD0MzAIDAs0dPF0MTcwNTCBKsBjSUFuhEGmp6MiAOMcTcA!/dz/d5/L2dBISEvZ0FBIS9nQSEh/",
+   "files": [
+    "src/data/directorio.json"
+   ]
+  },
+  {
+   "url": "https://www.infonavit.org.mx/",
+   "status": 200,
+   "final": "https://portalmx.infonavit.org.mx/wps/portal/infonavitmx/mx2/derechohabientes/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizdwNDDycTQz9LMIsHA0C_Sz9jLzNjI28HM31wwkpiAJKG-AAjgZA_VFgJThNMIMqsLR0MTH0tjAwCjD0MzAIDAs0dPF0MTcwNTCBKsBjSUFuhEGmp6MiAOMcTcA!/dz/d5/L2dBISEvZ0FBIS9nQSEh/",
+   "files": [
+    "src/data/claims-register.json"
+   ]
+  },
+  {
+   "url": "https://www.klar.mx",
+   "status": 200,
+   "final": "https://www.klar.mx/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.linkedin.com/jobs",
+   "status": 200,
+   "final": "https://www.linkedin.com/jobs",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.liverpool.com.mx",
+   "status": 200,
+   "final": "https://www.liverpool.com.mx/tienda/home",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.mercadopago.com.mx",
+   "status": 200,
+   "final": "https://www.mercadopago.com.mx/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.occ.com.mx",
+   "status": 403,
+   "final": "https://www.occ.com.mx/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.remitly.com",
+   "status": 200,
+   "final": "https://www.remitly.com/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.santander.com.mx",
+   "status": 200,
+   "final": "https://www.santander.com.mx/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.sat.gob.mx/",
+   "status": 200,
+   "final": "https://www.sat.gob.mx/",
+   "files": [
+    "src/data/claims-register.json",
+    "src/data/valores-2026.json"
+   ]
+  },
+  {
+   "url": "https://www.scotiabank.com.mx",
+   "status": 200,
+   "final": "https://www.scotiabank.com.mx/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.storicard.com",
+   "status": 200,
+   "final": "https://www.storicard.com/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.teleperformance.com",
+   "status": 200,
+   "final": "https://www.tp.com/en-us/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.walmartmexico.com",
+   "status": 200,
+   "final": "https://www.walmartmexico.com/",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  },
+  {
+   "url": "https://www.westernunion.com/mx/es/home.html",
+   "status": 200,
+   "final": "https://www.westernunion.com/mx/es/home.html",
+   "files": [
+    "src/data/empleadores.json"
+   ]
+  }
+ ]
+}

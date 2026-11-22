@@ -1,0 +1,30 @@
+---
+// Solo se usa en el build de revisión. Se genera desde el registro, nunca a mano.
+import { enrichedRegister } from '../lib/claims.mjs';
+interface Props { claims: string[]; decisions?: string[] }
+const { claims, decisions = [] } = Astro.props;
+const reg = enrichedRegister();
+const rows = claims.map((id) => reg.find((c) => c.id === id)).filter(Boolean);
+const D: Record<string, string> = {
+  D1: 'D1: 120 días o 121.6 días en la indemnización del Art. 439.',
+  D2: 'D2: comisiones entre 7 o entre los días realmente trabajados.',
+  D3: 'D3: vacaciones del último año completo o del año en curso.',
+  D4: 'D4: ventana para promediar el pago variable.',
+  D5: 'D5: fracciones de año: solo años completos o proporcional.',
+};
+---
+<details class="review-panel">
+  <summary>Para el abogado</summary>
+  {rows.length > 0 && (
+    <table>
+      <thead><tr><th>Afirmación</th><th>Estado</th><th>Pregunta para el abogado</th></tr></thead>
+      <tbody>
+        {rows.map((c: any) => (
+          <tr><td>{c.id}</td><td><span class={`tag t-${c.status}`}>{c.status}</span></td><td>{c.attorney_question}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  )}
+  {decisions.length > 0 && (<><h3>Decisiones de cálculo que cambian números aquí</h3><ul>{decisions.map((d) => <li>{D[d] ?? d}</li>)}</ul></>)}
+  <p><a href="/revision/">Ir a la mesa de revisión</a></p>
+</details>

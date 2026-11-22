@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { register } from '../lib/claims.mjs';
+import { legalRoutes, decisions } from '../data/routes';
+const boxes = ['confirmado', 'corregir', 'no se puede confirmar'];
+---
+<Base title="Hoja de dictamen" description="Hoja en blanco para imprimir o guardar como PDF." path="/revision/dictamen/" legal wide claims={['C01']}>
+  <p class="no-print">Esta hoja está en blanco. No guarda ni envía nada. Imprímala en A4 o Carta, o guárdela como PDF.</p>
+  <p class="no-print"><button type="button" class="btn" data-print>Imprimir o guardar como PDF</button></p>
+  <div class="sheet">
+    <p>Nombre del revisor: ______________________________ Cédula profesional: ______________</p>
+    <p>Fecha: ______________ Firma: ______________________________</p>
+
+    <h2>Afirmaciones</h2>
+    <table class="dict">
+      <thead><tr><th>Id</th><th>Afirmación</th>{boxes.map((b) => <th>{b}</th>)}<th>Comentario</th></tr></thead>
+      <tbody>{register.map((c: any) => <tr><th scope="row">{c.id}</th><td>{c.attorney_question}</td>{boxes.map(() => <td class="box">☐</td>)}<td></td></tr>)}</tbody>
+    </table>
+
+    <h2>Decisiones de cálculo</h2>
+    <table class="dict">
+      <thead><tr><th>Id</th><th>Decisión</th>{boxes.map((b) => <th>{b}</th>)}<th>Comentario</th></tr></thead>
+      <tbody>{decisions.map((d) => <tr><th scope="row">{d.id}</th><td>{d.text} ({d.a} / {d.b})</td>{boxes.map(() => <td class="box">☐</td>)}<td></td></tr>)}</tbody>
+    </table>
+
+    <h2>Rutas</h2>
+    <table class="dict">
+      <thead><tr><th>Ruta</th><th>Página</th>{boxes.map((b) => <th>{b}</th>)}<th>Comentario</th></tr></thead>
+      <tbody>{legalRoutes.map((r) => <tr><th scope="row">{r.path}</th><td>{r.title}</td>{boxes.map(() => <td class="box">☐</td>)}<td></td></tr>)}</tbody>
+    </table>
+
+    <h2>Opinión general</h2>
+    <p>________________________________________________________________________________</p>
+    <p>________________________________________________________________________________</p>
+    <p>Autorizo que el sitio muestre como «Última revisión legal» la frase: ____________________________________________</p>
+  </div>
+  <style is:global>
+    table.dict td, table.dict th { font-size: 8.5pt; padding: .2rem .3rem; }
+    table.dict td:last-child { min-width: 9rem; }
+    td.box { text-align: center; font-size: 14pt; }
+    @media print { @page { size: auto; margin: 10mm; } table.dict { page-break-inside: auto; } table.dict tr { page-break-inside: avoid; } }
+  </style>
+</Base>

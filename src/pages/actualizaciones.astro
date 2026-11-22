@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import valores from '../data/valores-2026.json';
+import { fmtMXN, fmtNum } from '../lib/format';
+const triggers = [
+  ['Principios de diciembre de 2026', 'Conasami fija el salario mínimo 2027 (plazo legal: 30 de diciembre). Cambia la calculadora.'],
+  ['Antes del 20 de diciembre', 'Aguinaldo (Art. 87).'],
+  ['1 de enero de 2027', 'Primer escalón de la reducción de la jornada (se reporta 46 horas; confirmar en los transitorios).'],
+  ['Enero de 2027', 'INEGI publica la UMA; rige desde el 1 de febrero.'],
+  ['En observación', 'Acuerdo del IMSS sobre Modalidad 40 y amparos.'],
+  ['Hasta mayo de 2027 (180 días)', 'FINABIEN adapta su estatuto al decreto de crédito directo.'],
+  ['Mayo', 'PTU.'],
+];
+---
+<Base title="Actualizaciones y valores" description="Valores legales con su fuente y fecha, y calendario de cambios." path="/actualizaciones/" legal claims={['C06','C07','C09','C12','C15']} wide>
+  <h2>Valores</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Valor</th><th>Cantidad</th><th>Estado</th><th>Fuente</th><th>Última verificación</th></tr></thead>
+    <tbody>{valores.map((v) => (
+      <tr id={v.id}><th scope="row">{v.label_es}</th><td>{String(v.unit).startsWith('MXN') ? fmtMXN(v.value) : fmtNum(v.value) + ' ' + v.unit}</td><td><span class={`tag t-${v.status}`}>{v.status}</span></td><td><a href={v.source_url} rel="noopener noreferrer">{v.source_name}</a></td><td>{v.as_of}</td></tr>
+    ))}</tbody>
+  </table></div>
+  <h2>Calendario de cambios</h2>
+  <ul>{triggers.map(([w, t]) => <li><strong>{w}:</strong> {t}</li>)}</ul>
+  <h2>Cambios del sitio</h2>
+  <ul><li>2026-11-22: primera versión del borrador. Pendiente de revisión legal.</li></ul>
+</Base>

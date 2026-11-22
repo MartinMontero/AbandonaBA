@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+import { siteConfig, legalReview, statusLabels, isReview } from '../data/site.config';
+import ReviewPanel from '../components/ReviewPanel.astro';
+import ShareRow from '../components/ShareRow.astro';
+
+export interface Source { title: string; url: string; read: string }
+interface Props {
+  title: string;
+  description?: string;
+  path: string; // ruta con barra inicial y final, p. ej. "/salidas/"
+  lang?: 'es' | 'en';
+  legal?: boolean;
+  claims?: string[];
+  decisions?: string[];
+  sources?: Source[];
+  card?: string;
+  wide?: boolean;
+}
+const { title, description = '', path, lang = 'es', legal = false, claims = [], decisions = [], sources = [], card, wide = false } = Astro.props;
+const es = lang === 'es';
+const basePath = path.replace(/^\/en\//, '/');
+const altEs = basePath;
+const altEn = '/en' + (basePath === '/' ? '/' : basePath);
+const fullTitle = path === '/' || path === '/en/' ? title : `${title} · ${siteConfig.name}`;
+const nav = [
+  ['/no-firmes/', 'No firmes'], ['/calculadora/', 'Calculadora'], ['/plazos/', 'Plazos'], ['/salidas/', 'Salidas'],
+  ['/checklist-salida/', 'Checklist'], ['/ayuda-gratis/', 'Ayuda gratis'], ['/puente/', 'Dinero puente'], ['/trabajo/', 'Trabajo'],
+  ['/negocio/', 'Negocio'], ['/equipo/', 'Equipo'], ['/cooperativa/', 'Cooperativa'], ['/inteligencia-aumentada/', 'Inteligencia Aumentada'],
+];
+const ogImage = card ? `${siteConfig.siteUrl}/cards/${card}-1080x1080.png` : '';
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#111111" />
+    {isReview && <meta name="robots" content="noindex, nofollow, noarchive" />}
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="alternate" hreflang="es" href={siteConfig.siteUrl + altEs} />
+    {['/', '/situacion/', '/acerca/'].includes(basePath) && <link rel="alternate" hreflang="en" href={siteConfig.siteUrl + altEn} />}
+    <link rel="alternate" hreflang="x-default" href={siteConfig.siteUrl + altEs} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {ogImage && !isReview && <meta property="og:image" content={ogImage} />}
+  </head>
+  <body data-exit-url={siteConfig.quickExitUrl} data-lang={lang}>
+    {isReview && <div class="review-banner" role="note">{siteConfig.reviewBanner}</div>}
+    <div class="bank-warning" role="note">{es ? siteConfig.bankWarning : 'Do not use bank devices, Wi-Fi or internet to visit this page.'}</div>
+    <div id="offline-banner" class="offline" role="status" hidden>{es ? 'Sin conexión. Puedes seguir usando las páginas que ya abriste.' : 'You are offline. Pages you already opened still work.'}</div>
+    <a class="skip" href="#contenido">{es ? 'Saltar al contenido' : 'Skip to content'}</a>
+    <header class="top">
+      <a class="brand" href={es ? '/' : '/en/'}>{siteConfig.name}</a>
+      <button type="button" class="quick-exit" id="quick-exit" aria-label={es ? 'Salida rápida: abre otra página al instante' : 'Quick exit'}>{es ? 'Salida rápida' : 'Quick exit'}</button>
+      {es && (
+        <nav aria-label="Principal">
+          <ul class="nav">
+            {nav.map(([href, label]) => <li><a href={href} aria-current={href === path ? 'page' : undefined}>{label}</a></li>)}
+          </ul>
+        </nav>
+      )}
+    </header>
+    <main id="contenido" class={wide ? 'wide' : ''}>
+      <h1>{title}</h1>
+      {legal && (
+        <p class="legal-note" role="note">
+          {legalReview.status === 'pendiente' ? siteConfig.legalNote : `Revisión legal firmada por ${legalReview.reviewers.join(', ')}.`}
+          <br /><span>Última revisión legal: {legalReview.status === 'pendiente' || !legalReview.fecha ? 'pendiente' : legalReview.fecha}</span>
+        </p>
+      )}
+      <slot />
+      {sources.length > 0 && (
+        <section class="sources" aria-labelledby="fuentes">
+          <h2 id="fuentes">{es ? 'Fuentes' : 'Sources'}</h2>
+          <ul>{sources.map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.title}</a> · {es ? 'leída el' : 'read on'} {s.read}</li>)}</ul>
+        </section>
+      )}
+      {legal && (
+        <section class="legend" aria-labelledby="leyenda">
+          <h2 id="leyenda">{es ? 'Qué significan las etiquetas' : 'What the labels mean'}</h2>
+          <ul>
+            {Object.entries(statusLabels).map(([k, v]) => <li><span class={`tag t-${k}`}>{k}</span> {v}</li>)}
+          </ul>
+        </section>
+      )}
+      {card && <ShareRow card={card} path={path} />}
+      {isReview && legal && <ReviewPanel claims={claims} decisions={decisions} />}
+    </main>
+    <footer>
+      <p>{siteConfig.footerLine}</p>
+      <p>{siteConfig.disclaimer}</p>
+      <p>
+        <a href="/acerca/">{es ? 'Acerca y privacidad' : 'About'}</a> ·
+        <a href="/glosario/">Glosario</a> ·
+        <a href="/actualizaciones/">Actualizaciones</a> ·
+        <a href={siteConfig.repoUrl} rel="noopener noreferrer">Código abierto</a>
+      </p>
+      <p class="small">Texto: CC BY-SA 4.0. Código: MIT.</p>
+    </footer>
+    <script>import '../scripts/site.ts';</script>
+  </body>
+</html>

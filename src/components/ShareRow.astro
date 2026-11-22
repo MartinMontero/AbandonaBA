@@ -1,0 +1,15 @@
+---
+import { siteConfig } from '../data/site.config';
+interface Props { card: string; path: string }
+const { card, path } = Astro.props;
+const url = siteConfig.siteUrl + path;
+const wa = 'https://wa.me/?text=' + encodeURIComponent(url);
+---
+<section class="share" aria-labelledby={`compartir-${card}`}>
+  <h2 id={`compartir-${card}`}>Compartir</h2>
+  <p>
+    <a class="btn" href={wa} rel="noopener noreferrer">Enviar por WhatsApp</a>
+    <button type="button" class="btn" data-copy={url}>Copiar enlace</button>
+    <a class="btn" href={`/cards/${card}-1080x1080.png`} download>Descargar tarjeta</a>
+  </p>
+</section>

@@ -1,0 +1,76 @@
+:root {
+  --bg: #ffffff; --fg: #111111; --muted: #444444; --line: #bbbbbb; --accent: #0b3d91; --accent-fg: #ffffff;
+  --warn-bg: #fff4c2; --warn-fg: #3a2c00; --rev-bg: #4a148c; --rev-fg: #ffffff; --soft: #f2f2f2;
+  --ok: #0b5d1e; --mid: #7a4a00; --bad: #8a1c1c;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #101114; --fg: #f4f4f4; --muted: #cfcfcf; --line: #555; --accent: #9ec1ff; --accent-fg: #101114; --warn-bg: #4a3b00; --warn-fg: #ffeaa0; --soft: #1c1e24; --ok: #8ee0a2; --mid: #ffcf8a; --bad: #ffb0b0; }
+}
+* { box-sizing: border-box; }
+html { font-size: 112.5%; }
+body { margin: 0; background: var(--bg); color: var(--fg); line-height: 1.55; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #ff9800; outline-offset: 2px; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--fg); color: var(--bg); padding: .5rem 1rem; z-index: 100; }
+.skip:focus { left: 0; }
+.review-banner { position: sticky; top: 0; z-index: 60; background: var(--rev-bg); color: var(--rev-fg); padding: .5rem 1rem; font-weight: 700; font-size: .85rem; text-align: center; }
+.bank-warning { background: var(--warn-bg); color: var(--warn-fg); padding: .5rem 1rem; font-size: .9rem; text-align: center; font-weight: 600; }
+.offline { background: #333; color: #fff; padding: .4rem 1rem; text-align: center; font-size: .9rem; }
+.offline[hidden] { display: none; }
+.top { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: .75rem 1rem; border-bottom: 1px solid var(--line); }
+.brand { font-weight: 800; text-decoration: none; color: var(--fg); }
+.quick-exit { margin-left: auto; background: var(--bad); color: #fff; border: 0; padding: .6rem 1rem; font-weight: 700; border-radius: .4rem; font-size: 1rem; min-height: 44px; cursor: pointer; }
+.nav { list-style: none; display: flex; flex-wrap: wrap; gap: .25rem .9rem; padding: 0; margin: 0; font-size: .85rem; }
+.top nav { flex-basis: 100%; }
+main { max-width: 46rem; margin: 0 auto; padding: 1rem; }
+main.wide { max-width: 72rem; }
+h1 { font-size: 1.7rem; line-height: 1.2; margin: .5rem 0 1rem; }
+h2 { font-size: 1.3rem; margin-top: 2rem; }
+h3 { font-size: 1.1rem; }
+.legal-note { background: var(--soft); border-left: 5px solid var(--accent); padding: .6rem .8rem; font-size: .9rem; margin: 0 0 1rem; }
+.legal-note span { color: var(--muted); }
+.doors { list-style: none; padding: 0; display: grid; gap: .6rem; }
+.doors a { display: block; padding: .9rem 1rem; border: 2px solid var(--accent); border-radius: .5rem; text-decoration: none; font-weight: 700; min-height: 44px; }
+.doors a:hover { background: var(--soft); }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { border: 1px solid var(--line); padding: .45rem .55rem; text-align: left; vertical-align: top; }
+th { background: var(--soft); }
+.table-wrap { overflow-x: auto; }
+.tag { display: inline-block; font-size: .75rem; font-weight: 700; padding: .05rem .45rem; border-radius: 1rem; border: 2px solid currentColor; white-space: nowrap; }
+.t-verificado-primaria { color: var(--ok); }
+.t-verificado-secundaria { color: var(--mid); }
+.t-sin-verificar { color: var(--bad); }
+.unverified { border: 2px dashed var(--bad); padding: .6rem .8rem; border-radius: .4rem; margin: 1rem 0; }
+.btn, button.btn { display: inline-block; background: var(--accent); color: var(--accent-fg); border: 0; padding: .65rem 1rem; border-radius: .4rem; font-weight: 700; text-decoration: none; font-size: 1rem; min-height: 44px; cursor: pointer; margin: .2rem .3rem .2rem 0; }
+.btn.secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+form.calc label, .field { display: block; margin: .7rem 0; font-weight: 600; }
+input, select, textarea { font: inherit; padding: .55rem; border: 2px solid var(--muted); border-radius: .35rem; width: 100%; max-width: 22rem; background: var(--bg); color: var(--fg); min-height: 44px; }
+input[type=checkbox], input[type=radio] { width: auto; min-height: 0; margin-right: .5rem; transform: scale(1.3); }
+fieldset { border: 1px solid var(--line); border-radius: .4rem; margin: 1rem 0; padding: .5rem 1rem 1rem; }
+.hint { font-weight: 400; color: var(--muted); font-size: .85rem; display: block; }
+.assumptions { border: 2px solid var(--warn-fg); background: var(--warn-bg); color: var(--warn-fg); padding: .6rem .8rem; border-radius: .4rem; font-weight: 600; }
+.bar { background: var(--soft); border: 1px solid var(--line); height: 1.1rem; border-radius: .3rem; overflow: hidden; }
+.bar > span { display: block; height: 100%; background: var(--accent); }
+.warning { color: var(--bad); font-weight: 700; }
+.sources ul, .legend ul { font-size: .85rem; padding-left: 1.1rem; }
+.review-panel { margin: 2rem 0 0; border: 3px solid var(--rev-bg); border-radius: .4rem; padding: .5rem 1rem; }
+.review-panel summary { font-weight: 800; cursor: pointer; }
+footer { border-top: 1px solid var(--line); padding: 1rem; max-width: 46rem; margin: 2rem auto 0; font-size: .85rem; color: var(--muted); }
+.small { font-size: .75rem; }
+.card { border: 1px solid var(--line); border-radius: .5rem; padding: .8rem 1rem; margin: .8rem 0; }
+.print-only { display: none; }
+ul.plain { list-style: none; padding: 0; }
+.pass { color: var(--ok); }
+.fail { color: var(--bad); }
+@media print {
+  .top, .bank-warning, .offline, .skip, .share, .no-print, footer .small { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .print-only { display: block; border: 2px solid #000; padding: .4rem .6rem; margin-bottom: .6rem; font-weight: 700; }
+  .review-banner { position: static; background: #fff; color: #000; border: 2px solid #000; }
+  .legal-note { border-color: #000; background: #fff; }
+  a { color: #000; }
+  details.review-panel { display: none; }
+  @page { margin: 14mm; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

@@ -1,0 +1,38 @@
+{
+  // Producción. Sin account_id: cada quien usa su propia cuenta (wrangler login o CLOUDFLARE_ACCOUNT_ID).
+  "name": "abandonabancoazteca",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-11-22",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "observability": { "enabled": false },
+  "workers_dev": false,
+
+  // Dominio propio: DESCOMENTA solo cuando decidas publicar. No se enlaza desde aquí.
+  // Requiere que abandonabancoazteca.mx sea una zona en tu cuenta de Cloudflare.
+  // "routes": [
+  //   { "pattern": "abandonabancoazteca.mx", "custom_domain": true },
+  //   { "pattern": "www.abandonabancoazteca.mx", "custom_domain": true }
+  // ],
+
+  "env": {
+    "review": {
+      "name": "abandonabancoazteca-review",
+      "main": "src/worker.ts",
+      "assets": {
+        "directory": "./dist-review",
+        "binding": "ASSETS",
+        "html_handling": "auto-trailing-slash",
+        "not_found_handling": "404-page"
+      },
+      "workers_dev": true,
+      "preview_urls": false,
+      "observability": { "enabled": false },
+      "vars": { "REVIEW_MODE": "1" }
+    }
+  }
+}

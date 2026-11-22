@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+const skills = ['atención al cliente', 'caja y manejo de efectivo', 'ventas y crédito', 'cobranza', 'manejo de moto y rutas', 'verificación de datos', 'contabilidad básica', 'dirección de equipo', 'redes y comunicación'];
+---
+<Base title="Arma un equipo con tus compañeros" description="Mensaje de invitación, matriz de habilidades y agenda de la primera reunión. No se guarda nada." path="/equipo/" legal claims={['C16','C21']}>
+  <p>Este formulario no recoge nombres ni contactos. Todo queda en tu aparato.</p>
+  <label for="e-n" class="field">¿Cuántas personas son?</label>
+  <input id="e-n" inputmode="numeric" value="4" />
+  <fieldset><legend>Habilidades del grupo</legend>
+    {skills.map((s) => <label><input type="checkbox" name="skill" value={s} /> {s}</label>)}
+  </fieldset>
+  <h2>Mensaje para invitar</h2>
+  <p>No menciona al banco ni a nadie por su nombre.</p>
+  <blockquote id="e-msg"></blockquote>
+  <p><button type="button" class="btn" id="e-copy" data-copy="">Copiar mensaje</button></p>
+  <h2>Matriz de habilidades (para imprimir)</h2>
+  <div id="e-matrix"></div>
+  <h2>Agenda de la primera reunión</h2>
+  <ol><li>¿Qué necesita cada quien?</li><li>¿Qué puede ofrecer cada quien?</li><li>¿Cuál es nuestro primer paso en 30 días?</li></ol>
+  <h2>Organizarse sin riesgo</h2>
+  <ul>
+    <li>Hablen en persona o por Signal. Nunca en equipos, Wi-Fi o Teams del banco.</li>
+    <li>No publiquen quejas que identifiquen a alguien.</li>
+    <li>Cada quien guarda sus propios registros.</li>
+    <li>Tu derecho a asociarte viene de la Constitución (Art. 123) y de la Ley Federal del Trabajo. <span class="tag t-sin-verificar">sin-verificar</span> No leímos esos artículos para esta página; confírmalo con PROFEDET o un abogado. Si te castigan por organizarte, anota fecha, hora y quién, y acude a PROFEDET.</li>
+  </ul>
+  <h2>Ayuda mutua básica</h2>
+  <ul>
+    <li><strong>Tanda o ahorro rotativo:</strong> anoten por escrito cuánto aporta cada quien, cada cuándo y en qué orden se cobra. Que todos tengan la misma copia.</li>
+    <li><strong>Fondo de emergencia:</strong> una cantidad fija al mes, una regla escrita de cuándo se usa y quién decide.</li>
+    <li>Si alguien no cumple, la regla escrita decide, no la memoria.</li>
+  </ul>
+  <p class="no-print"><button type="button" class="btn" data-print>Imprimir</button></p>
+  <script>import '../scripts/equipo.ts';</script>
+</Base>

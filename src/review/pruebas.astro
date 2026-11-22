@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Pruebas en vivo" description="Corre en tu navegador los vectores de prueba contra el código real de la calculadora." path="/revision/pruebas/" legal wide claims={['C20']} decisions={['D1','D2','D3','D4','D5']}>
+  <p>Esta página corre en su navegador cada vector de prueba contra el mismo código de la calculadora. Los vectores salen del mismo archivo que usan las pruebas automáticas.</p>
+  <div id="pruebas-out" aria-live="polite">Calculando…</div>
+  <p><a href="/revision/">Volver a la mesa de revisión</a></p>
+  <script>import '../scripts/pruebas.ts';</script>
+</Base>

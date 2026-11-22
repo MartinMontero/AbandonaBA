@@ -8,7 +8,11 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "build": "node scripts/build.mjs",
+    "build:review": "node scripts/build.mjs review",
+    "preview": "wrangler dev --port 8787",
+    "preview:review": "wrangler dev --env review --port 8788"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,21 @@
+---
+// Páginas de contenido: un archivo Markdown por ruta. es en la raíz, en en /en/.
+import Base from '../layouts/Base.astro';
+export async function getStaticPaths() {
+  const files = import.meta.glob('../content/**/*.md', { eager: true }) as Record<string, any>;
+  return Object.entries(files).map(([file, mod]) => {
+    const m = /content\/(es|en)\/(.+)\.md$/.exec(file)!;
+    const lang = m[1] as 'es' | 'en';
+    const slug = m[2] === 'index' ? '' : m[2];
+    const param = lang === 'en' ? (slug ? 'en/' + slug : 'en') : slug || undefined;
+    return { params: { slug: param }, props: { mod, lang, slug } };
+  });
+}
+const { mod, lang, slug } = Astro.props as any;
+const fm = mod.frontmatter;
+const path = (lang === 'en' ? '/en/' : '/') + (slug ? slug + '/' : '');
+const Content = mod.Content;
+---
+<Base title={fm.title} description={fm.description} path={path} lang={lang} legal={fm.legal ?? false} claims={fm.claims ?? []} decisions={fm.decisions ?? []} sources={fm.sources ?? []} card={fm.card} wide={fm.wide ?? false}>
+  <Content />
+</Base>

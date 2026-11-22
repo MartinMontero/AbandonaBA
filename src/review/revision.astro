@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import { enrichedRegister } from '../lib/claims.mjs';
+import { legalRoutes } from '../data/routes';
+const reg = enrichedRegister();
+const tiers: Record<string, string> = { A: 'Prioridad A: Art. 439 y reducciones disfrazadas, salidas y plazos, fórmulas', B: 'Prioridad B: pago, horarios, reforma de 40 horas, seguridad social, impuestos', C: 'Prioridad C: organización, represalias, redacción del sitio' };
+---
+<Base title="Mesa de revisión para abogados" description="Mesa de trabajo para revisar la herramienta." path="/revision/" legal wide claims={['C01','C04','C08','C20']} decisions={['D1','D2','D3','D4','D5']}>
+  <h2>Cómo revisar esta herramienta</h2>
+  <ol>
+    <li><strong>Qué es.</strong> Una herramienta gratuita y anónima para trabajadores de un banco en México. Calcula, avisa de plazos y explica rutas de salida. Este sitio es el borrador funcionando, no una descripción.</li>
+    <li><strong>Qué probar primero.</strong> <a href="/calculadora/">Calculadora</a>, <a href="/salidas/">salidas</a>, <a href="/no-firmes/">no firmes esto</a>, <a href="/plazos/">plazos</a> y <a href="/checklist-salida/">checklist de salida</a>.</li>
+    <li><strong>Qué le pedimos.</strong> Para cada afirmación: confirmar, corregir o decir «no se puede confirmar».</li>
+    <li><strong>Las tres etiquetas.</strong> <span class="tag t-verificado-primaria">verificado-primaria</span> leído en la fuente oficial; <span class="tag t-verificado-secundaria">verificado-secundaria</span> visto solo en prensa o sitios de terceros; <span class="tag t-sin-verificar">sin-verificar</span> sin fuente confirmada.</li>
+    <li><strong>Cómo llegan sus hallazgos.</strong> Imprima o guarde como PDF la <a href="/revision/dictamen/">hoja de dictamen</a>. El contacto se entrega por separado por correo. El sitio no recoge nada.</li>
+  </ol>
+  <p><a class="btn" href="/revision/pruebas/">Pruebas en vivo</a> <a class="btn secondary" href="/revision/dictamen/">Hoja de dictamen</a></p>
+
+  <h2>Prioridades</h2>
+  {['A','B','C'].map((t) => (
+    <div class="card"><h3>{tiers[t]}</h3>
+      <ul>{reg.filter((c: any) => c.tier === t).map((c: any) => <li><strong>{c.id}</strong> · {c.pages.length ? c.pages.map((p: string) => <a href={p}>{p}</a>) : 'sin página'} </li>)}</ul>
+    </div>
+  ))}
+
+  <h2>Decisiones de cálculo D1 a D5</h2>
+  <p>Cada decisión se calcula con el mismo código de la calculadora. El ejemplo es un cajero con cinco años (datos inventados).</p>
+  <div class="no-print">
+    <label for="r-base">Sueldo base semanal</label><input id="r-base" inputmode="decimal" />
+    <label for="r-comm">Comisiones semanales</label><input id="r-comm" inputmode="decimal" />
+    <label for="r-years">Años (con fracción, por ejemplo 5.7)</label><input id="r-years" inputmode="decimal" />
+    <p><button type="button" class="btn secondary" id="r-reset">Restablecer</button></p>
+  </div>
+  <div id="decisiones-out" aria-live="polite"></div>
+
+  <h2>Matriz de afirmaciones</h2>
+  <div class="table-wrap"><table id="matriz">
+    <thead><tr><th>Id</th><th>Afirmación</th><th>Estado</th><th>Fuentes (fecha de lectura)</th><th>Conflicto abierto</th><th>Pregunta para el abogado</th><th>Páginas</th></tr></thead>
+    <tbody>
+      {reg.map((c: any) => (
+        <tr id={c.id}>
+          <th scope="row">{c.id}</th><td>{c.statement}</td>
+          <td><span class={`tag t-${c.status}`}>{c.status}</span></td>
+          <td><ul>{c.sources.map((s: any) => <li><a href={s.url} rel="noopener noreferrer">{s.name}</a> · {s.read}</li>)}</ul></td>
+          <td>{c.conflict}</td><td>{c.attorney_question}</td>
+          <td><ul>{c.pages.map((p: string) => <li><a href={p}>{p}</a></li>)}</ul></td>
+        </tr>
+      ))}
+    </tbody>
+  </table></div>
+  <p class="small">Rutas con contenido legal: {legalRoutes.length}.</p>
+  <script>import '../scripts/revision.ts';</script>
+</Base>

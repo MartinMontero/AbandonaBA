@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+const items = [
+  { t: 'Préstamo de nómina y otros créditos internos', ask: 'Pide un estado de cuenta por escrito y pregunta cómo se trata el saldo al terminar tu empleo.', writing: 'Saldo, fecha de corte y qué pasa con el saldo si terminas la relación.', unk: 'Los términos internos del banco. Sin verificar.', tag: 'sin-verificar' },
+  { t: 'Caja de ahorro', ask: 'Pide tu saldo y la fecha de pago.', writing: 'Saldo y fecha de pago, por escrito.', unk: 'Las reglas internas. Sin verificar.', tag: 'sin-verificar' },
+  { t: 'Cuenta de nómina y portabilidad de nómina', ask: 'Tienes derecho a pedir que tu nómina se pague en otro banco.', writing: 'Guarda tu último recibo y tu saldo.', unk: 'El trámite exacto de portabilidad. Confírmalo en tu banco nuevo.', tag: 'sin-verificar' },
+  { t: 'Afore', ask: 'Revisa si tu Afore es la que quieres. Puedes cambiarla.', writing: 'Estado de cuenta de tu Afore.', unk: 'Reglas actuales de traspaso. Confírmalas en CONSAR.', tag: 'sin-verificar' },
+  { t: 'Crédito INFONAVIT', ask: 'Pregunta en Mi Cuenta Infonavit qué pasa con tu crédito sin patrón.', writing: 'Constancia de saldo.', unk: 'Fondo de protección de pagos y prórroga. Confirma en Mi Cuenta Infonavit.', tag: 'sin-verificar' },
+  { t: 'Sueldo y comisiones pendientes', ask: 'Pide el desglose de lo que te deben.', writing: 'Desglose por semana.', unk: 'Cómo se calculan tus comisiones. Pide la regla por escrito.', tag: 'sin-verificar' },
+  { t: 'Aguinaldo proporcional', ask: 'Te toca la parte proporcional (Art. 87).', writing: 'Cantidad y cuenta.', unk: '', tag: 'verificado-primaria' },
+  { t: 'Vacaciones y prima vacacional', ask: 'Pide los días pendientes y su pago (Arts. 76 y 79).', writing: 'Días pendientes.', unk: 'La prima del 25% (Art. 80) no se leyó. Confírmala.', tag: 'verificado-secundaria' },
+  { t: 'PTU', ask: 'Pregunta cuándo se reparte y si te toca la parte proporcional.', writing: 'Constancia de participación.', unk: 'Fecha de reparto. Sin verificar.', tag: 'sin-verificar' },
+  { t: 'Papel de finiquito o convenio', ask: 'Pide una copia antes de firmar. Revísalo con PROFEDET.', writing: 'Nada se firma en blanco. Un convenio vale solo si consta por escrito y se ratifica (Art. 33).', unk: '', tag: 'verificado-primaria' },
+];
+const sources = [
+  { title: 'Ley Federal del Trabajo, Arts. 33, 76, 79, 87 y 110', url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf', read: '2026-11-22' },
+];
+---
+<Base title="Lo que el banco te debe y lo que le debes" description="Lista para revisar antes de irte." path="/checklist-salida/" legal claims={['C19','C21','C14','C23']} sources={sources} card="checklist-salida">
+  <p>Marca lo que ya hiciste. Lo que marques no se guarda: si cierras la página, se borra.</p>
+  <ul class="plain">
+    {items.map((i, n) => (
+      <li class="card">
+        <label><input type="checkbox" id={`chk-${n}`} /> <strong>{i.t}</strong></label>
+        <p><span class={`tag t-${i.tag}`}>{i.tag}</span></p>
+        <p><strong>Qué pedir:</strong> {i.ask}</p>
+        <p><strong>Qué pedir por escrito:</strong> {i.writing}</p>
+        {i.unk && <p class="unverified"><strong>Lo que no sabemos:</strong> {i.unk}</p>}
+      </li>
+    ))}
+  </ul>
+  <h2>Dos advertencias</h2>
+  <ul>
+    <li>Irte puede cerrar la puerta a volver al Grupo. <span class="tag t-verificado-secundaria">verificado-secundaria</span> Se reporta en ofertas y reseñas (no es una regla confirmada).</li>
+    <li>Los descuentos a tu sueldo están limitados por la ley (Art. 110). <span class="tag t-verificado-primaria">verificado-primaria</span> La deuda con el patrón por anticipos no puede pasar de un mes de salario; confirma el resto con PROFEDET.</li>
+  </ul>
+  <p class="no-print"><button type="button" class="btn" data-print>Imprimir esta lista</button></p>
+  <div class="print-only">Información general. En revisión por abogado laboral. No es asesoría legal.</div>
+</Base>

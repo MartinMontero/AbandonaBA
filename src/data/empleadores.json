@@ -1,0 +1,138 @@
+{
+  "nota": "Se listan sitios principales. Busca «Trabaja con nosotros» o «Empleo» en cada uno. No se adivinaron enlaces profundos.",
+  "empleadores": [
+    {
+      "segment": "Bancos",
+      "name": "BBVA México",
+      "url": "https://www.bbva.mx/bolsa-de-trabajo.html",
+      "note": "Se vio una oferta «Personal de Cajas» en la CDMX el 2026-11-21 (C22)."
+    },
+    {
+      "segment": "Bancos",
+      "name": "Banorte",
+      "url": "https://www.banorte.com"
+    },
+    {
+      "segment": "Bancos",
+      "name": "Santander México",
+      "url": "https://www.santander.com.mx"
+    },
+    {
+      "segment": "Bancos",
+      "name": "Banamex",
+      "url": "https://www.banamex.com"
+    },
+    {
+      "segment": "Bancos",
+      "name": "HSBC México",
+      "url": "https://www.hsbc.com.mx"
+    },
+    {
+      "segment": "Bancos",
+      "name": "Scotiabank México",
+      "url": "https://www.scotiabank.com.mx"
+    },
+    {
+      "segment": "Bancos",
+      "name": "Inbursa",
+      "url": "https://www.inbursa.com"
+    },
+    {
+      "segment": "Bancos",
+      "name": "BanCoppel",
+      "url": "https://www.bancoppel.com"
+    },
+    {
+      "segment": "Bancos",
+      "name": "Compartamos Banco",
+      "url": "https://www.compartamos.com.mx"
+    },
+    {
+      "segment": "Bancos",
+      "name": "Afirme",
+      "url": "https://www.afirme.com"
+    },
+    {
+      "segment": "Fintech",
+      "name": "Nu México",
+      "url": "https://nu.com.mx"
+    },
+    {
+      "segment": "Fintech",
+      "name": "Mercado Pago",
+      "url": "https://www.mercadopago.com.mx"
+    },
+    {
+      "segment": "Fintech",
+      "name": "Stori",
+      "url": "https://www.storicard.com"
+    },
+    {
+      "segment": "Fintech",
+      "name": "Klar",
+      "url": "https://www.klar.mx"
+    },
+    {
+      "segment": "Remesas",
+      "name": "Western Union",
+      "url": "https://www.westernunion.com/mx/es/home.html"
+    },
+    {
+      "segment": "Remesas",
+      "name": "Remitly",
+      "url": "https://www.remitly.com"
+    },
+    {
+      "segment": "Comercio y telecom",
+      "name": "Liverpool",
+      "url": "https://www.liverpool.com.mx"
+    },
+    {
+      "segment": "Comercio y telecom",
+      "name": "Walmart de México",
+      "url": "https://www.walmartmexico.com"
+    },
+    {
+      "segment": "Centros de contacto",
+      "name": "Teleperformance",
+      "url": "https://www.teleperformance.com"
+    },
+    {
+      "segment": "Público",
+      "name": "FINABIEN",
+      "url": "https://www.finabien.gob.mx"
+    }
+  ],
+  "bolsas": [
+    {
+      "name": "Computrabajo México",
+      "url": "https://mx.computrabajo.com"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs"
+    },
+    {
+      "name": "Portal del Empleo (SNE)",
+      "url": "https://www.empleo.gob.mx"
+    },
+    {
+      "name": "Get on Board (remoto, en español)",
+      "url": "https://www.getonbrd.com"
+    },
+    {
+      "name": "Torre",
+      "url": "https://torre.ai"
+    }
+  ],
+  "capacitacion": [
+    {
+      "name": "Jóvenes Construyendo el Futuro (18 a 29 años)",
+      "url": "https://jovenesconstruyendoelfuturo.stps.gob.mx"
+    },
+    {
+      "name": "Capacítate para el Empleo (Fundación Carlos Slim)",
+      "url": "https://capacitateparaelempleo.org"
+    }
+  ]
+}

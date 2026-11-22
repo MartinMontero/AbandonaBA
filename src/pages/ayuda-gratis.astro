@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import dir from '../data/directorio.json';
+const sources = dir.map((d) => ({ title: d.name, url: d.source_url, read: d.as_of + ' (enlace accesible; contenido no releído salvo donde se cita la ley)' }));
+---
+<Base title="Ayuda gratis" description="Dónde pedir ayuda laboral gratuita." path="/ayuda-gratis/" legal claims={['C05','C10','C17']} sources={sources} card="ayuda-gratis">
+  <p>Solo listamos entidades cuyo enlace comprobamos hoy. No publicamos teléfonos porque no pudimos verificarlos en el sitio oficial el día de la revisión. Entra al sitio de cada una.</p>
+  <ul class="plain">
+    {dir.map((d) => (
+      <li class="card" id={d.id}>
+        <strong><a href={d.url} rel="noopener noreferrer">{d.name}</a></strong>
+        <span class={`tag t-${d.status}`}>{d.status}</span>
+        <p>{d.what}</p>
+        <small>Revisado el {d.as_of}.</small>
+      </li>
+    ))}
+  </ul>
+  <p>Cómo funciona la conciliación: se pide antes de ir al Tribunal, salvo las excepciones del Art. 685 Ter (discriminación, acoso, seguridad social, derechos fundamentales y otras). No pasa de 45 días naturales.</p>
+</Base>

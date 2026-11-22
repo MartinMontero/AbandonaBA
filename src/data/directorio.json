@@ -1,0 +1,82 @@
+[
+  {
+    "id": "profedet",
+    "name": "PROFEDET (Procuraduría Federal de la Defensa del Trabajo)",
+    "what": "Asesoría jurídica gratuita para trabajadores del sector privado. Pregunta cómo pedir tu cita.",
+    "url": "https://www.gob.mx/profedet",
+    "source_url": "https://www.gob.mx/profedet",
+    "as_of": "2026-11-22",
+    "phone": null,
+    "status": "sin-verificar"
+  },
+  {
+    "id": "cfcrl",
+    "name": "Centro Federal de Conciliación y Registro Laboral",
+    "what": "La conciliación previa es obligatoria en la mayoría de los casos antes de ir al Tribunal (Art. 684-B) y no pasa de 45 días naturales (Art. 684-E). Para los servicios de banca y crédito corresponde al ámbito federal (Art. 527). Costo y modalidades: confirma en el sitio.",
+    "url": "https://www.centrolaboral.gob.mx",
+    "source_url": "https://www.centrolaboral.gob.mx",
+    "as_of": "2026-11-22",
+    "phone": null,
+    "status": "verificado-primaria"
+  },
+  {
+    "id": "stps",
+    "name": "STPS (Secretaría del Trabajo y Previsión Social)",
+    "what": "Quejas sobre condiciones de trabajo, como la NOM-035 (riesgos psicosociales) y la «Ley Silla».",
+    "url": "https://www.gob.mx/stps",
+    "source_url": "https://www.gob.mx/stps",
+    "as_of": "2026-11-22",
+    "phone": null,
+    "status": "sin-verificar"
+  },
+  {
+    "id": "imss",
+    "name": "IMSS",
+    "what": "Consulta tus semanas cotizadas y tu atención médica después de salir (ocho semanas, LSS Art. 109).",
+    "url": "https://www.imss.gob.mx",
+    "source_url": "https://www.imss.gob.mx",
+    "as_of": "2026-11-22",
+    "phone": null,
+    "status": "verificado-primaria"
+  },
+  {
+    "id": "consar",
+    "name": "CONSAR",
+    "what": "Información sobre tu Afore y el retiro parcial por desempleo.",
+    "url": "https://www.gob.mx/consar",
+    "source_url": "https://www.gob.mx/consar",
+    "as_of": "2026-11-22",
+    "phone": null,
+    "status": "sin-verificar"
+  },
+  {
+    "id": "infonavit",
+    "name": "INFONAVIT",
+    "what": "Revisa tu crédito y tu saldo en Mi Cuenta Infonavit.",
+    "url": "https://www.infonavit.org.mx",
+    "source_url": "https://www.infonavit.org.mx",
+    "as_of": "2026-11-22",
+    "phone": null,
+    "status": "sin-verificar"
+  },
+  {
+    "id": "inaes",
+    "name": "INAES (Instituto Nacional de la Economía Social)",
+    "what": "Registro de cooperativas por SEPCOOP, gratuito.",
+    "url": "https://www.gob.mx/inaes",
+    "source_url": "https://www.gob.mx/inaes",
+    "as_of": "2026-11-22",
+    "phone": null,
+    "status": "sin-verificar"
+  },
+  {
+    "id": "finabien",
+    "name": "FINABIEN",
+    "what": "Aún no hay ventanilla de crédito directo. Desconfía de ofertas por WhatsApp o redes que digan ser de FINABIEN.",
+    "url": "https://www.finabien.gob.mx",
+    "source_url": "https://www.finabien.gob.mx",
+    "as_of": "2026-11-22",
+    "phone": null,
+    "status": "sin-verificar"
+  }
+]

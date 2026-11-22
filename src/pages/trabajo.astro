@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import emp from '../data/empleadores.json';
+import { getValue } from '../lib/calc';
+import { fmtMXN } from '../lib/format';
+const segs = [...new Set(emp.empleadores.map((e) => e.segment))];
+const roles = [
+  { role: 'Cajero', titles: 'Personal de cajas; ejecutivo de servicio (bancos); cajero de remesas; tesorería de tienda (comercio); agente de atención (fintech)', skills: 'manejo de efectivo, cuadre de caja, atención al cliente, prevención de fraude', cv: ['Atendí a más de [número] clientes al día con manejo exacto de efectivo.', 'Cuadré mi caja todos los días sin faltantes.', 'Expliqué productos y trámites a clientes de todo tipo.', 'Detecté billetes falsos y operaciones sospechosas.', 'Trabajé turnos rotativos con puntualidad.', 'Cumplí metas semanales de servicio y venta.'] },
+  { role: 'Asesor financiero', titles: 'Ejecutivo de crédito; asesor de ventas', skills: 'venta consultiva, crédito, seguimiento de clientes', cv: ['Ofrecí productos de crédito a clientes según su capacidad de pago.', 'Cumplí metas semanales de colocación.', 'Di seguimiento a clientes hasta el cierre.', 'Expliqué condiciones y costos con claridad.', 'Trabajé con comisiones y metas medibles.', 'Atendí quejas y las resolví.'] },
+  { role: 'Gestor de cobranza en moto', titles: 'Gestor de campo; recuperación de cartera PyME; reparto de última milla', skills: 'negociación, rutas, cobranza con respeto, manejo de moto', cv: ['Visité a [número] clientes por semana en mi ruta.', 'Negocié acuerdos de pago por escrito.', 'Planeé rutas para ahorrar tiempo y combustible.', 'Llevé registro diario de visitas y pagos.', 'Trabajé con metas de recuperación.', 'Manejo moto con licencia vigente.'] },
+  { role: 'Verificador', titles: 'Analista KYC; prevención de fraude', skills: 'verificación de identidad, revisión de documentos, atención al detalle', cv: ['Verifiqué documentos y datos de clientes.', 'Detecté inconsistencias en información.', 'Documenté cada caso con claridad.', 'Cumplí tiempos de respuesta.', 'Trabajé con procesos de control.', 'Escalé casos dudosos al área correcta.'] },
+  { role: 'Gerente de sucursal', titles: 'Gerente de sucursal; gerente de tienda (comercio)', skills: 'dirección de equipo, operación, metas, servicio', cv: ['Dirigí un equipo de [número] personas.', 'Organicé horarios y turnos.', 'Cumplí metas de la sucursal.', 'Resolví quejas de clientes escaladas.', 'Capacité a personal nuevo.', 'Llevé el control de caja y operación diaria.'] },
+  { role: 'Oficinas centrales', titles: 'Según función: operaciones, riesgos, cumplimiento, sistemas, administración', skills: 'según tu función', cv: ['Describe tu función con un verbo y un número.', 'Menciona herramientas que usaste.', 'Menciona procesos que mejoraste.', 'Menciona equipos con los que trabajaste.', 'Menciona resultados medibles.', 'Menciona capacitación que diste o recibiste.'] },
+];
+const sources = [...emp.empleadores, ...emp.bolsas, ...emp.capacitacion].map((e) => ({ title: e.name, url: e.url, read: '2026-11-22 (enlace accesible; contenido no releído)' }));
+---
+<Base title="Buscar trabajo" description="Traductor de habilidades, empleadores y bolsas de trabajo." path="/trabajo/" legal claims={['C22','C23']} sources={sources}>
+  <h2>Traduce tu puesto</h2>
+  <p>Elige tu puesto en el banco. Verás puestos equivalentes y seis frases para tu currículum. Cambia lo que está entre corchetes.</p>
+  {roles.map((r) => (
+    <details class="card"><summary><strong>{r.role}</strong></summary>
+      <p><strong>Puestos equivalentes:</strong> {r.titles}</p>
+      <p><strong>Habilidades que piden las ofertas:</strong> {r.skills}</p>
+      <ol>{r.cv.map((c) => <li>{c}</li>)}</ol>
+    </details>
+  ))}
+  <h2>Empleadores por segmento</h2>
+  <p>{emp.nota}</p>
+  {segs.map((s) => (
+    <div class="card"><h3>{s}</h3><ul>{emp.empleadores.filter((e) => e.segment === s).map((e) => <li><a href={e.url} rel="noopener noreferrer">{e.name}</a>{(e as any).note ? ' — ' + (e as any).note : ''}</li>)}</ul></div>
+  ))}
+  <p>BBVA México tenía publicada una oferta de «Personal de Cajas» en la CDMX con sueldo mensual de {fmtMXN(getValue('bbva_cajas_salary'))} (vista el 21 de noviembre de 2026; confirma que siga vigente).</p>
+  <p>Algunas ofertas del Grupo Salinas piden «no haber laborado en Grupo Salinas» o «no adeudos con Elektra o Banco Azteca». <span class="tag t-verificado-secundaria">verificado-secundaria</span> Reportado en ofertas y reseñas.</p>
+  <h2>Bolsas de trabajo</h2>
+  <ul>{emp.bolsas.map((b) => <li><a href={b.url} rel="noopener noreferrer">{b.name}</a></li>)}</ul>
+  <p>Faltan por la revisión de enlaces: Indeed México y OCC Mundial bloquearon nuestra revisión automática; los verificaremos a mano.</p>
+  <h2>Capacitación pública</h2>
+  <ul>{emp.capacitacion.map((b) => <li><a href={b.url} rel="noopener noreferrer">{b.name}</a></li>)}</ul>
+</Base>
