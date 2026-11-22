@@ -1,0 +1,37 @@
+{
+  "name": "abandonabancoazteca",
+  "version": "0.1.0",
+  "description": "Informacion laboral gratuita y anonima",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MartinMontero/AbandonaBA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MartinMontero/AbandonaBA/issues"
+  },
+  "homepage": "https://github.com/MartinMontero/AbandonaBA#readme",
+  "private": "true",
+  "dependencies": {
+    "astro": "^7.4.13"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.65.1",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1",
+    "wrangler": "^4.166.0"
+  }
+}

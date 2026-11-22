@@ -1,0 +1,14 @@
+{
+  "base": {"weeklyBase": 2205.28, "commissions": 900, "zone": "general"},
+  "tolerance": 1.0,
+  "vectors": [
+    {"id":"A-n5","label":"Método A, n=5, V=20","input":{"yearsCompleted":5,"vacationDaysOverride":20},"method":"A","expect":{"sdi":467.92,"art439":131017.29,"art51":116979.73,"art48":70187.84,"premium":28075.13}},
+    {"id":"B-n5","label":"Método B (÷6), n=5, V=20","input":{"yearsCompleted":5,"vacationDaysOverride":20},"method":"B","expect":{"sdi":490.52,"art439":137346.06,"art51":122630.41,"art48":73578.25,"premium":29431.30}},
+    {"id":"A-encurso","label":"Año en curso (V=22), método A","input":{"yearsCompleted":5,"vacationDaysOverride":22},"method":"A","expect":{"sdi":468.53,"art439":131187.45}},
+    {"id":"A-121.6","label":"121.6 días, método A","input":{"yearsCompleted":5,"vacationDaysOverride":20,"art439Days":121.6},"method":"A","expect":{"art439":131765.96}},
+    {"id":"A-n2","label":"n=2, V=16, método A","input":{"yearsCompleted":2,"vacationDaysOverride":16},"method":"A","expect":{"sdi":466.70,"art439":85873.45,"art51":71872.34,"art48":53204.20}},
+    {"id":"A-n7","label":"n=7, V=22, método A","input":{"yearsCompleted":7,"vacationDaysOverride":22},"method":"A","expect":{"sdi":468.53,"art439":161173.15,"art51":147117.35,"art48":81523.63}},
+    {"id":"isr-n5","label":"ISR exento, n=5 (90 × UMA × n)","input":{"yearsCompleted":5,"vacationDaysOverride":20},"method":"A","expect":{"isrExempt":52789.50}},
+    {"id":"cap","label":"Tope de prima, zona general","input":{"yearsCompleted":5,"vacationDaysOverride":20},"method":"A","expect":{"cap":630.08}}
+  ]
+}

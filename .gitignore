@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-review
+.wrangler
+.dev.vars
+.env*
+review-access.local.json
+test-results
+playwright-report
+.astro
+*.log
