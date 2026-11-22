@@ -36,11 +36,11 @@ Prima de antigüedad (Art. 162): doce días de salario por año de servicio; el 
 
 **Fuentes:** [LFT Art. 162, fracciones I a III](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22)
 
-**Conflicto abierto:** El tope de dos salarios mínimos está en el Art. 486, que no se leyó. La zona (general o frontera) que fija el tope no se confirmó.
+**Conflicto abierto:** Leído el Art. 486: el salario máximo es el doble del salario mínimo del área geográfica donde se presta el trabajo; si se trabaja en varias áreas, el doble del promedio de los mínimos. Queda abierto cómo cuenta la fracción de año.
 
-**Debe confirmar:** Leer el Art. 486 y definir si el tope usa el salario mínimo general o el de la zona del trabajador.
+**Debe confirmar:** Cómo cuenta la fracción de año en la prima (decisión D5).
 
-**Pregunta para el abogado:** ¿El tope de la prima es dos veces el salario mínimo de la zona geográfica del trabajador, y cuenta la fracción de año?
+**Pregunta para el abogado:** Para la prima de antigüedad, ¿cuenta la fracción de año o solo los años completos?
 
 **Páginas:** /salidas/, /calculadora/
 
@@ -52,9 +52,9 @@ Prescripción: Art. 518, dos meses para quien es separado del trabajo (corre des
 
 **Conflicto abierto:** El conflicto era 'un mes' contra '30 días'. El texto lo explica: el Art. 517 dice un mes y el Art. 52 dice treinta días. El sitio muestra la fecha más temprana.
 
-**Debe confirmar:** Hasta cuándo dura la suspensión por la solicitud de conciliación (el Art. 518 remite al Art. 521 fr. III, que no se leyó).
+**Debe confirmar:** Leído el Art. 521: fr. III dice que la solicitud de conciliación (Art. 684-B) interrumpe la prescripción, mientras el Art. 518 dice que la suspende y que se reanuda según el Art. 521 fr. III. Falta confirmar si es suspensión o interrupción y cuándo vuelve a correr el plazo.
 
-**Pregunta para el abogado:** ¿Qué plazo debe usar un trabajador que se separa por culpa del patrón: el mes del Art. 517 o los treinta días del Art. 52, y cuándo se reanuda el plazo tras la conciliación?
+**Pregunta para el abogado:** ¿Qué plazo debe usar un trabajador que se separa por culpa del patrón: el mes del Art. 517 o los treinta días del Art. 52? Y tras pedir la conciliación, ¿el plazo se suspende o se interrumpe, y cuándo vuelve a correr?
 
 **Páginas:** /, /no-firmes/, /salidas/, /plazos/, /revision/
 
@@ -72,15 +72,15 @@ Antes de ir al Tribunal hay que pedir la conciliación (Art. 684-B). La concilia
 
 **Páginas:** /no-firmes/, /ayuda-gratis/, /plazos/
 
-## C06 · verificado-secundaria · prioridad B
+## C06 · verificado-primaria · prioridad B
 
 Salario mínimo general 2026: 315.04 pesos al día; zona libre de la frontera norte: 440.87. El de 2027 no está fijado; la decisión de Conasami se espera a principios de diciembre y el plazo legal es el 30 de diciembre.
 
-**Fuentes:** [Prensa y sitios fiscales; Conasami no leído](https://www.gob.mx/conasami) (leída 2026-11-22)
+**Fuentes:** [Conasami: Se publican en el DOF los salarios mínimos vigentes a partir del 1 de enero de 2026 (la nota dice que el DOF los publicó el 9 de diciembre de 2025)](https://www.gob.mx/conasami/es/articulos/se-publican-en-el-diario-oficial-de-la-federacion-los-salarios-minimos-vigentes-a-partir-del-1-de-enero-de-2026) (leída 2026-11-22)
 
-**Conflicto abierto:** Ninguno conocido.
+**Conflicto abierto:** Leído en el sitio oficial de Conasami. No se leyó el texto de la resolución en el DOF (el PDF no se pudo extraer). Al 22 de noviembre no hay resolución de 2027 en Conasami ni en la portada del DOF.
 
-**Debe confirmar:** La resolución de Conasami en el DOF.
+**Debe confirmar:** El texto de la resolución en el DOF.
 
 **Pregunta para el abogado:** ¿Los montos de salario mínimo 2026 coinciden con la resolución de Conasami publicada en el DOF?
 
@@ -156,15 +156,15 @@ Retiro parcial de la Afore por desempleo (LSS Art. 191 fr. II): desde el día na
 
 **Páginas:** /puente/, /plazos/
 
-## C12 · verificado-secundaria · prioridad B
+## C12 · verificado-primaria · prioridad B
 
-Acuerdo del IMSS ACDO.AS2.HCT.101026/302.P.DG (aprobado el 10 de octubre de 2026; DOF el 21 de octubre; vigente desde el 22): las nuevas inscripciones a Modalidad 40 limitan la base al último salario registrado más hasta una UMA, sin pagos retroactivos y solo en línea; se describe como temporal. Se reportan amparos.
+Acuerdo del Consejo Técnico del IMSS ACDO.AS2.HCT.101026/302.P.DG (sesión del 10 de octubre de 2026; DOF 21 de octubre de 2026; entra en vigor el día hábil siguiente a su publicación, que sería el 22 de octubre). Medida temporal sobre la Continuación Voluntaria (Modalidad 40): quien ya estaba inscrito sigue en las condiciones actuales hasta terminar el periodo contratado; quien lo pida después se inscribe con el último salario base de cotización (o menos) más una UMA, nunca menos de un salario mínimo; las nuevas inscripciones solo por medios digitales. Finanzas debe presentar un análisis en seis meses.
 
-**Fuentes:** [Prensa; acuerdo no leído](https://www.imss.gob.mx/) (leída 2026-11-22)
+**Fuentes:** [DOF 21/10/2026, Acuerdo ACDO.AS2.HCT.101026/302.P.DG](https://dof.gob.mx/nota_detalle.php?codigo=5801708&fecha=21/10/1926) (leída 2026-11-22)
 
-**Conflicto abierto:** Ninguno conocido.
+**Conflicto abierto:** El acuerdo es primaria; la fecha exacta de entrada en vigor (22 de octubre) es deducción mía del texto. Los amparos que se reportan en prensa no se verificaron. No encontré copia en el sitio del IMSS. Mi borrador decía «sin pagos retroactivos»: esa frase no se encontró en lo que se leyó.
 
-**Debe confirmar:** El acuerdo en el DOF y el estado de los amparos.
+**Debe confirmar:** El estado de los amparos y los puntos que la lectura no cubrió.
 
 **Pregunta para el abogado:** ¿El acuerdo del IMSS sobre Modalidad 40 sigue vigente y qué alcance tienen los amparos?
 
@@ -212,15 +212,15 @@ FINABIEN: el decreto de crédito directo se publicó en el DOF el 18 de noviembr
 
 **Páginas:** /negocio/, /puente/, /actualizaciones/
 
-## C16 · verificado-secundaria · prioridad C
+## C16 · verificado-primaria · prioridad C
 
-INAES lanzó SEPCOOP el 26 de mayo de 2026: sistema electrónico del padrón nacional de sociedades cooperativas, gratuito; la formalización y el registro tomarán un máximo de 20 días hábiles si se cumplen los requisitos. Reglas básicas de cooperativas (cinco o más socios, un socio un voto, fondos de reserva y de educación) por confirmar.
+El comunicado 03/2026 de INAES, del 26 de mayo de 2026, presenta SEPCOOP, el sistema electrónico del padrón nacional de sociedades cooperativas. El registro es gratuito y la formalización y la inscripción tomarán un máximo de 20 días hábiles si la solicitud cumple los requisitos. Ley General de Sociedades Cooperativas (última reforma DOF 16-04-2025): se integran con un mínimo de cinco socios (Art. 11 fr. V), un voto por socio (Art. 11 fr. I), fondo de reserva no menor al 25% del capital social en las de productores y 10% en las de consumidores (Art. 55), y fondo de educación no inferior al 1% de los excedentes netos del mes (Art. 59).
 
-**Fuentes:** [Comunicado de INAES (relectura pendiente)](https://www.gob.mx/inaes/prensa/el-inaes-lanza-el-sistema-electronico-del-padron-nacional-de-sociedades-cooperativas) (leída 2026-11-22)
+**Fuentes:** [INAES, comunicado sobre SEPCOOP](https://www.gob.mx/inaes/prensa/el-inaes-lanza-el-sistema-electronico-del-padron-nacional-de-sociedades-cooperativas) (leída 2026-11-22); [Ley General de Sociedades Cooperativas, Arts. 11, 55 y 59](https://www.diputados.gob.mx/LeyesBiblio/pdf/LGSC.pdf) (leída 2026-11-22)
 
-**Conflicto abierto:** Ninguno conocido.
+**Conflicto abierto:** Mi borrador decía que los socios fundadores ratifican identidad y voluntad por el sistema de INAES. El comunicado no dice eso, así que se quitó. El número de socios admite excepciones (Art. 33 Bis).
 
-**Debe confirmar:** El comunicado y la Ley General de Sociedades Cooperativas vigente.
+**Debe confirmar:** Los requisitos concretos del trámite en SEPCOOP.
 
 **Pregunta para el abogado:** ¿Los requisitos mínimos de una cooperativa que muestra el sitio coinciden con la LGSC reformada?
 
@@ -256,15 +256,15 @@ Art. 47 (últimos párrafos): el patrón que despide debe dar aviso escrito con 
 
 ## C19 · verificado-primaria · prioridad B
 
-Vacaciones (Art. 76, reforma DOF 27-12-2022): doce días al primer año, dos más por año hasta veinte, y desde el sexto año dos más por cada cinco; aguinaldo de al menos quince días antes del 20 de diciembre (Art. 87). La prima vacacional del 25% (Art. 80) no se leyó.
+Vacaciones (Art. 76, reforma DOF 27-12-2022): doce días al primer año, dos más por año hasta veinte, y desde el sexto año dos más por cada cinco; aguinaldo de al menos quince días antes del 20 de diciembre (Art. 87). Prima vacacional no menor al 25% sobre los salarios del periodo de vacaciones (Art. 80).
 
-**Fuentes:** [LFT Arts. 76, 79 y 87](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22)
+**Fuentes:** [LFT Arts. 76, 79, 80 y 87](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22)
 
-**Conflicto abierto:** Art. 80 sin leer.
+**Conflicto abierto:** Ninguno.
 
-**Debe confirmar:** Art. 80.
+**Debe confirmar:** Nada pendiente en los textos.
 
-**Pregunta para el abogado:** ¿La prima vacacional mínima sigue siendo del 25%?
+**Pregunta para el abogado:** Ninguna pregunta nueva; confirma que la prima del Art. 80 se calcula sobre el salario de vacaciones y no sobre el integrado.
 
 **Páginas:** /calculadora/, /checklist-salida/, /plazos/
 
@@ -284,13 +284,13 @@ Art. 89: la indemnización usa el salario del día en que nace el derecho, con l
 
 ## C21 · verificado-primaria · prioridad A
 
-Art. 33: es nula la renuncia a salarios devengados, indemnizaciones y demás prestaciones; todo convenio o liquidación debe constar por escrito y contener una relación circunstanciada de los hechos y los derechos. La exigencia de ratificación ante el Centro de Conciliación o el Tribunal viene de la parte final del Art. 33 (no leída completa).
+Art. 33: es nula la renuncia a salarios devengados, indemnizaciones y demás prestaciones; todo convenio o liquidación debe constar por escrito y contener una relación circunstanciada de los hechos y los derechos. El convenio será ratificado ante los Centros de Conciliación o el Tribunal, que lo aprobará siempre que no contenga renuncia de los derechos de los trabajadores. Si se celebra sin la intervención de las autoridades, se puede reclamar ante el Tribunal la nulidad de lo que renuncie derechos. El Art. 5 declara de orden público la ley: no produce efecto la estipulación escrita o verbal que contraríe sus derechos.
 
-**Fuentes:** [LFT Art. 33](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22)
+**Fuentes:** [LFT Arts. 5 y 33](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22)
 
-**Conflicto abierto:** El Art. 5 (renuncia de derechos) no se encontró con el método de búsqueda; el sitio solo cita el Art. 33 con texto leído.
+**Conflicto abierto:** Ninguno. Falta leer el resto del Art. 5 (solo se leyó el encabezado y dos fracciones).
 
-**Debe confirmar:** El texto final del Art. 33 y el Art. 5.
+**Debe confirmar:** El efecto de un convenio sin ratificar: qué tanto se puede reclamar.
 
 **Pregunta para el abogado:** ¿Qué requisitos exactos debe cumplir un convenio de terminación para ser válido?
 

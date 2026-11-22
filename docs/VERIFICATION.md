@@ -37,8 +37,27 @@ Se corrieron en orden: verify (producción), verify:review, verify (producción)
 | C20 | LFT Art. 89 | coincide |
 | C21 | LFT Art. 33 | primer párrafo leído; ratificación en la parte final (cortada) **sin leer**; Art. 5 no encontrado |
 
-## NO verificado (se queda como verificado-secundaria o sin-verificar)
-C06, C07 (Conasami, INEGI no leídos), C12, C13, C14, C15, C16 (comunicado de INAES **no releído**), C22 (no se volvió a ver la oferta de BBVA), C23, C24, C25, C26. Las fuentes de prensa de `/situacion` solo se comprobaron como enlaces accesibles; su texto **no se releyó**. No se abrieron `jcfrias` ni `deprecated.now` ni los reels de Instagram.
+## Segunda ronda de verificación (2026-11-22, después de la primera entrega)
+| Afirmación | Qué se leyó | Resultado |
+|---|---|---|
+| C06 | Conasami (gob.mx/conasami): notas oficiales del 3 y 9 de diciembre de 2025 | 315.04 y 440.87 confirmados → **verificado-primaria**. El PDF de la resolución no se pudo extraer; la fecha del DOF (9-dic-2025) es la que da Conasami. Sin resolución de 2027 a la fecha |
+| C12 | DOF 21/10/2026, texto del acuerdo | **verificado-primaria**. Corrección: el acuerdo no dice «sin pagos retroactivos» en lo leído; sí dice base = último SBC (o menos) + una UMA, nunca menos de un salario mínimo, solo digital; los ya inscritos siguen igual. La entrada en vigor el 22 de octubre es deducción mía. Los amparos siguen sin verificar |
+| C16 | Comunicado 03/2026 de INAES y LGSC (última reforma DOF 16-04-2025) | **verificado-primaria**: gratuito, 20 días hábiles, mínimo cinco socios, un voto, reserva ≥25% (productores), educación ≥1%. **Corrección:** el comunicado no habla de ratificación de identidad por parte de los fundadores; se quitó |
+| C19 | LFT Art. 80 | prima vacacional ≥ 25% confirmada |
+| C03 | LFT Art. 486 | tope = doble del salario mínimo del área; con varias áreas, doble del promedio |
+| C04 | LFT Art. 521 | la solicitud de conciliación **interrumpe** (521 fr. III) mientras el 518 dice que **suspende**: pregunta nueva para el abogado |
+| C05 | LFT Art. 685 Ter completo | lista confirmada |
+| C21 | LFT Art. 33 completo y encabezado del Art. 5 | ratificación y nulidad confirmadas |
+
+## SIGUE sin verificar (se intentó y no se pudo, o no se intentó)
+| Afirmación | Intento | Motivo |
+|---|---|---|
+| C07 UMA 2026 | INEGI | la página se dibuja con scripts y no entregó cifras; no se usó ninguna fuente de prensa. **117.31 y 3,566.22 siguen como verificado-secundaria** (vienen de tu borrador) |
+| C13 CDMX | cdmx.gob.mx, trabajo.cdmx.gob.mx | error de conexión / conexión rechazada |
+| C14 INFONAVIT | infonavit.org.mx | 403 a robots |
+| C15 FINABIEN | gob.mx/finabien y DOF | la página de la agencia cargó sin el decreto; el DOF www falla por certificado. No se encontró el decreto |
+| C22 BBVA, C23, C24, C25, C26 | no se intentó | requieren ofertas con fecha, informes o reglas del SAT |
+| Noticias de `/situacion` | no se releyeron | solo se comprobó que los enlaces cargan. No se abrieron `jcfrias`, `deprecated.now` ni Instagram |
 
 ## UNTESTED
 - Cloudflare Access real (Access gratuito, PIN, política por correo, `check-review-gate.ps1` contra un despliegue protegido, `review-access-setup.ps1` contra la API real).

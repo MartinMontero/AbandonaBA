@@ -5,7 +5,8 @@ claims: [C10, C11, C12, C13, C14, C15]
 legal: true
 sources:
   - { title: "Ley del Seguro Social, Arts. 109, 191 y 198", url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf", read: "2026-11-22" }
-  - { title: "FINABIEN", url: "https://www.finabien.gob.mx", read: "enlace accesible el 2026-11-22; texto no leído" }
+  - { title: "DOF 21/10/2026: Acuerdo del IMSS sobre Continuación Voluntaria", url: "https://dof.gob.mx/nota_detalle.php?codigo=5801708&fecha=21/10/1926", read: "2026-11-22" }
+  - { title: "FINABIEN", url: "https://www.finabien.gob.mx", read: "enlace accesible el 2026-11-22; el decreto no se encontró" }
 ---
 No damos consejos financieros personales. Solo comparaciones neutrales.
 
@@ -15,7 +16,9 @@ No damos consejos financieros personales. Solo comparaciones neutrales.
 
 ## Modalidad 10 y Modalidad 40 del IMSS
 
-<span class="tag t-verificado-secundaria">verificado-secundaria</span> Son formas de seguir cotizando por tu cuenta. Según prensa, un acuerdo del IMSS vigente desde el 22 de octubre de 2026 limita las nuevas inscripciones a Modalidad 40: la base no puede pasar del último salario registrado más hasta una UMA, no hay pagos retroactivos y el trámite es solo en línea. Se describe como temporal y se reportan amparos. No leímos el acuerdo. Confírmalo en [imss.gob.mx](https://www.imss.gob.mx).
+<span class="tag t-verificado-primaria">verificado-primaria</span> Son formas de seguir cotizando por tu cuenta. El Acuerdo ACDO.AS2.HCT.101026/302.P.DG del Consejo Técnico del IMSS se publicó en el DOF el 21 de octubre de 2026 y entra en vigor el día hábil siguiente (el 22 de octubre, según nuestra lectura). Es una medida temporal sobre la Continuación Voluntaria (Modalidad 40): quien ya estaba inscrito sigue en las condiciones actuales hasta terminar el periodo que contrató. Quien lo pida después se inscribe con su último salario base de cotización (o menos) más una UMA, y nunca menos de un salario mínimo. Las nuevas inscripciones son solo por medios digitales. Se pide un análisis financiero en seis meses.
+
+<span class="tag t-sin-verificar">sin-verificar</span> La prensa reporta amparos contra el acuerdo. No los verificamos. Revisa [imss.gob.mx](https://www.imss.gob.mx).
 
 ## Retiro parcial de la Afore por desempleo
 

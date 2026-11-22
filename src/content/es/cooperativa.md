@@ -6,16 +6,16 @@ legal: true
 sources:
   - { title: "INAES lanza el sistema electrónico del padrón nacional de sociedades cooperativas", url: "https://www.gob.mx/inaes/prensa/el-inaes-lanza-el-sistema-electronico-del-padron-nacional-de-sociedades-cooperativas", read: "enlace accesible el 2026-11-22; texto no releído" }
 ---
-<span class="tag t-verificado-secundaria">verificado-secundaria</span> Según un comunicado de INAES, el 26 de mayo de 2026 empezó SEPCOOP, el sistema electrónico del padrón nacional de sociedades cooperativas. Es gratuito. Si cumples los requisitos, la formalización y el registro tomarán un máximo de 20 días hábiles. Los socios fundadores ratifican identidad y voluntad por el sistema de INAES.
+<span class="tag t-verificado-primaria">verificado-primaria</span> Según el comunicado 03/2026 de INAES, del 26 de mayo de 2026, SEPCOOP es el sistema electrónico del padrón nacional de sociedades cooperativas. El registro es gratuito. Si la solicitud cumple los requisitos, la formalización y la inscripción tomarán un máximo de 20 días hábiles.
 
-<div class="unverified"><span class="tag t-sin-verificar">sin-verificar</span> Reglas básicas que se reportan: cinco o más socios, un socio un voto, fondo de reserva del 25% del capital social en cooperativas de producción y 1% del excedente neto mensual para un fondo de educación. Confírmalas con INAES.</div>
+<span class="tag t-verificado-primaria">verificado-primaria</span> Según la Ley General de Sociedades Cooperativas (última reforma 16 de abril de 2025): se forman con un mínimo de cinco socios, con excepciones (Art. 11 fr. V); cada socio tiene un voto, sin importar cuánto aportó (Art. 11 fr. I); el fondo de reserva no es menor al 25% del capital social en las cooperativas de productores y al 10% en las de consumidores (Art. 55); y el fondo de educación no es menor al 1% de los excedentes netos del mes (Art. 59).
 
 ## Pasos
 
 1. Reúne a cinco o más personas de confianza. Hablen en persona o por Signal.
 2. Definan el trabajo: qué van a vender y a quién.
 3. Redacten las bases (ver el modelo de abajo) y revísenlas con INAES o un abogado.
-4. Regístrense en SEPCOOP (gratis). Tengan sus identificaciones a la mano.
+4. Regístrense en SEPCOOP (gratis). Pregunten a INAES qué documentos piden.
 5. Saquen el RFC y vean impuestos con un contador.
 
 ## Modelo educativo de bases
