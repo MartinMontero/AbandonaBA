@@ -106,3 +106,9 @@ La lista de lo que aún necesita una persona está en `docs/HUMAN-CHECKS.md`.
 - Pruebas en navegadores distintos de Chromium y en un Android real.
 - Impresión real en papel (A4 y Carta): solo se generaron PDF A4.
 - Teclado en `/revision` (solo se probó la calculadora).
+
+## Access en la versión de revisión (2026-11-23)
+- Desplegado el Worker de revisión (bandonabancoazteca-review) en su dirección de workers.dev. Producción, DNS y dominio sin tocar.
+- Access aplicado desde el panel de Cloudflare: alcance «All traffic», política reutilizable «Revision para abogados (correo)» con acción Allow y una regla de correos (la lista de correos vive solo en el panel y en el archivo local no versionado), sesión de 24 horas.
+- Comprobado: sin credenciales, todas las rutas probadas responden 302 al inicio de sesión de Access; `check-review-gate.ps1` da PASS contra el despliegue real y FAIL gate open contra un servidor abierto de prueba.
+- UNTESTED: el inicio de sesión real con PIN (correo permitido y no permitido) en ventana privada, y que el PIN sea el único método de inicio de sesión.
