@@ -17,7 +17,7 @@ Orden: andamio y dos builds › datos y pruebas de trazabilidad › calculadora 
 | F11 | /negocio | modelos, bases fiscales sin verificar, hoja | hecho |
 | F12 | /equipo | mensaje, matriz, agenda | hecho |
 | F13 | /cooperativa | paso a paso, modelo educativo | parcial (socios y aliados sin verificar) |
-| F14 | /inteligencia-aumentada | 10 lecciones | parcial (una sola página; sin tabla de herramientas) |
+| F14 | /inteligencia-aumentada | IA a tu favor: 19 instrucciones en 5 rutas (competir, habilidades, trabajo, dinero, documentos) y 6 herramientas con estado de verificación | hecho |
 | F15 | /actualizaciones | valores, calendario | hecho (docs/UPDATE-CALENDAR.md) |
 | F16 | /acerca | etiquetas, privacidad, aviso | hecho |
 | F17 | tarjetas | 6 tarjetas × 2 tamaños | hecho; OG en producción |
