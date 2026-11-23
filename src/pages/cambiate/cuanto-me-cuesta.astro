@@ -7,13 +7,15 @@ const az = data.institutions[0];
 const op = az.products.find((p: any) => p.id === 'cuenta-operativa') as any;
 const gd = az.products.find((p: any) => p.id === 'guardadito') as any;
 const loan = az.products.find((p: any) => p.id === 'prestamo-efectivo') as any;
+const feeRows = (data.institutions as any[]).flatMap((i) => i.products.filter((pr: any) => pr.fee_summary).map((pr: any) => ({ inst: i.name, prod: pr.name, f: pr.fee_summary, url: pr.source_url, read: pr.read_date, status: pr.status })));
 const sources = [
   { title: 'Banco Azteca: Cuenta Operativa Azteca', url: op.source_url, read: op.read_date },
   { title: 'Banco Azteca: Guardadito', url: gd.source_url, read: gd.read_date },
   { title: 'Banco Azteca: préstamos personales', url: loan.source_url, read: loan.read_date },
+  ...feeRows.filter((r) => r.inst !== 'Banco Azteca').map((r) => ({ title: `${r.inst}: ${r.prod}`, url: r.url, read: r.read })),
 ];
 ---
-<Base art="clipboard" eyebrow="Cuánto me cuesta quedarme" title="Lo que pagas por quedarte" description="Calcula la comisión de la Cuenta Operativa si tu cuenta fue cambiada a esa, y cuánto te falta por pagar de un préstamo." path="/cambiate/cuanto-me-cuesta/" legal finance claims={['CB01','CB03','CB04']} sources={sources} lead>
+<Base art="clipboard" eyebrow="Cuánto me cuesta quedarme" title="Lo que pagas por quedarte" description="Calcula la comisión de la Cuenta Operativa si tu cuenta fue cambiada a esa, y cuánto te falta por pagar de un préstamo." path="/cambiate/cuanto-me-cuesta/" legal finance claims={['CB01','CB03','CB04','CB12','CB31','CB34']} sources={sources} lead>
   <CambiateNote />
 
   <section aria-labelledby="op">
@@ -28,6 +30,22 @@ const sources = [
     </form>
     <div id="c-out" class="result-box" hidden aria-live="polite"></div>
     <p id="c-empty" class="ref-line">Escribe tu saldo promedio para ver el resultado.</p>
+  </section>
+
+  <section aria-labelledby="otros">
+    <h2 id="otros">Lo que cobran otras cuentas</h2>
+    <p>Esto es lo que dice cada banco en su propia página o documento sobre la comisión mensual de administración. Revisa siempre el contrato.</p>
+    <div class="tbl-wrap">
+      <table class="rt">
+        <thead><tr><th>Banco y cuenta</th><th>Comisión mensual publicada</th><th>Cómo se evita</th><th>Fuente</th></tr></thead>
+        <tbody>
+          {feeRows.map((r) => (
+            <tr><th scope="row">{r.inst}: {r.prod}</th><td>{r.f.monthly_mxn === 0 ? 'Sin comisión' : `${fmt(r.f.monthly_mxn)} pesos${r.f.plus_iva ? ' más IVA' : ''}`}</td><td>{r.f.text_es}</td><td><a href={r.url} rel="noopener noreferrer">Fuente</a> <span class={`tag t-${r.status}`}>{r.status}</span></td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="ref-line">Solo aparecen las cuentas que leímos completas. No leímos las comisiones de Banorte, Santander, HSBC, Scotiabank, Inbursa ni BanCoppel, y las de Banamex no se pudieron leer con claridad.</p>
   </section>
 
   <section aria-labelledby="gd">

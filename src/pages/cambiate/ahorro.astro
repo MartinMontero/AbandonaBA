@@ -6,6 +6,7 @@ import { toMxn } from '../../lib/udi';
 import { fmtMXN } from '../../lib/format';
 const udi = data.meta.udi;
 const cetes = data.meta.cetes28;
+const bineoIsr = ((data.institutions.find((i: any) => i.id === 'bineo')!.products[0]) as any).isr_es as string;
 const gd = data.institutions[0].products.find((p: any) => p.id === 'guardadito') as any;
 const sources = [
   { title: 'Banxico: Cetes a 28 días y UDI (portada)', url: cetes.source_url, read: cetes.read_date },
@@ -15,7 +16,7 @@ const sources = [
   ...data.institutions.filter((i: any) => i.id !== 'banco-azteca').flatMap((i: any) => i.products.map((pr: any) => ({ title: `${i.name}: ${pr.name}`, url: pr.source_url, read: pr.read_date }))),
 ];
 ---
-<Base art="store" eyebrow="Mi ahorro" title="Cuánto ganas y cuánto está protegido" description="Compara ofertas de ahorro verificadas con tu cantidad, calcula una oferta que viste y mira cuánto de tu dinero está protegido." path="/cambiate/ahorro/" legal finance claims={['CB03','CB06','CB07','CB08','CB11','CB12']} sources={sources} lead>
+<Base art="store" eyebrow="Mi ahorro" title="Cuánto ganas y cuánto está protegido" description="Compara ofertas de ahorro verificadas con tu cantidad, calcula una oferta que viste y mira cuánto de tu dinero está protegido." path="/cambiate/ahorro/" legal finance claims={['CB03','CB06','CB07','CB08','CB11','CB12','CB27','CB32','CB33','CB34']} sources={sources} lead>
   <CambiateNote />
 
   <section aria-labelledby="ver">
@@ -50,7 +51,7 @@ const sources = [
     </form>
     <div id="a-out" class="result-box" hidden aria-live="polite"></div>
     <p id="a-empty" class="ref-line">Escribe la cantidad y las tasas para ver el resultado.</p>
-    <p class="ref-line">Interés anual simple, antes de impuestos. Todavía no sabemos la retención de ISR de 2026: no la restamos. <span class="tag t-sin-verificar">sin-verificar</span></p>
+    <p class="ref-line">Interés anual simple, antes de impuestos. No restamos impuestos. {bineoIsr} <span class="tag t-verificado-secundaria">verificado-secundaria</span> Es una regla de ley vista solo en la página de una empresa: confírmala en el SAT.</p>
   </section>
 
   <section aria-labelledby="ref">

@@ -175,6 +175,7 @@ test('peso de página y JavaScript dentro del presupuesto', async ({ page, baseU
 });
 
 test('accesibilidad: sin violaciones serias o críticas', async ({ page }, info) => {
+  test.setTimeout(300_000); // revisa todas las rutas en una sola prueba; la compilación de revisión tiene tablas grandes
   for (const r of routesFor(review(info))) {
     await page.goto(r);
     const res = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();

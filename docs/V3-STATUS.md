@@ -94,3 +94,23 @@ Discrepancias con la prensa: Openbank dice 30,000 pesos (no 40,000); Cajita Turb
 Qué cambió en el sitio: `/cambiate/ahorro/` ahora ordena las ofertas verificadas con la cantidad de la persona (solo los niveles que puede cumplir; vencidas en gris). La función `bandsInterest` y 9 pruebas nuevas cubren los tramos.
 
 Sigue pendiente: Stori, Bineo, Spin, los bancos grandes, el selector (faltan banderas de «solo app» y portabilidad por institución), Afore y Buró.
+
+## 9. Tercera ronda: Stori, bineo, Spin y bancos grandes (2026-11-23)
+
+| Institución | Qué se leyó | Cómo | Etiqueta |
+|---|---|---|---|
+| bineo (Banorte) | Pockets: 75% de Cetes 28; GAT 4.69% / 0.54% (calc. 1-sep-2026, vigente al 1-mar-2027); «sin saldo mínimo y sin comisiones»; IPAB 400 mil UDIS; regla de ISR sobre 5 UMAs anualizadas (≈ 214,090.75) | Chrome | primaria (CB34); la regla de ISR es secundaria (CB27) |
+| Stori (SOFIPO) | GAT nominal por producto y plazo; Fondo de Protección 25,000 UDIS | Chrome | primaria (CB33). Sin tasa, topes ni vigencia en la página: no se calcula |
+| Spin by OXXO | IFPE (Compropago). Aviso legal: el Gobierno Federal no garantiza los recursos | Chrome | primaria (CB33). Sin producto de ahorro con tasa |
+| BBVA México | Libretón Básico Cuenta Digital: administración 62 pesos + IVA con exención por retiros; sin saldo mínimo; IPAB 400 mil UDI; Línea BBVA | PDFs oficiales con `pdftotext` | primaria (CB31). Sin tasa de interés publicada |
+| Banamex | Ahorro Fácil 0.00% (GAT real -3.79%, calc. 18-nov, vigente al 22-dic); pagarés de personas físicas de 0.91% a 1.16% de GAT; IPAB 400,000 UDIs | PDF de GAT | primaria (CB32). Comisiones de la cuenta Switch ilegibles: no se publican |
+
+Sin leer, y por qué:
+- **Santander:** la página de la cuenta SuperDigital devolvió vacío en dos intentos y «Dinero Creciente» no muestra tasa.
+- **Banorte, HSBC, Scotiabank, Inbursa, BanCoppel:** no se alcanzó a revisarlos en esta pasada.
+- **Comisiones de Nu, Ualá, Klar y Banamex:** no se leyeron.
+- Los topes y condiciones de Cajita Turbo (Nu) y de Fondos de Rendimientos (Klar) siguen sin aparecer en páginas oficiales.
+
+Resultado en el sitio: `/cambiate/ahorro/` suma bineo y Banamex al orden (Banamex rinde 0 pesos) y explica por qué Stori y Spin no se calculan; `/cambiate/cuanto-me-cuesta/` suma una tabla de comisiones publicadas (Azteca, BBVA, bineo, Openbank).
+
+Dato útil para los bancos grandes: Banamex paga 0.00% en su ahorro básico y alrededor de 1% en pagarés, frente a 6.5% a 7% de las ofertas digitales sin condición.

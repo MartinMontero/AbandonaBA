@@ -522,7 +522,7 @@ Openbank y Ualá dicen en sus páginas oficiales que sus cuentas están protegid
 
 ## CB12 · verificado-primaria · prioridad D
 
-Tasas de ahorro publicadas en las páginas oficiales entre el 18 de noviembre y el 5 de diciembre de 2026. Nu: Cajitas 6.50% (GAT nominal 6.72%), Ahorro Congelado de 6.55% a 6.80% de 7 a 180 días, Cajita Turbo 13.00% (valores calculados el 18 de noviembre, vigencia al 30 de noviembre). Openbank: 13% fijo en los primeros 30,000 pesos con una compra, pago o recarga al mes; 7% ordinario hasta 1,000,000 y 6.5% por encima (calculado el 7 de septiembre de 2026, vigente al 7 de febrero de 2027). Ualá: 6.75% base, 12% con 3,000 pesos de consumo o nómina y 15% con 6,000, solo sobre saldos de hasta 30,000 (vigente al 30 de noviembre de 2026). Klar: 3% (Light) o 5% (Plus y Platino) a la vista y 15% en la modalidad Fondos de Rendimientos (cálculo del 5 de noviembre al 7 de diciembre de 2026). Mercado Pago anuncia hasta 15% anual en Apartados con suscripción, como suma de un beneficio y el rendimiento de un fondo de inversión.
+Tasas de ahorro publicadas en las páginas oficiales entre el 18 de noviembre y el 5 de diciembre de 2026. Nu: Cajitas 6.50% (GAT nominal 6.72%), Ahorro Congelado de 6.55% a 6.80% de 7 a 180 días, Cajita Turbo 13.00% (valores calculados el 18 de noviembre, vigencia al 30 de noviembre). Openbank: 13% fijo en los primeros 30,000 pesos con una compra, pago o recarga al mes; 7% ordinario hasta 1,000,000 y 6.5% por encima (calculado el 7 de septiembre de 2026, vigente al 7 de febrero de 2027). Ualá: 6.75% base, 12% con 3,000 pesos de consumo o nómina y 15% con 6,000, solo sobre saldos de hasta 30,000 (vigente al 30 de noviembre de 2026). Klar: 3% (Light) o 5% (Plus y Platino) a la vista y 15% en la modalidad Fondos de Rendimientos (cálculo del 5 de noviembre al 7 de diciembre de 2026). Mercado Pago anuncia hasta 15% anual en Apartados con suscripción, como suma de un beneficio y el rendimiento de un fondo de inversión. Openbank dice que no cobra comisiones por saldo mínimo, mantenimiento ni administración.
 
 **Fuentes:** [Nu México: GAT](https://nubank.com.mx/gat/) (leída 2026-11-23); [Openbank: legales](https://www.openbank.mx/legales) (leída 2026-11-23); [Ualá: cuenta con rendimiento](https://www.uala.mx/cuenta-con-rendimiento) (leída 2026-11-23); [Klar: GAT](https://www.klar.mx/gat) (leída 2026-11-23); [Mercado Pago (portada)](https://www.mercadopago.com.mx/) (leída 2026-11-23)
 
@@ -532,4 +532,74 @@ Tasas de ahorro publicadas en las páginas oficiales entre el 18 de noviembre y 
 
 **Pregunta para el abogado:** ¿Es correcto presentar tasas promocionales con sus condiciones y fechas, sin llamarlas «las mejores»?
 
+**Páginas:** /cambiate/ahorro/, /cambiate/cuanto-me-cuesta/
+
+## CB27 · verificado-secundaria · prioridad D
+
+Retención de ISR sobre intereses de ahorro: bineo dice en su página oficial que el rendimiento genera ISR si el saldo promedio acumulado de la cuenta y los Pockets supera 5 UMAs anualizadas (unos 214,090.75 pesos). Por debajo de ese saldo, según esa página, no se genera ISR.
+
+**Fuentes:** [bineo: cuenta bineo](https://www.bineo.com/cuenta-bineo) (leída 2026-11-23)
+
+**Conflicto abierto:** Es una regla de ley vista solo en la página de una empresa. Una fuente de prensa citaba una retención de 0.90% anual para Nu; no se verificó. No se leyó la Ley de Ingresos ni la LISR.
+
+**Debe confirmar:** Leer la LISR y la Ley de Ingresos de la Federación 2026 sobre la exención de intereses y la retención.
+
+**Pregunta para el abogado:** ¿Los intereses de ahorro están exentos de ISR hasta un saldo promedio de 5 UMAs anualizadas, y qué retención aplica por encima?
+
 **Páginas:** /cambiate/ahorro/
+
+## CB31 · verificado-primaria · prioridad D
+
+BBVA México, Libretón Básico Cuenta Digital: comisión mensual de Administración - Renta de 62 pesos más IVA. Se exenta con 0 a 4 retiros al mes con tarjeta en cajeros o practicajas BBVA; con 5 a 8 retiros se cobran 38 pesos más IVA; con más de 8 se cobran 62 más IVA; el retiro sin tarjeta desde la app no cuesta. Sin movimientos por 6 meses seguidos se pierde la exención. La ficha técnica dice que no hay saldo promedio mínimo y que el IPAB protege hasta 400 mil UDI por persona.
+
+**Fuentes:** [BBVA México: términos de la exención de Administración - Renta (PDF)](https://www.bbva.mx/content/dam/public-web/mexico/documents/personas/cuentas/Exencion_comision_membresia_en_producto_Libreton_basico_cuenta_digital.pdf) (leída 2026-11-23); [BBVA México: ficha técnica Libretón Básico Cuenta Digital (PDF, emisión 07/09/2026)](https://www.bbva.mx/content/dam/public-web/mexico/documents/personas/cuentas/TCR_LibretonBasico.pdf) (leída 2026-11-23)
+
+**Conflicto abierto:** Es un solo producto de BBVA. No se leyó la tasa de interés (la ficha no la publica). La ficha menciona apertura presencial en sucursal para este producto.
+
+**Debe confirmar:** Leer el anexo de comisiones completo y la caratula del contrato.
+
+**Pregunta para el abogado:** ¿La descripción de la comisión de BBVA y de su exención es fiel al documento vigente?
+
+**Páginas:** /cambiate/cuanto-me-cuesta/
+
+## CB32 · verificado-primaria · prioridad D
+
+Banamex: Ahorro Fácil paga 0.00% (GAT nominal 0.00%, real -3.79%, calculada el 18 de noviembre de 2026, vigente al 22 de diciembre de 2026). Sus pagarés para personas físicas muestran una GAT nominal de 0.91% a 1.16% según producto y plazo. Banamex dice que sus cuentas de depósito e inversiones están garantizadas por el IPAB hasta 400,000 UDIs.
+
+**Fuentes:** [Banamex: tabla de GAT de inversiones (PDF)](https://www.banamex.com/resources/pdf/es/personas/cuentas/tarjetas_debito/GAT_Inversiones.pdf) (leída 2026-11-23)
+
+**Conflicto abierto:** La tabla del PDF mezcla productos y plazos y no se pudo separar con certeza cada pagaré. Las comisiones de la cuenta Switch no se leyeron con claridad.
+
+**Debe confirmar:** Leer el folleto de cada pagaré y el anexo de comisiones en una versión sin pérdida de formato.
+
+**Pregunta para el abogado:** ¿Puede mostrarse el rango de GAT de los pagarés sin asignar una tasa a cada plazo?
+
+**Páginas:** /cambiate/ahorro/
+
+## CB33 · verificado-primaria · prioridad D
+
+Stori (SOFIPO) publica en su página oficial una GAT nominal de 7.25% en Apartados y de 7.05%, 11.00%, 12.00% y 8.25% en inversiones a 30, 90, 180 y 360 días, y 15.01% a 60 días exclusivo para Stori Pro; dice que sus productos están protegidos por el Fondo de Protección hasta 25,000 UDIS. Spin by OXXO (Compropago, institución de fondos de pago electrónico) dice en su página oficial que ni el Gobierno Federal ni las entidades paraestatales garantizan los recursos de los clientes.
+
+**Fuentes:** [Stori: Stori Cuenta+](https://www.storicard.com/stori-cuentamas) (leída 2026-11-23); [Spin by OXXO: preguntas frecuentes y aviso legal](https://spinbyoxxo.com.mx/faqs) (leída 2026-11-23)
+
+**Conflicto abierto:** Stori no muestra en esa página la tasa, los topes, la condición de Stori Pro ni la vigencia (están detrás de un enlace que no se leyó). Spin no publica un producto de ahorro con tasa.
+
+**Debe confirmar:** Leer la página de vigencia de Stori y sus términos y condiciones.
+
+**Pregunta para el abogado:** ¿Es correcto mostrar GAT sin tasa ni vigencia como «no calculada» y sin ordenarla?
+
+**Páginas:** /cambiate/ahorro/
+
+## CB34 · verificado-primaria · prioridad D
+
+bineo (Banco Bineo, Grupo Financiero Banorte): Pockets bineo rinde 75% de Cetes 28 días, sin monto límite; GAT nominal 4.69% y real 0.54% calculadas al 1 de septiembre de 2026 y vigentes al 1 de marzo de 2027. Dice «sin saldo mínimo y sin comisiones» y protección del IPAB por 400 mil UDIS por persona por institución.
+
+**Fuentes:** [bineo: cuenta bineo](https://www.bineo.com/cuenta-bineo) (leída 2026-11-23)
+
+**Conflicto abierto:** La tasa es variable. No se leyó el PDF de costos y comisiones.
+
+**Debe confirmar:** Leer el PDF de costos y comisiones de bineo.
+
+**Pregunta para el abogado:** ¿Es correcto presentar una tasa variable ligada a Cetes con la fecha de la referencia?
+
+**Páginas:** /cambiate/ahorro/, /cambiate/cuanto-me-cuesta/

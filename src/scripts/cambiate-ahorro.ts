@@ -52,8 +52,15 @@ function renderOffers() {
       `<li class="offer${stale ? ' stale' : ''}"><h3>${r.inst.name}: ${r.lvl.name}</h3><span class="big">${stale ? 'vencida' : mxn.format(interest)}</span><p>${stale ? 'vencido: verifica en el sitio oficial.' : 'al año, antes de impuestos.'}</p><p class="ref-line">Tasa: ${bandText(r.lvl.bands)}. GAT nominal ${pct.format(r.lvl.gat_nominal_pct)}%, GAT real ${pct.format(r.lvl.gat_real_pct)}%.</p><p class="ref-line">${r.lvl.condition_es ? 'Condición: ' + r.lvl.condition_es : 'Sin condición de gasto.'}</p><p class="ref-line">Calculada el ${r.prod.calc_date}. Vigente hasta el ${r.prod.valid_to}.</p><p class="ref-line">Protección: ${protectionText(r.inst)}.</p><a class="btn tonal" href="${r.prod.source_url}" rel="noopener noreferrer">Ver en el sitio oficial</a></li>`,
     )
     .join('');
-  const unk = rows.filter((r) => !r.lvl.computable).map((r) => `<li><strong>${r.inst.name}: ${r.lvl.name}.</strong> Tasa publicada ${r.lvl.bands[0].rate}%. ${r.lvl.note ?? ''}</li>`);
-  const noLevels = (data.institutions as any[]).flatMap((i) => i.products.filter((p: any) => p.kind === 'ahorro' && p.levels.length === 0).map((p: any) => `<li><strong>${i.name}: ${p.name}.</strong> ${p.seen_es} ${p.notes}</li>`));
+  const prods = (data.institutions as any[]).flatMap((i) => i.products.filter((p: any) => p.kind === 'ahorro').map((p: any) => ({ i, p })));
+  const unk: string[] = [];
+  for (const { i, p } of prods) {
+    const bad = p.levels.filter((l: any) => !l.computable);
+    if (bad.length) unk.push(`<li><strong>${i.name}: ${p.name}.</strong> ${bad.map((l: any) => `${l.name}: ${l.published_es ?? 'tasa ' + l.bands[0].rate + '%'}`).join('; ')}. ${p.unk_note_es ?? bad.map((l: any) => l.note ?? '').join(' ')}</li>`);
+    if (!p.levels.length) unk.push(`<li><strong>${i.name}: ${p.name}.</strong> ${p.seen_es ?? ''} ${p.notes ?? ''}</li>`);
+  }
+  for (const i of data.institutions as any[]) if (i.products.length === 0) unk.push(`<li><strong>${i.name}.</strong> No encontramos un producto de ahorro con tasa publicada. ${i.protection.seen}.</li>`);
+  const noLevels: string[] = [];
   document.getElementById('o-unk-list')!.innerHTML = unk.concat(noLevels).join('');
 }
 for (const id of ['o-amount', 'o-spend', 'o-term']) el(id)?.addEventListener('input', renderOffers);

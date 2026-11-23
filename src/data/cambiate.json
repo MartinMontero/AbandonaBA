@@ -96,7 +96,12 @@
           "tool": "chrome",
           "status": "verificado-primaria",
           "exempt_balance_mxn": 10000,
-          "term_investment_min_mxn": 10000
+          "term_investment_min_mxn": 10000,
+          "fee_summary": {
+            "monthly_mxn": 400,
+            "plus_iva": true,
+            "text_es": "Se exenta con saldo promedio mensual, nómina o inversión a plazo; por promoción puede reducirse."
+          }
         },
         {
           "id": "guardadito",
@@ -331,7 +336,12 @@
           "read_date": "2026-11-23",
           "tool": "chrome",
           "status": "verificado-primaria",
-          "notes": "Tasas sujetas a cambios sin previo aviso, según el aviso legal. Fecha de cálculo 7 de septiembre de 2026, vigente al 7 de febrero de 2027."
+          "notes": "Tasas sujetas a cambios sin previo aviso, según el aviso legal. Fecha de cálculo 7 de septiembre de 2026, vigente al 7 de febrero de 2027.",
+          "fee_summary": {
+            "monthly_mxn": 0,
+            "plus_iva": false,
+            "text_es": "Sin comisiones por saldo mínimo, mantenimiento ni administración, según su página."
+          }
         }
       ]
     },
@@ -531,6 +541,320 @@
           "status": "verificado-primaria",
           "seen_es": "Anuncia «hasta 15% anual en Apartados con tu suscripción» y «hasta 12% anual». Dice que es la suma de dos componentes: un beneficio de Mercado Pago Standard y la tasa de rendimiento de un fondo de inversión administrado por GBM. No es una tasa de depósito fija.",
           "notes": "No se calcula ni se ordena: las condiciones, topes, GAT y protección no se leyeron."
+        }
+      ]
+    },
+    {
+      "id": "bineo",
+      "name": "bineo (Banorte)",
+      "type": "banco",
+      "official_domain": "bineo.com",
+      "protection": {
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://www.bineo.com/cuenta-bineo",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria",
+        "seen": "«Monto protegido 400 mil UDIS, por persona por Institución»; pie de página: Banco Bineo, S.A., Institución de Banca Múltiple, Grupo Financiero Banorte"
+      },
+      "products": [
+        {
+          "id": "bineo-pockets",
+          "kind": "ahorro",
+          "name": "Cuenta bineo y Pockets bineo",
+          "calc_date": "2026-09-01",
+          "valid_to": "2027-03-01",
+          "min_amount_mxn": null,
+          "levels": [
+            {
+              "id": "pockets",
+              "name": "Pockets bineo: 75% de Cetes 28 días",
+              "condition_es": null,
+              "condition_kind": "none",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 4.6425
+                }
+              ],
+              "gat_nominal_pct": 4.69,
+              "gat_real_pct": 0.54,
+              "computable": true,
+              "note": "Tasa variable: 75% de Cetes 28 días. Con Cetes en 6.19% (17-nov-2026) da 4.64%; se actualiza cada semana. La página no fija tope de monto."
+            }
+          ],
+          "fee_summary": {
+            "monthly_mxn": 0,
+            "plus_iva": false,
+            "text_es": "«Sin saldo mínimo y sin comisiones», según su página."
+          },
+          "isr_es": "Según su página, el rendimiento genera ISR si el saldo promedio acumulado de la cuenta y los Pockets supera 5 UMAs anualizadas (unos $214,090.75 pesos).",
+          "source_url": "https://www.bineo.com/cuenta-bineo",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "notes": "GAT nominal 4.69% y real 0.54% calculadas al 01/09/2026, vigentes al 01/03/2027, «puede cambiar en función a la tasa de referencia Cetes 28 días»."
+        }
+      ]
+    },
+    {
+      "id": "stori",
+      "name": "Stori",
+      "type": "sofipo",
+      "official_domain": "storicard.com",
+      "protection": {
+        "scheme": "PROSOFIPO",
+        "limit_udis": 25000,
+        "source_url": "https://www.storicard.com/stori-cuentamas",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria",
+        "seen": "«Productos protegidos por el Fondo de Protección hasta por 25,000 UDIS»; Stori México, S.A. de C.V., Sociedad Financiera Popular, supervisada por la CNBV"
+      },
+      "products": [
+        {
+          "id": "stori-cuenta-mas",
+          "kind": "ahorro",
+          "name": "Stori Cuenta+ y Stori Inversión+",
+          "calc_date": null,
+          "valid_to": null,
+          "min_amount_mxn": null,
+          "levels": [
+            {
+              "id": "apartados",
+              "name": "Apartados",
+              "condition_es": null,
+              "condition_kind": "unknown",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 7.25
+                }
+              ],
+              "gat_nominal_pct": 7.25,
+              "gat_real_pct": null,
+              "computable": false,
+              "published_es": "GAT nominal 7.25%"
+            },
+            {
+              "id": "inv-30",
+              "name": "Inversión a 30 días",
+              "condition_es": null,
+              "condition_kind": "term",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 7.05
+                }
+              ],
+              "gat_nominal_pct": 7.05,
+              "gat_real_pct": null,
+              "computable": false,
+              "published_es": "GAT nominal 7.05%"
+            },
+            {
+              "id": "inv-60-pro",
+              "name": "Inversión a 60 días, exclusivo Stori Pro",
+              "condition_es": null,
+              "condition_kind": "unknown",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 15.01
+                }
+              ],
+              "gat_nominal_pct": 15.01,
+              "gat_real_pct": null,
+              "computable": false,
+              "published_es": "GAT nominal 15.01%"
+            },
+            {
+              "id": "inv-90",
+              "name": "Inversión a 90 días",
+              "condition_es": null,
+              "condition_kind": "term",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 11.0
+                }
+              ],
+              "gat_nominal_pct": 11.0,
+              "gat_real_pct": null,
+              "computable": false,
+              "published_es": "GAT nominal 11.00%"
+            },
+            {
+              "id": "inv-180",
+              "name": "Inversión a 180 días",
+              "condition_es": null,
+              "condition_kind": "term",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 12.0
+                }
+              ],
+              "gat_nominal_pct": 12.0,
+              "gat_real_pct": null,
+              "computable": false,
+              "published_es": "GAT nominal 12.00%"
+            },
+            {
+              "id": "inv-360",
+              "name": "Inversión a 360 días",
+              "condition_es": null,
+              "condition_kind": "term",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 8.25
+                }
+              ],
+              "gat_nominal_pct": 8.25,
+              "gat_real_pct": null,
+              "computable": false,
+              "published_es": "GAT nominal 8.25%"
+            }
+          ],
+          "unk_note_es": "La página muestra la GAT nominal, no la tasa, y no trae topes, el requisito de Stori Pro, la GAT real ni la vigencia (están detrás de «consulta aquí»). No se calcula ni se ordena.",
+          "source_url": "https://www.storicard.com/stori-cuentamas",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria"
+        }
+      ]
+    },
+    {
+      "id": "spin-by-oxxo",
+      "name": "Spin by OXXO",
+      "type": "ifpe",
+      "official_domain": "spinbyoxxo.com.mx",
+      "protection": {
+        "scheme": "NINGUNA",
+        "limit_udis": null,
+        "source_url": "https://spinbyoxxo.com.mx/faqs",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria",
+        "seen": "Compropago, S.A. de C.V., Institución de Fondos de Pago Electrónico: «Ni el Gobierno Federal ni las entidades de la administración pública paraestatal podrán responsabilizarse o garantizar los recursos de los Clientes»"
+      },
+      "products": []
+    },
+    {
+      "id": "bbva",
+      "name": "BBVA México",
+      "type": "banco",
+      "official_domain": "bbva.mx",
+      "official_contact": [
+        {
+          "label": "Línea BBVA",
+          "phone": "55 5226 2663",
+          "source_url": "https://www.bbva.mx/content/dam/public-web/mexico/documents/personas/cuentas/TCR_LibretonBasico.pdf",
+          "read_date": "2026-11-23",
+          "tool": "powershell"
+        }
+      ],
+      "protection": {
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://www.bbva.mx/content/dam/public-web/mexico/documents/personas/cuentas/TCR_LibretonBasico.pdf",
+        "read_date": "2026-11-23",
+        "tool": "powershell",
+        "status": "verificado-primaria",
+        "seen": "«hasta por el equivalente a cuatrocientas mil UDI por persona» (ficha técnica emitida el 07/09/2026)"
+      },
+      "products": [
+        {
+          "id": "libreton-basico-digital",
+          "kind": "cuenta",
+          "name": "Libretón Básico Cuenta Digital",
+          "fee_admin_mxn": 62,
+          "fee_admin_plus_iva": true,
+          "fee_summary": {
+            "monthly_mxn": 62,
+            "plus_iva": true,
+            "text_es": "Sin saldo promedio mínimo. La comisión de administración de 62 pesos más IVA se exenta si haces de 0 a 4 retiros al mes con tarjeta en cajeros BBVA o practicajas (retiro sin tarjeta desde la app: sin cargo); con 5 a 8 retiros pagas 38 pesos más IVA; con más de 8, 62 más IVA. Sin movimientos 6 meses seguidos pierdes la exención."
+          },
+          "exemptions_es": [
+            "0 a 4 retiros al mes con tarjeta en cajeros o practicajas BBVA: sin cargo.",
+            "5 a 8 retiros: 38 pesos más IVA.",
+            "Más de 8 retiros: 62 pesos más IVA.",
+            "Retiro sin tarjeta desde la app: sin cargo."
+          ],
+          "interest_published": false,
+          "source_url": "https://www.bbva.mx/content/dam/public-web/mexico/documents/personas/cuentas/Exencion_comision_membresia_en_producto_Libreton_basico_cuenta_digital.pdf",
+          "extra_source_url": "https://www.bbva.mx/content/dam/public-web/mexico/documents/personas/cuentas/TCR_LibretonBasico.pdf",
+          "read_date": "2026-11-23",
+          "tool": "powershell",
+          "status": "verificado-primaria",
+          "notes": "Términos y condiciones de la exención, vigencia indefinida (BBVA avisa con 30 días). La ficha técnica no publica tasa de interés. Descargados a .cache/sources y leídos con pdftotext."
+        }
+      ]
+    },
+    {
+      "id": "banamex",
+      "name": "Banamex",
+      "type": "banco",
+      "official_domain": "banamex.com",
+      "protection": {
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://www.banamex.com/resources/pdf/es/personas/cuentas/tarjetas_debito/GAT_Inversiones.pdf",
+        "read_date": "2026-11-23",
+        "tool": "powershell",
+        "status": "verificado-primaria",
+        "seen": "«Las Cuentas de Depósito e Inversiones Banamex son productos garantizados por el IPAB hasta por 400,000 Unidades de Inversión»"
+      },
+      "products": [
+        {
+          "id": "banamex-ahorro",
+          "kind": "ahorro",
+          "name": "Ahorro Fácil y pagarés para personas físicas",
+          "calc_date": "2026-11-18",
+          "valid_to": "2026-12-22",
+          "min_amount_mxn": 1,
+          "levels": [
+            {
+              "id": "ahorro-facil",
+              "name": "Ahorro Fácil",
+              "condition_es": null,
+              "condition_kind": "none",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 0.0
+                }
+              ],
+              "gat_nominal_pct": 0.0,
+              "gat_real_pct": -3.79,
+              "computable": true,
+              "note": "Desde 1 peso. Tasa variable de 0.00%."
+            },
+            {
+              "id": "pagares",
+              "name": "Pagarés para personas físicas",
+              "condition_es": "Plazo fijo de 14 a 366 días.",
+              "condition_kind": "term",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 1.0
+                }
+              ],
+              "gat_nominal_pct": 0.91,
+              "gat_real_pct": null,
+              "computable": false,
+              "published_es": "GAT nominal de 0.91% a 1.16% según el producto y el plazo"
+            }
+          ],
+          "unk_note_es": "La tabla de GAT de Banamex mezcla productos y plazos; no se pudo separar con certeza qué tasa corresponde a cada pagaré.",
+          "source_url": "https://www.banamex.com/resources/pdf/es/personas/cuentas/tarjetas_debito/GAT_Inversiones.pdf",
+          "read_date": "2026-11-23",
+          "tool": "powershell",
+          "status": "verificado-primaria",
+          "notes": "«GAT nominal 0.00% GAT real -3.79% antes de impuestos, desde $1 calculado el 18 de noviembre de 2026, y vigente al 22 de diciembre de 2026». Las comisiones de la cuenta Switch no se pudieron leer con claridad en el PDF y no se publican."
         }
       ]
     }
