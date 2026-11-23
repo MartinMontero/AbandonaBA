@@ -29,7 +29,7 @@ No damos consejos financieros personales. Solo comparaciones neutrales.
 | Inciso a) | Una sola vez: treinta días de tu último salario base de cotización, con tope de diez veces el salario mínimo mensual del Distrito Federal. | Se reducen tus semanas cotizadas (Art. 198). Se pueden recuperar. |
 | Inciso b) | Hasta seis mensualidades; el monto es el menor entre 90 días de salario promedio de tus últimas 250 semanas o el 11.5% de tu subcuenta. | Lo mismo: menos semanas cotizadas. |
 
-Conflicto abierto: algunas fuentes expresan el tope en UMA. El texto de la ley dice salario mínimo mensual del Distrito Federal. Seguimos al texto de la ley y la regla de CONSAR vigente debe confirmarse. Revisa [CONSAR](https://www.gob.mx/consar).
+Sobre el tope del inciso a): el texto de la ley dice «salario mínimo mensual del Distrito Federal». El decreto de 2016 sobre la desindexación del salario mínimo manda leer esas menciones como UMA, y la prensa habla de UMA. <span class="tag t-sin-verificar">sin-verificar</span> No pudimos leer la regla de CONSAR que lo aplica (su página no entrega texto), así que confirma el monto exacto con tu Afore. Revisa [CONSAR](https://www.gob.mx/consar).
 
 ## Programas estatales
 

@@ -148,7 +148,7 @@ Retiro parcial de la Afore por desempleo (LSS Art. 191 fr. II): desde el día na
 
 **Fuentes:** [LSS Art. 191 (texto vigente)](https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf) (leída 2026-11-22)
 
-**Conflicto abierto:** El texto de la ley usa 'salario mínimo mensual general del Distrito Federal', como dice CONSAR; las fuentes que usan UMA se apartan del texto. El requisito de 875 semanas para la Ley 97 no se leyó.
+**Conflicto abierto:** Leído el Art. 191 de la LSS: dice «diez veces el salario mínimo mensual general que rija en el Distrito Federal». Por el Transitorio Tercero del decreto de desindexación (DOF 27-01-2016, leído) esa mención se entiende referida a la UMA, lo que cuadra con las notas de prensa que hablan de UMA; la regla de CONSAR que lo aplique NO se pudo leer (su página no entrega texto). Semanas: el Transitorio Cuarto del decreto de reforma a la LSS dice 750 semanas al entrar en vigor y +25 cada año hasta el 2031; 875 en 2026 sale de esa cuenta si arrancó en 2021 (la fecha de arranque no se leyó).
 
 **Debe confirmar:** Las reglas de CONSAR vigentes y las semanas requeridas.
 
@@ -296,17 +296,17 @@ Art. 33: es nula la renuncia a salarios devengados, indemnizaciones y demás pre
 
 **Páginas:** /no-firmes/, /salidas/, /checklist-salida/, /equipo/
 
-## C22 · verificado-secundaria · prioridad C
+## C22 · verificado-primaria · prioridad C
 
-BBVA México anunciaba el 21 de noviembre de 2026 'Personal de Cajas' en la CDMX con sueldo mensual de 15,952 pesos y bono anual de 32,200, con seguro de gastos médicos mayores.
+BBVA México tiene publicada, en su propia bolsa de trabajo, la oferta «Personal de Cajas (Del Valle, Ciudad de México)», con fecha de inicio 2026-11-17: sueldo mensual de 15,952 pesos más bono anual de 32,200 y incentivos de venta; 60 días de aguinaldo, 20 días de vacaciones y prima vacacional; seguro de vida y plan privado de retiro. La misma bolsa lista 45 resultados para «Personal de Cajas» el 22 de noviembre de 2026, en varias ciudades (por ejemplo Nogales, Caborca, Puerto Vallarta, Unión de Tula y Guadalajara).
 
-**Fuentes:** [Oferta de BBVA, vista el 2026-11-21](https://www.bbva.mx/bolsa-de-trabajo.html) (leída 2026-11-21)
+**Fuentes:** [BBVA México, oferta publicada en su sitio de empleo (Workday), leída el 22 de noviembre de 2026](https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Ciudad-de-Mexico-Benito-Jurez-03920/Personal-de-Cajas--Del-Valle--Ciudad-de-Mxico-_JR00054089) (leída 2026-11-22)
 
-**Conflicto abierto:** No se volvió a verificar el día de la construcción.
+**Conflicto abierto:** Leída directamente en la oferta de BBVA. Las ofertas cambian: se muestra con fecha y no se presenta como vigente sin ella.
 
-**Debe confirmar:** Que la oferta siga publicada.
+**Debe confirmar:** Que la oferta siga publicada cuando se consulte.
 
-**Pregunta para el abogado:** No requiere dictamen jurídico; confirma que el sitio la presente con fecha.
+**Pregunta para el abogado:** No requiere dictamen jurídico; el sitio la presenta con fecha.
 
 **Páginas:** /trabajo/
 
@@ -352,15 +352,15 @@ Operación reportada de sucursales: 9:00 a 21:00, 365 días, turnos rotativos de
 
 **Páginas:** /evidencia/, /situacion/
 
-## C26 · sin-verificar · prioridad C
+## C26 · verificado-primaria · prioridad C
 
-Bases fiscales de un negocio propio: RESICO personas físicas (hasta 3.5 millones al año, tasas de 1.00% a 2.50%), SAS en línea y Modalidad 10 del IMSS para independientes.
+Bases de un negocio propio. RESICO (LISR Art. 113-E, texto vigente): pueden optar las personas físicas con solo actividades empresariales, profesionales o de uso o goce temporal de bienes cuyos ingresos del ejercicio anterior no pasaron de tres millones quinientos mil pesos; el impuesto es mensual sobre ingresos efectivamente cobrados, con tasas de 1.00% a 2.50%. SAS (LGSM Art. 260, última reforma DOF 20-10-2023): los ingresos totales anuales no pueden rebasar 7,678,849.94 pesos, monto que se actualiza cada 1 de enero. Modalidad 10: la LSS Art. 13 fr. I permite asegurar voluntariamente a trabajadores independientes o por cuenta propia (el nombre «Modalidad 10» no está en el texto de la ley).
 
-**Fuentes:** [Sin regla primaria leída](https://www.sat.gob.mx/) (leída 2026-11-22)
+**Fuentes:** [LISR Art. 113-E](https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf) (leída 2026-11-22); [Ley General de Sociedades Mercantiles, Art. 260](https://www.diputados.gob.mx/LeyesBiblio/pdf/LGSM.pdf) (leída 2026-11-22); [Ley del Seguro Social, Art. 13](https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf) (leída 2026-11-22)
 
-**Conflicto abierto:** Sin verificar. Esta afirmación se agregó al registro original (C01 a C25).
+**Conflicto abierto:** El tope de la SAS que aparece en el texto consolidado de la ley (última reforma de 2023) se actualiza cada enero; la cifra vigente para 2026 podría ser otra. La cita presencial en el SAT dentro de un mes de firmar los estatutos NO se verificó. El detalle de la tabla de tasas de RESICO se leyó solo en parte.
 
-**Debe confirmar:** Reglas del SAT y del IMSS.
+**Debe confirmar:** El tope de SAS vigente en 2026 y el trámite ante el SAT.
 
 **Pregunta para el abogado:** No requiere dictamen laboral; confirma con un contador.
 

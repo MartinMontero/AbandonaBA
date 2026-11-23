@@ -62,6 +62,18 @@ Se corrieron en orden: verify (producción), verify:review, verify (producción)
 | INFONAVIT | curl y Chromium | el cortafuegos del sitio devuelve «Access Denied» (403) también a un navegador real; no se intentó evadirlo |
 | PROFEDET, CONSAR | Chromium sin interfaz | la página carga pero entrega texto vacío; contenido **sin leer** |
 
+## Cuarta ronda (2026-11-22)
+| Afirmación | Qué se leyó | Resultado |
+|---|---|---|
+| C22 BBVA | API pública de la bolsa de BBVA (Workday) y la oferta «Personal de Cajas (Del Valle)» | **verificado-primaria**: sueldo mensual 15,952, bono anual 32,200, 60 días de aguinaldo; 45 resultados para «Personal de Cajas» hoy |
+| C26 RESICO | LISR Art. 113-E | tope de 3.5 millones y tasas de 1.00% a 2.50% confirmados |
+| C26 SAS | LGSM Art. 260 (reforma 2023) | tope 7,678,849.94, que se actualiza cada enero; la cifra de 2026 puede ser otra; la cita en el SAT **no** se encontró |
+| C26 Modalidad 10 | LSS Art. 13 fr. I | independientes pueden asegurarse voluntariamente; el nombre «Modalidad 10» no está en la ley |
+| C11 semanas y tope | LSS transitorio (750 + 25 por año hasta 2031); decreto de 2016 | el tope en salario mínimo del DF se lee como UMA por el Transitorio Tercero; la regla de CONSAR **no** se leyó |
+| Noticias de `/situacion` | La Verdad, Jointly, Xataka, SDP Noticias, La Jornada (por navegador), Independent (AP) | citas confirmadas: «estupidez increíble», «ataque al empleo», «Tenía 15 mil cajeros. Tenía, cuate», «Voy a poner una máquina», cena de Ramón Alberto Garza (La Verdad), «ya ha comenzado a recortar» (La Jornada), 7 de 9 amparos y más de 2.6 mil millones de dólares (Independent). La frase atribuida a él sobre la tecnología aparece en SDP como publicación suya en redes; el original sigue sin verse |
+
+La lista de lo que aún necesita una persona está en `docs/HUMAN-CHECKS.md`.
+
 ## SIGUE sin verificar (se intentó y no se pudo, o no se intentó)
 | Afirmación | Intento | Motivo |
 |---|---|---|

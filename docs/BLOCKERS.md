@@ -17,3 +17,4 @@
 | Aviso «Última revisión legal» | Pendiente | `legalReview.status = "pendiente"` hasta que firme un abogado. |
 | Cambio deliberado al prompt | Informado | Cabeceras vía `_headers` en vez de que el Worker las ponga; razones en AUDIT.md. |
 | C26 | Añadida | El prompt tenía C01–C25; se añadió C26 (bases fiscales de negocio) para no dejar cifras sin afirmación. |
+| Lista para una persona | Ver docs/HUMAN-CHECKS.md | Páginas bloqueadas o que exigen sesión. |

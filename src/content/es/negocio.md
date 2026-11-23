@@ -18,11 +18,11 @@ Estas son ideas de partida, no promesas. No damos rangos de costos porque no ten
 
 ## Bases fiscales y legales
 
-<div class="unverified"><span class="tag t-sin-verificar">sin-verificar</span> Todo lo siguiente es lo que se reporta. No leímos la regla primaria. Confirma con un contador y en sat.gob.mx.</div>
+Confirma siempre con un contador.
 
-- **RESICO** para personas físicas: se reporta un tope de ingresos de {{v:resico_ceiling}} al año y tasas de 1.00% a 2.50% sobre ingresos cobrados.
-- **SAS** en línea: se reporta un tope de ingresos y una cita presencial en el SAT dentro de un mes de firmar los estatutos en 2026.
-- **Modalidad 10 del IMSS** para trabajadores independientes.
+- **RESICO** (régimen simplificado de confianza) para personas físicas. <span class="tag t-verificado-primaria">verificado-primaria</span> Según el Art. 113-E de la Ley del Impuesto sobre la Renta, pueden optar quienes solo tengan actividades empresariales, profesionales o de uso o goce temporal de bienes y no hayan pasado de {{v:resico_ceiling}} de ingresos el año anterior. El impuesto se paga cada mes sobre lo efectivamente cobrado, con tasas de 1.00% a 2.50%. Si pasas el tope, sales del régimen.
+- **SAS** (sociedad por acciones simplificada). <span class="tag t-verificado-primaria">verificado-primaria</span> Según el Art. 260 de la Ley General de Sociedades Mercantiles (última reforma de 2023), sus ingresos anuales no pueden pasar de {{v:sas_ceiling}}; ese monto se actualiza cada 1 de enero, así que la cifra de 2026 puede ser otra. <span class="tag t-sin-verificar">sin-verificar</span> La cita presencial en el SAT dentro de un mes de firmar los estatutos que se reporta para 2026: no la encontramos en el texto.
+- **Modalidad 10 del IMSS** para independientes. <span class="tag t-verificado-primaria">verificado-primaria</span> El Art. 13 de la Ley del Seguro Social permite asegurar voluntariamente a trabajadores independientes o por cuenta propia. El nombre «Modalidad 10» no está en la ley; es el nombre que usa el IMSS.
 
 ## Dónde buscar dinero
 

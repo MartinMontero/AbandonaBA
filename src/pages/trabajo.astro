@@ -29,7 +29,7 @@ const sources = [...emp.empleadores, ...emp.bolsas, ...emp.capacitacion].map((e)
   {segs.map((s) => (
     <div class="card"><h3>{s}</h3><ul>{emp.empleadores.filter((e) => e.segment === s).map((e) => <li><a href={e.url} rel="noopener noreferrer">{e.name}</a>{(e as any).note ? ' — ' + (e as any).note : ''}</li>)}</ul></div>
   ))}
-  <p>BBVA México tenía publicada una oferta de «Personal de Cajas» en la CDMX con sueldo mensual de {fmtMXN(getValue('bbva_cajas_salary'))} (vista el 21 de noviembre de 2026; confirma que siga vigente).</p>
+  <p>BBVA México tenía publicada una oferta de «Personal de Cajas» en la CDMX con sueldo mensual de {fmtMXN(getValue('bbva_cajas_salary'))} más un bono anual de {fmtMXN(getValue('bbva_cajas_bonus'))}, según la oferta publicada en la bolsa de BBVA (leída el 22 de noviembre de 2026; la bolsa listaba 45 resultados para «Personal de Cajas» en varias ciudades). Las ofertas cambian: confirma en <a href="https://bbva.wd3.myworkdayjobs.com/en-US/BBVA" rel="noopener noreferrer">la bolsa de BBVA</a>.</p>
   <p>Algunas ofertas del Grupo Salinas piden «no haber laborado en Grupo Salinas» o «no adeudos con Elektra o Banco Azteca». <span class="tag t-verificado-secundaria">verificado-secundaria</span> Reportado en ofertas y reseñas.</p>
   <h2>Bolsas de trabajo</h2>
   <ul>{emp.bolsas.map((b) => <li><a href={b.url} rel="noopener noreferrer">{b.name}</a></li>)}</ul>

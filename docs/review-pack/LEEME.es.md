@@ -1,6 +1,6 @@
 # Paquete de revisión para el abogado
 
-Fecha de las instantáneas: 2026-11-22.
+Fecha de las instantáneas: 2026-11-23.
 
 **Qué se adjunta.** PDF de la mesa de revisión, de la hoja de dictamen en blanco, de las páginas Salidas, No firmes, Plazos y Checklist, y seis resultados impresos de la calculadora con datos inventados.
 
