@@ -1,5 +1,4 @@
-// Afore. Aún no hay página pública que use esto: los rendimientos de CONSAR no se pudieron leer completos el 2026-11-23.
-// El mapa de años de nacimiento a SIEFORE es el de la investigación y está sin verificar contra CONSAR.
+// Afore: la página /cambiate/afore/ usa gapPesosPerYear. El mapa de año de nacimiento a SIEFORE sigue sin verificar y no se usa en ninguna página.
 export const gapPesosPerYear = (balance: number, gapPoints: number) => (Math.max(0, balance) * gapPoints) / 100;
 
 export function sieforeForBirthYear(year: number): string {

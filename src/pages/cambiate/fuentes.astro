@@ -24,6 +24,15 @@ for (const i of data.institutions as any[]) {
 }
 for (const p of data.remittance_providers as any[]) push(p.name, p, p.id === 'wise' ? 'Deposita a CLABE o tarjeta; lista de bancos excluidos' : 'Depósito, cartera y efectivo; red de entrega nombrada');
 push('Impuesto de EE. UU. a las remesas', data.us_remittance_tax, '1% con efectivo o instrumento físico');
+const af = data.afore, bu = data.buro, ci = data.cierre, cr = data.credito;
+push('Afore: comisiones', af.commission_pct, `${af.commission_pct.standard}% casi todas; PensionISSSTE ${af.commission_pct.pensionissste}% (${af.commission_pct.month})`);
+push('Afore: tabla de rendimiento neto', af.irn_page, 'Solo el enlace; no se copian cifras');
+push('Afore: traspaso', af.traspaso, `Hasta ${af.traspaso.max_business_days} días hábiles; ${af.traspaso.min_years_in_afore} año en la Afore actual`);
+push('Buró: reporte gratis', bu.free_report, `Cada ${bu.free_report.free_every_months} meses`);
+push('Buró: reclamaciones', bu.claims, `${bu.claims.free_per_year} gratis al año; respuesta en máximo ${bu.claims.max_response_days} días`);
+push('Cerrar cuenta: procedimiento de CONDUSEF', ci.procedure, `Nota del ${ci.procedure.published}`);
+push('Cerrar cuenta: Banco Azteca', ci.azteca_specific, 'No encontramos su procedimiento propio');
+push('Crédito: calculadora del CAT', cr.cat_calculator, 'Calculadora de Banxico para créditos y para tarjetas');
 const sources = rows.slice(0, 0);
 ---
 <Base art="book" eyebrow="Cómo trabajamos" title="Fuentes de Cámbiate" description="Cada valor que usa Cámbiate, de dónde sale, cuándo se leyó y con qué herramienta." path="/cambiate/fuentes/" finance sources={sources} wide lead>

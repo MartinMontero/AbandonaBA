@@ -165,3 +165,18 @@ Sigue pendiente: aviso de protección de Banorte, Scotiabank y BanCoppel; portab
 Notas de método:
 - Dos PDFs de Scotiabank y uno de BanCoppel no se descargaron con `curl` (falla de revocación de certificado en esta máquina; «Access Denied» en BanCoppel). No se desactivó ninguna verificación ni se saltó el bloqueo: los de Scotiabank se leyeron con el agente de lectura y `pdftotext`, y los de BanCoppel en el visor de Chrome.
 - Mercado Pago sigue sin aparecer en las sugerencias porque no se verificó qué tipo de institución es ni si sus depósitos tienen protección.
+
+## 13. Séptima ronda: Afore, Buró de Crédito, cerrar cuenta y crédito (2026-11-23)
+
+Cuatro páginas nuevas en `/cambiate/`: `afore`, `buro`, `cerrar-cuenta` y `credito`. Datos en `afore`, `buro`, `cierre` y `credito` de `cambiate.json`; claims CB41 a CB44.
+
+| Tema | Resultado | Fuente |
+|---|---|---|
+| Comisión de Afores | 0.54% casi todas, 0.52% PensionISSSTE (oct-2026) | CONSAR, Chrome (CB41) |
+| Traspaso | 1 año, 20 días hábiles, 4 días para cancelar, constancia a los 5 días | CONSAR, Chrome (CB41) |
+| Buró | reporte gratis cada 12 meses; 2 reclamaciones gratis; respuesta en 29 días | Buró de Crédito, Chrome (CB42) |
+| Cerrar cuenta | procedimiento general de CONDUSEF (nota de 2012) | CONDUSEF, Chrome (CB43) |
+| Cerrar cuenta en Banco Azteca | no se encontró; queda sin verificar | búsqueda |
+| CAT | calculadoras de Banxico para créditos y tarjetas | Banxico, Chrome (CB44) |
+
+Decisiones: no se copian rendimientos por Afore (se enlaza la tabla de CONSAR) y no se afirma que el traspaso sea gratis. La calculadora de Afore usa la diferencia que escribe la persona.

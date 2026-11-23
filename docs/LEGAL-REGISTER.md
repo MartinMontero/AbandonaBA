@@ -406,7 +406,7 @@ Préstamo en efectivo (Credimax Efectivo), de 2,000 a 200,000 pesos: CAT promedi
 
 **Pregunta para el abogado:** ¿Es correcto presentar el CAT promedio con su fecha de cálculo y vigencia y avisar que cambia por cliente?
 
-**Páginas:** /cambiate/cuanto-me-cuesta/
+**Páginas:** /cambiate/credito/, /cambiate/cuanto-me-cuesta/
 
 ## CB06 · verificado-primaria · prioridad D
 
@@ -687,3 +687,59 @@ Canal de apertura y portabilidad de nómina por institución, según sus página
 **Pregunta para el abogado:** ¿Es correcto excluir de las sugerencias a quien no dice en su página que recibe portabilidad, aunque la ley pudiera obligarlo?
 
 **Páginas:** /cambiate/que-me-conviene/
+
+## CB41 · verificado-primaria · prioridad D
+
+Afore: en octubre de 2026 todas las Afores cobran 0.54% anual sobre saldo, salvo PensionISSSTE (0.52%); Azteca cobra 0.54%. El traspaso exige al menos un año en la Afore actual (con excepciones), se resuelve en máximo 20 días hábiles, pide identificación y comprobante de domicilio, y se puede cancelar dentro de cuatro días hábiles. El sitio no copia los rendimientos (IRN) por Afore: manda a la página de CONSAR.
+
+**Fuentes:** [CONSAR: comisiones de las SIEFORES básicas y trámite de traspaso](https://www.consar.gob.mx/gobmx/aplicativo/siset/Enlace.aspx?md=72) (leída 2026-11-23)
+
+**Conflicto abierto:** No leímos en la página del trámite que el traspaso sea gratuito: no lo afirmamos. Los rendimientos pasados no garantizan los futuros.
+
+**Debe confirmar:** Confirmar en la página del IRN qué horizonte usa cada Siefore y el mapa de año de nacimiento a Siefore.
+
+**Pregunta para el abogado:** ¿Es correcto presentar el traspaso como un derecho del trabajador sin afirmar que es gratuito?
+
+**Páginas:** /cambiate/afore/
+
+## CB42 · verificado-primaria · prioridad D
+
+Buró de Crédito: el Reporte de Crédito Especial es gratis cada 12 meses; las reclamaciones son 2 gratis al año con respuesta en máximo 29 días, y piden identificación, documentos de respaldo y un historial de no más de 90 días.
+
+**Fuentes:** [Buró de Crédito: Reporte de Crédito Especial y Reclamaciones](https://www.burodecredito.com.mx/personas-f%C3%ADsicas/productos/reporte-de-cr%C3%A9dito-especial/reclamaciones.html) (leída 2026-11-23)
+
+**Conflicto abierto:** La empresa publica un cobro para reportes adicionales y para reclamaciones desde la tercera del año; el sitio no copia esos montos porque cambian.
+
+**Debe confirmar:** Leer la ley que regula a las sociedades de información crediticia y el plazo legal de respuesta.
+
+**Pregunta para el abogado:** ¿El plazo de 29 días coincide con el que fija la ley?
+
+**Páginas:** /cambiate/buro/
+
+## CB43 · verificado-primaria · prioridad D
+
+Cierre de cuentas: CONDUSEF explica, en una nota de 2012, que dejar la cuenta en ceros no la cancela; la cancelación se pide por escrito en la sucursal, se recibe un acuse, se retira el saldo y se cubren adeudos y comisiones. También puede hacerla la institución receptora, sin comisión.
+
+**Fuentes:** [CONDUSEF: «Si dejas tu cuenta de ahorro en ceros, no significa que esté cancelada»](https://www.gob.mx/condusef/prensa/si-dejas-tu-cuenta-de-ahorro-en-ceros-no-significa-que-este-cancelada) (leída 2026-11-23)
+
+**Conflicto abierto:** La nota es de 2012 y habla de cuentas de ahorro. La norma que cita no se leyó. No encontramos el procedimiento propio de Banco Azteca.
+
+**Debe confirmar:** Leer la disposición vigente sobre terminación de contratos de depósito y la carta o documento de no adeudo.
+
+**Pregunta para el abogado:** ¿Qué norma vigente respalda el acuse y el documento de fin de la relación?
+
+**Páginas:** /cambiate/cerrar-cuenta/
+
+## CB44 · verificado-primaria · prioridad D
+
+Crédito: Banxico publica una calculadora del Costo Anual Total (CAT) para créditos personales, de nómina, automotrices e hipotecarios, y otra para tarjetas. El CAT se calcula con lo que recibes y lo que pagas: principal, intereses, IVA, comisiones, gastos y seguros.
+
+**Fuentes:** [Banxico: Calculadora del Costo Anual Total (CAT)](https://www.banxico.org.mx/CAT/Explicaciones.html) (leída 2026-11-23)
+
+**Conflicto abierto:** Se leyó la página de la calculadora, no la circular que fija el método. Otra fuente dice que el CAT va sin IVA; no se resolvió.
+
+**Debe confirmar:** Leer la Circular 21/2009 y sus reformas.
+
+**Pregunta para el abogado:** ¿Es correcto decir que el CAT incluye comisiones y seguros?
+
+**Páginas:** /cambiate/credito/

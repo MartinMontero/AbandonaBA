@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+const b = data.buro;
+const sources = [
+  { title: 'Buró de Crédito: Reporte de Crédito Especial', url: b.free_report.source_url, read: b.free_report.read_date },
+  { title: 'Buró de Crédito: Reclamaciones', url: b.claims.source_url, read: b.claims.read_date },
+];
+const opts = [
+  { t: 'Ver mi historial', s: 'Qué ven los bancos de ti' },
+  { t: 'Algo está mal', s: 'Una deuda que no es tuya o un dato incorrecto' },
+];
+---
+<Base art="clipboard" eyebrow="Mi historial" title="Tu historial en Buró de Crédito" description="El Buró de Crédito guarda tus créditos, tus pagos y quién consultó tu historial. Tienes derecho a verlo y a pedir que corrijan lo que esté mal." path="/cambiate/buro/" legal finance claims={['CB42']} sources={sources} lead>
+  <CambiateNote />
+
+  <ul class="facts">
+    <li><span class="big">Gratis</span><span>tu reporte</span><span class="more">Una vez cada {b.free_report.free_every_months} meses.</span></li>
+    <li><span class="big">{b.claims.free_per_year}</span><span>reclamaciones gratis al año</span><span class="more">Para corregir datos.</span></li>
+    <li><span class="big">{b.claims.max_response_days} días</span><span>de respuesta, máximo</span><span class="more">Según la empresa.</span></li>
+  </ul>
+  <p class="ref-line"><span class="tag t-verificado-primaria">verificado-primaria</span> Todo esto es lo que dice la empresa en su propia página.</p>
+
+  <fieldset class="pick">
+    <legend>¿Qué necesitas?</legend>
+    <div class="pick-opts">
+      {opts.map((o, i) => (<>
+        <input type="radio" name="buro" id={`c${i + 1}`} checked={i === 0} /><label for={`c${i + 1}`}><b>{o.t}</b><span>{o.s}</span></label>
+      </>))}
+      <div class="pick-out" aria-live="polite">
+        <section class="pk pk1">
+          <h2>Pide tu Reporte de Crédito Especial</h2>
+          <p>Te muestra tus créditos, tus pagos, tus adeudos y quién consultó tu historial. Revisa que todos los créditos sean tuyos.</p>
+          <a class="btn" href={b.free_report.source_url} rel="noopener noreferrer">Ir al sitio oficial</a>
+          <p class="ref-line">Si pides más de uno en el año, la empresa puede cobrar. Mira el monto vigente en su página.</p>
+        </section>
+        <section class="pk pk2">
+          <h2>Pide una reclamación</h2>
+          <ol class="stepper">
+            <li><div><h3>Pide tu reporte</h3><p>Tiene que tener menos de {b.claims.report_max_age_days} días.</p></div></li>
+            <li><div><h3>Junta tus papeles</h3><p>Identificación oficial vigente y, si los tienes, documentos que muestren el error: un recibo de pago, una carta de liquidación.</p></div></li>
+            <li><div><h3>Inicia la reclamación</h3><p>La empresa la envía a quien reportó el dato. Las primeras {b.claims.free_per_year} del año no cuestan.</p></div></li>
+          </ol>
+          <a class="btn" href={b.claims.source_url} rel="noopener noreferrer">Ir al sitio oficial</a>
+        </section>
+      </div>
+    </div>
+  </fieldset>
+
+  <details class="acc" id="no-sabemos"><summary>Lo que no sabemos</summary><div class="acc-b">
+    <ul>
+      <li>No leímos la ley que regula al Buró ni cuánto tiempo guarda una deuda. <span class="tag t-sin-verificar">sin-verificar</span></li>
+      <li>No revisamos Círculo de Crédito, la otra empresa de este tipo.</li>
+      <li>No sabemos si cambiarte de banco afecta tu historial. <span class="tag t-sin-verificar">sin-verificar</span></li>
+      <li>Si un cobro te parece abusivo, el lugar para quejarte es CONDUSEF. No leímos su procedimiento hoy.</li>
+    </ul>
+  </div></details>
+</Base>

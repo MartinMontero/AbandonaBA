@@ -39,3 +39,29 @@ Se intentó con `curl`, `pdftotext` y Chromium sin interfaz. Estos no se pudiero
 
 ## Preguntas que solo resuelve un abogado
 Todas están en `docs/LEGAL-REGISTER.md` como «Pregunta para el abogado». Las nuevas de esta ronda: suspensión o interrupción del plazo por la conciliación (Arts. 518 y 521); criterio del SAT sobre la exención de ISR con UMA; efecto de un convenio no ratificado; efecto de la falta de aviso de despido (Art. 47); resto del Art. 5.
+
+## Parte 2 (Cámbiate): lo que se bloqueó y necesita a una persona (2026-11-23)
+
+| Pendiente | Enlace directo | Por qué se bloqueó |
+|---|---|---|
+| Inbursa: cuentas, tasas y aviso de protección | https://www.inbursa.com/sites/gfi/cuentas/basicas | La página se mostró vacía |
+| BanCoppel: tasas vigentes de Inversión Creciente | https://www.bancoppel.com/descubre-mas/inversion-creciente/ | «Access Denied» al abrir el PDF de tasas; las tablas anexas son de 2022 |
+| Klar: portabilidad de nómina; topes de «Fondos de Rendimientos» | https://www.klar.mx/soporte-faq | No la mencionan |
+| Stori: portabilidad de nómina | https://www.storicard.com/preguntas-frecuentes | No la mencionan |
+| bineo: portabilidad de nómina | https://www.bineo.com/cuenta-bineo | No la mencionan |
+| Nu: ¿exige la app?, portabilidad y topes de Cajita Turbo | https://nubank.com.mx/cuenta/ | No lo dicen |
+| Openbank: ¿exige la app? | https://www.openbank.mx/cuenta-basica-nomina/ | No lo dice |
+| Mercado Pago: tipo de institución y protección de depósitos | https://www.mercadopago.com.mx/ | No lo dicen |
+| Banamex: comisiones de la cuenta Switch | https://www.banamex.com/resources/pdf/es/ley_transparencia/comisiones/Anexo-de-Comisiones-Switch.pdf | PDF ilegible |
+| Banorte: comisiones de otras cuentas | https://www.banorte.com/Personal/Cuentas/Cuenta-Enlace-Digital.html | No las publica la página |
+| Scotiabank: protección de la cuenta de cheques | https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx | El folleto solo nombra productos de inversión |
+| Afore: rendimiento neto (IRN) por Afore y horizonte | https://www.consar.gob.mx/gobmx/aplicativo/siset/Series.aspx?cd=212&cdAlt=False | La tabla exige elegir «Detalle por Afores»; no se copió ninguna cifra |
+| Afore: ¿el traspaso es gratuito? | https://www.consar.gob.mx/gobmx/aplicativo/catsar/Principal/TramiteExt.aspx?idTramite=9 | La página no lo dice |
+| Buró: ley aplicable y tiempo que guarda una deuda | https://www.burodecredito.com.mx/personas-f%C3%ADsicas/productos/reporte-de-cr%C3%A9dito-especial/reclamaciones.html | No se leyó la ley |
+| Cerrar cuenta: norma vigente que respalda el acuse y el documento de no adeudo | https://www.gob.mx/condusef/prensa/si-dejas-tu-cuenta-de-ahorro-en-ceros-no-significa-que-este-cancelada | La nota es de 2012 y no cita la norma completa |
+| Cerrar cuenta en Banco Azteca: requisitos propios | https://www.bancoazteca.com.mx/ | No se encontraron en su página |
+| CAT: circular que fija el método | https://www.banxico.org.mx/CAT/Explicaciones.html | Se leyó la calculadora, no la circular 21/2009 |
+| Portabilidad de nómina: base legal y plazo | https://www.banxico.org.mx/marco-normativo/normativa-emitida-por-el-banco-de-mexico/ | No se leyó la circular ni la norma |
+| Impuesto de EE. UU. a remesas (§4475) y si las comisiones entran en la base | https://www.law.cornell.edu/uscode/text/26/4475 | Solo se leyó una fuente secundaria; falta el IRS o el Federal Register |
+| Wise y Remitly: cotizaciones con fecha | https://wise.com/mx/ y https://www.remitly.com/mx/es | Muestran el precio solo con datos de sesión |
+| Ofertas que vencen el 2026-11-30 (Nu, Ualá): volver a leerlas | https://nubank.com.mx/cuenta/ | Vencen pronto |

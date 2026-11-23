@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+const k = data.credito.cat_calculator;
+const loan = data.institutions[0].products.find((p: any) => p.id === 'prestamo-efectivo') as any;
+const sources = [
+  { title: 'Banxico: Calculadora del Costo Anual Total (CAT)', url: k.source_url, read: k.read_date },
+  { title: 'Banco Azteca: préstamos personales', url: loan.source_url, read: loan.read_date },
+];
+const opts = [
+  { t: 'Cuánto me falta', s: 'Lo que falta por pagar de tu préstamo' },
+  { t: 'Comparar con otra oferta', s: 'Usa el CAT, que es el costo total' },
+  { t: 'Mi historial', s: 'Qué ven los bancos de ti' },
+];
+---
+<Base art="store" eyebrow="Mi crédito" title="Tu préstamo: cuánto falta y cómo compararlo" description="Antes de cambiarte, mira cuánto debes y cuánto te costaría la otra oferta." path="/cambiate/credito/" legal finance claims={['CB04','CB44']} sources={sources} lead>
+  <CambiateNote />
+
+  <fieldset class="pick">
+    <legend>¿Qué quieres hacer?</legend>
+    <div class="pick-opts">
+      {opts.map((o, i) => (<>
+        <input type="radio" name="credito" id={`c${i + 1}`} checked={i === 0} /><label for={`c${i + 1}`}><b>{o.t}</b><span>{o.s}</span></label>
+      </>))}
+      <div class="pick-out" aria-live="polite">
+        <section class="pk pk1">
+          <h2>Cuánto te falta por pagar</h2>
+          <p>Multiplica tu pago por las semanas que faltan. La calculadora lo hace por ti y lo compara con otra oferta.</p>
+          <a class="btn" href="/cambiate/cuanto-me-cuesta/#pr">Abrir la calculadora</a>
+          <p class="ref-line">Pide tu saldo para liquidar por escrito. Revisa en tu contrato si hay cargo por pagar antes.</p>
+        </section>
+        <section class="pk pk2">
+          <h2>El CAT es el número para comparar</h2>
+          <p>El CAT es el costo anual total del crédito: junta intereses, comisiones, gastos y seguros, con el IVA. Compara el CAT con el CAT, los dos sin IVA o los dos con IVA. <span class="tag t-verificado-primaria">verificado-primaria</span></p>
+          <p>Banco Azteca publica para su préstamo en efectivo un CAT promedio de {loan.cat_avg_pct}% sin IVA, calculado al {loan.calc_date}. Tu CAT puede ser distinto: mira tu contrato. <span class="tag t-verificado-primaria">verificado-primaria</span></p>
+          <div class="duo">
+            <a class="btn" href={k.source_url} rel="noopener noreferrer">Calculadora de Banxico: préstamos</a>
+            <a class="btn tonal" href={k.card_calculator_url} rel="noopener noreferrer">Calculadora de Banxico: tarjetas</a>
+          </div>
+        </section>
+        <section class="pk pk3">
+          <h2>Revisa tu historial</h2>
+          <p>Antes de pedir un crédito nuevo, mira qué ven los bancos de ti y corrige lo que esté mal.</p>
+          <a class="btn" href="/cambiate/buro/">Ir a Buró de Crédito</a>
+        </section>
+      </div>
+    </div>
+  </fieldset>
+
+  <details class="acc" id="no-sabemos"><summary>Lo que no sabemos</summary><div class="acc-b">
+    <ul>
+      <li>Leímos la página de la calculadora de Banxico, no la circular que fija el método. Otra fuente dice que el CAT va sin IVA. <span class="tag t-sin-verificar">sin-verificar</span></li>
+      <li>No sabemos qué pasa con tu préstamo si cierras tu cuenta de Banco Azteca. Pregúntalo por escrito antes de cerrarla. <span class="tag t-sin-verificar">sin-verificar</span></li>
+      <li>No revisamos préstamos de otros bancos ni de fintechs.</li>
+    </ul>
+  </div></details>
+</Base>

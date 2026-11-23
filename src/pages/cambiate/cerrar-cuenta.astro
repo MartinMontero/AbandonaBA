@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+const c = data.cierre;
+const phones = data.institutions[0].official_contact;
+const sources = [{ title: 'CONDUSEF: dejar la cuenta en ceros no la cancela', url: c.procedure.source_url, read: c.procedure.read_date }];
+const items = [
+  { t: 'Cambia tu nómina y tus cobros automáticos a la cuenta nueva', tag: 'sin-verificar', more: 'Los servicios y créditos domiciliados pueden seguir saliendo de la cuenta vieja. Revisa tu estado de cuenta.' },
+  { t: 'Paga lo que debas y las comisiones pendientes', tag: 'verificado-primaria', more: 'CONDUSEF dice que el banco da por terminada la relación si se cubren adeudos y comisiones.' },
+  { t: 'Retira tu saldo', tag: 'verificado-primaria', more: 'También es condición para cancelar. Pide un cheque o transfiérelo a tu cuenta nueva.' },
+  { t: 'Pide la cancelación por escrito en la sucursal', tag: 'verificado-primaria', more: 'Sirve un escrito libre o el formato del banco. De preferencia ve a la sucursal donde abriste.' },
+  { t: 'Pide el acuse de recibo o el folio', tag: 'verificado-primaria', more: 'Es tu prueba de que lo pediste, por si hay una aclaración después.' },
+  { t: 'Pide un documento que diga que terminó la relación y que no debes nada', tag: 'verificado-primaria', more: 'CONDUSEF lo marca como algo que las instituciones deben dar. No leímos la norma que lo exige.' },
+];
+---
+<Base art="clipboard" eyebrow="Cerrar mi cuenta" title="Cerrar una cuenta de verdad" description="Dejar tu cuenta en cero no la cierra. Esta lista te lleva paso a paso." path="/cambiate/cerrar-cuenta/" legal finance claims={['CB43']} sources={sources} lead>
+  <CambiateNote />
+
+  <div class="panel">
+    <h2>Por qué importa</h2>
+    <p>Si dejas la cuenta en cero y no la cancelas, sigue abierta. CONDUSEF explica que otra persona podría usarla a tu nombre. Y si el banco pide saldo mínimo, puede seguir cobrándote comisión. <span class="tag t-verificado-primaria">verificado-primaria</span></p>
+    <p class="ref-line">La nota de CONDUSEF es del {c.procedure.published} y habla de cuentas de ahorro. Revisa que lo que te pidan coincida con tu contrato.</p>
+  </div>
+
+  <div class="progress-card" role="group" aria-label="Tu avance">
+    <p class="progress-text" id="chk-text" aria-live="polite">Revisaste 0 de {items.length}.</p>
+    <progress id="chk-bar" max={items.length} value="0" aria-labelledby="chk-text"></progress>
+  </div>
+  <section class="chk-group">
+    <h2>Tu lista</h2>
+    <ul class="chk-list">
+      {items.map((i, n) => (
+        <li class="chk-item">
+          <label class="chk-head"><input type="checkbox" id={`chk-${n}`} /> <span>{i.t}</span> <span class={`tag t-${i.tag}`}>{i.tag}</span></label>
+          <details><summary>Más detalle</summary><p>{i.more}</p></details>
+        </li>
+      ))}
+    </ul>
+    <p class="ref-line">Lo que marques no se guarda.</p>
+  </section>
+
+  <details class="acc" id="otra-via"><summary>Otra forma: que el banco nuevo lo haga por ti</summary><div class="acc-b">
+    <p>CONDUSEF describe que el banco que recibe tu cuenta puede pedir la cancelación en el banco anterior, con tus documentos y tu voluntad por escrito, sin cobrarte comisión. <span class="tag t-verificado-primaria">verificado-primaria</span> Pregúntale al banco nuevo si lo ofrece.</p>
+  </div></details>
+
+  <details class="acc" id="azteca"><summary>Si tu cuenta es de Banco Azteca</summary><div class="acc-b">
+    <p>No encontramos en su página oficial los requisitos propios para cancelar. <span class="tag t-sin-verificar">sin-verificar</span> Puedes llamar a los números que publica: {phones.map((p) => `${p.label} ${p.phone}`).join('; ')}. Pide la respuesta por escrito y tu folio.</p>
+  </div></details>
+  <script>import '../../scripts/checklist.ts';</script>
+</Base>

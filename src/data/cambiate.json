@@ -1487,5 +1487,88 @@
     "tool": "webfetch",
     "status": "verificado-secundaria",
     "note": "Texto del Código de EE. UU. leído en una copia del Legal Information Institute, no en una fuente oficial del gobierno."
+  },
+  "afore": {
+    "commission_pct": {
+      "azteca": 0.54,
+      "standard": 0.54,
+      "pensionissste": 0.52,
+      "month": "octubre de 2026",
+      "source_url": "https://www.consar.gob.mx/gobmx/aplicativo/siset/Enlace.aspx?md=72",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "Comisiones de las SIEFORES básicas (octubre de 2026), porcentaje anual sobre saldo: Azteca 0.540, Banamex 0.540, Coppel 0.540, Inbursa 0.540, Invercap 0.540, PensionISSSTE 0.520, Principal 0.540, Profuturo 0.540, SURA 0.540, XXI Banorte 0.540."
+    },
+    "irn_page": {
+      "values_copied": false,
+      "source_url": "https://www.consar.gob.mx/gobmx/aplicativo/siset/Series.aspx?cd=212&cdAlt=False",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "Página «Indicador de Rendimiento Neto (IRN) de las SIEFORES generacionales», periodicidad mensual, periodo Ene 19 a Oct 26, con «Detalle por Afores». Las cifras por Afore no se copian aquí."
+    },
+    "traspaso": {
+      "max_business_days": 20,
+      "min_years_in_afore": 1,
+      "cancel_business_days": 4,
+      "liquidation_notice_business_days": 5,
+      "proof_of_address_max_months": 3,
+      "source_url": "https://www.consar.gob.mx/gobmx/aplicativo/catsar/Principal/TramiteExt.aspx?idTramite=9",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "Plazo máximo 20 días hábiles una vez firmada la solicitud. Requisitos: expediente de identificación actualizado; al menos un año en la Afore actual (salvo fusión, cesión de cartera o alza de comisiones). Trámite: acudir a la Afore a la que quieres pasar con identificación oficial y comprobante de domicilio de máximo tres meses; la Afore da la solicitud con el Documento de Rendimiento Neto y el contrato; se graba un video de tu consentimiento; la Afore que te administraba envía la constancia de liquidación dentro de cinco días hábiles; puedes cancelar la solicitud dentro de los cuatro días hábiles siguientes."
+    }
+  },
+  "buro": {
+    "free_report": {
+      "free_every_months": 12,
+      "source_url": "https://www.burodecredito.com.mx/personas-f%C3%ADsicas/productos/reporte-de-cr%C3%A9dito-especial/",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "Reporte de Crédito Especial: «Gratis cada 12 meses.» Permite ver créditos, pagos, adeudos y quién consultó tu historial."
+    },
+    "claims": {
+      "free_per_year": 2,
+      "max_response_days": 29,
+      "report_max_age_days": 90,
+      "source_url": "https://www.burodecredito.com.mx/personas-f%C3%ADsicas/productos/reporte-de-cr%C3%A9dito-especial/reclamaciones.html",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "Reclamaciones: «2 reclamaciones gratis al año. Respuesta en máximo 29 días.» Se necesita identificación oficial vigente, documentos que respalden la reclamación (si los tienes) y un historial con antigüedad no mayor a 90 días."
+    }
+  },
+  "cierre": {
+    "procedure": {
+      "published": "2012-11-26",
+      "receipt": true,
+      "written_request": true,
+      "receiving_institution_route": true,
+      "source_url": "https://www.gob.mx/condusef/prensa/si-dejas-tu-cuenta-de-ahorro-en-ceros-no-significa-que-este-cancelada",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "CONDUSEF, nota de prensa del 26 de noviembre de 2012: dejar una cuenta de ahorro en ceros no la cancela. Acudir a la sucursal (de preferencia donde abriste); pedir la cancelación por escrito libre o formato de la institución; recibir un acuse de recibo; la institución termina la relación siempre que se cubran adeudos y comisiones y se retire el saldo. Otra vía: la institución receptora abre una cuenta y gestiona la cancelación en la transferente, sin comisión. Si exigen saldo promedio mínimo y la dejas en ceros sin cancelar, pueden cobrar comisión. Áreas de oportunidad de las instituciones: verificar la identidad, recibir la solicitud, entregar acuse o folio, que el cliente retire el saldo, y emitir un documento de fin de la relación contractual y de inexistencia de adeudos."
+    },
+    "azteca_specific": {
+      "source_url": "https://www.bancoazteca.com.mx/",
+      "read_date": "2026-11-23",
+      "tool": "websearch",
+      "status": "sin-verificar",
+      "seen": "No encontramos en la página oficial de Banco Azteca el procedimiento ni los requisitos para cancelar una cuenta. Solo un resultado de búsqueda sin respuesta útil."
+    }
+  },
+  "credito": {
+    "cat_calculator": {
+      "card_calculator_url": "https://www.banxico.org.mx/CATWebTarjetas/CATWebTarjetas.xhtml",
+      "source_url": "https://www.banxico.org.mx/CAT/Explicaciones.html",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "Calculadora del Costo Anual Total (CAT) de Banxico: sirve para créditos con pagos fijos o variables (personales, automotrices, hipotecarios, de nómina, entre otros). No se recomienda para tarjeta de crédito: hay otra calculadora. El CAT se calcula con lo que recibes y lo que pagas: principal, intereses, IVA, comisiones, gastos y seguros."
+    }
   }
 }

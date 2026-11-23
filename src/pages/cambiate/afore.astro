@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+const a = data.afore;
+const sources = [
+  { title: 'CONSAR: comisiones de las SIEFORES básicas', url: a.commission_pct.source_url, read: a.commission_pct.read_date },
+  { title: 'CONSAR: Indicador de Rendimiento Neto (IRN)', url: a.irn_page.source_url, read: a.irn_page.read_date },
+  { title: 'CONSAR: trámite de traspaso de Afore', url: a.traspaso.source_url, read: a.traspaso.read_date },
+];
+const opts = [
+  { t: '¿Me conviene cambiarme?', s: 'Calcula cuánto vale una diferencia de rendimiento' },
+  { t: '¿Puedo cambiarme ya?', s: 'Lo que pide CONSAR para el traspaso' },
+  { t: 'Quiero cambiarme', s: 'Los pasos, en orden' },
+];
+---
+<Base art="steps" eyebrow="Mi Afore" title="Tu Afore: comparar y cambiarte" description="Tu Afore es la empresa que guarda y invierte tu ahorro para el retiro. Cambiarte se llama traspaso." path="/cambiate/afore/" legal finance claims={['CB41']} sources={sources} lead>
+  <CambiateNote />
+
+  <div class="panel">
+    <h2>Lo primero: la comisión casi no cambia</h2>
+    <p>En {a.commission_pct.month}, todas las Afores cobran {a.commission_pct.standard}% al año sobre tu saldo, incluida Afore Azteca ({a.commission_pct.azteca}%). Solo PensionISSSTE cobra {a.commission_pct.pensionissste}%. <span class="tag t-verificado-primaria">verificado-primaria</span></p>
+    <p>Lo que sí cambia entre Afores es el rendimiento neto: lo que ganó tu dinero después de comisiones. Míralo en la <a href={a.irn_page.source_url} rel="noopener noreferrer">tabla oficial de CONSAR</a> (el apartado «Detalle por Afores»). No copiamos esas cifras aquí para no mostrarte un dato viejo.</p>
+  </div>
+
+  <fieldset class="pick">
+    <legend>¿Qué necesitas?</legend>
+    <div class="pick-opts">
+      {opts.map((o, i) => (<>
+        <input type="radio" name="afore" id={`c${i + 1}`} checked={i === 0} /><label for={`c${i + 1}`}><b>{o.t}</b><span>{o.s}</span></label>
+      </>))}
+      <div class="pick-out" aria-live="polite">
+        <section class="pk pk1">
+          <h2>Cuánto vale la diferencia</h2>
+          <p>Mira en CONSAR el rendimiento neto de tu Afore y el de otra. Escribe cuántos puntos de diferencia hay por año.</p>
+          <form id="a-form" class="cf" novalidate>
+            <label>Tu saldo en la Afore (pesos)<input id="a-balance" type="number" inputmode="decimal" min="0" step="any" /></label>
+            <label>Diferencia de rendimiento (puntos por año)<input id="a-gap" type="number" inputmode="decimal" min="0" step="any" /><small>Ejemplo: si una gana 6.5% y la tuya 5.5%, escribe 1.</small></label>
+          </form>
+          <div id="a-out" class="result-box" hidden aria-live="polite"></div>
+          <p id="a-empty" class="ref-line">Escribe tu saldo y la diferencia para ver el resultado.</p>
+          <p class="ref-line">Los rendimientos pasados no garantizan los futuros.</p>
+        </section>
+        <section class="pk pk2">
+          <h2>Lo que pide CONSAR</h2>
+          <ul class="facts">
+            <li><span class="big">{a.traspaso.min_years_in_afore} año</span><span>en tu Afore actual</span><span class="more">Hay excepciones: fusión, cesión de cartera o alza de comisiones.</span></li>
+            <li><span class="big">{a.traspaso.max_business_days} días</span><span>hábiles, máximo</span><span class="more">Desde que firmas la solicitud.</span></li>
+            <li><span class="big">{a.traspaso.cancel_business_days} días</span><span>hábiles para cancelar</span><span class="more">Después de pedir el traspaso.</span></li>
+          </ul>
+          <p><span class="tag t-verificado-primaria">verificado-primaria</span> Si pides un segundo traspaso antes de cumplir el año, solo puedes irte a una Afore que haya dado de forma constante mayor rendimiento neto.</p>
+        </section>
+        <section class="pk pk3">
+          <h2>Los pasos</h2>
+          <ol class="stepper">
+            <li><div><h3>Ve a la Afore a la que quieres pasar</h3><p>Lleva identificación oficial vigente y un comprobante de domicilio de máximo {a.traspaso.proof_of_address_max_months} meses.</p></div></li>
+            <li><div><h3>Firma la solicitud</h3><p>Te dan el Documento de Rendimiento Neto y el contrato. Léelos antes de firmar.</p></div></li>
+            <li><div><h3>Graban tu consentimiento</h3><p>La Afore guarda un video en el que aceptas el traspaso.</p></div></li>
+            <li><div><h3>Espera la constancia</h3><p>Te la envían a tu domicilio o correo. Si lo rechazan, te dicen por qué.</p></div></li>
+            <li><div><h3>Guarda la constancia de liquidación</h3><p>La Afore anterior debe enviártela dentro de {a.traspaso.liquidation_notice_business_days} días hábiles después de pasar tus recursos.</p></div></li>
+          </ol>
+          <p class="ref-line"><span class="tag t-verificado-primaria">verificado-primaria</span> Pasos tomados de la página del trámite en CONSAR.</p>
+        </section>
+      </div>
+    </div>
+  </fieldset>
+
+  <details class="acc" id="no-sabemos"><summary>Lo que no sabemos</summary><div class="acc-b">
+    <ul>
+      <li>La página del trámite no dice si el traspaso cuesta algo. No afirmamos que sea gratis. <span class="tag t-sin-verificar">sin-verificar</span></li>
+      <li>No leímos qué plazo de años usa cada rendimiento ni cómo se asigna cada fondo según tu año de nacimiento. Míralo en la tabla de CONSAR.</li>
+      <li>No revisamos la situación de Afore Azteca más allá de su comisión.</li>
+    </ul>
+  </div></details>
+  <script>import '../../scripts/cambiate-afore.ts';</script>
+</Base>
