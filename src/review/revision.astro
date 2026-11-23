@@ -19,7 +19,7 @@ const tiers: Record<string, string> = { A: 'Prioridad A: Art. 439 y reducciones 
   <h2>Prioridades</h2>
   {['A','B','C'].map((t) => (
     <div class="card"><h3>{tiers[t]}</h3>
-      <ul>{reg.filter((c: any) => c.tier === t).map((c: any) => <li><strong>{c.id}</strong> · {c.pages.length ? c.pages.map((p: string) => <a href={p}>{p}</a>) : 'sin página'} </li>)}</ul>
+      <ul>{reg.filter((c: any) => c.tier === t).map((c: any) => <li><strong>{c.id}</strong> · {c.pages.length ? c.pages.map((p: string) => <><a href={p}>{p}</a>{' '}</>) : 'sin página'} </li>)}</ul>
     </div>
   ))}
 

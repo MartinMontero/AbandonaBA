@@ -182,6 +182,17 @@ test('accesibilidad: sin violaciones serias o críticas', async ({ page }, info)
   }
 });
 
+test('ninguna página se desborda a lo ancho en 360 px', async ({ page }, info) => {
+  await page.setViewportSize({ width: 360, height: 640 });
+  const wide: string[] = [];
+  for (const r of routesFor(review(info))) {
+    await page.goto(r);
+    const sw = await page.evaluate(() => document.documentElement.scrollWidth);
+    if (sw > 361) wide.push(`${r}: ${sw}`);
+  }
+  expect(wide).toEqual([]);
+});
+
 test('teclado: se llega a la calculadora y se enfoca el campo', async ({ page }) => {
   await page.goto('/calculadora/');
   await page.keyboard.press('Tab'); // salto al contenido

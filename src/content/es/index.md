@@ -18,7 +18,7 @@ Irte es una decisión legítima. La forma en que te vas decide lo que te llevas.
 <li><a href="/checklist-salida/">Qué hacer con lo que debo y tengo en el banco</a></li>
 <li><a href="/ayuda-gratis/">Ayuda gratis</a></li>
 <li><a href="/puente/">Dinero mientras encuentro trabajo</a></li>
-<li><a href="/trabajo/">Buscar trabajo</a></li>
+<li><a href="/empleos/">Buscar trabajo: banco de empleo</a></li>
 <li><a href="/negocio/">Mi propio negocio</a></li>
 <li><a href="/equipo/">Con mis compañeros: equipo</a></li>
 <li><a href="/cooperativa/">Con mis compañeros: cooperativa</a></li>

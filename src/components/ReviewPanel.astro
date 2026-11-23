@@ -16,14 +16,14 @@ const D: Record<string, string> = {
 <details class="review-panel">
   <summary>Para el abogado</summary>
   {rows.length > 0 && (
-    <table>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table>
       <thead><tr><th>Afirmación</th><th>Estado</th><th>Pregunta para el abogado</th></tr></thead>
       <tbody>
         {rows.map((c: any) => (
           <tr><td>{c.id}</td><td><span class={`tag t-${c.status}`}>{c.status}</span></td><td>{c.attorney_question}</td></tr>
         ))}
       </tbody>
-    </table>
+    </table></div>
   )}
   {decisions.length > 0 && (<><h3>Decisiones de cálculo que cambian números aquí</h3><ul>{decisions.map((d) => <li>{D[d] ?? d}</li>)}</ul></>)}
   <p><a href="/revision/">Ir a la mesa de revisión</a></p>

@@ -18,15 +18,15 @@ Se intentó con `curl`, `pdftotext` y Chromium sin interfaz. Estos no se pudiero
 | Indeed México | https://mx.indeed.com | 403 a robots | Que cargue y siga activo |
 | OCC Mundial | https://www.occ.com.mx | 403 a robots | Que cargue y siga activo |
 | Coppel | https://www.coppel.com | 403 a robots | Que cargue y siga activo |
-| Vacantes de Banorte | https://www.banorte.com | Error de protocolo HTTP/2 en el sitio, con curl y con Chromium; sin bolsa propia encontrada | Enlace de «Trabaja con nosotros» y si hay cajero/ejecutivo |
-| Vacantes de Santander México | https://www.santander.com.mx | 403 a automatización | Enlace de empleo y vacantes de caja o ejecutivo |
-| Vacantes de BanCoppel | https://www.bancoppel.com | 403 a automatización | Ídem |
-| Vacantes de Mifel | https://www.mifel.com.mx | 403 a automatización | Ídem |
-| Vacantes de Banjercito (el banco del Ejército) | https://www.banjercito.com.mx | Demasiadas redirecciones; la búsqueda solo trajo una ficha de Indeed sin vacantes | Si publica vacantes y dónde |
-| Vacantes de Banregio | https://www.banregio.com | Carga sin texto | Enlace de empleo |
+| ~~Vacantes de Banorte~~ (resuelto el 22 nov con su Chrome) | https://empleos.banorte.com/ | Se abrió: áreas SUCURSALES, FUERZA DE VENTA, CENTRO DE CONTACTO, RIESGOS Y CRÉDITO | Falta mirar los puestos concretos |
+| Vacantes de Santander México (enlace hallado, sin abrir) | https://www.santander.com.mx/personas/bolsa-de-trabajo.html | Se encontró el enlace en su página con su Chrome; no se abrió | Puestos de caja o ejecutivo |
+| Vacantes de BanCoppel (enlace hallado, sin abrir) | https://fa-eqwz-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/es/sites/CX_3001 | Se encontró el enlace en su página con su Chrome | Puestos de caja o ejecutivo |
+| Vacantes de Mifel | https://www.mifel.com.mx | Su página no muestra enlace de empleo (ni con su Chrome) | Enlace de empleo, si existe |
+| Vacantes de Banjercito (el banco del Ejército) | https://www.banjercito.com.mx | Su sitio no carga ni con su Chrome (error de conexión) | Si publica vacantes y dónde |
+| Vacantes de Banregio (enlace hallado, sin abrir) | https://www.banregio.com/conoce-mas/bolsa-trabajo.php | Se encontró el enlace en su página con su Chrome | Puestos de caja o ejecutivo |
 | Vacantes de Scotiabank | https://www.scotiabank.com/careers/es/carreras.html | La página carga pero no lista puestos; el buscador no se pudo consultar | Buscar «cajero», «ejecutivo» en México |
 | Vacantes de Banamex / Citi | https://jobs.citi.com/ (desde https://www.banamex.com/conocenos/bolsa-de-trabajo) | El listado no se pudo leer | Filtrar México |
-| Vacantes de HSBC México | https://www.hsbc.com.mx | No se encontró enlace de empleo en la página | Enlace de empleo |
+| Vacantes de HSBC México | https://www.about.hsbc.com.mx/es-mx | Solo se halló la página «Acerca de HSBC»; falta el enlace de empleo | Enlace de empleo |
 | Vacantes de Inbursa | https://bolsadetrabajogfi.inbursa.com/ | No se intentó consultar el listado | Puestos de caja o ejecutivo |
 | Vacantes de Banco del Bienestar y Hey Banco | https://www.bancodelbienestar.gob.mx y https://www.heybanco.com | Sin respuesta (tiempo agotado) | Enlace de empleo |
 | Vacantes de Klar, Stori, Mercado Pago, Ualá, Openbank, Revolut, Fondeadora, Konfío, Kapital | https://www.klar.mx/bolsa-de-trabajo (Klar); el resto sin listado público consultable | Sin interfaz programática pública encontrada; Klar muestra una lista en su página | Puestos de atención, cobranza, riesgo |

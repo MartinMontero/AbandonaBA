@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/empleos.css';
+import data from '../data/empleos.json';
+import vac from '../data/vacantes.json';
+
+const roles = [
+  { id: 'cajero', label: 'Cajero/a', family: 'Cajero y servicio' },
+  { id: 'asesor', label: 'Asesor/a financiero', family: 'Asesor, ventas y crédito' },
+  { id: 'cobranza', label: 'Gestor/a de cobranza', family: 'Cobranza y campo' },
+  { id: 'verificador', label: 'Verificador/a', family: 'Verificación, fraude y cumplimiento' },
+  { id: 'gerente', label: 'Gerente de sucursal', family: 'Gerencia de sucursal' },
+  { id: 'oficinas', label: 'Oficinas centrales', family: '' },
+];
+const types: [string, string][] = [['todos', 'Todos'], ['banco', 'Bancos'], ['banco-digital', 'Bancos sin sucursales'], ['fintech', 'Fintech'], ['gobierno', 'Gobierno'], ['remesas', 'Remesas y atención']];
+const typeLabel: Record<string, string> = { banco: 'Banco', 'banco-digital': 'Banco sin sucursales', fintech: 'Fintech', gobierno: 'Gobierno', remesas: 'Remesas y atención' };
+
+// Estimación nuestra del encaje por tipo de empleador (0 a 3). Si vimos vacantes reales de tu perfil, sube a 3.
+const prior: Record<string, Record<string, number>> = {
+  banco: { cajero: 3, asesor: 3, cobranza: 2, verificador: 2, gerente: 3, oficinas: 2 },
+  'banco-digital': { cajero: 0, asesor: 2, cobranza: 1, verificador: 2, gerente: 1, oficinas: 3 },
+  fintech: { cajero: 1, asesor: 2, cobranza: 3, verificador: 3, gerente: 1, oficinas: 2 },
+  gobierno: { cajero: 3, asesor: 2, cobranza: 1, verificador: 1, gerente: 2, oficinas: 2 },
+  remesas: { cajero: 3, asesor: 2, cobranza: 0, verificador: 2, gerente: 2, oficinas: 1 },
+};
+const generic: Record<string, string> = {
+  cajero: 'Busca «cajero» o «personal de cajas»',
+  asesor: 'Busca «ejecutivo» o «asesor»',
+  cobranza: 'Busca «cobranza» o «recuperación»',
+  verificador: 'Busca «prevención de fraude» o «KYC»',
+  gerente: 'Busca «gerente de sucursal»',
+  oficinas: 'Filtra por tu área: operaciones, riesgos o cumplimiento',
+};
+const linkText: Record<string, string> = { abierto: 'Abierto por nosotros', enlace: 'Enlace sin abrir', sitio: 'Solo sitio principal', caido: 'Sitio sin respuesta' };
+
+const seenBy = new Map((vac as any).companies.map((c: any) => [c.company, c]));
+const cards = (data as any).employers.map((e: any) => {
+  const s: any = e.seen ? seenBy.get(e.seen) : null;
+  const perRole: Record<string, { fit: number; count: number; ex: any }> = {};
+  for (const r of roles) {
+    const list = s?.examples?.[r.family] ?? [];
+    const count = s && r.family ? (s.counts?.[r.family] ?? list.length) : 0;
+    const fit = count > 0 ? 3 : (prior[e.type]?.[r.id] ?? 1);
+    perRole[r.id] = { fit, count, ex: list[0] ?? null };
+  }
+  return { ...e, perRole, seenFit: s?.fit_count ?? null };
+});
+const sources = [];
+---
+<Base title="Banco de empleo" description="Todos los bancos, fintech y bolsas en un solo lugar. Elige lo que haces hoy y te mostramos dónde encaja mejor." path="/empleos/" legal claims={['C22','C23']} sources={sources} card="empleos" wide>
+  <p class="lead">Elige lo que haces hoy. Te ponemos primero a quienes más se parecen a tu puesto.</p>
+
+  <form id="empleos-form" class="tool" role="search" aria-label="Buscar empleo">
+    <fieldset class="chips">
+      <legend>1. ¿Qué haces hoy en el banco?</legend>
+      <div class="chip-row">
+        {roles.map((r, i) => (
+          <label class="chip"><input type="radio" name="role" value={r.id} /><span>{r.label}</span></label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset class="chips">
+      <legend>2. ¿Dónde quieres buscar?</legend>
+      <div class="chip-row">
+        {types.map(([v, l], i) => (
+          <label class="chip"><input type="radio" name="type" value={v} checked={i === 0} /><span>{l}</span></label>
+        ))}
+      </div>
+    </fieldset>
+
+    <div class="row">
+      <label class="switch"><input type="checkbox" role="switch" id="seen-only" /><span>Solo con vacantes que vimos hoy para mi puesto</span></label>
+    </div>
+    <label for="q" class="field">Buscar una empresa por nombre</label>
+    <input id="q" type="search" autocomplete="off" placeholder="Por ejemplo: Banorte" />
+  </form>
+
+  <p id="summary" class="summary" aria-live="polite">Elige tu puesto arriba. Mientras tanto, estas son todas las opciones.</p>
+  <p class="no-print"><button type="button" class="btn tonal" id="copy-top">Copiar enlaces de las 10 mejores</button></p>
+
+  <ol id="cards" class="cards">
+    {cards.map((e: any) => (
+      <li class="job-card" data-id={e.id} data-type={e.type} data-name={e.name.toLowerCase()} data-seen={e.seenFit ?? 0}
+        data-fit-cajero={e.perRole.cajero.fit} data-fit-asesor={e.perRole.asesor.fit} data-fit-cobranza={e.perRole.cobranza.fit} data-fit-verificador={e.perRole.verificador.fit} data-fit-gerente={e.perRole.gerente.fit} data-fit-oficinas={e.perRole.oficinas.fit}
+        data-n-cajero={e.perRole.cajero.count} data-n-asesor={e.perRole.asesor.count} data-n-cobranza={e.perRole.cobranza.count} data-n-verificador={e.perRole.verificador.count} data-n-gerente={e.perRole.gerente.count} data-n-oficinas={e.perRole.oficinas.count}
+        data-url={e.url}>
+        <div class="job-head">
+          <h2>{e.name}</h2>
+          <span class="chip-tag">{typeLabel[e.type]}</span>
+          <span class="fit" data-fit-badge hidden></span>
+        </div>
+        {roles.map((r) => (
+          <p class="hint-line" data-role-hint={r.id} hidden>
+            <strong>{e.hints?.[r.id] ?? generic[r.id]}.</strong>
+            {e.perRole[r.id].count > 0 && <span> Vimos {e.perRole[r.id].count} puesto{e.perRole[r.id].count === 1 ? '' : 's'} parecido{e.perRole[r.id].count === 1 ? '' : 's'} el {(vac as any).seen}.</span>}
+            {e.perRole[r.id].ex && <span> Por ejemplo: <a href={e.perRole[r.id].ex.url} rel="noopener noreferrer" target="_blank">{e.perRole[r.id].ex.title}</a>.</span>}
+          </p>
+        ))}
+        <p class="link-note"><span class={`dot dot-${e.link}`} aria-hidden="true"></span>{linkText[e.link]}.{e.link === 'sitio' || e.link === 'enlace' ? ' Si no carga, busca «Trabaja con nosotros».' : ''}{e.link === 'caido' ? ' Prueba de nuevo más tarde.' : ''}</p>
+        <div class="job-actions">
+          <a class="btn" href={e.url} rel="noopener noreferrer" target="_blank">Ver vacantes<span class="sr-only"> de {e.name} (se abre en otra pestaña)</span></a>
+          {e.home !== e.url && <a class="btn text" href={e.home} rel="noopener noreferrer" target="_blank">Sitio principal<span class="sr-only"> de {e.name}</span></a>}
+          <label class="switch small"><input type="checkbox" role="switch" class="done" /><span>Ya la revisé</span></label>
+        </div>
+      </li>
+    ))}
+  </ol>
+  <p id="empty" class="summary" hidden>No hay resultados con esos filtros. Quita «Solo con vacantes vistas» o cambia de lugar.</p>
+  <p id="reviewed" class="summary" aria-live="polite"></p>
+
+  <h2>Bolsas generales</h2>
+  <p>Aquí puedes buscar en muchas empresas a la vez. Pon el puesto y tu ciudad.</p>
+  <ul class="boards">
+    {(data as any).boards.map((b: any) => <li class="card"><a href={b.url} rel="noopener noreferrer" target="_blank"><strong>{b.name}</strong></a><br /><small>{b.note}</small></li>)}
+  </ul>
+
+  <h2>Antes de postular</h2>
+  <ul>
+    <li>Postula desde tu teléfono o computadora personal, no desde equipos ni el Wi-Fi del banco.</li>
+    <li>Tus frases para el currículum están en <a href="/trabajo/">Buscar trabajo</a>.</li>
+    <li>Algunas ofertas del Grupo Salinas piden «no haber laborado en Grupo Salinas». <span class="tag t-verificado-secundaria">verificado-secundaria</span> Se reporta en ofertas y reseñas.</li>
+    <li>Vacantes vistas el {(vac as any).seen} con un programa que lee los listados públicos de cada empresa. Cambian a diario: confirma en el enlace. El encaje es una <strong>estimación nuestra</strong>, no un dato de la empresa.</li>
+    <li>Fuera del programa quedan bancos cuyos listados no pudimos leer. Si no ves una vacante aquí, no significa que no exista.</li>
+  </ul>
+
+  <script>import '../scripts/empleos.ts';</script>
+</Base>

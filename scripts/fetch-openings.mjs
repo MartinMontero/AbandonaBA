@@ -44,7 +44,7 @@ async function run(name, source, fn) {
     const fit = jobs.map((j) => ({ ...j, family: family(j.title) })).filter((j) => j.family);
     const byFamily = {};
     for (const j of fit) (byFamily[j.family] ||= []).push(j);
-    out.push({ company: name, source, total_mexico: total, fit_count: fit.length, examples: Object.fromEntries(Object.entries(byFamily).map(([k, v]) => [k, v.slice(0, 4).map(({ title, location, url }) => ({ title, location, url }))])), seen: date });
+    out.push({ company: name, source, total_mexico: total, fit_count: fit.length, counts: Object.fromEntries(Object.entries(byFamily).map(([k, v]) => [k, v.length])), examples: Object.fromEntries(Object.entries(byFamily).map(([k, v]) => [k, [...v].sort((a, b) => Number(/discapacidad|inclusi[oó]n/i.test(a.title)) - Number(/discapacidad|inclusi[oó]n/i.test(b.title))).slice(0, 4).map(({ title, location, url }) => ({ title, location, url }))])), seen: date });
     console.log(`${name}: ${total ?? 'total no medido'} abiertas en México, ${fit.length} afines`);
   } catch (e) {
     out.push({ company: name, source, error: String(e.message).slice(0, 120), seen: date });

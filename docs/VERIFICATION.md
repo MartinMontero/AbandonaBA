@@ -85,6 +85,8 @@ Se corrieron en orden: verify (producción), verify:review, verify (producción)
 | Banca Afirme | sitio de empleo (SuccessFactors) | 27 afines encontradas, incluido «CAJA» y asesores |
 No se pudo consultar por programa: Banorte, Santander, BanCoppel, Mifel, Banjercito, Banregio, Scotiabank, Banamex/Citi, HSBC, Inbursa, Banco del Bienestar, Hey Banco, Mercado Pago, Stori, Klar y otros (ver `docs/HUMAN-CHECKS.md`). Los buscadores muestran vacantes de cajero de Banorte y Santander en bolsas de terceros (OCC, Computrabajo): no se tomaron como confirmadas.
 
+Con el Chrome real de la persona usuaria (extensión) se leyeron las páginas de inicio de Banorte, Santander, BanCoppel, Mifel, Banregio y HSBC y se tomaron sus enlaces de empleo; se abrió `empleos.banorte.com`. Banjercito no cargó ni así. Con ellos se armó `src/data/empleos.json` y la herramienta `/empleos/`.
+
 La lista de lo que aún necesita una persona está en `docs/HUMAN-CHECKS.md`.
 
 ## SIGUE sin verificar (se intentó y no se pudo, o no se intentó)

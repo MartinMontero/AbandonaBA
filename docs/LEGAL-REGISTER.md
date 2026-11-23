@@ -308,7 +308,7 @@ BBVA México tiene publicada, en su propia bolsa de trabajo, la oferta «Persona
 
 **Pregunta para el abogado:** No requiere dictamen jurídico; el sitio la presenta con fecha.
 
-**Páginas:** /trabajo/
+**Páginas:** /empleos/, /trabajo/
 
 ## C23 · verificado-secundaria · prioridad C
 
@@ -322,7 +322,7 @@ Ofertas y reseñas reportan filtros de contratación en el Grupo Salinas: 'no ad
 
 **Pregunta para el abogado:** ¿Es lícito un filtro de 'no haber laborado' en una oferta de empleo?
 
-**Páginas:** /checklist-salida/, /trabajo/
+**Páginas:** /checklist-salida/, /empleos/, /trabajo/
 
 ## C24 · sin-verificar · prioridad A
 

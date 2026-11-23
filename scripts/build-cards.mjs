@@ -16,6 +16,7 @@ const cards = [
   { slug: 'checklist-salida', title: ['Lo que el banco', 'te debe y le debes'], lines: ['Préstamos, ahorro, nómina,', 'Afore, aguinaldo, vacaciones.', 'Pide todo por escrito.'], url: '/checklist-salida/' },
   { slug: 'art439', title: ['Art. 439', 'en 30 segundos'], lines: ['Si una máquina nueva', 'deja sin puesto a alguien,', 'se necesita convenio o', 'autorización del Tribunal.'], url: '/salidas/' },
   { slug: 'ayuda-gratis', title: ['Ayuda gratis'], lines: ['PROFEDET da asesoría gratuita.', 'La conciliación es el primer paso', 'antes del Tribunal.'], url: '/ayuda-gratis/' },
+  { slug: 'empleos', title: ['Banco de empleo'], lines: ['Bancos, fintech y bolsas', 'en un solo lugar.', 'Elige lo que haces hoy', 'y mira dónde encaja.'], url: '/empleos/' },
   { slug: 'si-te-piden-renunciar', title: ['Si te piden', 'renunciar'], lines: ['No firmes bajo presión.', 'Calcula primero.', 'La forma de irte decide', 'lo que te llevas.'], url: '/salidas/' },
 ];
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');

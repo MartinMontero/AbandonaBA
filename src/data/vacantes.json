@@ -5,15 +5,16 @@
   {
    "company": "BBVA México",
    "source": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA",
-   "total_mexico": 84,
-   "fit_count": 67,
+   "total_mexico": 83,
+   "fit_count": 66,
+   "counts": {
+    "Cajero y servicio": 25,
+    "Asesor, ventas y crédito": 35,
+    "Cobranza y campo": 2,
+    "Verificación, fraude y cumplimiento": 4
+   },
    "examples": {
     "Cajero y servicio": [
-     {
-      "title": "Asesoría Digital y Personal de Caja  (Inclusión laboral de personas con discapacidad)",
-      "location": "Ciudad de Mexico, Miguel Hidalgo, 11000",
-      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Ciudad-de-Mexico-Miguel-Hidalgo-11000/Asesora-Digital-y-Personal-de-Caja---Inclusin-laboral-de-personas-con-discapacidad-_JR00079047"
-     },
      {
       "title": "Personal de cajas (Caborca, Son- División Noroeste)",
       "location": "Sonora, Caborca, 83600",
@@ -28,6 +29,11 @@
       "title": "Personal de Cajas (Nogales, Son - División Noroeste.)",
       "location": "Sonora, Nogales, 84000",
       "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Sonora-Nogales-84000/Personal-de-Cajas--Nogales--Son-_JR00054515"
+     },
+     {
+      "title": "Personal de Cajas Pool (Puerto Vallarta, Jalisco)",
+      "location": "Jalisco, Puerto Vallarta, 48330",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Jalisco-Puerto-Vallarta-48330/Personal-de-Cajas-Pool--Puerto-Vallarta--Jalisco-_JR00120481"
      }
     ],
     "Asesor, ventas y crédito": [
@@ -62,11 +68,6 @@
       "title": "Gestoría de Cobranza en campo - Guadalajara jalisco",
       "location": "Jalisco, Guadalajara, 44670",
       "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Jalisco-Guadalajara-44670/Gestora-de-Cobranza-en-campo---Guadalajara-jalisco_JR00109525"
-     },
-     {
-      "title": "GESTOR DE CLIENTES COL -  AVENIDA CERO - BANCA MINORISTA",
-      "location": "54001, San José De Cúcuta, Norte de Santander",
-      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/54001-San-Jos-De-Ccuta-Norte-de-Santander/GESTOR-DE-CLIENTES-COL----AVENIDA-CERO---BANCA-MINORISTA_JR00120230"
      }
     ],
     "Verificación, fraude y cumplimiento": [
@@ -99,6 +100,9 @@
    "source": "https://jobs.ashbyhq.com/nubank",
    "total_mexico": 21,
    "fit_count": 2,
+   "counts": {
+    "Verificación, fraude y cumplimiento": 2
+   },
    "examples": {
     "Verificación, fraude y cumplimiento": [
      {
@@ -120,6 +124,7 @@
    "source": "https://jobs.ashbyhq.com/Kueski",
    "total_mexico": 5,
    "fit_count": 0,
+   "counts": {},
    "examples": {},
    "seen": "2026-11-23"
   },
@@ -128,6 +133,12 @@
    "source": "https://plata.careers/",
    "total_mexico": 102,
    "fit_count": 49,
+   "counts": {
+    "Cobranza y campo": 10,
+    "Asesor, ventas y crédito": 25,
+    "Cajero y servicio": 1,
+    "Verificación, fraude y cumplimiento": 13
+   },
    "examples": {
     "Cobranza y campo": [
      {
@@ -210,6 +221,11 @@
    "source": "https://job-boards.greenhouse.io/clara",
    "total_mexico": 66,
    "fit_count": 27,
+   "counts": {
+    "Asesor, ventas y crédito": 24,
+    "Verificación, fraude y cumplimiento": 2,
+    "Cajero y servicio": 1
+   },
    "examples": {
     "Asesor, ventas y crédito": [
      {
@@ -260,6 +276,7 @@
    "source": "https://job-boards.greenhouse.io/spin",
    "total_mexico": 25,
    "fit_count": 0,
+   "counts": {},
    "examples": {},
    "seen": "2026-11-23"
   },
@@ -268,6 +285,13 @@
    "source": "https://vacantesbancocompartamos.gentera.com.mx/",
    "total_mexico": null,
    "fit_count": 60,
+   "counts": {
+    "Cajero y servicio": 3,
+    "Cobranza y campo": 4,
+    "Asesor, ventas y crédito": 39,
+    "Gerencia de sucursal": 13,
+    "Verificación, fraude y cumplimiento": 1
+   },
    "examples": {
     "Cajero y servicio": [
      {
@@ -367,6 +391,10 @@
    "source": "https://empleos.afirme.com/",
    "total_mexico": null,
    "fit_count": 27,
+   "counts": {
+    "Cajero y servicio": 3,
+    "Asesor, ventas y crédito": 24
+   },
    "examples": {
     "Cajero y servicio": [
      {
