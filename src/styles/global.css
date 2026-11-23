@@ -438,3 +438,23 @@ footer { margin-top: var(--space-6); background: var(--md-sys-color-surface-cont
 .pk .steps { grid-template-columns: 1fr; }
 .pk .steps li { grid-template-columns: 3rem 1fr; }
 .pk .steps li p { margin: 0 0 var(--space-1); }
+
+/* IA: herramientas y tarjetas de instrucciones */
+.tool-grid { display: grid; gap: var(--space-2); grid-template-columns: 1fr; margin: var(--space-2) 0 var(--space-4); }
+@media (min-width: 700px) { .tool-grid { grid-template-columns: 1fr 1fr; } }
+.tool { background: var(--md-sys-color-surface-container); border-radius: var(--radius-lg); padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-1); }
+.tool h3 { margin: 0; } .tool h3 small { font-weight: 500; color: var(--md-sys-color-on-surface-variant); }
+.tool p { margin: 0; } .tool ul { margin: 0; padding-left: 1.1rem; font-size: .9375rem; } .tool .btn { align-self: flex-start; margin-top: auto; }
+.ia-filter { margin-top: var(--space-2); }
+.ia-filter > input { position: absolute; opacity: 0; pointer-events: none; }
+.ia-filter > label { display: inline-flex; align-items: center; min-height: var(--target); padding: 0 var(--space-3); margin: 0 var(--space-1) var(--space-1) 0; border-radius: var(--radius-full); background: var(--md-sys-color-surface-container); border: 2px solid transparent; font-weight: 700; cursor: pointer; }
+.ia-filter > input:checked + label { background: var(--md-sys-color-primary-container); border-color: var(--md-sys-color-primary); }
+.ia-filter > input:focus-visible + label { outline: 3px solid var(--md-sys-color-primary); outline-offset: 2px; }
+.lessons { display: grid; gap: var(--space-2); margin-top: var(--space-2); grid-template-columns: 1fr; }
+@media (min-width: 700px) { .lessons { grid-template-columns: 1fr 1fr; } }
+.lesson { background: var(--md-sys-color-surface-container-low, var(--md-sys-color-surface-container)); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-lg); padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-1); }
+.lesson h3 { margin: 0; display: flex; gap: var(--space-1); align-items: baseline; } .lesson p { margin: 0; }
+.lesson .n { display: inline-grid; place-items: center; min-width: 2rem; height: 2rem; border-radius: 50%; background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-size: 1rem; flex: none; }
+.prompt { margin-top: auto; background: var(--md-sys-color-surface-container); border-radius: var(--radius-md); padding: var(--space-2); }
+.prompt .ptext { font-size: .9375rem; }
+.ia-filter:has(#f-emp:checked) .lesson:not([data-cat="emp"]), .ia-filter:has(#f-din:checked) .lesson:not([data-cat="din"]), .ia-filter:has(#f-doc:checked) .lesson:not([data-cat="doc"]) { display: none; }

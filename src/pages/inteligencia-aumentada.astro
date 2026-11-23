@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+// Cada herramienta lleva solo lo que se leyó en su página oficial el 2026-11-22. Lo demás queda sin verificar.
+const tools = [
+  { n: 'Claude', by: 'Anthropic', url: 'https://claude.ai', free: 'Plan gratis con uso limitado cada 5 horas y cada semana.', fs: 'verificado-primaria', es: 'La ayuda oficial lista español de Latinoamérica y de España, y responde en el idioma en que le escribes.', ess: 'verificado-secundaria', acct: 'Pide iniciar sesión. No verificamos si pide teléfono.', priv: 'Su tabla de precios indica que en el plan gratis puedes desactivar el uso de tus chats para entrenar el modelo. Busca ese ajuste.', src: 'https://claude.com/pricing' },
+  { n: 'Gemini', by: 'Google', url: 'https://gemini.google.com', free: 'Gratis con una cuenta de Google.', fs: 'verificado-primaria', es: 'La ayuda oficial dice que la app web está en más de 70 idiomas, pero no nombra el español. Pruébalo con una pregunta en español.', ess: 'sin-verificar', acct: 'Requiere cuenta de Google.', priv: 'No pudimos verificar cómo usa tus chats ni cómo desactivarlo. Revisa su aviso de privacidad.', src: 'https://gemini.google/subscriptions/' },
+  { n: 'Le Chat', by: 'Mistral', url: 'https://chat.mistral.ai', free: 'Plan gratis con acceso limitado.', fs: 'verificado-primaria', es: 'Su página de precios solo ofrece inglés, francés e italiano. No encontramos una lista de idiomas del asistente. Pruébalo en español.', ess: 'sin-verificar', acct: 'No verificamos si pide cuenta o teléfono.', priv: 'Su tabla de precios indica que puedes desactivar el uso de tus chats para entrenar el modelo. Busca ese ajuste.', src: 'https://mistral.ai/pricing' },
+  { n: 'Copilot', by: 'Microsoft', url: 'https://copilot.com', free: 'Gratis con una cuenta de Microsoft.', fs: 'verificado-primaria', es: 'Su página ofrece español (España) y español (México) como idioma de la página. No encontramos una lista de idiomas del asistente.', ess: 'sin-verificar', acct: 'Requiere cuenta de Microsoft.', priv: 'No pudimos verificar cómo usa tus chats ni cómo desactivarlo. Revisa su aviso de privacidad.', src: 'https://copilot.com' },
+];
+const cats = [
+  { id: 'emp', t: 'Conseguir trabajo' },
+  { id: 'din', t: 'Dinero y negocio' },
+  { id: 'doc', t: 'Mensajes y documentos' },
+];
+const lessons = [
+  { c: 'emp', t: 'Convierte tu experiencia en un currículum', w: 'Escribe tu puesto, tus años y tus logros con números.', p: 'Soy [puesto] con [años] años de experiencia. Mis logros: [lista con números]. Redacta un currículum de una página en español, con frases cortas que empiecen con verbo.' },
+  { c: 'emp', t: 'Practica una entrevista para personal de cajas', w: 'Te pregunta una cosa a la vez y te dice qué mejorar.', p: 'Hazme una entrevista para un puesto de personal de cajas en un banco. Hazme una pregunta a la vez y, después de mi respuesta, dime qué mejorar.' },
+  { c: 'emp', t: 'Investiga un empleador antes de ir', w: 'Prepara qué preguntar y qué pedir por escrito.', p: 'Quiero ir a una entrevista en [empresa]. Dime qué preguntas hacer sobre sueldo, horario, prestaciones y contrato. Dime qué documentos pedir por escrito.' },
+  { c: 'din', t: 'Control semanal de ingresos y gastos', w: 'Una tabla simple de en qué gastas más.', p: 'Voy a darte mis ingresos y gastos de esta semana. Arma una tabla simple y dime en qué gasto más.' },
+  { c: 'din', t: 'Plan de negocio de una página', w: 'Diez preguntas y un plan con clientes, precio y costos.', p: 'Quiero abrir [idea de negocio]. Hazme diez preguntas, una por una, y con mis respuestas arma un plan de una página: clientes, precio, costos y primer mes.' },
+  { c: 'din', t: 'Borrador de bases para una cooperativa', w: 'Solo para empezar a hablar. Un abogado debe revisarlo.', p: 'Somos [número] personas que quieren hacer una cooperativa de [actividad]. Haz un borrador educativo de bases con: objeto, socios, un voto por socio, fondos y cómo se resuelven desacuerdos. Marca lo que debe revisar un abogado.' },
+  { c: 'doc', t: 'Traduce un mensaje o documento', w: 'Con palabras sencillas y sin datos personales.', p: 'Traduce este texto al [idioma] con palabras sencillas: [texto sin datos personales].' },
+  { c: 'doc', t: 'Redacta un mensaje a tus compañeros', w: 'Para invitar a platicar en persona, sin nombres ni empresa.', p: 'Escribe un mensaje corto para invitar a compañeros de confianza a platicar en persona sobre nuestras opciones. No menciones la empresa ni nombres.' },
+  { c: 'doc', t: 'Entiende un documento legal que te dieron', w: 'Cambia nombres y cifras por «X» antes de pegar.', p: 'Explícame con palabras sencillas qué dice este texto y qué preguntas debo hacer antes de firmar: [texto con datos cambiados por X]. No me des consejo legal.' },
+  { c: 'doc', t: 'Prepara preguntas para PROFEDET', w: 'Una lista para llevar a la asesoría gratuita.', p: 'Mi situación: [resumen sin nombres]. Haz una lista de las diez preguntas que debo llevar a una asesoría laboral gratuita y los documentos que debo traer.' },
+];
+const sources = tools.map((t) => ({ title: `${t.n} (${t.by})`, url: t.src, read: '2026-11-22' }));
+---
+<Base art="spark" eyebrow="Aprende y prepárate" title="IA: diez usos prácticos" description="Escoge una herramienta gratis y copia una instrucción lista para usar." path="/inteligencia-aumentada/" sources={sources} wide lead>
+  <p class="lede">La IA (inteligencia artificial) es un asistente al que le escribes qué necesitas y te responde. Te ayuda a redactar y preparar. Puede equivocarse: verifica los datos legales y de dinero en las fuentes oficiales de este sitio.</p>
+
+  <div class="callout info"><p><strong>Antes de pegar algo:</strong> nunca pongas tu CURP, tu RFC, números de cuenta, nombres de compañeros ni nada de los sistemas internos del banco.</p></div>
+
+  <h2 id="herramientas">1. Escoge una herramienta gratis</h2>
+  <p>Todas tienen plan gratis. Con cualquiera sirven las instrucciones de abajo.</p>
+  <div class="tool-grid">
+    {tools.map((t) => (
+      <article class="tool">
+        <h3>{t.n} <small>{t.by}</small></h3>
+        <p><span class={`tag t-${t.fs}`}>{t.fs}</span> {t.free}</p>
+        <ul>
+          <li><strong>Español.</strong> {t.es} <span class={`tag t-${t.ess}`}>{t.ess}</span></li>
+          <li><strong>Cuenta.</strong> {t.acct}</li>
+          <li><strong>Tus chats.</strong> {t.priv}</li>
+        </ul>
+        <a class="btn tonal" href={t.url} rel="noopener noreferrer">Abrir {t.n}</a>
+      </article>
+    ))}
+  </div>
+
+  <h2 id="usos">2. Elige qué quieres lograr</h2>
+  <div class="ia-filter">
+    <input type="radio" name="cat" id="f-all" checked /><label for="f-all">Todo</label>
+    {cats.map((c) => (<><input type="radio" name="cat" id={`f-${c.id}`} /><label for={`f-${c.id}`}>{c.t}</label></>))}
+    <div class="lessons">
+      {lessons.map((l, i) => (
+        <article class="lesson" data-cat={l.c}>
+          <h3><span class="n">{i + 1}</span> {l.t}</h3>
+          <p>{l.w}</p>
+          <div class="prompt">
+            <p class="ptext">{l.p}</p>
+            <button type="button" class="btn tonal copy" aria-label={`Copiar la instrucción: ${l.t}`}>Copiar</button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+  <p class="small">Cambia lo que está entre [corchetes] por tus datos sin nombres. Después pégala en la herramienta que elegiste.</p>
+  <script>import '../scripts/ia.ts';</script>
+</Base>

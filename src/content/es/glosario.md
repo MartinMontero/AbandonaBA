@@ -36,4 +36,4 @@ legal: false
 - **CFDI:** comprobante fiscal digital; tu recibo de nómina electrónico.
 - **Escalafón:** la lista de trabajadores por antigüedad.
 - **Modalidad 10 y 40:** formas de seguir cotizando al IMSS por tu cuenta.
-- **Inteligencia Aumentada:** usar un asistente de computadora para ayudarte a redactar y preparar; tú decides y verificas.
+- **IA (inteligencia artificial):** un asistente de computadora al que le escribes lo que necesitas para que te ayude a redactar y preparar; tú decides y verificas.
