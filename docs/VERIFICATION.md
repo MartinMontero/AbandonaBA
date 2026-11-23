@@ -111,4 +111,4 @@ La lista de lo que aún necesita una persona está en `docs/HUMAN-CHECKS.md`.
 - Desplegado el Worker de revisión (bandonabancoazteca-review) en su dirección de workers.dev. Producción, DNS y dominio sin tocar.
 - Access aplicado desde el panel de Cloudflare: alcance «All traffic», política reutilizable «Revision para abogados (correo)» con acción Allow y una regla de correos (la lista de correos vive solo en el panel y en el archivo local no versionado), sesión de 24 horas.
 - Comprobado: sin credenciales, todas las rutas probadas responden 302 al inicio de sesión de Access; `check-review-gate.ps1` da PASS contra el despliegue real y FAIL gate open contra un servidor abierto de prueba.
-- UNTESTED: el inicio de sesión real con PIN (correo permitido y no permitido) en ventana privada, y que el PIN sea el único método de inicio de sesión.
+- Probado a mano por la persona usuaria el 2026-11-23 en ventana privada: el correo permitido entra y el no permitido queda bloqueado. Sin probar: que el PIN sea el único método de inicio de sesión.
