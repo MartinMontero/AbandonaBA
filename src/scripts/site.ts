@@ -96,3 +96,13 @@ document.querySelectorAll('[data-print]').forEach((b) => b.addEventListener('cli
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
   navigator.serviceWorker.register('/sw.js').catch(() => {});
 }
+
+// Abre el acordeón al que apunta el enlace (#id), para que los hitos lleven directo al detalle.
+function openHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (el instanceof HTMLDetailsElement) { el.open = true; el.scrollIntoView({ block: 'start' }); }
+}
+window.addEventListener('hashchange', openHash);
+openHash();

@@ -11,17 +11,40 @@ sources:
 ---
 No damos consejos financieros personales. Solo comparaciones neutrales.
 
-## IMSS: ocho semanas de atención médica
+
+
+<h2>Tu ruta de dinero, en orden</h2>
+<ol class="mile cols3">
+<li><a href="#imss"><span class="big">8 semanas</span><span class="what">Atención médica del IMSS</span><span class="more">Si cotizaste al menos ocho semanas seguidas, tú y tus beneficiarios la conservan (Art. 109).</span><span class="tag t-verificado-primaria">verificado-primaria</span></a></li>
+<li><a href="#afore"><span class="big">Día 46</span><span class="what">Retiro parcial de tu Afore</span><span class="more">Desde el día 46 sin empleo, si no retiraste en los últimos cinco años (Art. 191).</span><span class="tag t-verificado-primaria">verificado-primaria</span></a></li>
+<li><a href="#modalidades"><span class="big">Modalidad 10 y 40</span><span class="what">Seguir cotizando por tu cuenta</span><span class="more">Hay un acuerdo temporal del IMSS de octubre de 2026. Mira cómo te afecta.</span><span class="tag t-verificado-primaria">verificado-primaria</span></a></li>
+<li><a href="#estatales"><span class="big">Hasta 3 meses</span><span class="what">Seguro de Desempleo de la CDMX</span><span class="more">Solo con residencia en la CDMX y otros requisitos. Registro en ventanas de un día.</span><span class="tag t-verificado-secundaria">verificado-secundaria</span></a></li>
+<li><a href="#infonavit"><span class="big">Infonavit</span><span class="what">Pagos y prórroga</span><span class="more">No lo pudimos confirmar. Revisa tu cuenta.</span><span class="tag t-sin-verificar">sin-verificar</span></a></li>
+<li><a class="warn-card" href="#finabien"><span class="big">Cuidado</span><span class="what">Ofertas falsas de FINABIEN</span><span class="more">Todavía no hay ventanilla de crédito directo.</span><span class="tag t-verificado-secundaria">verificado-secundaria</span></a></li>
+</ol>
+<p class="small">Toca una tarjeta para ver el detalle y la fuente.</p>
+
+
+<details class="acc" id="imss" open><summary>IMSS: ocho semanas de atención médica</summary>
+<div class="acc-b">
 
 <span class="tag t-verificado-primaria">verificado-primaria</span> Según el Art. 109 de la Ley del Seguro Social, si quedas sin trabajo y cotizaste al menos ocho semanas seguidas, conservas ocho semanas de atención médica, de maternidad, quirúrgica, farmacéutica y hospitalaria. Tus beneficiarios también.
 
-## Modalidad 10 y Modalidad 40 del IMSS
+</div>
+</details>
+
+<details class="acc" id="modalidades"><summary>Modalidad 10 y Modalidad 40 del IMSS</summary>
+<div class="acc-b">
 
 <span class="tag t-verificado-primaria">verificado-primaria</span> Son formas de seguir cotizando por tu cuenta. El Acuerdo ACDO.AS2.HCT.101026/302.P.DG del Consejo Técnico del IMSS se publicó en el DOF el 21 de octubre de 2026 y entra en vigor el día hábil siguiente (el 22 de octubre, según nuestra lectura). Es una medida temporal sobre la Continuación Voluntaria (Modalidad 40): quien ya estaba inscrito sigue en las condiciones actuales hasta terminar el periodo que contrató. Quien lo pida después se inscribe con su último salario base de cotización (o menos) más una UMA, y nunca menos de un salario mínimo. Las nuevas inscripciones son solo por medios digitales. Se pide un análisis financiero en seis meses.
 
 <span class="tag t-sin-verificar">sin-verificar</span> La prensa reporta amparos contra el acuerdo. No los verificamos. Revisa [imss.gob.mx](https://www.imss.gob.mx).
 
-## Retiro parcial de la Afore por desempleo
+</div>
+</details>
+
+<details class="acc" id="afore"><summary>Retiro parcial de la Afore por desempleo</summary>
+<div class="acc-b">
 
 <span class="tag t-verificado-primaria">verificado-primaria</span> Según el Art. 191 de la Ley del Seguro Social, puedes retirar parte de tu Afore desde el día 46 de desempleo, si no hiciste otro retiro en los cinco años anteriores.
 
@@ -32,16 +55,31 @@ No damos consejos financieros personales. Solo comparaciones neutrales.
 
 Sobre el tope del inciso a): el texto de la ley dice «salario mínimo mensual del Distrito Federal». El decreto de 2016 sobre la desindexación del salario mínimo manda leer esas menciones como UMA, y la prensa habla de UMA. <span class="tag t-sin-verificar">sin-verificar</span> No pudimos leer la regla de CONSAR que lo aplica (su página no entrega texto), así que confirma el monto exacto con tu Afore. Revisa [CONSAR](https://www.gob.mx/consar).
 
-## Programas estatales
+</div>
+</details>
+
+<details class="acc" id="estatales"><summary>Programas estatales</summary>
+<div class="acc-b">
 
 <span class="tag t-verificado-secundaria">verificado-secundaria</span> El Seguro de Desempleo de la CDMX pagó {{v:cdmx_desempleo}} al mes hasta por tres meses en 2026, según prensa. Pide residencia en la CDMX, pérdida involuntaria de empleo formal y haber trabajado al menos seis meses con un patrón con domicilio fiscal en la CDMX. El registro fue en ventanas de un solo día (11 de agosto y 20 de octubre de 2026) por Llave CDMX. Un titular reportó una cifra distinta; usamos la que más fuentes repiten. Para la próxima ventana, revisa fechas oficiales.
 
 <div class="unverified"><span class="tag t-sin-verificar">sin-verificar</span> Programas de Edomex, Jalisco y Nuevo León: no los verificamos.</div>
 
-## INFONAVIT
+</div>
+</details>
+
+<details class="acc" id="infonavit"><summary>INFONAVIT</summary>
+<div class="acc-b">
 
 <div class="unverified"><span class="tag t-sin-verificar">sin-verificar</span> Fondo de Protección de Pagos y prórroga. Confirma en Mi Cuenta Infonavit.</div>
 
-## FINABIEN
+</div>
+</details>
+
+<details class="acc" id="finabien"><summary>FINABIEN</summary>
+<div class="acc-b">
 
 <span class="tag t-verificado-secundaria">verificado-secundaria</span> Aún no hay ventanilla de crédito directo. El decreto del 18 de noviembre de 2026 no fija montos, tasas, plazos ni requisitos. Cuidado con ofertas falsas de FINABIEN por WhatsApp o redes. Solo [finabien.gob.mx](https://www.finabien.gob.mx).
+
+</div>
+</details>

@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import Art from '../components/Art.astro';
+// Portada de «Emprender»: tres pasos, en orden, sin texto de relleno.
+const steps = [
+  { n: 1, t: 'Cubre tus meses sin sueldo', items: [
+    { href: '/puente/', t: 'Dinero mientras encuentro trabajo', d: 'IMSS, Afore y programas.', art: 'steps' },
+  ] },
+  { n: 2, t: 'Decide qué vas a hacer', items: [
+    { href: '/negocio/', t: 'Mi propio negocio', d: 'Ideas con lo que ya sabes y tus primeros 30 días.', art: 'store' },
+    { href: '/inteligencia-aumentada/', t: 'IA a tu favor', d: 'Crea tu servicio y lleva tus habilidades a otro trabajo.', art: 'spark' },
+  ] },
+  { n: 3, t: 'Hazlo con otras personas', items: [
+    { href: '/equipo/', t: 'Con mis compañeros', d: 'Un mensaje para invitar y la primera reunión.', art: 'people' },
+    { href: '/cooperativa/', t: 'Cooperativa paso a paso', d: 'Cómo se forma y se registra.', art: 'coop' },
+  ] },
+];
+---
+<Base art="store" eyebrow="Después de salir" title="Empieza algo propio" description="Tres pasos: cubre tus meses sin sueldo, decide qué hacer y hazlo con otras personas. Entra por donde estés." path="/emprender/" lead>
+  <ol class="route">
+    {steps.map((s) => (
+      <li>
+        <h2><span class="n">{s.n}</span> {s.t}</h2>
+        <ul class="tiles">
+          {s.items.map((x) => (
+            <li><a class="tile" href={x.href}><Art name={x.art} /><span><h3>{x.t}</h3><p>{x.d}</p></span></a></li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ol>
+</Base>

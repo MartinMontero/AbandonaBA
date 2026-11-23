@@ -13,7 +13,19 @@ sources:
 ---
 Esta página es información, no una campaña contra una persona. Las citas son cortas, con fecha y enlace. Lo que es opinión se marca como opinión.
 
-## Confirmado y no confirmado
+
+
+<h2>En una mirada</h2>
+<div class="tri">
+<div class="t-yes"><h3>Confirmado por varios medios</h3><ul><li>Hacia el 17 y 18 de noviembre de 2026 circuló un video de Ricardo Salinas Pliego en una cena.</li><li>Criticó el aumento del salario mínimo y la semana de 40 horas.</li><li>Dijo que pondría máquinas que trabajan todo el día.</li></ul></div>
+<div class="t-no"><h3>No confirmado</h3><ul><li>Que el banco haya anunciado cifras, fechas o presupuesto. No hay anuncio oficial al 22 de noviembre de 2026.</li><li>La cifra de 15,000 cajeros: es dicha por él mismo.</li><li>Que ya haya reducido cajeros: es su propia afirmación.</li></ul></div>
+<div class="t-do"><h3>Qué hacer</h3><ul><li>Si tu puesto desaparece por maquinaria, la ley pide convenio o autorización del Tribunal (Art. 439).</li><li><a href="/salidas/">Mira cuatro formas de salir</a> y la <a href="/calculadora/">calculadora</a>.</li><li>Si te piden firmar, mira <a href="/no-firmes/">No firmes esto</a>.</li></ul></div>
+</div>
+<p class="small">Esto es un resumen. Las citas con fecha y enlace están abajo.</p>
+
+
+<details class="acc" id="tabla" open><summary>Confirmado y no confirmado</summary>
+<div class="acc-b">
 
 | Confirmado por varios medios | No confirmado |
 |---|---|
@@ -26,11 +38,19 @@ Contexto fiscal, solo el hecho: AP reportó el 14 de noviembre de 2025 que la Su
 
 Dicho después: según los medios, él suavizó el tono y dijo que la tecnología no quita trabajo a quien se prepara. Léelo junto a las frases de arriba.
 
-## Qué dice la ley si tu puesto desaparece
+</div>
+</details>
+
+<details class="acc" id="ley"><summary>Qué dice la ley si tu puesto desaparece</summary>
+<div class="acc-b">
 
 No decimos que el banco vaya a despedir a nadie. Si tu puesto desaparece por maquinaria o procedimientos nuevos, el Art. 439 de la Ley Federal del Trabajo pide un convenio o la autorización del Tribunal, y da una indemnización mínima. <span class="tag t-verificado-primaria">verificado-primaria</span> Mira [Cuatro formas de salir](/salidas/) y la [calculadora](/calculadora/).
 
-## Exposición por puesto
+</div>
+</details>
+
+<details class="acc" id="puestos"><summary>Exposición por puesto</summary>
+<div class="acc-b">
 
 <span class="tag t-sin-verificar">estimación, sin datos del banco</span> Esto es una opinión nuestra, no un dato del banco.
 
@@ -43,7 +63,11 @@ No decimos que el banco vaya a despedir a nadie. Si tu puesto desaparece por maq
 | Gerente de sucursal | baja a media | Menos sucursales o menos personal por sucursal | Dirección de equipo, operación |
 | Oficinas centrales | baja a media | Depende de la función | Según función |
 
-## Señales de una reducción disfrazada
+</div>
+</details>
+
+<details class="acc" id="senales"><summary>Señales de una reducción disfrazada</summary>
+<div class="acc-b">
 
 - Se congelan las contrataciones y no reponen a quien se va.
 - Suben las metas de venta o de cobranza sin cambiar el pago.
@@ -52,3 +76,6 @@ No decimos que el banco vaya a despedir a nadie. Si tu puesto desaparece por maq
 - Te mueven a solo ventas.
 
 Si pasa algo de esto, mira [No firmes esto](/no-firmes/) y [Guarda evidencia](/evidencia/).
+
+</div>
+</details>
