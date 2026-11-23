@@ -648,3 +648,17 @@ details.acc[open] { background: var(--md-sys-color-surface); }
 .offer .btn { align-self: flex-start; margin-top: auto; }
 /* Con siete destinos, el riel puede no caber en ventanas bajas: que se desplace en lugar de cortar el último */
 @media (min-width: 600px) { .navbar { overflow-y: auto; } }
+
+/* Dos caminos: empleados y clientes, centrados en la barra superior */
+.audience { display: inline-flex; gap: var(--space-1); margin: 0 auto; padding: 4px; border-radius: 999px; background: var(--md-sys-color-surface-container); }
+.audience a { display: inline-flex; align-items: center; justify-content: center; min-height: var(--target); padding: 0 var(--space-3); border-radius: 999px; font-weight: 700; font-size: .9375rem; text-decoration: none; color: var(--md-sys-color-on-surface); white-space: nowrap; transition: background var(--motion-duration-short); }
+.audience a:hover { background: var(--md-sys-color-surface-container-high, var(--md-sys-color-surface-container)); }
+.audience a[aria-current="page"] { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+.audience a:focus-visible { outline: 3px solid var(--md-sys-color-primary); outline-offset: 2px; }
+.audience + .quick-exit { margin-left: 0; }
+@media (max-width: 720px) {
+  .top { flex-wrap: wrap; }
+  .audience { order: 3; width: 100%; margin: 0; }
+  .audience + .quick-exit { margin-left: auto; }
+  .audience a { flex: 1; padding: 0 var(--space-1); }
+}

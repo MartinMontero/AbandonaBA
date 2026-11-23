@@ -43,6 +43,7 @@ const nav = [
 // «Emprender» también se marca en las páginas que cuelgan de él.
 const groups: Record<string, string[]> = { '/emprender/': ['/negocio/', '/equipo/', '/cooperativa/', '/inteligencia-aumentada/', '/puente/'] };
 const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href) || (groups[href] ?? []).some((g) => path.startsWith(g)));
+const isCustomer = path.startsWith('/cambiate/');
 const ogImage = card ? `${siteConfig.siteUrl}/cards/${card}-1080x1080.png` : '';
 const tocItems = toc.filter((t) => t.depth === 2);
 const hasToc = tocItems.length >= 3;
@@ -77,6 +78,12 @@ const hasToc = tocItems.length >= 3;
         <span class="brand-mark" aria-hidden="true"><img src="/flag-96.png" alt="" width="40" height="40" /></span>
         <span class="brand-text">{siteConfig.name}<small>{es ? 'Tus derechos, claros' : 'Your rights, clear'}</small></span>
       </a>
+      {es && (
+        <nav class="audience" aria-label="Elige tu camino">
+          <a href="/" aria-current={isCustomer ? undefined : 'page'}>Soy empleado</a>
+          <a href="/cambiate/" aria-current={isCustomer ? 'page' : undefined}>Soy cliente</a>
+        </nav>
+      )}
       <button type="button" class="quick-exit" id="quick-exit" aria-label={es ? 'Salida rápida: abre otra página al instante' : 'Quick exit'}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6H5v12h4M14 8l4 4-4 4M18 12H9" /></svg>
         {es ? 'Salida rápida' : 'Quick exit'}
