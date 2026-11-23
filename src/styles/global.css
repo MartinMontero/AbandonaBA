@@ -662,3 +662,19 @@ details.acc[open] { background: var(--md-sys-color-surface); }
   .audience + .quick-exit { margin-left: auto; }
   .audience a { flex: 1; padding: 0 var(--space-1); }
 }
+
+/* Inventario personal */
+.inv textarea { display: block; width: 100%; max-width: none; min-height: 7rem; padding: var(--space-2); line-height: 1.5; resize: vertical; }
+.inv-l { display: grid; gap: 4px; font-weight: 700; margin-top: var(--space-2); }
+.inv-l small { font-weight: 500; color: var(--md-sys-color-on-surface-variant); }
+.inv summary small { font-weight: 500; color: var(--md-sys-color-on-surface-variant); }
+.inv-text { white-space: pre-wrap; word-break: break-word; font: inherit; background: var(--md-sys-color-surface-container); border-radius: var(--radius-md); padding: var(--space-2); margin: var(--space-2) 0; }
+#inv-out .lessons { margin-top: var(--space-3); }
+@media (max-width: 720px) {
+  .top .brand { flex: 1 1 0; min-width: 0; }
+  .audience + .quick-exit { margin-left: 0; }
+}
+@media (max-width: 420px) {
+  .navbar a { font-size: 0.625rem; letter-spacing: -0.01em; }
+  .navbar a span:last-child { white-space: nowrap; }
+}

@@ -38,6 +38,19 @@ const lessons = [
   { c: 'doc', t: 'Entiende un documento legal que te dieron', w: 'Cambia nombres y cifras por «X» antes de pegar.', p: 'Explícame con palabras sencillas qué dice este texto y qué preguntas debo hacer antes de firmar: [texto con datos cambiados por X]. No me des consejo legal.' },
   { c: 'doc', t: 'Prepara preguntas para PROFEDET', w: 'Una lista para llevar a la asesoría gratuita.', p: 'Mi situación: [resumen sin nombres]. Haz una lista de las diez preguntas que debo llevar a una asesoría laboral gratuita y los documentos que debo traer.' },
 ];
+const areas = [
+  { id: 'hacer', t: 'Lo que sé hacer', s: 'Habilidades', qs: ['¿Qué tarea haces sin pensar y los demás te piden a ti?', '¿Qué programas, máquinas o trámites manejas?', '¿Qué haces cuando un cliente llega enojado?', '¿Qué le has enseñado a alguien que llegó nuevo?', '¿Qué haces bien con números, con papeles o con personas?'], ex: 'Calmar a un cliente molesto y explicarle un cobro con palabras sencillas' },
+  { id: 'vivido', t: 'Lo que he vivido', s: 'Experiencias', qs: ['¿Qué problema difícil resolviste y cómo terminó?', '¿Qué lograste que se pueda contar con un número (clientes atendidos, ventas, ahorro)?', '¿Por qué cambios pasaste (de puesto, de ciudad, de empresa)?', '¿Qué trabajos tuviste antes, aunque fueran informales?', '¿Qué cuidas, administras o resuelves en tu casa o tu comunidad?'], ex: 'Atendí clientes todos los días durante varios años' },
+  { id: 'aprendido', t: 'Lo que he aprendido', s: 'Conocimiento', qs: ['¿De qué temas sabes más que la mayoría (créditos, seguros, ahorro, trámites)?', '¿Qué cursos, certificados o capacitaciones tomaste?', '¿Qué aprendiste por tu cuenta, en videos o con otras personas?', '¿Qué idiomas o dialectos hablas?', '¿Qué leyes o reglas del trabajo conoces bien?'], ex: 'Sé explicar cómo funciona un crédito y cuánto cuesta de verdad' },
+  { id: 'sabiduria', t: 'Lo que sé de la vida', s: 'Sabiduría', qs: ['¿Cómo detectas que alguien te quiere engañar?', '¿Cuándo sabes que hay que decir que no?', '¿Qué errores ya no cometes?', '¿Qué le dirías a alguien que apenas empieza en tu trabajo?', '¿Qué haces para calmar a alguien o poner de acuerdo a dos personas?'], ex: 'Si algo suena demasiado fácil, pido todo por escrito' },
+  { id: 'red', t: 'A quién conozco', s: 'Tu red', qs: ['¿Qué familiares o amistades tienen un oficio o un negocio?', '¿Qué excompañeros o jefes confían en tu trabajo?', '¿Qué clientes o proveedores te recomendarían?', '¿Qué vecinos, escuela, iglesia o grupos te conocen?', '¿Quién necesita algo que tú sabes hacer?'], ex: 'Una prima contadora; un vecino con taller; tres excompañeros de confianza' },
+];
+const follow = [
+  { t: 'Trabajos y actividades donde me sirvo', p: 'Con mi inventario, dime 10 trabajos o actividades por cuenta propia donde me sirve lo que sé. Para cada uno dime qué parte puede hacer la IA y qué parte solo puedo hacer yo. Dime también qué me falta aprender. No inventes sueldos.' },
+  { t: 'Lo que me falta', p: 'Con mi inventario, dime qué huecos ves entre lo que sé y lo que necesito para [trabajo o negocio que quiero]. Dame un plan de 30 días con 30 minutos al día y recursos gratis.' },
+  { t: 'Mi red esta semana', p: 'Con mi inventario, dame 5 mensajes cortos para escribirle a distintos tipos de personas de mi red. En el primero no pidas favores: pregunta cómo están y cuéntales en qué ando. Sin nombres ni datos personales.' },
+  { t: 'Que me entreviste y profundice', p: 'Con mi inventario, hazme preguntas, una a la vez, para sacar lo que se me está olvidando: logros con números, situaciones difíciles y cosas que hago sin darme cuenta. Al final resúmelo en una lista.' },
+];
 const sources = tools.map((t) => ({ title: `${t.n} (${t.by})`, url: t.src, read: '2026-11-22' }));
 ---
 <Base art="spark" eyebrow="Aprende y prepárate" title="IA: úsala a tu favor" description="Usa IA para crear tu propio servicio, llevar tus habilidades a otro trabajo, armar tu currículum y prepararte. 19 instrucciones para copiar y 6 herramientas." path="/inteligencia-aumentada/" sources={sources} wide lead>
@@ -45,7 +58,48 @@ const sources = tools.map((t) => ({ title: `${t.n} (${t.by})`, url: t.src, read:
 
   <div class="callout info"><p><strong>Antes de pegar algo:</strong> nunca pongas tu CURP, tu RFC, números de cuenta, nombres de compañeros ni nada de los sistemas internos del banco.</p></div>
 
-  <h2 id="usos">1. Elige qué quieres lograr</h2>
+  <h2 id="inventario">1. Haz tu inventario</h2>
+  <p>La IA no sabe nada de ti hasta que se lo cuentas. Si le das tu inventario, te contesta con lo tuyo y no con respuestas de todos. La IA propone y tú decides: lo que sabes, a quién conoces y lo que has vivido solo lo tienes tú.</p>
+  <div class="callout info"><p><strong>Escribe sin nombres ni datos personales.</strong> Para la red usa el tipo de persona («una prima contadora»), no su nombre ni su teléfono. Lo que escribas aquí no sale de tu teléfono ni se guarda: si cierras la página, se borra.</p></div>
+  <p class="progress-text" id="inv-prog" aria-live="polite">Llenaste 0 de {areas.length} áreas.</p>
+  <progress id="inv-bar" max={areas.length} value="0" aria-labelledby="inv-prog"></progress>
+  <form id="inv-form" class="inv" novalidate>
+    {areas.map((a, i) => (
+      <details class="acc" open={i === 0}>
+        <summary>{i + 1}. {a.t} <small>({a.s})</small></summary>
+        <div class="acc-b">
+          <p><strong>Para acordarte:</strong></p>
+          <ul>{a.qs.map((q) => <li>{q}</li>)}</ul>
+          <label class="inv-l" for={`inv-${a.id}`}>Escribe una idea por renglón <small>Ejemplo: {a.ex}</small></label>
+          <textarea id={`inv-${a.id}`} data-area={a.t} rows="5" autocomplete="off"></textarea>
+        </div>
+      </details>
+    ))}
+    <div class="duo">
+      <button type="button" class="btn" id="inv-make">Armar mi ficha</button>
+      <button type="button" class="btn tonal" id="inv-clear">Borrar todo</button>
+    </div>
+  </form>
+  <div id="inv-out" class="result-box" hidden aria-live="polite">
+    <h3>Tu ficha</h3>
+    <p>Cópiala y pégala al empezar una conversación con la IA. Después pega una de estas instrucciones.</p>
+    <pre id="inv-text" class="inv-text"></pre>
+    <button type="button" class="btn" id="inv-copy">Copiar mi ficha</button>
+    <div class="lessons">
+      {follow.map((f) => (
+        <article class="lesson">
+          <h3>{f.t}</h3>
+          <div class="prompt">
+            <p class="ptext">{f.p}</p>
+            <button type="button" class="btn tonal copy" aria-label={`Copiar la instrucción: ${f.t}`}>Copiar</button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+  <p id="inv-empty" class="ref-line">Llena al menos un área y toca «Armar mi ficha».</p>
+
+  <h2 id="usos">2. Elige qué quieres lograr</h2>
   <div class="ia-filter">
     <input type="radio" name="cat" id="f-all" checked /><label for="f-all">Todo</label>
     {cats.map((c) => (<><input type="radio" name="cat" id={`f-${c.id}`} /><label for={`f-${c.id}`}>{c.t}</label></>))}
@@ -65,7 +119,7 @@ const sources = tools.map((t) => ({ title: `${t.n} (${t.by})`, url: t.src, read:
   <p class="small">Cambia lo que está entre [corchetes] por tus datos sin nombres. Después pégala en la herramienta que elegiste.</p>
   <div class="callout"><p><strong>Compite con lo que tú sabes, no con lo que es del banco.</strong> No uses listas de clientes, manuales ni datos internos. Revisa tu contrato por si tiene cláusulas de confidencialidad o de no competencia, con PROFEDET o un abogado.</p></div>
 
-  <h2 id="herramientas">2. Escoge una herramienta</h2>
+  <h2 id="herramientas">3. Escoge una herramienta</h2>
   <p>Con cualquiera sirven las instrucciones de arriba. Lo que no pudimos confirmar en su sitio oficial lo marcamos «sin-verificar».</p>
   <div class="tool-grid">
     {tools.map((t) => (
@@ -82,4 +136,5 @@ const sources = tools.map((t) => ({ title: `${t.n} (${t.by})`, url: t.src, read:
     ))}
   </div>
   <script>import '../scripts/ia.ts';</script>
+  <script>import '../scripts/ia-inventario.ts';</script>
 </Base>
