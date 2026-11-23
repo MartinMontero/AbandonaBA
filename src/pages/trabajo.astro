@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import emp from '../data/empleadores.json';
+import vac from '../data/vacantes.json';
 import { getValue } from '../lib/calc';
 import { fmtMXN } from '../lib/format';
 const segs = [...new Set(emp.empleadores.map((e) => e.segment))];
@@ -24,6 +25,17 @@ const sources = [...emp.empleadores, ...emp.bolsas, ...emp.capacitacion].map((e)
       <ol>{r.cv.map((c) => <li>{c}</li>)}</ol>
     </details>
   ))}
+  <h2>Vacantes afines que vimos hoy</h2>
+  <p>Estas son vacantes públicas de las propias empresas, vistas el {vac.seen} con un programa que consulta sus listados de empleo. Buscamos puestos parecidos a los de un banco: caja y servicio, asesoría y ventas, cobranza, verificación y fraude, y gerencia de sucursal. Cambian a diario. Confirma siempre en el enlace.</p>
+  {vac.companies.filter((c: any) => c.fit_count > 0).map((c: any) => (
+    <details class="card"><summary><strong>{c.company}</strong>: {c.fit_count} puestos afines{c.total_mexico ? ` de ${c.total_mexico} abiertas en México` : ''}</summary>
+      {Object.entries(c.examples).map(([fam, list]: any) => (
+        <div><h3>{fam}</h3><ul>{list.slice(0, 2).map((j: any) => <li><a href={j.url} rel="noopener noreferrer">{j.title}</a> ({j.location})</li>)}</ul></div>
+      ))}
+      <p><small>Fuente: <a href={c.source} rel="noopener noreferrer">sitio de empleo de la empresa</a>, vista el {c.seen}.</small></p>
+    </details>
+  ))}
+  <p><span class="tag t-sin-verificar">sin-verificar</span> No pudimos consultar los listados de Banorte, Santander, BanCoppel, Banjercito, Banregio, Scotiabank, Banamex/Citi, HSBC, Inbursa, Mifel ni Mercado Pago desde un programa. Algunas bolsas de terceros (OCC, Computrabajo, Indeed) muestran puestos de cajero de Banorte y Santander, pero no las damos por confirmadas: abre la bolsa de cada banco.</p>
   <h2>Empleadores por segmento</h2>
   <p>{emp.nota}</p>
   {segs.map((s) => (

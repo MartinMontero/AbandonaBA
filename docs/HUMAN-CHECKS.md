@@ -18,7 +18,21 @@ Se intentó con `curl`, `pdftotext` y Chromium sin interfaz. Estos no se pudiero
 | Indeed México | https://mx.indeed.com | 403 a robots | Que cargue y siga activo |
 | OCC Mundial | https://www.occ.com.mx | 403 a robots | Que cargue y siga activo |
 | Coppel | https://www.coppel.com | 403 a robots | Que cargue y siga activo |
-| Empleadores: «Trabaja con nosotros» y vacantes de cajas o asesores | Cada sitio listado en `src/data/empleadores.json` | Solo se comprobó que carguen | Enlace de empleo de cada uno |
+| Vacantes de Banorte | https://www.banorte.com | Error de protocolo HTTP/2 en el sitio, con curl y con Chromium; sin bolsa propia encontrada | Enlace de «Trabaja con nosotros» y si hay cajero/ejecutivo |
+| Vacantes de Santander México | https://www.santander.com.mx | 403 a automatización | Enlace de empleo y vacantes de caja o ejecutivo |
+| Vacantes de BanCoppel | https://www.bancoppel.com | 403 a automatización | Ídem |
+| Vacantes de Mifel | https://www.mifel.com.mx | 403 a automatización | Ídem |
+| Vacantes de Banjercito (el banco del Ejército) | https://www.banjercito.com.mx | Demasiadas redirecciones; la búsqueda solo trajo una ficha de Indeed sin vacantes | Si publica vacantes y dónde |
+| Vacantes de Banregio | https://www.banregio.com | Carga sin texto | Enlace de empleo |
+| Vacantes de Scotiabank | https://www.scotiabank.com/careers/es/carreras.html | La página carga pero no lista puestos; el buscador no se pudo consultar | Buscar «cajero», «ejecutivo» en México |
+| Vacantes de Banamex / Citi | https://jobs.citi.com/ (desde https://www.banamex.com/conocenos/bolsa-de-trabajo) | El listado no se pudo leer | Filtrar México |
+| Vacantes de HSBC México | https://www.hsbc.com.mx | No se encontró enlace de empleo en la página | Enlace de empleo |
+| Vacantes de Inbursa | https://bolsadetrabajogfi.inbursa.com/ | No se intentó consultar el listado | Puestos de caja o ejecutivo |
+| Vacantes de Banco del Bienestar y Hey Banco | https://www.bancodelbienestar.gob.mx y https://www.heybanco.com | Sin respuesta (tiempo agotado) | Enlace de empleo |
+| Vacantes de Klar, Stori, Mercado Pago, Ualá, Openbank, Revolut, Fondeadora, Konfío, Kapital | https://www.klar.mx/bolsa-de-trabajo (Klar); el resto sin listado público consultable | Sin interfaz programática pública encontrada; Klar muestra una lista en su página | Puestos de atención, cobranza, riesgo |
+| Convocatorias de bancos de desarrollo (Bancomext, Banobras, Nafin, SHF) | Portal del empleo del gobierno: https://www.empleo.gob.mx | No se consultaron | Si publican vacantes |
+| Verificar a mano cualquier vacante de OCC, Computrabajo o Indeed de Banorte y Santander | https://www.occ.com.mx/empleos/bolsa-de-trabajo-banorte/ | Bloquea automatización; solo aparecen por buscador | Que sigan activas |
+| Empleadores restantes de `src/data/empleadores.json` | Cada sitio de la lista | Solo se comprobó que carguen | Enlace de empleo de cada uno |
 | Filtros de contratación del Grupo Salinas (C23) | Ofertas del Grupo (sin enlace fijo) | Son ofertas cambiantes | Capturas con fecha de «no adeudos» y «no haber laborado» |
 | Estructura de empleo del banco (C24) | Recibo CFDI y constancia del IMSS de cada trabajador | Datos personales, no públicos | Qué patrón aparece |
 | Horarios reales (C25) | Horarios de cada sucursal | Solo reportes | Documentos del trabajador |

@@ -72,6 +72,19 @@ Se corrieron en orden: verify (producción), verify:review, verify (producción)
 | C11 semanas y tope | LSS transitorio (750 + 25 por año hasta 2031); decreto de 2016 | el tope en salario mínimo del DF se lee como UMA por el Transitorio Tercero; la regla de CONSAR **no** se leyó |
 | Noticias de `/situacion` | La Verdad, Jointly, Xataka, SDP Noticias, La Jornada (por navegador), Independent (AP) | citas confirmadas: «estupidez increíble», «ataque al empleo», «Tenía 15 mil cajeros. Tenía, cuate», «Voy a poner una máquina», cena de Ramón Alberto Garza (La Verdad), «ya ha comenzado a recortar» (La Jornada), 7 de 9 amparos y más de 2.6 mil millones de dólares (Independent). La frase atribuida a él sobre la tecnología aparece en SDP como publicación suya en redes; el original sigue sin verse |
 
+## Quinta ronda: vacantes afines en otros bancos y fintech (2026-11-22)
+`npm run openings` consulta los listados públicos de cada empresa y guarda `src/data/vacantes.json` con la fecha.
+| Empresa | Cómo se leyó | Resultado ese día |
+|---|---|---|
+| BBVA México | API pública de Workday (con curl; el cliente HTTP de Node recibe 429) | 83 abiertas en México; 66 afines (caja, ejecutivo, cobranza, fraude y AML) |
+| Nu México | API pública de Ashby | 21 abiertas en México; 2 afines (Compliance, AML Ops) |
+| Plata | API pública de Greenhouse | 102 abiertas en México; 49 afines (cobranza telefónica y de campo, ventas, atención, AML) |
+| Clara | Greenhouse | 66 abiertas en México; 27 afines (ejecutivo de cuenta, fraude) |
+| Kueski, Spin by OXXO | Ashby y Greenhouse | abiertas pero casi todas técnicas o de producto; 0 afines |
+| Compartamos Banco | sitio de empleo (SuccessFactors) | 60 afines encontradas, incluido «CAJERO SUCURSAL» y «GESTOR COBRANZA» (el total del sitio no se mide) |
+| Banca Afirme | sitio de empleo (SuccessFactors) | 27 afines encontradas, incluido «CAJA» y asesores |
+No se pudo consultar por programa: Banorte, Santander, BanCoppel, Mifel, Banjercito, Banregio, Scotiabank, Banamex/Citi, HSBC, Inbursa, Banco del Bienestar, Hey Banco, Mercado Pago, Stori, Klar y otros (ver `docs/HUMAN-CHECKS.md`). Los buscadores muestran vacantes de cajero de Banorte y Santander en bolsas de terceros (OCC, Computrabajo): no se tomaron como confirmadas.
+
 La lista de lo que aún necesita una persona está en `docs/HUMAN-CHECKS.md`.
 
 ## SIGUE sin verificar (se intentó y no se pudo, o no se intentó)

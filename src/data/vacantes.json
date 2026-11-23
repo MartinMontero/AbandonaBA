@@ -1,0 +1,414 @@
+{
+ "seen": "2026-11-23",
+ "note": "Instantánea de listados públicos de cada empresa. Cambian a diario: confirma en el enlace.",
+ "companies": [
+  {
+   "company": "BBVA México",
+   "source": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA",
+   "total_mexico": 84,
+   "fit_count": 67,
+   "examples": {
+    "Cajero y servicio": [
+     {
+      "title": "Asesoría Digital y Personal de Caja  (Inclusión laboral de personas con discapacidad)",
+      "location": "Ciudad de Mexico, Miguel Hidalgo, 11000",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Ciudad-de-Mexico-Miguel-Hidalgo-11000/Asesora-Digital-y-Personal-de-Caja---Inclusin-laboral-de-personas-con-discapacidad-_JR00079047"
+     },
+     {
+      "title": "Personal de cajas (Caborca, Son- División Noroeste)",
+      "location": "Sonora, Caborca, 83600",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Sonora-Caborca-83600/Personal-de-cajas--Caborca--Son-_JR00056951"
+     },
+     {
+      "title": "Personal de Cajas (Unión de Tula, Jalisco).",
+      "location": "Jalisco, Unión de Tula, 48000",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Jalisco-Unin-de-Tula-48000/Personal-de-Cajas--Unin-de-Tula--Jalisco-_JR00085442"
+     },
+     {
+      "title": "Personal de Cajas (Nogales, Son - División Noroeste.)",
+      "location": "Sonora, Nogales, 84000",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Sonora-Nogales-84000/Personal-de-Cajas--Nogales--Son-_JR00054515"
+     }
+    ],
+    "Asesor, ventas y crédito": [
+     {
+      "title": "Asesoría Digital  (Satelite, Estado de México)",
+      "location": "México, Naucalpan de Juárez, 53100",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Mxico-Naucalpan-de-Jurez-53100/Asesora-Digital--Estado-de-Mxico--Satelite-_JR00053816"
+     },
+     {
+      "title": "Ejecutivo de Relacion Patrimonial (San Luis Potosi)",
+      "location": "Guanajuato, León, 37130",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Guanajuato-Len-37130/Ejecutivo-de-Relacion-Patrimonial--San-Luis-Potosi-_JR00120084-1"
+     },
+     {
+      "title": "Asesoría Digital (Playas De Tijuana, B.C.- División Noroeste)",
+      "location": "Baja California, Tijuana, 22014",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Baja-California-Tijuana-22014/Asesora-Digital_JR00113342"
+     },
+     {
+      "title": "Ejecutivo/a de Recuperación de Cartera (División Noreste)",
+      "location": "Nuevo León, Apodaca, 66600",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Nuevo-Len-Apodaca-66600/Ejecutivo-a-de-Cobranza--Monterrey--Nuevo-Len-_JR00079374"
+     }
+    ],
+    "Cobranza y campo": [
+     {
+      "title": "Gestor/a de Cobranza Domiciliaria",
+      "location": "Ciudad de Mexico, Miguel Hidalgo, 11320",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Ciudad-de-Mexico-Miguel-Hidalgo-11320/Gestor-a-de-Cobranza-Domiciliaria_JR00117006"
+     },
+     {
+      "title": "Gestoría de Cobranza en campo - Guadalajara jalisco",
+      "location": "Jalisco, Guadalajara, 44670",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Jalisco-Guadalajara-44670/Gestora-de-Cobranza-en-campo---Guadalajara-jalisco_JR00109525"
+     },
+     {
+      "title": "GESTOR DE CLIENTES COL -  AVENIDA CERO - BANCA MINORISTA",
+      "location": "54001, San José De Cúcuta, Norte de Santander",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/54001-San-Jos-De-Ccuta-Norte-de-Santander/GESTOR-DE-CLIENTES-COL----AVENIDA-CERO---BANCA-MINORISTA_JR00120230"
+     }
+    ],
+    "Verificación, fraude y cumplimiento": [
+     {
+      "title": "Consultor/a de Investigación y Análisis de Fraudes (Ciudad de México, Cuauhtémoc)",
+      "location": "Ciudad de Mexico, Cuauhtémoc, 06600",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Ciudad-de-Mexico-Cuauhtmoc-06600/Consultor-a-de-Investigacin-y-Anlisis-de-Fraudes--Ciudad-de-Mxico--Cuauhtmoc-_JR00111491"
+     },
+     {
+      "title": "Associate AML Risk Management Frameworks",
+      "location": "Ciudad de Mexico, Cuauhtémoc, 06600",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Ciudad-de-Mexico-Cuauhtmoc-06600/AML-Risk-Management-Frameworks_JR00119861"
+     },
+     {
+      "title": "AML Data Analytics Manager (Cuauhtémoc, Ciudad de México)",
+      "location": "Ciudad de Mexico, Cuauhtémoc, 06000",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Ciudad-de-Mexico-Cuauhtmoc-06000/AML-Data-Analytics-Manager--Cuauhtmoc--Ciudad-de-Mxico-_JR00104729"
+     },
+     {
+      "title": "ESPECIALISTA PREVENCIO0N DE FRAUDE",
+      "location": "Querétaro, Querétaro, 76138",
+      "url": "https://bbva.wd3.myworkdayjobs.com/en-US/BBVA/job/Quertaro-Quertaro-76138/OPENPAY-MX---ESP-MONITOREO_JR00118719"
+     }
+    ]
+   },
+   "seen": "2026-11-23"
+  },
+  {
+   "company": "Nu México",
+   "source": "https://jobs.ashbyhq.com/nubank",
+   "total_mexico": 21,
+   "fit_count": 2,
+   "examples": {
+    "Verificación, fraude y cumplimiento": [
+     {
+      "title": "Compliance Expert",
+      "location": "Ciudad de México",
+      "url": "https://jobs.ashbyhq.com/nubank/44354acb-76dc-4979-b88e-567a34fc65fc"
+     },
+     {
+      "title": "AML Ops Analyst",
+      "location": "Ciudad de México",
+      "url": "https://jobs.ashbyhq.com/nubank/6e6c71a8-122e-4b9f-ae9f-1d59ad8878ef"
+     }
+    ]
+   },
+   "seen": "2026-11-23"
+  },
+  {
+   "company": "Kueski",
+   "source": "https://jobs.ashbyhq.com/Kueski",
+   "total_mexico": 5,
+   "fit_count": 0,
+   "examples": {},
+   "seen": "2026-11-23"
+  },
+  {
+   "company": "Plata",
+   "source": "https://plata.careers/",
+   "total_mexico": 102,
+   "fit_count": 49,
+   "examples": {
+    "Cobranza y campo": [
+     {
+      "title": "Agente Cobranza de Campo",
+      "location": "Mexico",
+      "url": "https://plata.careers/vacancy/details?id=5382271008&gh_jid=5382271008"
+     },
+     {
+      "title": "Agente de Cobranza Telefónica con experiencia",
+      "location": "Mexico",
+      "url": "https://plata.careers/vacancy/details?id=4373359008&gh_jid=4373359008"
+     },
+     {
+      "title": "Agente de Cobranza Telefónica con experiencia",
+      "location": "Mexico",
+      "url": "https://plata.careers/vacancy/details?id=4800609008&gh_jid=4800609008"
+     },
+     {
+      "title": "Collections Supervisor",
+      "location": "México",
+      "url": "https://plata.careers/vacancy/details?id=5101734008&gh_jid=5101734008"
+     }
+    ],
+    "Asesor, ventas y crédito": [
+     {
+      "title": "Agente de Ventas Directas en Campo",
+      "location": "Mexico",
+      "url": "https://plata.careers/vacancy/details?id=5209818008&gh_jid=5209818008"
+     },
+     {
+      "title": "Agente de ventas - Puebla",
+      "location": "Puebla, Mexico",
+      "url": "https://plata.careers/vacancy/details?id=5114119008&gh_jid=5114119008"
+     },
+     {
+      "title": "Agente de ventas telefónicas",
+      "location": "Ciudad de México, México ",
+      "url": "https://plata.careers/vacancy/details?id=4646954008&gh_jid=4646954008"
+     },
+     {
+      "title": "Agente de ventas telefónico",
+      "location": "Ciudad de México, México ",
+      "url": "https://plata.careers/vacancy/details?id=4646939008&gh_jid=4646939008"
+     }
+    ],
+    "Cajero y servicio": [
+     {
+      "title": "Agente telefónico de cobranza (experiencia contact center)",
+      "location": "Mexico",
+      "url": "https://plata.careers/vacancy/details?id=4427258008&gh_jid=4427258008"
+     }
+    ],
+    "Verificación, fraude y cumplimiento": [
+     {
+      "title": "AML Operations Manager",
+      "location": "Mexico",
+      "url": "https://plata.careers/vacancy/details?id=5398810008&gh_jid=5398810008"
+     },
+     {
+      "title": "Analista AML/PLD - Monitoreo transaccional",
+      "location": "Mexico",
+      "url": "https://plata.careers/vacancy/details?id=4987810008&gh_jid=4987810008"
+     },
+     {
+      "title": "Analista de Cumplimiento PYME",
+      "location": "Mexico",
+      "url": "https://plata.careers/vacancy/details?id=5479758008&gh_jid=5479758008"
+     },
+     {
+      "title": "Analista Jr KYC",
+      "location": "Mexico",
+      "url": "https://plata.careers/vacancy/details?id=5068491008&gh_jid=5068491008"
+     }
+    ]
+   },
+   "seen": "2026-11-23"
+  },
+  {
+   "company": "Clara",
+   "source": "https://job-boards.greenhouse.io/clara",
+   "total_mexico": 66,
+   "fit_count": 27,
+   "examples": {
+    "Asesor, ventas y crédito": [
+     {
+      "title": "Account Executive - Clara Cobranza (Ejecutivo de Cuenta - Clara Cobranza) - Ciudad de México (Híbrido)",
+      "location": "Mexico City / CMX / Mexico",
+      "url": "https://job-boards.greenhouse.io/clara/jobs/5271310007"
+     },
+     {
+      "title": "Account Executive - Fuel & Fleet (Ejecutivo de Cuenta - Combustible y Flotas) - Mexico City (Hybrid)",
+      "location": "Mexico City / CDMX / Mexico",
+      "url": "https://job-boards.greenhouse.io/clara/jobs/5144862007"
+     },
+     {
+      "title": "Account Executive - Government (Ejecutivo de Cuenta - Segmento Gobierno) - Mexico City (Hybrid)",
+      "location": "Mexico City / CDMX / Mexico",
+      "url": "https://job-boards.greenhouse.io/clara/jobs/5278790007"
+     },
+     {
+      "title": "Account Executive - Inteligencia Fiscal (Ejecutivo de Cuenta - Inteligencia Fiscal) - Mexico City (Hybrid)",
+      "location": "Mexico City / CDMX / Mexico",
+      "url": "https://job-boards.greenhouse.io/clara/jobs/5199235007"
+     }
+    ],
+    "Verificación, fraude y cumplimiento": [
+     {
+      "title": "Fraud Strategist Expert - Mexico City (Hybrid)",
+      "location": "Mexico City / CMX / Mexico",
+      "url": "https://job-boards.greenhouse.io/clara/jobs/5273126007"
+     },
+     {
+      "title": "Product Lead - Risk",
+      "location": "Bogota / CUN / Colombia; Mexico City / CDMX / Mexico; Sao Paulo / SP / Brazil",
+      "url": "https://job-boards.greenhouse.io/clara/jobs/5153328007"
+     }
+    ],
+    "Cajero y servicio": [
+     {
+      "title": "Invoicing and Operations Analyst - AI Support (Analista de Facturación y Operaciones - Soporte IA) - Mexico City (Hybrid)",
+      "location": "Mexico City / CDMX / Mexico",
+      "url": "https://job-boards.greenhouse.io/clara/jobs/5292963007"
+     }
+    ]
+   },
+   "seen": "2026-11-23"
+  },
+  {
+   "company": "Spin by OXXO",
+   "source": "https://job-boards.greenhouse.io/spin",
+   "total_mexico": 25,
+   "fit_count": 0,
+   "examples": {},
+   "seen": "2026-11-23"
+  },
+  {
+   "company": "Compartamos Banco",
+   "source": "https://vacantesbancocompartamos.gentera.com.mx/",
+   "total_mexico": null,
+   "fit_count": 60,
+   "examples": {
+    "Cajero y servicio": [
+     {
+      "title": "CAJERO SUCURSAL",
+      "location": "ECATEPEC CAJERO SUCURSAL ESTA 55140",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/ECATEPEC-CAJERO-SUCURSAL-ESTA-55140/1450754000/"
+     },
+     {
+      "title": "CAJERO SUCURSAL",
+      "location": "ESTADO DE MEXICO CAJERO SUCURSAL ESTA 53000",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/ESTADO-DE-MEXICO-CAJERO-SUCURSAL-ESTA-53000/1449890700/"
+     },
+     {
+      "title": "CAJERO SUCURSAL",
+      "location": "COACALCO DE BERRIOZABAL CAJERO SUCURSAL ESTA 55700",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/COACALCO-DE-BERRIOZABAL-CAJERO-SUCURSAL-ESTA-55700/1452859700/"
+     }
+    ],
+    "Cobranza y campo": [
+     {
+      "title": "GESTOR COBRANZA",
+      "location": "CHIMALHUACAN GESTOR COBRANZA ESTA 56335",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/CHIMALHUACAN-GESTOR-COBRANZA-ESTA-56335/1449145200/"
+     },
+     {
+      "title": "GESTOR COBRANZA",
+      "location": "MINATITLAN GESTOR COBRANZA VERA 96710",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/MINATITLAN-GESTOR-COBRANZA-VERA-96710/1433534400/"
+     },
+     {
+      "title": "GESTOR COBRANZA",
+      "location": "BAHIA DE BANDERAS GESTOR COBRANZA NAYA 63732",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/BAHIA-DE-BANDERAS-GESTOR-COBRANZA-NAYA-63732/1441779200/"
+     },
+     {
+      "title": "GESTOR COBRANZA",
+      "location": "ATIZAPAN DE ZARAGOZA GESTOR COBRANZA ESTA 52948",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/ATIZAPAN-DE-ZARAGOZA-GESTOR-COBRANZA-ESTA-52948/1439848700/"
+     }
+    ],
+    "Asesor, ventas y crédito": [
+     {
+      "title": "PROMOTOR CREDITO GRUPAL",
+      "location": "PUERTO ESCONDIDO PROMOTOR CREDITO GRUPAL OAXA 71984",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/PUERTO-ESCONDIDO-PROMOTOR-CREDITO-GRUPAL-OAXA-71984/1451481700/"
+     },
+     {
+      "title": "ASESOR CI",
+      "location": "PUERTO ESCONDIDO ASESOR CI OAXA 71984",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/PUERTO-ESCONDIDO-ASESOR-CI-OAXA-71984/1452785300/"
+     },
+     {
+      "title": "PROMOTOR CREDITO GRUPAL",
+      "location": "PUERTO ESCONDIDO PROMOTOR CREDITO GRUPAL OAXA 71984",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/PUERTO-ESCONDIDO-PROMOTOR-CREDITO-GRUPAL-OAXA-71984/1444193100/"
+     },
+     {
+      "title": "PROMOTOR CREDITO GRUPAL",
+      "location": "TIERRA BLANCA PROMOTOR CREDITO GRUPAL VERA 95150",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/TIERRA-BLANCA-PROMOTOR-CREDITO-GRUPAL-VERA-95150/1452659700/"
+     }
+    ],
+    "Gerencia de sucursal": [
+     {
+      "title": "SUBDIRECTOR REGIONAL VTS CENTRO NORTE 16",
+      "location": "SILAO SUBDIRECTOR REGIONAL VTS CENTRO NORTE 16 GUAN 36100",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/SILAO-SUBDIRECTOR-REGIONAL-VTS-CENTRO-NORTE-16-GUAN-36100/1440646000/"
+     },
+     {
+      "title": "SUBGERENTE CI",
+      "location": "GUADALUPE SUBGERENTE CI ZACA 98608",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/GUADALUPE-SUBGERENTE-CI-ZACA-98608/1438101700/"
+     },
+     {
+      "title": "SUBGERENTE CI",
+      "location": "CHIHUAHUA SUBGERENTE CI CHIH 31100",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/CHIHUAHUA-SUBGERENTE-CI-CHIH-31100/1450037600/"
+     },
+     {
+      "title": "SUBGERENTE GRUPAL",
+      "location": "GUASAVE SUBGERENTE GRUPAL SINA 81000",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/GUASAVE-SUBGERENTE-GRUPAL-SINA-81000/1452789600/"
+     }
+    ],
+    "Verificación, fraude y cumplimiento": [
+     {
+      "title": "GERENTE PREVENCION FRAUDES MEDIOS PAGO",
+      "location": "CIUDAD DE MEXICO GERENTE PREVENCION FRAUDES MEDIOS PAGO CIUD 03230",
+      "url": "https://vacantesbancocompartamos.gentera.com.mx/job/CIUDAD-DE-MEXICO-GERENTE-PREVENCION-FRAUDES-MEDIOS-PAGO-CIUD-03230/1445183800/"
+     }
+    ]
+   },
+   "seen": "2026-11-23"
+  },
+  {
+   "company": "Banca Afirme",
+   "source": "https://empleos.afirme.com/",
+   "total_mexico": null,
+   "fit_count": 27,
+   "examples": {
+    "Cajero y servicio": [
+     {
+      "title": "CAJA",
+      "location": "Nuevo Progreso (Nuevo Leon) CAJA Nuev",
+      "url": "https://empleos.afirme.com/job/Nuevo-Progreso-%28Nuevo-Leon%29-CAJA-Nuev/1332511862/"
+     },
+     {
+      "title": "CAJA - ZONA SAN PEDRO",
+      "location": "Nuevo Progreso (Nuevo Leon) CAJA ZONA SAN PEDRO Nuev",
+      "url": "https://empleos.afirme.com/job/Nuevo-Progreso-%28Nuevo-Leon%29-CAJA-ZONA-SAN-PEDRO-Nuev/924726200/"
+     },
+     {
+      "title": "CAJA",
+      "location": "Nuevo Progreso (Nuevo Leon) CAJA Nuev",
+      "url": "https://empleos.afirme.com/job/Nuevo-Progreso-%28Nuevo-Leon%29-CAJA-Nuev/929881900/"
+     }
+    ],
+    "Asesor, ventas y crédito": [
+     {
+      "title": "ASESOR COMUNAL JR COLIMA",
+      "location": "Colima ASESOR COMUNAL JR COLIMA Coli",
+      "url": "https://empleos.afirme.com/job/Colima-ASESOR-COMUNAL-JR-COLIMA-Coli/1337993262/"
+     },
+     {
+      "title": "ASESOR COMUNAL JR AGUASCALIENTES",
+      "location": "ASESOR COMUNAL JR AGUASCALIENTES Agua",
+      "url": "https://empleos.afirme.com/job/ASESOR-COMUNAL-JR-AGUASCALIENTES-Agua/1337976662/"
+     },
+     {
+      "title": "ASESOR COMUNAL JR MORELIA",
+      "location": "ASESOR COMUNAL JR MORELIA Mich",
+      "url": "https://empleos.afirme.com/job/ASESOR-COMUNAL-JR-MORELIA-Mich/1337990062/"
+     },
+     {
+      "title": "ASESOR COMUNAL JR MORELIA",
+      "location": "ASESOR COMUNAL JR MORELIA Mich",
+      "url": "https://empleos.afirme.com/job/ASESOR-COMUNAL-JR-MORELIA-Mich/1337988562/"
+     }
+    ]
+   },
+   "seen": "2026-11-23"
+  }
+ ]
+}

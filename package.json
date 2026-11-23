@@ -19,7 +19,8 @@
     "cards": "node scripts/build-cards.mjs",
     "review-pack": "node scripts/build-review-pack.mjs",
     "legal-register": "node scripts/gen-legal-register.mjs",
-    "test:e2e": "node scripts/e2e.mjs"
+    "test:e2e": "node scripts/e2e.mjs",
+    "openings": "node scripts/fetch-openings.mjs"
   },
   "repository": {
     "type": "git",
