@@ -461,7 +461,7 @@ footer { margin-top: var(--space-6); background: var(--md-sys-color-surface-cont
 
 /* Barra de 6 destinos en pantallas chicas */
 .navbar li { min-width: 0; }
-@media (max-width: 480px) { .navbar .pill { width: 3.25rem; } .navbar a { font-size: 0.6875rem; } }
+@media (max-width: 480px) { .navbar .pill { width: 2.75rem; } .navbar a { font-size: 0.625rem; letter-spacing: -0.01em; } }
 /* Ruta de Emprender */
 .route { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
 .route > li > h2 { display: flex; align-items: center; gap: var(--space-2); margin: 0 0 var(--space-2); font-size: 1.375rem; }
@@ -646,3 +646,5 @@ details.acc[open] { background: var(--md-sys-color-surface); }
 .offer p { margin: 0; }
 .offer.stale { opacity: .6; }
 .offer .btn { align-self: flex-start; margin-top: auto; }
+/* Con siete destinos, el riel puede no caber en ventanas bajas: que se desplace en lugar de cortar el último */
+@media (min-width: 600px) { .navbar { overflow-y: auto; } }
