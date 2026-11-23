@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { minWageDaily, minWageBorder, minWageSource } from '../../lib/transparencia';
+import { DAYS_PER_YEAR } from '../../lib/equivalencias';
+const sources = [{ title: minWageSource.source_name, url: minWageSource.source_url, read: minWageSource.read_date }];
+---
+<Base art="spark" eyebrow="Transparencia" title="Compáralo tú mismo" description="Convierte una cantidad grande en años de trabajo al salario mínimo, para ver su tamaño." path="/transparencia/equivalencias/" legal transp sources={sources} lead>
+  <TranspNote />
+
+  <form id="q-form" class="cf" data-general={minWageDaily} data-border={minWageBorder} data-days={DAYS_PER_YEAR} novalidate>
+    <label>Cantidad en millones de pesos<input id="q-mdp" type="number" inputmode="decimal" min="0" step="any" /><small>Ejemplo: escribe 1000 para mil millones.</small></label>
+    <label>Zona del salario mínimo
+      <select id="q-zone"><option value="general">General</option><option value="border">Frontera norte</option></select>
+    </label>
+  </form>
+  <div id="q-out" class="result-box" hidden aria-live="polite"></div>
+  <p id="q-empty" class="ref-line">Escribe una cantidad para ver el resultado.</p>
+
+  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> Años de trabajo = cantidad ÷ (salario mínimo diario × {DAYS_PER_YEAR}). Usamos {DAYS_PER_YEAR} días porque el salario mínimo se paga todos los días del año, incluidos los de descanso. Es una convención de este sitio. <strong>Es una comparación de tamaños, no una acusación.</strong></p>
+  <script>import '../../scripts/transp-equivalencias.ts';</script>
+</Base>

@@ -13,6 +13,12 @@ export const legalRoutes: { path: string; title: string }[] = [
   { path: '/negocio/', title: 'Mi propio negocio' },
   { path: '/equipo/', title: 'Con mis compañeros: equipo' },
   { path: '/cooperativa/', title: 'Cooperativa' },
+  { path: '/transparencia/', title: 'Transparencia' },
+  { path: '/transparencia/impuestos/', title: 'Transparencia: impuestos y tribunales' },
+  { path: '/transparencia/sueldos/', title: 'Transparencia: sueldos' },
+  { path: '/transparencia/directivos/', title: 'Transparencia: directivos' },
+  { path: '/transparencia/utilidades/', title: 'Transparencia: utilidades' },
+  { path: '/transparencia/dinero/', title: 'Transparencia: de dónde sale el dinero' },
 ];
 
 export const decisions = [

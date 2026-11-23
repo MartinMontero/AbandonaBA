@@ -378,7 +378,7 @@ Cuenta Operativa Azteca: comisión de Administración - Renta de 400 pesos más 
 
 **Pregunta para el abogado:** ¿La descripción de la comisión y de sus exenciones es fiel al folleto vigente y no induce a pensar que a todos los clientes se les cobra?
 
-**Páginas:** /cambiate/cuanto-me-cuesta/, /cambiate/nomina/
+**Páginas:** /cambiate/cuanto-me-cuesta/, /cambiate/nomina/, /transparencia/dinero/
 
 ## CB03 · verificado-primaria · prioridad D
 
@@ -406,7 +406,7 @@ Préstamo en efectivo (Credimax Efectivo), de 2,000 a 200,000 pesos: CAT promedi
 
 **Pregunta para el abogado:** ¿Es correcto presentar el CAT promedio con su fecha de cálculo y vigencia y avisar que cambia por cliente?
 
-**Páginas:** /cambiate/credito/, /cambiate/cuanto-me-cuesta/
+**Páginas:** /cambiate/credito/, /cambiate/cuanto-me-cuesta/, /transparencia/dinero/
 
 ## CB06 · verificado-primaria · prioridad D
 
@@ -743,3 +743,143 @@ Crédito: Banxico publica una calculadora del Costo Anual Total (CAT) para créd
 **Pregunta para el abogado:** ¿Es correcto decir que el CAT incluye comisiones y seguros?
 
 **Páginas:** /cambiate/credito/
+
+## T01 · verificado-primaria · prioridad E
+
+Resultados de Banco Azteca en 2026, según su propio reporte: utilidad neta de 1,806 millones de pesos a marzo, pérdida neta de 1,374 millones en el segundo trimestre y utilidad neta de 432 millones a junio; ingresos por intereses del segundo trimestre de 27,451 millones; morosidad de 5.3% y capitalización de 14.67% a junio.
+
+**Fuentes:** [Banco Azteca: reportes de la Administración al 31 de marzo y al 30 de junio de 2026](https://www.grupoelektra.com.mx/api/pdfEkt/4259) (leída 2026-11-23)
+
+**Conflicto abierto:** Son cifras de la empresa. No se compararon con la CNBV ni con otros bancos en esta ronda.
+
+**Debe confirmar:** Leer los estados financieros completos y los datos de la CNBV.
+
+**Pregunta para el abogado:** ¿Es correcto presentar estas cifras con la voz «empresa» y sin compararlas aún con otros bancos?
+
+**Páginas:** /transparencia/dinero/, /transparencia/, /transparencia/utilidades/
+
+## T02 · verificado-primaria · prioridad E
+
+Dividendos: el banco informa pagos de 1,500 millones de pesos el 22 de enero y de 1,500 millones el 23 de abril de 2026.
+
+**Fuentes:** [Banco Azteca: reporte de la Administración al 30 de junio de 2026](https://www.grupoelektra.com.mx/api/pdfEkt/4259) (leída 2026-11-23)
+
+**Conflicto abierto:** El sitio muestra los dividendos y la utilidad de periodos distintos sin restarlos.
+
+**Debe confirmar:** Confirmar en los estados financieros dictaminados a quién se pagaron.
+
+**Pregunta para el abogado:** ¿Es correcto mostrar dividendos y utilidad neta lado a lado con la aclaración de periodos?
+
+**Páginas:** /transparencia/utilidades/
+
+## T03 · verificado-primaria · prioridad E
+
+Remuneración de directivos: el sistema cubre al Presidente del Consejo, al Director General y a 29 directores; 31 personas recibieron remuneración extraordinaria en 2025. El reporte da porcentajes (2.94% pagado en total; 1.48% fija; 1.45% variable) sin decir su base y no publica pesos.
+
+**Fuentes:** [Banco Azteca: Sistema de Remuneración 2025](https://www.grupoelektra.com.mx/Documents/ES/remuneracion/Reporte_Anual_del_Sistema_de_Remuneracion_2025.pdf) (leída 2026-11-23)
+
+**Conflicto abierto:** El reporte no explica sobre qué base están los porcentajes. El sitio no los convierte a pesos.
+
+**Debe confirmar:** Buscar si el informe anual o la CNBV publican montos.
+
+**Pregunta para el abogado:** ¿Es correcto decir «no publicado en pesos» y no estimar montos?
+
+**Páginas:** /transparencia/directivos/
+
+## T04 · verificado-secundaria · prioridad E
+
+Sueldos ofrecidos el 23 de noviembre de 2026 en un listado de empleo: Banco Azteca, cajero bancario en San Juan del Río, 11,000 pesos al mes; Banorte, cajero universal de apoyo en Texcoco, 14,000 pesos al mes más comisiones.
+
+**Fuentes:** [Computrabajo México: listados de cajero](https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca) (leída 2026-11-23)
+
+**Conflicto abierto:** Son ciudades distintas y puestos con nombres distintos. Un listado muestra el sueldo ofrecido, no lo que cobra cada persona.
+
+**Debe confirmar:** Leer las ofertas en la página de empleo de cada banco, en la misma ciudad y la misma semana.
+
+**Pregunta para el abogado:** ¿Es válido comparar dos ofertas de ciudades distintas si la página lo dice en la misma línea?
+
+**Páginas:** /transparencia/sueldos/
+
+## T05 · verificado-primaria · prioridad E
+
+Presentación del SAT del 20 de marzo de 2024: pagado de 2019 a 2024, 4,868 millones de pesos; adeudos pendientes de más de 63,000 millones (más de 53,000 por juicios anteriores o en proceso y más de 10,000 por créditos de la administración actual); consolidación fiscal: 33,000 millones originales, 48,325 actualizados, en 7 juicios.
+
+**Fuentes:** [SAT: presentación «Caso Grupo Salinas»](https://www.gob.mx/cms/uploads/attachment/file/903943/CPM_SAT-PFF_Grupo_Salinas__20mar24.pdf) (leída 2026-11-23)
+
+**Conflicto abierto:** Es la versión de una autoridad. El grupo ha dicho que discrepa. Las cifras son de marzo de 2024 y cambiaron después.
+
+**Debe confirmar:** Leer las resoluciones y la respuesta del grupo a esa presentación.
+
+**Pregunta para el abogado:** ¿Es correcto presentar la presentación del SAT como «según el SAT» y no como hecho firme?
+
+**Páginas:** /transparencia/como-verificarlo/, /transparencia/impuestos/, /transparencia/linea-de-tiempo/
+
+## T06 · verificado-secundaria · prioridad E
+
+Prensa de noviembre de 2025: la Suprema Corte dejó firmes sentencias por unos 48,326 millones de pesos (43,263 de Elektra y 5,063 de TV Azteca) y AP informó que rechazó siete de nueve amparos en casos de más de 2,600 millones de dólares.
+
+**Fuentes:** [Vanguardia y The Independent (AP)](https://vanguardia.com.mx/noticias/mexico/da-corte-reves-a-ricardo-salinas-pliego-elektra-debera-pagar-33-mil-306-mdp-de-impuestos-CK18120174) (leída 2026-11-23)
+
+**Conflicto abierto:** Otra nota habla de 33,306 millones para un solo caso. No leímos las sentencias.
+
+**Debe confirmar:** Leer las resoluciones en scjn.gob.mx.
+
+**Pregunta para el abogado:** ¿Qué cifra es la correcta para cada sentencia y cuál es su estado?
+
+**Páginas:** /transparencia/impuestos/, /transparencia/linea-de-tiempo/
+
+## T07 · verificado-secundaria · prioridad E
+
+Acuerdo de pago de enero de 2026: Grupo Salinas anunció que pagaría 32,132 millones de pesos en 18 pagos; la prensa informa un primer pago de unos 10,400 millones y 13,979 millones pagados en mayo. Según la prensa, el SAT dijo que actuó conforme al Código Fiscal de la Federación y a las resoluciones judiciales. El grupo dice que paga en desacuerdo.
+
+**Fuentes:** [Expansión, Zeta Tijuana, UnoTV y otros](https://expansion.mx/empresas/2026/01/29/grupo-salinas-paga-al-sat-32-000-mdp-el-63-de-su-deuda-fiscal) (leída 2026-11-23)
+
+**Conflicto abierto:** Las fuentes difieren un poco en los totales. No leímos el comunicado del SAT ni el del grupo.
+
+**Debe confirmar:** Leer el comunicado del SAT y el del grupo.
+
+**Pregunta para el abogado:** ¿Es correcto presentar el acuerdo como la situación vigente de los casos descritos en T05 y T06?
+
+**Páginas:** /transparencia/impuestos/, /transparencia/, /transparencia/linea-de-tiempo/
+
+## T08 · verificado-secundaria · prioridad E
+
+Grupo Salinas dice que ha pagado más de 319 mil millones de pesos en impuestos (agosto de 2026).
+
+**Fuentes:** [Excélsior](https://www.excelsior.com.mx/nacional/grupo-salinas-transparenta-balance-tributario) (leída 2026-11-23)
+
+**Conflicto abierto:** Es una afirmación de la empresa. No leímos una confirmación del SAT. No se compara con los adeudos reclamados.
+
+**Debe confirmar:** Buscar una confirmación del SAT.
+
+**Pregunta para el abogado:** ¿Es correcto mostrarla solo como afirmación de la empresa?
+
+**Páginas:** /transparencia/impuestos/, /transparencia/linea-de-tiempo/
+
+## T09 · verificado-secundaria · prioridad E
+
+El titular «Salinas Group Owes $3.8 Billion» (Bloomberg Tax, 20 de marzo de 2024) se refiere a unos 63,000 millones de pesos que dijo el SAT en marzo de 2024; después las cifras cambiaron.
+
+**Fuentes:** [Bloomberg Tax](https://news.bloombergtax.com/daily-tax-report-international/salinas-companies-owe-3-8-billion-mexican-tax-official-says) (leída 2026-11-23)
+
+**Conflicto abierto:** Es una cifra reclamada por una autoridad en 2024, no un total firme.
+
+**Debe confirmar:** Leer el artículo completo.
+
+**Pregunta para el abogado:** ¿Se puede citar el titular con la aclaración de que es la cifra de la autoridad en 2024?
+
+**Páginas:** /transparencia/impuestos/
+
+## T10 · verificado-primaria · prioridad E
+
+Estructura: el reporte del banco dice que nace como subsidiaria de Grupo Elektra y que consolida a Servicios Laborales y Ejecutivos con 99.9%; el reporte de remuneración dice que no tiene filiales ni subsidiarias.
+
+**Fuentes:** [Banco Azteca: reporte de la Administración y Sistema de Remuneración 2025](https://www.grupoelektra.com.mx/api/pdfEkt/4259) (leída 2026-11-23)
+
+**Conflicto abierto:** Los dos documentos del propio banco parecen decir cosas distintas.
+
+**Debe confirmar:** Leer las notas a los estados financieros.
+
+**Pregunta para el abogado:** ¿Cómo debe presentarse esta diferencia sin sugerir una conclusión?
+
+**Páginas:** /transparencia/quien-es-quien/

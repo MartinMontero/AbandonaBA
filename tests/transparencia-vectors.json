@@ -1,0 +1,16 @@
+{
+  "nota": "Valores de prueba. El salario mínimo se lee de valores-2026.json; 18.00 de tipo de cambio sería un valor de prueba y no se usa.",
+  "anios": [
+    { "id": "mil-millones-general", "mxn": 1000000000, "daily": 315.04, "years": 8696.44 },
+    { "id": "dos-mil-seiscientos-mdd-a-18", "mxn": 46800000000, "daily": 315.04, "years": 406993.33 },
+    { "id": "mil-millones-frontera", "mxn": 1000000000, "daily": 440.87, "years": 6214.36 }
+  ],
+  "meses": [
+    { "id": "un-millon-entre-15952", "mxn": 1000000, "monthly": 15952, "months": 62.69 }
+  ],
+  "mensual": [
+    { "id": "semanal-2205.28", "pay": 2205.28, "period": "semanal", "monthly": 9581.94 },
+    { "id": "diario-315.04", "pay": 315.04, "period": "diario", "monthly": 9577.22 },
+    { "id": "quincenal-5000", "pay": 5000, "period": "quincenal", "monthly": 10000 }
+  ]
+}

@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { T, n, pesos, minWageDaily, minWageSource } from '../../lib/transparencia';
+import { toMonthly, timesMinWage, DAYS_PER_MONTH, WEEKS_PER_MONTH } from '../../lib/equivalencias';
+const mwMonthly = minWageDaily * DAYS_PER_MONTH;
+const posts = (T.pay_postings as any[]).map((p) => ({ ...p, monthly: toMonthly(p.pay, p.period), times: timesMinWage(toMonthly(p.pay, p.period), minWageDaily) }));
+const max = Math.max(mwMonthly, ...posts.map((p) => p.monthly));
+const sources = [
+  { title: minWageSource.source_name, url: minWageSource.source_url, read: minWageSource.read_date },
+  ...posts.map((p) => ({ title: `${p.employer}: ${p.role_es}`, url: p.posting_url, read: p.seen_date })),
+];
+---
+<Base art="clipboard" eyebrow="Transparencia" title="¿Cuánto pagan al personal?" description="Sueldos ofrecidos en ofertas de empleo de cajeros, junto al salario mínimo de 2026." path="/transparencia/sueldos/" legal transp claims={['T04']} sources={sources} lead>
+  <TranspNote />
+
+  <div class="callout"><p><strong>Una oferta no es lo que cobra cada persona.</strong> Muestra el sueldo que la empresa ofrece en una ciudad y un día. Estas dos ofertas son de ciudades distintas y de puestos con nombres distintos. Sirven para ver el orden de magnitud, no para ganar una discusión.</p></div>
+
+  <h2>Lo que ofrecen, por mes</h2>
+  <div class="bars">
+    <label>Salario mínimo general <meter min="0" max={max} value={mwMonthly}></meter> <span>{pesos(mwMonthly)}</span></label>
+    {posts.map((p) => (
+      <label>{p.employer} <meter min="0" max={max} value={p.monthly}></meter> <span>{pesos(p.monthly)}{p.plus_commissions ? ' más comisiones' : ''}</span></label>
+    ))}
+  </div>
+  <div class="tbl-wrap">
+    <table class="rt">
+      <thead><tr><th>Empleador y puesto</th><th>Ciudad</th><th>Pago ofrecido</th><th>Veces el salario mínimo</th><th>Fuente</th></tr></thead>
+      <tbody>
+        {posts.map((p) => (
+          <tr><th scope="row">{p.employer}. {p.role_es}</th><td>{p.city}</td><td>{pesos(p.pay)} al mes{p.plus_commissions ? ' más comisiones' : ''}</td><td>{n(p.times, 2)}</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${p.status}`}>{p.status}</span> Visto el {p.seen_date}. <a href={p.posting_url} rel="noopener noreferrer">Oferta</a></td></tr>
+        ))}
+        <tr><th scope="row">Salario mínimo general de 2026</th><td>Todo el país, salvo la frontera norte</td><td>{n(minWageDaily, 2)} pesos al día, unos {pesos(mwMonthly)} al mes</td><td>1.00</td><td><span class="tag t-voz">Lo dice una autoridad</span> <span class={`tag t-${minWageSource.status}`}>{minWageSource.status}</span> <a href={minWageSource.source_url} rel="noopener noreferrer">Fuente</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> El pago mensual del salario mínimo es {n(minWageDaily, 2)} × {DAYS_PER_MONTH} días. Un pago semanal se pasa a mes con {WEEKS_PER_MONTH} semanas por mes. Son convenciones de este sitio.</p>
+
+  <h2>¿Y tu sueldo?</h2>
+  <p>Escribe tu pago y mira dónde queda. No se guarda ni sale de tu teléfono.</p>
+  <form id="s-form" class="cf" data-mw={minWageDaily} novalidate>
+    <label>Tu pago (pesos)<input id="s-pay" type="number" inputmode="decimal" min="0" step="any" /></label>
+    <label>Cada cuánto te pagan
+      <select id="s-period"><option value="semanal">Cada semana</option><option value="quincenal">Cada quincena</option><option value="mensual" selected>Cada mes</option><option value="diario">Cada día</option></select>
+    </label>
+  </form>
+  <div id="s-out" class="result-box" hidden aria-live="polite"></div>
+  <p id="s-empty" class="ref-line">Escribe tu pago para ver el resultado.</p>
+
+  <details class="acc" id="no-sabemos"><summary>Lo que no sabemos</summary><div class="acc-b">
+    <ul>
+      <li>No leímos las prestaciones de estas ofertas. Compara también aguinaldo, vacaciones, seguro y bonos.</li>
+      <li>No hay un número de empleados auditado de Banco Azteca: el reporte trimestral no lo informa.</li>
+      <li>Para comparar de verdad, hacen falta ofertas del mismo puesto, en la misma ciudad y la misma semana, de varios bancos. Aquí hay dos.</li>
+    </ul>
+  </div></details>
+  <script>import '../../scripts/transp-sueldos.ts';</script>
+</Base>

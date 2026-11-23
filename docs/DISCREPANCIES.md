@@ -20,3 +20,12 @@
 
 ## Pasada v3 (2026-11-23)
 Guardadito (0.01% frente a 0.00% GAT), portabilidad (Art. 18 LTOSF sin el tema), costo de Wise con tarjeta (41.11 frente a 18.20), UDI (8.927827 frente a 8.925504) y limite IPAB declarado por el banco. Detalle en docs/V3-STATUS.md, seccion 4.
+
+## Transparencia (2026-11-23)
+| Tema | Lo que decía la instrucción | Lo que se calculó o leyó | Decisión |
+|---|---|---|---|
+| Pago semanal a mes | 2,205.28 × 4.345 = 9,582.14 | 9,581.94 | Se usa el cálculo del código |
+| Salario mínimo de la frontera norte en años | 1,000,000,000 ÷ (440.87 × 365) = 6,214.07 | 6,214.36 | Se usa el cálculo del código |
+| Titular «Salinas Group Owes $3.8 Billion» | No se había encontrado | Existe: Bloomberg Tax, 20-mar-2024; coincide con más de 63,000 millones de pesos de la presentación del SAT del mismo día | Se publica atribuido y con la aclaración de que es la cifra reclamada en 2024 |
+| Estructura del banco | — | Un reporte consolida a Servicios Laborales y Ejecutivos con 99.9%; el reporte de remuneración dice «sin filiales ni subsidiarias» | Se muestran los dos textos sin concluir |
+| Situación de los casos fiscales | La instrucción habla de adeudos y de la sentencia de 2025 | En enero de 2026 el grupo anunció un acuerdo de pago por 32,132 millones en 18 pagos (prensa) | La página muestra primero la situación más reciente |

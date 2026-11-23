@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { T } from '../../lib/transparencia';
+const s = T.structure;
+const sources = [
+  { title: s.source_name, url: s.source_url, read: s.read_date },
+  { title: 'Banco Azteca: Sistema de Remuneración 2025', url: T.compensation.source_url, read: T.compensation.read_date },
+  { title: 'Jointly: nota sobre la cena y los cajeros', url: 'https://news.jointly.mx/salinas-pliego-cajeros-banco-azteca-maquinas-40-horas/', read: '2026-11-22' },
+];
+---
+<Base art="steps" eyebrow="Transparencia" title="¿Quién es quién?" description="Cómo se relacionan Banco Azteca y su grupo, según los propios documentos del banco." path="/transparencia/quien-es-quien/" legal transp claims={['T10']} sources={sources} lead>
+  <TranspNote />
+
+  <h2>Lo que dicen los documentos del banco</h2>
+  <ul class="tree">
+    <li><strong>Grupo Elektra, S. A. B. de C. V.</strong>
+      <ul>
+        <li><strong>Banco Azteca, S. A., Institución de Banca Múltiple</strong> — {s.parent_es}
+          <ul>
+            <li><strong>Servicios Laborales y Ejecutivos, S.A. de C.V.</strong> — {s.sle_es}</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${s.status}`}>{s.status}</span> <a href={s.source_url} rel="noopener noreferrer">Fuente: reporte al 30 de junio de 2026</a></p>
+
+  <div class="callout"><p><strong>Dos documentos del banco que parecen decir cosas distintas.</strong> El reporte trimestral consolida a Servicios Laborales y Ejecutivos con una participación de {s.sle_pct}%. El reporte del Sistema de Remuneración 2025 dice que Banco Azteca no cuenta con filiales ni subsidiarias. No sabemos por qué. Para entenderlo hay que leer las notas a los estados financieros, que no leímos. <span class="tag t-sin-verificar">sin-verificar</span></p></div>
+  <p>Si trabajas en el banco, el patrón que aparece en tu recibo de nómina y en tu registro del IMSS es el dato que importa. Revísalo antes de firmar cualquier cosa.</p>
+
+  <h2>Qué no hay aquí todavía</h2>
+  <ul>
+    <li>Quién es dueño de Grupo Elektra y en qué porcentaje. Eso está en los reportes de la empresa y en los avisos a la bolsa. No los leímos. <span class="tag t-sin-verificar">sin-verificar</span></li>
+    <li>Los miembros del consejo de administración.</li>
+    <li>Otras empresas del grupo, como las de seguros, tiendas y televisión.</li>
+  </ul>
+
+  <h2>Declaraciones públicas recientes</h2>
+  <p>La prensa informó de un video del accionista mayoritario de Grupo Elektra, Ricardo Salinas Pliego, en una cena el 17 o 18 de noviembre de 2026. Los medios citan que llamó «estupidez increíble» al aumento del salario mínimo y a la semana de 40 horas. <span class="tag t-voz">Lo dice la prensa</span> <span class="tag t-verificado-secundaria">verificado-secundaria</span> <a href="https://news.jointly.mx/salinas-pliego-cajeros-banco-azteca-maquinas-40-horas/" rel="noopener noreferrer">Nota</a></p>
+  <p>Según la prensa, dijo después que la tecnología no quita trabajo a quien se prepara. No localizamos el mensaje original. <span class="tag t-sin-verificar">sin-verificar</span> Banco Azteca no ha anunciado una cifra, un calendario ni un presupuesto de reducción de personal, según lo que encontramos al 22 de noviembre de 2026.</p>
+  <p class="ref-line">No publicamos aquí datos de su vida privada ni de su patrimonio. No consultamos clasificaciones de riqueza en esta ronda.</p>
+</Base>

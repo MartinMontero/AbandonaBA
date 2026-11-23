@@ -1,0 +1,13 @@
+---
+// Una cifra con su periodo, su fuente, quién lo dice y su etiqueta.
+import { voices } from '../lib/transparencia';
+interface Props { big: string; what: string; period?: string; voice: string; status: string; url: string }
+const { big, what, period = '', voice, status, url } = Astro.props;
+---
+<li class="cifra">
+  <span class="big">{big}</span>
+  <span>{what}</span>
+  {period && <span class="more">{period}</span>}
+  <span class="badges"><span class="tag t-voz">{voices[voice]}</span> <span class={`tag t-${status}`}>{status}</span></span>
+  <a class="more" href={url} rel="noopener noreferrer">Fuente</a>
+</li>

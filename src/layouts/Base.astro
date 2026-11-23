@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { siteConfig, legalReview, financialReview, statusLabels, isReview } from '../data/site.config';
+import { siteConfig, legalReview, financialReview, editorialReview, statusLabels, isReview } from '../data/site.config';
 import ReviewPanel from '../components/ReviewPanel.astro';
 import ShareRow from '../components/ShareRow.astro';
 import Art from '../components/Art.astro';
@@ -14,6 +14,7 @@ interface Props {
   lang?: 'es' | 'en';
   legal?: boolean;
   finance?: boolean; // páginas de Cámbiate: nota de revisión financiera
+  transp?: boolean; // páginas de Transparencia: nota de revisión editorial
   claims?: string[];
   decisions?: string[];
   sources?: Source[];
@@ -25,7 +26,7 @@ interface Props {
   toc?: TocItem[];
   art?: string; // ilustración del encabezado
 }
-const { title, description = '', path, lang = 'es', legal = false, finance = false, claims = [], decisions = [], sources = [], card, wide = false, hero = false, eyebrow = '', lead = false, toc = [], art = 'shield' } = Astro.props;
+const { title, description = '', path, lang = 'es', legal = false, finance = false, transp = false, claims = [], decisions = [], sources = [], card, wide = false, hero = false, eyebrow = '', lead = false, toc = [], art = 'shield' } = Astro.props;
 const es = lang === 'es';
 const basePath = path.replace(/^\/en\//, '/');
 const altEs = basePath;
@@ -39,6 +40,7 @@ const nav = [
   ['/emprender/', 'Emprender', '<path d="M12 21v-9"/><path d="M12 13c0-4 3-6.5 8-6.5 0 4.5-3 6.5-8 6.5z"/><path d="M12 16c0-3-2-5-6.5-5 0 3.5 2.5 5 6.5 5z"/>'],
   ['/cambiate/', 'Cámbiate', '<path d="M4 8h13l-3.5-3.5"/><path d="M20 16H7l3.5 3.5"/>'],
   ['/inteligencia-aumentada/', 'Avanza', '<g transform="translate(2.4 5.2) scale(0.8)"><path d="M4 13a3.5 3.5 0 0 1 1.5-5.5 3.5 3.5 0 0 1 5.5-2.5 3.5 3.5 0 0 1 5.5 1.5 3.5 3.5 0 0 1 3 4.5 3.5 3.5 0 0 1-3 4.5H9a3.5 3.5 0 0 1-5-2.5z"/><path d="M9.5 8.5c1.5 0.5 2 2 1 3.5M14 8c-0.5 1.5 0 2.5 1.5 3"/><path d="M9 17.5c1 1.7 4 1.7 5 0M12 19.500v2"/></g><path d="M12 0.800v1.400M19.500 3.200l-1 1M21.500 9.500h-1.400"/>'],
+['/transparencia/', 'Transparencia', '<path d="M8 5h8l-1.5 4h-5z"/><path d="M9.5 9h5v11a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1z"/><path d="M12 12.5v2"/><path d="M12 1.5v1.8M6 2.5l1.3 1.3M18 2.5l-1.3 1.3"/>'],
   ['/ayuda-gratis/', 'Ayuda', '<circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.1 5.1-5.1 2.1 2.1-5.1z"/>'],
 ];
 // «Emprender» también se marca en las páginas que cuelgan de él.
@@ -115,7 +117,12 @@ const hasToc = tocItems.length >= 3;
                   <span class="legal-chip">{financialReview.status === 'pendiente' ? siteConfig.financeNote : `Revisión financiera firmada por ${financialReview.reviewers.join(', ')}.`} Datos al {siteConfig.cambiateDate}. · Última revisión: {financialReview.status === 'pendiente' || !financialReview.fecha ? 'pendiente' : financialReview.fecha}</span>
                 </p>
               )}
-              {legal && !finance && (
+              {transp && (
+                <p class="legal-note" role="note">
+                  <span class="legal-chip">{editorialReview.status === 'pendiente' ? siteConfig.transpNote : `Revisión editorial firmada por ${editorialReview.reviewers.join(', ')}.`} Datos al {siteConfig.cambiateDate}. · Última revisión: {editorialReview.status === 'pendiente' || !editorialReview.fecha ? 'pendiente' : editorialReview.fecha}</span>
+                </p>
+              )}
+              {legal && !finance && !transp && (
                 <p class="legal-note" role="note">
                   <span class="legal-chip">{legalReview.status === 'pendiente' ? siteConfig.legalNote : `Revisión legal firmada por ${legalReview.reviewers.join(', ')}.`} · Última revisión legal: {legalReview.status === 'pendiente' || !legalReview.fecha ? 'pendiente' : legalReview.fecha}</span>
                 </p>

@@ -678,3 +678,26 @@ details.acc[open] { background: var(--md-sys-color-surface); }
   .navbar a { font-size: 0.625rem; letter-spacing: -0.01em; }
   .navbar a span:last-child { white-space: nowrap; }
 }
+
+/* Transparencia */
+.tag.t-voz { background: var(--md-sys-color-surface-container-high, var(--md-sys-color-surface-container)); color: var(--md-sys-color-on-surface); border: 1px solid var(--md-sys-color-outline); }
+.facts .cifra .badges { display: flex; flex-wrap: wrap; gap: 4px; }
+.bars { display: grid; gap: var(--space-2); margin: var(--space-2) 0 var(--space-3); }
+.bars label { display: grid; grid-template-columns: 1fr; gap: 4px; font-weight: 700; }
+.bars meter { width: 100%; height: 1.25rem; }
+.bars span { font-weight: 500; }
+.tree, .tree ul { list-style: none; padding-left: var(--space-3); margin: var(--space-1) 0; border-left: 3px solid var(--md-sys-color-outline-variant, var(--md-sys-color-outline)); }
+.tree { padding-left: 0; border-left: 0; }
+.tree li { margin: var(--space-1) 0; padding-left: var(--space-2); }
+.timeline { list-style: none; padding: 0; margin: var(--space-3) 0; border-left: 4px solid var(--md-sys-color-primary); }
+.timeline li { padding: 0 0 var(--space-3) var(--space-3); position: relative; }
+.timeline h3 { margin: 0 0 4px; font-size: 1.0625rem; }
+.timeline p { margin: 4px 0; }
+/* Con nueve destinos, la barra inferior se desplaza en pantallas angostas */
+@media (max-width: 599px) {
+  .navbar ul { overflow-x: auto; scrollbar-width: thin; }
+  .navbar li { flex: 0 0 auto; min-width: 4.25rem; }
+}
+.facts .cifra { min-width: 0; overflow-wrap: anywhere; }
+.facts .cifra .big { font-size: 1.5rem; }
+@media (max-width: 480px) { .facts:has(.cifra) { grid-template-columns: 1fr; } }

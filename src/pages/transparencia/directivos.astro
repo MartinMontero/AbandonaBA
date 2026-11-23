@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { T, n } from '../../lib/transparencia';
+const c = T.compensation;
+const sources = [{ title: c.source_name, url: c.source_url, read: c.read_date }];
+---
+<Base art="briefcase" eyebrow="Transparencia" title="¿Cuánto ganan los jefes?" description="Lo que Banco Azteca publica sobre el pago a su Presidente del Consejo, su Director General y sus directores." path="/transparencia/directivos/" legal transp claims={['T03']} sources={sources} lead>
+  <TranspNote />
+
+  <div class="panel">
+    <h2>Lo que encontramos</h2>
+    <p>El banco publica cada año un reporte de su sistema de remuneración. El de 2025 dice que el sistema cubre al <strong>Presidente del Consejo, al Director General y a 29 directores</strong> de las áreas de negocio y operativas. <span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${c.status}`}>{c.status}</span></p>
+    <p><strong>No publica cantidades en pesos</strong>, ni por persona ni en total. Da porcentajes y no dice sobre qué base están calculados. Por eso no los convertimos a pesos.</p>
+  </div>
+
+  <h2>Los porcentajes que publica</h2>
+  <div class="tbl-wrap">
+    <table class="rt">
+      <thead><tr><th>Concepto</th><th>Lo que dice el reporte de 2025</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Total de remuneraciones otorgadas y pagadas en el ejercicio</th><td>{c.percentages.paid_total_pct}%</td></tr>
+        <tr><th scope="row">Remuneración fija</th><td>{c.percentages.fixed_pct}%</td></tr>
+        <tr><th scope="row">Remuneración variable</th><td>{c.percentages.variable_pct}%</td></tr>
+        <tr><th scope="row">Indemnizaciones o finiquitos pagados</th><td>{c.percentages.severance_pct}%</td></tr>
+        <tr><th scope="row">Personas que recibieron remuneración extraordinaria</th><td>{c.employees_with_extraordinary}</td></tr>
+        <tr><th scope="row">Bonos garantizados</th><td>{c.guaranteed_bonuses}</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="ref-line">Última actualización del documento, según el propio banco: {c.last_update}. El reporte describe un bono anual con dos partes: el resultado del negocio y el resultado de cada persona.</p>
+
+  <h2>Por qué «no publicado» no es lo mismo que «no existe»</h2>
+  <p>Que un reporte no dé pesos no significa que no se pague ni que se oculte. Significa que en este documento no están. Otros documentos, como el informe anual o los avisos a la bolsa, podrían traer más. No los leímos en esta ronda. <span class="tag t-sin-verificar">sin-verificar</span></p>
+
+  <details class="acc" id="no-hacemos"><summary>Lo que no hacemos</summary><div class="acc-b">
+    <ul>
+      <li>No estimamos cuánto gana una persona.</li>
+      <li>No mostramos un porcentaje como si fuera un sueldo.</li>
+      <li>Para comparar con el sueldo de una persona de caja, mira <a href="/transparencia/sueldos/">Sueldos</a> y <a href="/transparencia/equivalencias/">Compáralo tú mismo</a>.</li>
+    </ul>
+  </div></details>
+</Base>

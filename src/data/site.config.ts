@@ -3,6 +3,10 @@ export interface LegalReview { status: 'pendiente' | 'firmada'; reviewers: strin
 
 export const legalReview: LegalReview = { status: 'pendiente', reviewers: [], fecha: null };
 export const financialReview: LegalReview = { status: 'pendiente', reviewers: [], fecha: null };
+export const editorialReview: LegalReview = { status: 'pendiente', reviewers: [], fecha: null };
+if (editorialReview.status === 'firmada' && (editorialReview.reviewers.length < 1 || !editorialReview.fecha)) {
+  throw new Error('editorialReview.status = "firmada" exige al menos un revisor y una fecha.');
+}
 
 if (financialReview.status === 'firmada' && (financialReview.reviewers.length < 1 || !financialReview.fecha)) {
   throw new Error('financialReview.status = "firmada" exige al menos un revisor y una fecha.');
@@ -23,6 +27,7 @@ export const siteConfig = {
   legalNote: 'Información general. En revisión por abogado laboral. No es asesoría legal.',
   reviewBanner: 'VERSIÓN DE REVISIÓN PARA ABOGADOS. Borrador sin publicar. Los textos y valores están pendientes de su dictamen.',
   financeNote: 'Información educativa. En revisión. No es asesoría financiera ni legal.',
+  transpNote: 'Información de interés público basada en documentos citados. En revisión editorial y legal.',
   cambiateDate: '2026-11-23',
   noDataNote: 'Este sitio nunca te pedirá datos, NIP ni códigos.',
   assumptions: 'Estimación con valores de 2026. Pendiente de revisión legal. Lleva esta hoja a PROFEDET.',

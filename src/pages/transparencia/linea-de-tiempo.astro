@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { timeline, voices } from '../../lib/transparencia';
+const fmtDate = (d: string) => new Date(d + 'T12:00:00').toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+const sources = timeline.map((e: any) => ({ title: `${fmtDate(e.date)}`, url: e.source_url, read: '2026-11-23' }));
+---
+<Base art="book" eyebrow="Transparencia" title="Línea de tiempo" description="Los hechos con fecha, en orden, con quién los dice y qué tanto los verificamos." path="/transparencia/linea-de-tiempo/" legal transp claims={['T05','T06','T07','T08']} sources={sources} lead>
+  <TranspNote />
+  <ol class="timeline">
+    {timeline.map((e: any) => (
+      <li>
+        <h3>{fmtDate(e.date)}</h3>
+        <p>{e.event_es}</p>
+        <p><span class="tag t-voz">{voices[e.voice]}</span> <span class={`tag t-${e.status}`}>{e.status}</span> <a href={e.source_url} rel="noopener noreferrer">Fuente</a></p>
+      </li>
+    ))}
+  </ol>
+  <p class="ref-line">Esta lista no es completa: solo incluye lo que leímos. Si falta algo con fuente, <a href="/transparencia/metodo/">avísanos</a>.</p>
+</Base>

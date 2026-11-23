@@ -65,3 +65,19 @@ Todas están en `docs/LEGAL-REGISTER.md` como «Pregunta para el abogado». Las 
 | Impuesto de EE. UU. a remesas (§4475) y si las comisiones entran en la base | https://www.law.cornell.edu/uscode/text/26/4475 | Solo se leyó una fuente secundaria; falta el IRS o el Federal Register |
 | Wise y Remitly: cotizaciones con fecha | https://wise.com/mx/ y https://www.remitly.com/mx/es | Muestran el precio solo con datos de sesión |
 | Ofertas que vencen el 2026-11-30 (Nu, Ualá): volver a leerlas | https://nubank.com.mx/cuenta/ | Vencen pronto |
+
+## Parte 3 (Transparencia): lo que se bloqueó o falta y necesita a una persona (2026-11-23)
+
+| Pendiente | Enlace directo | Por qué falta |
+|---|---|---|
+| Notas a los estados financieros: qué es Servicios Laborales y Ejecutivos y por qué un reporte consolida el 99.9% y otro dice «sin filiales» | https://www.grupoelektra.com.mx/es/banco-azteca-financieros | La página no cargó en el navegador; los PDF sí con un lector |
+| Resultados de años anteriores y de otros bancos (BBVA, Banorte, Santander, Banamex, BanCoppel) con las mismas cifras | https://www.gob.mx/cnbv | No se leyó la CNBV en esta ronda |
+| Grupo Elektra: resultados, dividendos y quién es dueño de qué | https://www.grupoelektra.com.mx/es/estructura-corporativa | No se leyó |
+| Sentencias de la Suprema Corte (montos por caso, 33,306 millones frente a 48,326) | https://www.scjn.gob.mx | No se encontró un comunicado oficial; solo prensa |
+| Comunicado del SAT sobre el acuerdo de pago de enero de 2026 y pagos posteriores | https://www.gob.mx/sat | Solo se leyó prensa |
+| Comunicado de Grupo Salinas de enero de 2026 y la cifra de 319 mil millones | https://www.excelsior.com.mx/nacional/grupo-salinas-transparenta-balance-tributario | Solo se leyó prensa; sin confirmación del SAT |
+| Listas del SAT de créditos firmes y cancelados | https://www.sat.gob.mx | No se consultaron |
+| Informe anual y avisos a la bolsa con remuneración de directivos en pesos | https://www.bmv.com.mx | No se consultaron; el reporte del banco da solo porcentajes |
+| Ofertas del mismo puesto, ciudad y semana en Banco Azteca, BBVA, Banorte, Santander y Banamex | https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca | Solo hay dos ofertas de ciudades distintas |
+| Plataforma nacional de transparencia: nombre y reglas vigentes | https://www.gob.mx | No se verificó |
+| Cifra de patrimonio del accionista mayoritario en una clasificación reconocida (no incluida a propósito) | (sin enlace) | Decisión editorial: no se publica sin método y fecha verificados |

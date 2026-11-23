@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { T, n, voices, minWageDaily } from '../../lib/transparencia';
+import { yearsOfWork } from '../../lib/equivalencias';
+const t = T.tax;
+const y = (m: number) => n(yearsOfWork(m * 1_000_000, minWageDaily));
+const rows = [
+  { when: '20 de marzo de 2024', who: t.sat_2024, say: `Según el SAT, había adeudos pendientes de más de ${n(t.sat_2024.pending_total_mdp)} millones de pesos: más de ${n(t.sat_2024.pending_old_cases_mdp)} por juicios anteriores o en proceso (monto actualizado) y más de ${n(t.sat_2024.pending_new_credits_mdp)} por créditos emitidos en la administración actual. En los siete juicios de consolidación fiscal, el SAT habla de ${n(t.sat_2024.consolidation_original_mdp)} millones originales, que subieron a ${n(t.sat_2024.consolidation_updated_mdp)} millones con la actualización. También dice que de 2019 a 2024 se pagaron ${n(t.sat_2024.paid_total_mdp)} millones por auditorías y juicios ganados.`, mdp: t.sat_2024.pending_total_mdp },
+  { when: 'Noviembre de 2025', who: t.rulings_2025, say: `Según la prensa, la Suprema Corte dejó firmes sentencias por unos ${n(t.rulings_2025.total_mdp)} millones de pesos (${n(t.rulings_2025.elektra_mdp)} de Elektra y ${n(t.rulings_2025.tv_azteca_mdp)} de TV Azteca). AP informó que rechazó ${t.rulings_2025.amparos_rejected} de ${t.rulings_2025.amparos_total} amparos en casos de más de ${t.rulings_2025.usd_reported_billion} mil millones de dólares.`, mdp: t.rulings_2025.total_mdp },
+  { when: '29 de enero de 2026', who: t.agreement_2026, say: `Grupo Salinas anunció un acuerdo de pago por ${n(t.agreement_2026.total_mdp)} millones de pesos en ${t.agreement_2026.installments} pagos. La prensa informa un primer pago de unos ${n(t.agreement_2026.first_payment_mdp)} millones y ${n(t.agreement_2026.paid_may_2026_mdp)} millones pagados en mayo. ${t.agreement_2026.sat_says_es}`, mdp: t.agreement_2026.total_mdp },
+  { when: 'Agosto de 2026', who: t.company_2026, say: `Grupo Salinas dice que ha pagado más de ${n(t.company_2026.paid_total_mdp)} millones de pesos en impuestos. No leímos una confirmación del SAT. Este total y los adeudos reclamados describen cosas distintas: no se restan.`, mdp: t.company_2026.paid_total_mdp },
+];
+const sources = [t.sat_2024, t.rulings_2025, t.agreement_2026, t.company_2026, t.headline_2024].map((x: any) => ({ title: x.source_name, url: x.source_url, read: x.read_date }));
+---
+<Base art="shield" eyebrow="Transparencia" title="Impuestos y tribunales" description="Lo que reclamó la autoridad, lo que resolvieron los tribunales y lo que responde la empresa, con fechas." path="/transparencia/impuestos/" legal transp claims={['T05','T06','T07','T08','T09']} sources={sources} lead>
+  <TranspNote />
+
+  <div class="panel">
+    <h2>La situación más reciente que encontramos</h2>
+    <p>En enero de 2026, Grupo Salinas anunció un acuerdo de pago con el SAT por <strong>{n(t.agreement_2026.total_mdp)} millones de pesos</strong> en {t.agreement_2026.installments} pagos. <span class="tag t-voz">Lo dice la prensa</span> <span class={`tag t-${t.agreement_2026.status}`}>{t.agreement_2026.status}</span></p>
+    <p>Según la prensa, el SAT dijo que el acuerdo cumplió con el Código Fiscal de la Federación y con las resoluciones judiciales. El grupo dice que paga <strong>en desacuerdo</strong> y que pagar no significa aceptar que los cobros hayan sido justos. <span class="tag t-voz">Lo dice la empresa</span></p>
+    <p class="ref-line">No leímos el comunicado del SAT ni el del grupo, solo notas de prensa que los citan. Las fuentes difieren un poco en los totales.</p>
+  </div>
+
+  <h2>Lo que se dijo, en orden</h2>
+  <div class="tbl-wrap">
+    <table class="rt">
+      <thead><tr><th>Fecha</th><th>Qué dice</th><th>Quién lo dice</th><th>En años de salario mínimo</th></tr></thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr><th scope="row">{r.when}</th><td>{r.say}</td><td><span class="tag t-voz">{voices[r.who.voice]}</span> <span class={`tag t-${r.who.status}`}>{r.who.status}</span> <a href={r.who.source_url} rel="noopener noreferrer">Fuente</a></td><td><span class="tag t-voz">Cálculo propio</span> {y(r.mdp)} años</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="ref-line">La última columna divide cada cantidad entre un año de salario mínimo general de 2026. Es una comparación de tamaños, no una acusación. Las cantidades son de fechas distintas y no se pueden sumar ni restar entre sí.</p>
+
+  <h2>El titular de «3.8 mil millones de dólares»</h2>
+  <p>El 20 de marzo de 2024, Bloomberg Tax publicó que un funcionario fiscal dijo que las empresas de Salinas tenían adeudos por unos {t.headline_2024.usd_billion} mil millones de dólares. <span class="tag t-voz">Lo dice la prensa</span> <span class={`tag t-${t.headline_2024.status}`}>{t.headline_2024.status}</span> Esa cifra coincide con los más de {n(t.headline_2024.mdp)} millones de pesos de la presentación del SAT de ese día (la comparación es nuestra). Era lo que reclamaba la autoridad en 2024. No es un total firme, y después los números cambiaron.</p>
+
+  <details class="acc" id="terminos"><summary>Qué significan estas palabras</summary><div class="acc-b">
+    <ul>
+      <li><strong>Crédito fiscal:</strong> una cantidad que el SAT determina a cargo de un contribuyente, por impuestos, recargos o multas.</li>
+      <li><strong>Amparo:</strong> un recurso para pedir a un tribunal que revise si un acto de autoridad respeta la Constitución.</li>
+      <li><strong>Sentencia firme:</strong> una sentencia que ya no se puede impugnar.</li>
+      <li><strong>Consolidación fiscal:</strong> un régimen que permitía a un grupo juntar ganancias y pérdidas de sus empresas para pagar impuestos sobre el resultado conjunto.</li>
+    </ul>
+  </div></details>
+
+  <details class="acc" id="no-sabemos"><summary>Lo que no sabemos</summary><div class="acc-b">
+    <ul>
+      <li>No leímos las sentencias de la Suprema Corte. Una nota habla de {n(t.rulings_2025.single_case_note_mdp)} millones para un solo caso. <span class="tag t-sin-verificar">sin-verificar</span></li>
+      <li>No leímos las listas de contribuyentes del SAT.</li>
+      <li>No sabemos cuánto se ha pagado desde mayo de 2026.</li>
+    </ul>
+  </div></details>
+</Base>

@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { T } from '../../lib/transparencia';
+const guides = [
+  { id: 'estados', t: 'Los resultados del banco', how: 'Entra a la página de información financiera del banco y busca el «Reporte de comentarios y análisis de la Administración» del trimestre. Mira la utilidad o pérdida neta, el índice de morosidad y el de capitalización.', url: 'https://www.grupoelektra.com.mx/es/banco-azteca-financieros', ok: 'sin-verificar', okNote: 'La página cargó con un lector automático, pero no con el navegador. Si no abre, usa el enlace directo de cada reporte (están en las fuentes de cada página).', no: 'Un reporte trimestral no dice por qué cambió un número ni compara con otros bancos.' },
+  { id: 'bancos', t: 'Cualquier banco, en el regulador', how: 'La Comisión Nacional Bancaria y de Valores (CNBV) publica información de los bancos. Busca el banco por nombre y compara las mismas cifras entre varios.', url: 'https://www.gob.mx/cnbv', ok: 'sin-verificar', okNote: 'No abrimos esta página en esta ronda.', no: 'Que un banco tenga cifras publicadas no dice nada sobre cómo trata a sus clientes.' },
+  { id: 'tribunales', t: 'Las sentencias de la Suprema Corte', how: 'El sitio de la Suprema Corte tiene listas de asuntos y sentencias. Busca por número de expediente.', url: 'https://www.scjn.gob.mx', ok: 'sin-verificar', okNote: 'No leímos sentencias en esta ronda.', no: 'Una nota de prensa sobre una sentencia puede dar una cifra distinta de la sentencia misma.' },
+  { id: 'sat', t: 'Lo que dice el SAT', how: 'El SAT y el gobierno publican comunicados y listas. La presentación de marzo de 2024 sobre el caso está publicada en gob.mx.', url: T.tax.sat_2024.source_url, ok: 'verificado-primaria', okNote: 'Leímos este documento.', no: 'Una presentación de la autoridad es su versión. No prueba por sí sola cuánto se debe pagar al final.' },
+  { id: 'sueldos', t: 'Los sueldos ofrecidos', how: 'Busca el mismo puesto, en la misma ciudad y la misma semana, en las bolsas de empleo y en las páginas de cada banco. Compara con el salario mínimo.', url: 'https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca', ok: 'verificado-secundaria', okNote: 'Leímos este listado el 23 de noviembre de 2026.', no: 'Una oferta no es lo que cobra cada persona.' },
+  { id: 'info', t: 'Pedir información pública', how: 'Las dependencias del gobierno están obligadas a responder solicitudes de información pública. Las empresas privadas, en general, no.', url: 'https://www.gob.mx', ok: 'sin-verificar', okNote: 'No verificamos hoy el nombre ni las reglas vigentes de la plataforma nacional de transparencia.', no: 'Que una empresa no responda no prueba nada sobre ella.' },
+];
+const sources = [{ title: T.tax.sat_2024.source_name, url: T.tax.sat_2024.source_url, read: T.tax.sat_2024.read_date }];
+---
+<Base art="help" eyebrow="Transparencia" title="Cómo verificarlo tú" description="Dónde buscar cada documento y qué no prueba." path="/transparencia/como-verificarlo/" legal transp claims={['T05']} sources={sources} lead>
+  <TranspNote />
+  {guides.map((g, i) => (
+    <details class="acc" id={g.id} open={i === 0}>
+      <summary>{g.t}</summary>
+      <div class="acc-b">
+        <p><strong>Cómo:</strong> {g.how}</p>
+        <p><a class="btn tonal" href={g.url} rel="noopener noreferrer">Ir a la fuente oficial</a> <span class={`tag t-${g.ok}`}>{g.ok}</span> {g.okNote}</p>
+        <p><strong>Qué NO prueba:</strong> {g.no}</p>
+      </div>
+    </details>
+  ))}
+</Base>

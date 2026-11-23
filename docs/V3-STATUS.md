@@ -180,3 +180,10 @@ Cuatro páginas nuevas en `/cambiate/`: `afore`, `buro`, `cerrar-cuenta` y `cred
 | CAT | calculadoras de Banxico para créditos y tarjetas | Banxico, Chrome (CB44) |
 
 Decisiones: no se copian rendimientos por Afore (se enlaza la tabla de CONSAR) y no se afirma que el traspaso sea gratis. La calculadora de Afore usa la diferencia que escribe la persona.
+
+## 14. Octava ronda: sección Transparencia (2026-11-23)
+
+Nueva sección `/transparencia/` con botón de linterna en la barra, y 11 páginas: resumen, dinero, utilidades, directivos, sueldos, impuestos y tribunales, quién es quién, línea de tiempo, cómo verificarlo, método y réplica, y compáralo tú mismo. Datos en `src/data/transparencia.json`; claims T01 a T10; pruebas en `tests/transparencia.test.ts` (vectores, trazabilidad de fuentes y reglas editoriales).
+
+Lo leído de fuentes primarias: los reportes trimestrales de Banco Azteca (marzo y junio de 2026), su Sistema de Remuneración 2025 y la presentación del SAT del 20-mar-2024. Lo demás es prensa y se etiqueta así. Sin cifras en pesos de remuneración: el banco solo publica porcentajes sin base.
+Decisiones: «IA» en el texto (decisión tuya); los despliegues los hago yo solo después de tu «GO».

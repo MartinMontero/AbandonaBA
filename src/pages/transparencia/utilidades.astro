@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cifra from '../../components/Cifra.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { fin, n } from '../../lib/transparencia';
+const q1 = fin('f01'), q2 = fin('f02'), h1 = fin('f03'), d1 = fin('f10'), d2 = fin('f11'), imor = fin('f08'), icap = fin('f09');
+const divTotal = d1.value + d2.value;
+const sources = [
+  { title: 'Banco Azteca: reporte al 31 de marzo de 2026', url: q1.source_url, read: q1.read_date },
+  { title: 'Banco Azteca: reporte al 30 de junio de 2026', url: h1.source_url, read: h1.read_date },
+];
+const sign = (v: number) => (v < 0 ? 'pérdida' : 'utilidad');
+---
+<Base art="spark" eyebrow="Transparencia" title="¿Cuánto gana el banco?" description="La utilidad o pérdida de Banco Azteca en 2026, los dividendos que pagó y dos señales de salud, con sus periodos." path="/transparencia/utilidades/" legal transp claims={['T01','T02']} sources={sources} lead>
+  <TranspNote />
+
+  <h2>Resultado neto de 2026</h2>
+  <p>La utilidad neta es lo que queda después de todos los gastos e impuestos. Si es negativa, el banco la llama pérdida neta. Estas son las cifras del propio banco, cada una con su periodo.</p>
+  <div class="tbl-wrap">
+    <table class="rt">
+      <thead><tr><th>Periodo</th><th>Resultado</th><th>Quién lo dice</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">{q1.period}</th><td>{sign(q1.value)} de {n(q1.value)} millones de pesos</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${q1.status}`}>{q1.status}</span> <a href={q1.source_url} rel="noopener noreferrer">Fuente</a></td></tr>
+        <tr><th scope="row">{q2.period}</th><td>{sign(q2.value)} de {n(q2.value)} millones de pesos</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${q2.status}`}>{q2.status}</span> <a href={q2.source_url} rel="noopener noreferrer">Fuente</a></td></tr>
+        <tr><th scope="row">{h1.period}</th><td>{sign(h1.value)} de {n(h1.value)} millones de pesos</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${h1.status}`}>{h1.status}</span> <a href={h1.source_url} rel="noopener noreferrer">Fuente</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="ref-line">El reporte explica que en el segundo trimestre pesaron más el dinero apartado por riesgo de crédito y los gastos de publicidad, y que cambió la valuación del oro. Lo dice el banco; no lo verificamos en otra fuente.</p>
+
+  <h2>Dividendos pagados en 2026</h2>
+  <p>Un dividendo es dinero que la empresa reparte a sus accionistas.</p>
+  <ul class="facts">
+    <Cifra big={n(d1.value)} what="millones de pesos de dividendo" period={d1.period} voice={d1.voice} status={d1.status} url={d1.source_url} />
+    <Cifra big={n(d2.value)} what="millones de pesos de dividendo" period={d2.period} voice={d2.voice} status={d2.status} url={d2.source_url} />
+  </ul>
+  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> {n(d1.value)} + {n(d2.value)} = {n(divTotal)} millones de pesos en dos pagos, de enero y abril de 2026. Se muestran junto al resultado de enero a junio ({n(h1.value)} millones) como dos cifras de periodos distintos. Un dividendo no tiene que ser igual a la utilidad de un periodo. Los reportes no dicen a quién se pagaron.</p>
+
+  <h2>Dos señales de salud</h2>
+  <ul class="facts">
+    <Cifra big={`${imor.value}%`} what="índice de morosidad (parte de la cartera con pagos atrasados)" period="Al 30 de junio de 2026. En junio de 2025 era 4.1%." voice={imor.voice} status={imor.status} url={imor.source_url} />
+    <Cifra big={`${icap.value}%`} what="índice de capitalización (qué tanto capital respalda los riesgos)" period="Al 30 de junio de 2026. Era 15.54% en marzo de 2026 y 14.71% en junio de 2025." voice={icap.voice} status={icap.status} url={icap.source_url} />
+  </ul>
+  <p class="ref-line">Para saber si son altas o bajas hay que compararlas con otros bancos y con el mínimo que exige la regulación. No lo hicimos en esta ronda.</p>
+
+  <details class="acc" id="no-sabemos"><summary>Lo que no incluimos todavía</summary><div class="acc-b">
+    <ul>
+      <li>Resultados de años anteriores y de otros bancos con las mismas cifras: no los leímos. <span class="tag t-sin-verificar">sin-verificar</span></li>
+      <li>Resultados de Grupo Elektra y de otras empresas del grupo.</li>
+      <li>Cifras ajustadas por inflación. Todas las de esta página son nominales (en pesos de cada fecha).</li>
+    </ul>
+  </div></details>
+</Base>

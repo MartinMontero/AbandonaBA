@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { siteConfig } from '../../data/site.config';
+import { voices } from '../../lib/transparencia';
+---
+<Base art="book" eyebrow="Cómo trabajamos" title="Método y derecho de réplica" description="Las reglas que seguimos en Transparencia y cómo pedir una corrección o publicar una respuesta." path="/transparencia/metodo/" legal transp lead>
+  <TranspNote />
+
+  <ul class="mile cols3">
+    <li><div><span class="big">Con fuente</span><span class="what">Cada cifra dice de dónde sale</span><span class="more">Documento, fecha de lectura, periodo y quién lo dice.</span></div></li>
+    <li><div><span class="big">Atribuido</span><span class="what">Lo que una parte afirma es suyo</span><span class="more">Se escribe «según el SAT» o «según el grupo», nunca como hecho.</span></div></li>
+    <li><div><span class="big">Con réplica</span><span class="what">La respuesta va al lado</span><span class="more">Si la otra parte respondió en público, la mostramos con su fecha.</span></div></li>
+  </ul>
+
+  <details class="acc" id="reglas" open><summary>Las reglas</summary><div class="acc-b">
+    <ol>
+      <li>Escribimos solo lo que un documento de nuestra lista dice, con la cifra, la unidad, el periodo y la fecha en que lo leímos.</li>
+      <li>No escribimos ni insinuamos motivos, culpa u ocultamiento. Solo si una autoridad o un tribunal con nombre lo dice en un documento que leímos, y entonces lo atribuimos a esa autoridad o tribunal.</li>
+      <li>Usamos la palabra que usa el documento: «crédito fiscal», «adeudo reclamado», «resolución».</li>
+      <li>No comparamos cifras de periodos, monedas o bases distintas sin decirlo en la misma línea. Decimos si es nominal y si es el total de varias personas o el pago de una.</li>
+      <li>Las cuentas que hacemos nosotros llevan la etiqueta «Cálculo propio» y su fórmula.</li>
+      <li>Si algo no está publicado o no lo encontramos, escribimos «no publicado» y qué buscamos. No llenamos huecos con estimaciones.</li>
+      <li>No usamos material anónimo, filtrado ni de la vida privada. Las personas públicas aparecen solo por su papel público y por lo que dicen los documentos.</li>
+      <li>Citamos poco y con enlace. Todo lo demás lo decimos con nuestras palabras.</li>
+    </ol>
+  </div></details>
+
+  <details class="acc" id="etiquetas"><summary>Las etiquetas</summary><div class="acc-b">
+    <p><strong>Quién lo dice:</strong></p>
+    <ul>{Object.values(voices).map((v) => <li><span class="tag t-voz">{v}</span></li>)}</ul>
+    <p><strong>Qué tanto lo verificamos:</strong></p>
+    <ul>
+      <li><span class="tag t-verificado-primaria">verificado-primaria</span> Lo leímos completo en el documento original.</li>
+      <li><span class="tag t-verificado-secundaria">verificado-secundaria</span> Lo vimos en prensa o en una copia, no en el original.</li>
+      <li><span class="tag t-sin-verificar">sin-verificar</span> No pudimos leerlo.</li>
+    </ul>
+  </div></details>
+
+  <details class="acc" id="correccion"><summary>Cómo pedir una corrección o una réplica</summary><div class="acc-b">
+    <p>Si algo no coincide con el documento original, o si quieres publicar una respuesta, abre una solicitud en <a href={siteConfig.issuesUrl} rel="noopener noreferrer">GitHub</a> con el título «Error en Transparencia o solicitud de réplica». Pon el documento, la página y la fecha. Una corrección verificada se hace y se anota en <a href="/actualizaciones/">Actualizaciones</a>. Una respuesta de una empresa se puede publicar completa, hasta una extensión razonable, con su fecha y su fuente.</p>
+    <p><strong>Ojo:</strong> las solicitudes en GitHub no son anónimas. No pongas datos personales ni documentos privados.</p>
+  </div></details>
+
+  <details class="acc" id="estado"><summary>Estado de la revisión</summary><div class="acc-b">
+    <p>Esta sección está pendiente de revisión editorial y legal. Hasta que termine, cada página lo dice arriba.</p>
+  </div></details>
+</Base>
