@@ -2,20 +2,34 @@
 import Base from '../layouts/Base.astro';
 // Cada herramienta lleva solo lo que se leyó en su página oficial el 2026-11-22. Lo demás queda sin verificar.
 const tools = [
-  { n: 'Claude', by: 'Anthropic', url: 'https://claude.ai', free: 'Plan gratis con uso limitado cada 5 horas y cada semana.', fs: 'verificado-primaria', es: 'La ayuda oficial lista español de Latinoamérica y de España, y responde en el idioma en que le escribes.', ess: 'verificado-secundaria', acct: 'Pide iniciar sesión. No verificamos si pide teléfono.', priv: 'Su tabla de precios indica que en el plan gratis puedes desactivar el uso de tus chats para entrenar el modelo. Busca ese ajuste.', src: 'https://claude.com/pricing' },
-  { n: 'Gemini', by: 'Google', url: 'https://gemini.google.com', free: 'Gratis con una cuenta de Google.', fs: 'verificado-primaria', es: 'La ayuda oficial dice que la app web está en más de 70 idiomas, pero no nombra el español. Pruébalo con una pregunta en español.', ess: 'sin-verificar', acct: 'Requiere cuenta de Google.', priv: 'No pudimos verificar cómo usa tus chats ni cómo desactivarlo. Revisa su aviso de privacidad.', src: 'https://gemini.google/subscriptions/' },
+  { n: 'Claude', by: 'Anthropic', url: 'https://claude.ai', free: 'Plan gratis con uso limitado cada 5 horas y cada semana.', fs: 'verificado-primaria', es: 'La ayuda oficial lista español de Latinoamérica y de España.', ess: 'verificado-secundaria', acct: 'Pide iniciar sesión. No verificamos si pide teléfono.', priv: 'Su tabla de precios indica que en el plan gratis puedes desactivar el uso de tus chats para entrenar el modelo. Busca ese ajuste.', src: 'https://claude.com/pricing' },
+  { n: 'Gemini', by: 'Google', url: 'https://gemini.google.com', free: 'Gratis con una cuenta de Google.', fs: 'verificado-primaria', es: 'La ayuda oficial de Google incluye el español entre los idiomas de la app web.', ess: 'verificado-primaria', acct: 'Requiere cuenta de Google.', priv: 'Tú decides en el ajuste «Historial de Gemini» si Google usa tus chats para entrenar. Los chats temporales no se usan para entrenar.', privs: 'verificado-primaria', src: 'https://support.google.com/gemini/answer/13594961' },
+  { n: 'DeepSeek', by: 'DeepSeek (China)', url: 'https://chat.deepseek.com', free: 'No pudimos abrir su página oficial para confirmar el plan gratis.', fs: 'sin-verificar', es: 'No pudimos confirmar idiomas en su página oficial. Pruébalo en español.', ess: 'sin-verificar', acct: 'Su política dice que pide correo o teléfono.', priv: 'Su política de privacidad dice que guarda tus datos en China y que puede usar lo que escribes para entrenar sus modelos. Para pedir que no lo haga, escribe a privacy@deepseek.com. Aquí no pegues nada sensible.', privs: 'verificado-primaria', src: 'https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html' },
+  { n: 'Qwen', by: 'Alibaba', url: 'https://chat.qwen.ai', free: 'No pudimos leer su página oficial para confirmar el plan gratis.', fs: 'sin-verificar', es: 'No pudimos confirmar idiomas. Pruébalo en español.', ess: 'sin-verificar', acct: 'No verificamos si pide cuenta o teléfono.', priv: 'No encontramos su política de privacidad en las páginas que pudimos abrir. Léela antes de usarlo y no pegues nada sensible.', src: 'https://chat.qwen.ai' },
   { n: 'Le Chat', by: 'Mistral', url: 'https://chat.mistral.ai', free: 'Plan gratis con acceso limitado.', fs: 'verificado-primaria', es: 'Su página de precios solo ofrece inglés, francés e italiano. No encontramos una lista de idiomas del asistente. Pruébalo en español.', ess: 'sin-verificar', acct: 'No verificamos si pide cuenta o teléfono.', priv: 'Su tabla de precios indica que puedes desactivar el uso de tus chats para entrenar el modelo. Busca ese ajuste.', src: 'https://mistral.ai/pricing' },
   { n: 'Copilot', by: 'Microsoft', url: 'https://copilot.com', free: 'Gratis con una cuenta de Microsoft.', fs: 'verificado-primaria', es: 'Su página ofrece español (España) y español (México) como idioma de la página. No encontramos una lista de idiomas del asistente.', ess: 'sin-verificar', acct: 'Requiere cuenta de Microsoft.', priv: 'No pudimos verificar cómo usa tus chats ni cómo desactivarlo. Revisa su aviso de privacidad.', src: 'https://copilot.com' },
 ];
 const cats = [
+  { id: 'cmp', t: 'Compite con el banco' },
+  { id: 'hab', t: 'Lleva tus habilidades a otro trabajo' },
   { id: 'emp', t: 'Conseguir trabajo' },
   { id: 'din', t: 'Dinero y negocio' },
   { id: 'doc', t: 'Mensajes y documentos' },
 ];
 const lessons = [
+  { c: 'cmp', t: 'Mapa de lo que el banco le vende a tu gente', w: 'Los problemas de dinero que resuelve un banco y dónde le duele al cliente.', p: 'Trabajé atendiendo clientes en un banco. Mis clientes más comunes son [tipo de cliente]. Haz una lista de los 10 problemas de dinero que más resuelven los bancos para esa gente (ahorro, envíos, pagos, crédito, cobranza). Para cada uno dime dónde le duele al cliente: comisión, espera, trato o letra chica. Usa solo información pública.' },
+  { c: 'cmp', t: 'Diseña un servicio mejor, tuyo', w: 'Uno pequeño que puedas ofrecer solo o con cuatro personas.', p: 'Elijo este problema de mis clientes: [problema]. Diseña un servicio pequeño que yo pueda ofrecer solo o con 4 personas, con mejor trato, precio claro y sin letra chica. Dime: a quién, qué incluye, cuánto cobrar, qué permisos debo averiguar y qué NO debo hacer.' },
+  { c: 'cmp', t: 'Compara tu opción con la del banco', w: 'Una tabla honesta de costo, tiempo, requisitos y riesgos.', p: 'Voy a comparar [servicio] entre un banco, una cooperativa y mi propuesta. Hazme una tabla con costo, tiempo, requisitos y riesgos. Dime qué datos debo verificar yo en fuentes oficiales. No inventes cifras.' },
+  { c: 'cmp', t: 'Pon a la IA a trabajar en tu servicio', w: 'Respuestas, recordatorios y seguimiento sin pasar el día contestando.', p: 'Voy a ofrecer [servicio] a [clientes]. Escribe: las respuestas a las 15 preguntas más comunes, un recordatorio de pago amable y sin amenazas, y una hoja para dar seguimiento a cada cliente.' },
+  { c: 'cmp', t: 'Consigue tus primeros tres clientes', w: 'Un mensaje corto y un plan de 30 días.', p: 'Mi servicio es [servicio] para [clientes] en [colonia o ciudad]. Escribe un mensaje corto para ofrecerlo a conocidos y un plan de 30 días para conseguir 3 clientes sin gastar en publicidad.' },
+  { c: 'hab', t: 'Haz el inventario de todo lo que sabes', w: 'La IA te entrevista y saca habilidades que ni notas.', p: 'Trabajé [años] años como [puesto]. Entrevístame, una pregunta a la vez, para sacar todo lo que sé hacer: tareas, herramientas, trato con personas, situaciones difíciles y resultados. Al final dame una lista de 15 habilidades en palabras que entienda cualquier empleador.' },
+  { c: 'hab', t: 'Traduce tu puesto a otros trabajos', w: 'Dónde sirven tus habilidades y qué te falta.', p: 'Con estas habilidades: [lista], dime 10 trabajos o actividades por cuenta propia donde me sirven. Para cada uno dime por qué, qué me falta aprender y cómo probarlo en 30 días. No inventes sueldos.' },
+  { c: 'hab', t: 'Plan de 30 días para aprender lo que te falta', w: 'Poco tiempo al día, gratis y con práctica.', p: 'Quiero pasar de [puesto actual] a [nuevo puesto o actividad]. Arma un plan de 30 días, 30 minutos al día, con recursos gratis y ejercicios prácticos, y dime cómo mostrar lo que aprendí.' },
+  { c: 'hab', t: 'Convierte tu experiencia en clases', w: 'Enseña lo que sabes a quien lo necesita.', p: 'Tengo [años] años de experiencia en [tema]. Ayúdame a convertirla en 3 talleres de una hora para [público], con temario, ejemplos y una forma sencilla de cobrar.' },
   { c: 'emp', t: 'Convierte tu experiencia en un currículum', w: 'Escribe tu puesto, tus años y tus logros con números.', p: 'Soy [puesto] con [años] años de experiencia. Mis logros: [lista con números]. Redacta un currículum de una página en español, con frases cortas que empiecen con verbo.' },
   { c: 'emp', t: 'Practica una entrevista para personal de cajas', w: 'Te pregunta una cosa a la vez y te dice qué mejorar.', p: 'Hazme una entrevista para un puesto de personal de cajas en un banco. Hazme una pregunta a la vez y, después de mi respuesta, dime qué mejorar.' },
   { c: 'emp', t: 'Investiga un empleador antes de ir', w: 'Prepara qué preguntar y qué pedir por escrito.', p: 'Quiero ir a una entrevista en [empresa]. Dime qué preguntas hacer sobre sueldo, horario, prestaciones y contrato. Dime qué documentos pedir por escrito.' },
+  { c: 'emp', t: 'Cuenta un momento difícil como un logro', w: 'Una respuesta de entrevista con problema, qué hiciste y resultado.', p: 'Te cuento una situación difícil de mi trabajo: [resumen sin nombres]. Conviértela en una respuesta de entrevista de un minuto con este orden: problema, lo que hice, resultado.' },
   { c: 'din', t: 'Control semanal de ingresos y gastos', w: 'Una tabla simple de en qué gastas más.', p: 'Voy a darte mis ingresos y gastos de esta semana. Arma una tabla simple y dime en qué gasto más.' },
   { c: 'din', t: 'Plan de negocio de una página', w: 'Diez preguntas y un plan con clientes, precio y costos.', p: 'Quiero abrir [idea de negocio]. Hazme diez preguntas, una por una, y con mis respuestas arma un plan de una página: clientes, precio, costos y primer mes.' },
   { c: 'din', t: 'Borrador de bases para una cooperativa', w: 'Solo para empezar a hablar. Un abogado debe revisarlo.', p: 'Somos [número] personas que quieren hacer una cooperativa de [actividad]. Haz un borrador educativo de bases con: objeto, socios, un voto por socio, fondos y cómo se resuelven desacuerdos. Marca lo que debe revisar un abogado.' },
@@ -26,29 +40,12 @@ const lessons = [
 ];
 const sources = tools.map((t) => ({ title: `${t.n} (${t.by})`, url: t.src, read: '2026-11-22' }));
 ---
-<Base art="spark" eyebrow="Aprende y prepárate" title="IA: diez usos prácticos" description="Escoge una herramienta gratis y copia una instrucción lista para usar." path="/inteligencia-aumentada/" sources={sources} wide lead>
-  <p class="lede">La IA (inteligencia artificial) es un asistente al que le escribes qué necesitas y te responde. Te ayuda a redactar y preparar. Puede equivocarse: verifica los datos legales y de dinero en las fuentes oficiales de este sitio.</p>
+<Base art="spark" eyebrow="Aprende y prepárate" title="IA: úsala a tu favor" description="Las empresas usan IA para hacer más con menos gente. Úsala tú para competir y para llevar tu experiencia a otro trabajo." path="/inteligencia-aumentada/" sources={sources} wide lead>
+  <p class="lede">La IA (inteligencia artificial) es un asistente al que le escribes qué necesitas y te responde. Hoy las empresas la usan para hacer más con menos gente. Tú puedes usarla para lo mismo: armar tu propio servicio y llevar lo que sabes a otro trabajo. Puede equivocarse: verifica los datos legales y de dinero en las fuentes oficiales de este sitio.</p>
 
   <div class="callout info"><p><strong>Antes de pegar algo:</strong> nunca pongas tu CURP, tu RFC, números de cuenta, nombres de compañeros ni nada de los sistemas internos del banco.</p></div>
 
-  <h2 id="herramientas">1. Escoge una herramienta gratis</h2>
-  <p>Todas tienen plan gratis. Con cualquiera sirven las instrucciones de abajo.</p>
-  <div class="tool-grid">
-    {tools.map((t) => (
-      <article class="tool">
-        <h3>{t.n} <small>{t.by}</small></h3>
-        <p><span class={`tag t-${t.fs}`}>{t.fs}</span> {t.free}</p>
-        <ul>
-          <li><strong>Español.</strong> {t.es} <span class={`tag t-${t.ess}`}>{t.ess}</span></li>
-          <li><strong>Cuenta.</strong> {t.acct}</li>
-          <li><strong>Tus chats.</strong> {t.priv}</li>
-        </ul>
-        <a class="btn tonal" href={t.url} rel="noopener noreferrer">Abrir {t.n}</a>
-      </article>
-    ))}
-  </div>
-
-  <h2 id="usos">2. Elige qué quieres lograr</h2>
+  <h2 id="usos">1. Elige qué quieres lograr</h2>
   <div class="ia-filter">
     <input type="radio" name="cat" id="f-all" checked /><label for="f-all">Todo</label>
     {cats.map((c) => (<><input type="radio" name="cat" id={`f-${c.id}`} /><label for={`f-${c.id}`}>{c.t}</label></>))}
@@ -66,5 +63,23 @@ const sources = tools.map((t) => ({ title: `${t.n} (${t.by})`, url: t.src, read:
     </div>
   </div>
   <p class="small">Cambia lo que está entre [corchetes] por tus datos sin nombres. Después pégala en la herramienta que elegiste.</p>
+  <div class="callout"><p><strong>Compite con lo que tú sabes, no con lo que es del banco.</strong> No uses listas de clientes, manuales ni datos internos. Revisa tu contrato por si tiene cláusulas de confidencialidad o de no competencia, con PROFEDET o un abogado.</p></div>
+
+  <h2 id="herramientas">2. Escoge una herramienta</h2>
+  <p>Con cualquiera sirven las instrucciones de arriba. Lo que no pudimos confirmar en su sitio oficial lo marcamos «sin-verificar».</p>
+  <div class="tool-grid">
+    {tools.map((t) => (
+      <article class="tool">
+        <h3>{t.n} <small>{t.by}</small></h3>
+        <p><span class={`tag t-${t.fs}`}>{t.fs}</span> {t.free}</p>
+        <ul>
+          <li><strong>Español.</strong> {t.es} <span class={`tag t-${t.ess}`}>{t.ess}</span></li>
+          <li><strong>Cuenta.</strong> {t.acct}</li>
+          <li><strong>Tus chats.</strong> {t.priv} {t.privs && <span class={`tag t-${t.privs}`}>{t.privs}</span>}</li>
+        </ul>
+        <a class="btn tonal" href={t.url} rel="noopener noreferrer">Abrir {t.n}</a>
+      </article>
+    ))}
+  </div>
   <script>import '../scripts/ia.ts';</script>
 </Base>
