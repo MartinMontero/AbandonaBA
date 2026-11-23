@@ -9,3 +9,6 @@ test-results
 playwright-report
 .astro
 *.log
+
+# Fuentes descargadas para verificar valores (no se suben)
+.cache/
