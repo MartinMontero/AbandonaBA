@@ -620,11 +620,11 @@ Santander México, Súper Cuenta Básica: sin monto mínimo de apertura, sin com
 
 ## CB36 · verificado-primaria · prioridad D
 
-Banorte, Cuenta Enlace Digital: monto mínimo de apertura de 0 pesos y, según su página, «sin membresía ni comisiones» si se mantiene la cuenta activa. La tarjeta física se envía cuando el saldo llega a 100 pesos.
+Banorte, Cuenta Enlace Digital: monto mínimo de apertura de 0 pesos y, según su página, «sin membresía ni comisiones» si se mantiene la cuenta activa. La tarjeta física se envía cuando el saldo llega a 100 pesos. Banorte dice en su página «IPAB» que sus cuentas están protegidas hasta por 400 mil UDIs por persona física o moral y por institución.
 
-**Fuentes:** [Banorte: Cuenta Enlace Digital](https://www.banorte.com/Personal/Cuentas/Cuenta-Enlace-Digital.html) (leída 2026-11-23)
+**Fuentes:** [Banorte: Cuenta Enlace Digital](https://www.banorte.com/Personal/Cuentas/Cuenta-Enlace-Digital.html) (leída 2026-11-23); [Banorte: IPAB](https://www.banorte.com/GFB/IPAB.html) (leída 2026-11-23)
 
-**Conflicto abierto:** La página no define «activa» y no se leyó el documento de costos y comisiones ni el aviso del IPAB.
+**Conflicto abierto:** La página de la cuenta no define «activa» y no se leyó el documento de costos y comisiones.
 
 **Debe confirmar:** Leer el documento de costos y comisiones de la cuenta.
 
@@ -648,11 +648,11 @@ HSBC México, Ahorro Flexible: tasa fija anual de 1.00% (GAT nominal 1.00%, real
 
 ## CB38 · verificado-primaria · prioridad D
 
-Scotiabank México, Cuenta Scotia digital abierta desde la app: sin comisión por manejo de cuenta los primeros tres meses. El beneficio se conserva con nómina, saldo promedio, domiciliación de servicios digitales o un crédito de auto o hipoteca de Scotiabank.
+Scotiabank México, Cuenta Scotia: su anexo de comisiones (inscrito en el RECA el 24/08/2026) fija un saldo promedio mínimo mensual de 5,000 pesos; si no se cumple, se paga la menor cantidad entre 200 pesos y la diferencia contra el mínimo. «Administración - renta»: no aplica. Abierta desde la app, sin comisión de manejo los primeros tres meses. Su folleto dice que Scotia Inversión Disponible y el Pagaré Único están protegidos por el IPAB hasta 400 mil UDIS, y publica 0.61% (variable, saldos de 10,000 a 99,999) y 0.60% a 1 día (5,000 a 49,999) con cálculo del 12 de octubre de 2026, vigentes al 31 de enero de 2027.
 
-**Fuentes:** [Scotiabank: Cuenta Scotia](https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx) (leída 2026-11-23)
+**Fuentes:** [Scotiabank: tarifas y comisiones de la Cuenta Scotia (PDF)](https://cdn.aglty.io/scotia-bank-mexico/spanish/pdf/acerca-de/comunicados-al-publico-en-general/CuotasyComisiones/Tarifas-y-Comisiones-Cuenta-Scotia.pdf) (leída 2026-11-23); [Scotiabank: folleto de la Cuenta Scotia (PDF)](https://cdn.aglty.io/scotia-bank-mexico/pdf/folletos/foe-cuentas-bancarias-cuenta-scotia.pdf) (leída 2026-11-23); [Scotiabank: Cuenta Scotia](https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx) (leída 2026-11-23)
 
-**Conflicto abierto:** La página no dice el monto de la comisión ni el saldo promedio requerido ni el aviso del IPAB.
+**Conflicto abierto:** El folleto nombra como protegidos por el IPAB los productos de inversión, no la cuenta de cheques; no dice si el monto de la penalización incluye IVA. Los PDF se leyeron con un extractor de texto y pueden tener letras perdidas.
 
 **Debe confirmar:** Leer el anexo de comisiones y el folleto.
 
@@ -662,11 +662,11 @@ Scotiabank México, Cuenta Scotia digital abierta desde la app: sin comisión po
 
 ## CB39 · verificado-primaria · prioridad D
 
-BanCoppel, Cuenta Efectiva Digital: la página muestra GAT nominal 0.00% y GAT real -3.97%, con cálculo del 1 de septiembre de 2026 y vigencia del 24 de septiembre de 2026 al 24 de marzo de 2027. Las tasas de Inversión Creciente están en un documento que el sitio no entregó (acceso denegado).
+BanCoppel: las fichas de la Cuenta Efectiva Digital y de Inversión Creciente dicen que están garantizadas por el IPAB hasta por 400 mil UDIS por persona por institución, y que están disponibles en todas las sucursales. La página de la Cuenta Efectiva Digital muestra GAT nominal 0.00% y real -3.97% (cálculo del 1 de septiembre de 2026, vigencia del 24 de septiembre de 2026 al 24 de marzo de 2027). Las tablas de tasas y comisiones de esas fichas son de diciembre de 2022 y no se usan; las tasas de Inversión Creciente vigentes no se pudieron leer.
 
-**Fuentes:** [BanCoppel: Cuenta Efectiva Digital](https://www.bancoppel.com/descubre-mas/cuenta-efectiva-digital/) (leída 2026-11-23); [BanCoppel: Inversión Creciente](https://www.bancoppel.com/descubre-mas/inversion-creciente/) (leída 2026-11-23)
+**Fuentes:** [BanCoppel: ficha de la Cuenta Efectiva Digital (PDF)](https://www.bancoppel.com/pdf/ficha_producto_cuenta_efectiva.pdf) (leída 2026-11-23); [BanCoppel: ficha de Inversión Creciente (PDF)](https://www.bancoppel.com/pdf/ficha_producto_inversion_creciente.pdf) (leída 2026-11-23); [BanCoppel: Cuenta Efectiva Digital](https://www.bancoppel.com/descubre-mas/cuenta-efectiva-digital/) (leída 2026-11-23)
 
-**Conflicto abierto:** No se leyeron las comisiones, el aviso del IPAB ni las tasas de Inversión Creciente.
+**Conflicto abierto:** Las fichas no traen fecha en la primera hoja; la tabla anexa de la Cuenta Efectiva dice «vigentes a partir del 01 de diciembre de 2022». El sitio bloquea la descarga automática de otro documento de tasas.
 
 **Debe confirmar:** Leer «Tasas y Comisiones» con un navegador normal.
 
@@ -676,7 +676,7 @@ BanCoppel, Cuenta Efectiva Digital: la página muestra GAT nominal 0.00% y GAT r
 
 ## CB40 · verificado-primaria · prioridad D
 
-Canal de apertura y portabilidad de nómina por institución, según sus páginas oficiales. Reciben portabilidad de nómina: Banco Azteca, BBVA, Banamex, Santander, Banorte, HSBC, Scotiabank, BanCoppel y Ualá. Nu y Openbank dicen que su cuenta de nómina estará disponible «próximamente». Klar, Stori, Mercado Pago, bineo y Spin no la mencionan. Tienen sucursales: Banco Azteca, BBVA, Banamex, Santander, Banorte, HSBC, Scotiabank y BanCoppel. Dicen que se manejan desde la app o el celular: Ualá, Klar, Mercado Pago, bineo, Stori y Spin. Nu y Openbank son digitales pero no dicen si exigen la app.
+Canal de apertura y portabilidad de nómina por institución, según sus páginas oficiales. Reciben portabilidad de nómina: Banco Azteca, BBVA, Banamex, Santander, Banorte, HSBC, Scotiabank, BanCoppel, Ualá y Mercado Pago (en su blog oficial). Nu y Openbank dicen que su cuenta de nómina estará disponible «próximamente». Klar, Stori, bineo y Spin no la mencionan en sus páginas ni en sus preguntas frecuentes. Tienen sucursales: Banco Azteca, BBVA, Banamex, Santander, Banorte, HSBC, Scotiabank y BanCoppel. Dicen que se manejan desde la app o el celular: Ualá, Klar, Mercado Pago, bineo, Stori y Spin (bineo: los comprobantes y estados de cuenta solo están en la app). Nu y Openbank son digitales pero no dicen si exigen la app.
 
 **Fuentes:** [Páginas de portabilidad y de cuentas de cada institución (ver «Fuentes»)](https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html) (leída 2026-11-23)
 

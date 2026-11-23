@@ -86,7 +86,7 @@ if (form) {
     copy.hidden = cards.length === 0;
     const reasonText: Record<string, string> = {};
     for (const e of r.excluded) reasonText[e.id] = e.why === 'datos sin verificar' ? why(e.id) : e.why;
-    const rest = r.eligible.slice(3).map((id) => `<li><strong>${byId[id].name}:</strong> cumple las reglas, pero hay tres opciones que te dan más pesos al año con tu cantidad.</li>`);
+    const rest = r.eligible.slice(3).map((id) => `<li><strong>${byId[id].name}:</strong> cumple las reglas, pero quedó fuera de las tres primeras (se ordena por pesos al año con tu cantidad y, si empatan, por orden alfabético).</li>`);
     const ex = r.excluded.map((e) => `<li><strong>${byId[e.id]?.name ?? e.id}:</strong> ${reasonText[e.id]}.</li>`);
     document.getElementById('m-excl-list')!.innerHTML = rest.concat(ex).join('');
   }

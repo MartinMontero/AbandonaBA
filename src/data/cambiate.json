@@ -580,15 +580,15 @@
       ],
       "channels": {
         "app_required": true,
-        "seen": "Su cuenta se maneja desde la app: pagos, tarjeta virtual, bloqueo de tarjeta y depósito en comercios «que te aparece en la app».",
-        "source_url": "https://www.klar.mx/cuenta",
+        "seen": "Su FAQ oficial dice: «Desde la app puedes abrir una cuenta sin comisiones… todo desde tu celular».",
+        "source_url": "https://www.klar.mx/soporte-faq",
         "read_date": "2026-11-23",
         "tool": "chrome",
         "status": "verificado-primaria"
       },
       "payroll_portability": {
         "accepts": null,
-        "seen": "La página de la cuenta no menciona nómina ni portabilidad.",
+        "seen": "Ni la página de la cuenta ni su FAQ completo (leídos el 2026-11-23) mencionan nómina ni portabilidad.",
         "source_url": "https://www.klar.mx/cuenta",
         "read_date": "2026-11-23",
         "tool": "chrome",
@@ -625,19 +625,19 @@
       ],
       "channels": {
         "app_required": true,
-        "seen": "«Abre tu cuenta en minutos desde el celular»; «Mercado Pago: Cuenta Digital» disponible en la app y el sitio.",
+        "seen": "«Abre tu cuenta en minutos desde el celular»; «Mercado Pago: Cuenta Digital» disponible en la app y el sitio. Su blog agrega: «No es necesario acudir a una sucursal para operar».",
         "source_url": "https://www.mercadopago.com.mx/",
         "read_date": "2026-11-23",
         "tool": "chrome",
         "status": "verificado-primaria"
       },
       "payroll_portability": {
-        "accepts": null,
-        "seen": "La portada no menciona nómina ni portabilidad.",
-        "source_url": "https://www.mercadopago.com.mx/",
+        "accepts": true,
+        "seen": "Su blog oficial dice: «La cuenta digital de Mercado Pago permite recibir transferencias, incluida la nómina por portabilidad, a través de una CLABE interbancaria propia, con gestión completa desde la app».",
+        "source_url": "https://www.mercadopago.com.mx/blog/cambiar-nomina-de-banco",
         "read_date": "2026-11-23",
         "tool": "chrome",
-        "status": "sin-verificar"
+        "status": "verificado-primaria"
       }
     },
     {
@@ -695,7 +695,7 @@
       ],
       "channels": {
         "app_required": true,
-        "seen": "Se presenta como «100% digital»; el estado de cuenta se consulta desde la app.",
+        "seen": "Su FAQ dice: «Tus comprobantes, estados de cuenta y la app serán los únicos medios disponibles para consultar los cargos o abonos a tu Cuenta bineo». Se presenta como «100% digital».",
         "source_url": "https://www.bineo.com/cuenta-bineo",
         "read_date": "2026-11-23",
         "tool": "chrome",
@@ -703,7 +703,7 @@
       },
       "payroll_portability": {
         "accepts": null,
-        "seen": "La página de la cuenta no menciona nómina ni portabilidad.",
+        "seen": "Ni la página de la cuenta ni su FAQ mencionan nómina ni portabilidad.",
         "source_url": "https://www.bineo.com/cuenta-bineo",
         "read_date": "2026-11-23",
         "tool": "chrome",
@@ -847,7 +847,7 @@
       },
       "payroll_portability": {
         "accepts": null,
-        "seen": "La página de la cuenta no menciona nómina ni portabilidad.",
+        "seen": "Ni la página de la cuenta ni sus preguntas frecuentes mencionan nómina ni portabilidad.",
         "source_url": "https://www.storicard.com/stori-cuentamas",
         "read_date": "2026-11-23",
         "tool": "chrome",
@@ -1090,13 +1090,13 @@
       "type": "banco",
       "official_domain": "banorte.com",
       "protection": {
-        "scheme": "SIN_VERIFICAR",
-        "limit_udis": null,
-        "source_url": "https://www.banorte.com/Personal/Cuentas/Cuenta-Enlace-Digital.html",
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://www.banorte.com/GFB/IPAB.html",
         "read_date": "2026-11-23",
         "tool": "chrome",
-        "status": "sin-verificar",
-        "seen": "La página de la cuenta no mostró el aviso del IPAB en el texto leído."
+        "status": "verificado-primaria",
+        "seen": "Su página «IPAB»: «Sus cuentas bancarias están protegidas… hasta por un importe equivalente a 400 mil Unidades de inversión (Udis) por Persona Física o Moral… a cargo de una misma institución»"
       },
       "products": [
         {
@@ -1118,7 +1118,7 @@
       ],
       "channels": {
         "app_required": false,
-        "seen": "La página de nómina ofrece «Sucursales y cajeros» además de Banorte Móvil.",
+        "seen": "La página de nómina ofrece «Sucursales y cajeros» además de Banorte Móvil. La página de la Cuenta Banorte Fácil dice: «Visítanos en tu sucursal Banorte más cercana y solicita la apertura».",
         "source_url": "https://www.banorte.com/Personal/Nomina/Nomina-Personas-Fisicas.html",
         "read_date": "2026-11-23",
         "tool": "chrome",
@@ -1209,13 +1209,13 @@
       "type": "banco",
       "official_domain": "scotiabank.com.mx",
       "protection": {
-        "scheme": "SIN_VERIFICAR",
-        "limit_udis": null,
-        "source_url": "https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx",
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://cdn.aglty.io/scotia-bank-mexico/pdf/folletos/foe-cuentas-bancarias-cuenta-scotia.pdf",
         "read_date": "2026-11-23",
-        "tool": "chrome",
-        "status": "sin-verificar",
-        "seen": "No se leyó el aviso del IPAB en la página."
+        "tool": "webfetch",
+        "status": "verificado-primaria",
+        "seen": "El folleto dice que Scotia Inversión Disponible y Pagaré Único «son productos protegidos por el IPAB, hasta por 400 mil UDIS». No nombra la cuenta de cheques Cuenta Scotia."
       },
       "products": [
         {
@@ -1223,14 +1223,65 @@
           "kind": "cuenta",
           "name": "Cuenta Scotia digital (desde ScotiaMóvil)",
           "fee_summary": {
-            "monthly_mxn": null,
+            "monthly_mxn": 200,
             "plus_iva": false,
-            "text_es": "Sin comisión por manejo de cuenta los primeros tres meses al abrirla desde la app. Después se conserva el beneficio con nómina, saldo promedio, domiciliación de servicios digitales o un crédito de auto o hipoteca de Scotiabank. La página no dice el monto de la comisión ni el saldo promedio."
+            "text_es": "Solo si tu saldo promedio mensual es menor de 5,000 pesos: pagas la menor cantidad entre 200 pesos y la diferencia contra 5,000. «Administración - renta»: no aplica. Los primeros tres meses, abierta desde la app, sin comisión de manejo. El anexo no dice si el monto incluye IVA."
           },
           "interest_published": false,
-          "source_url": "https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx",
+          "source_url": "https://cdn.aglty.io/scotia-bank-mexico/spanish/pdf/acerca-de/comunicados-al-publico-en-general/CuotasyComisiones/Tarifas-y-Comisiones-Cuenta-Scotia.pdf",
           "read_date": "2026-11-23",
-          "tool": "chrome",
+          "tool": "webfetch",
+          "status": "verificado-primaria",
+          "extra_source_url": "https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx",
+          "notes": "Anexo de comisiones inscrito en el RECA el 24/08/2026: saldo promedio mínimo mensual requerido de 5,000 pesos; penalización de 200 pesos con la regla de «la menor cantidad». Ya no aparece la nota de «monto no publicado»."
+        },
+        {
+          "id": "scotia-inversion",
+          "kind": "ahorro",
+          "name": "Scotia Inversión Disponible y Pagaré Electrónico",
+          "calc_date": "2026-10-12",
+          "valid_to": "2027-01-31",
+          "min_amount_mxn": 5000,
+          "levels": [
+            {
+              "id": "inv-disponible",
+              "name": "Scotia Inversión Disponible",
+              "condition_es": null,
+              "condition_kind": "unknown",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 0.61
+                }
+              ],
+              "gat_nominal_pct": 0.61,
+              "gat_real_pct": -3.33,
+              "computable": false,
+              "published_es": "tasa variable de 0.61% (GAT nominal 0.61%, real -3.33%) para saldos de 10,000 a 99,999 pesos; solo rinde si el saldo promedio mensual es de 10,000 o más",
+              "note": "La hoja solo publica la tasa para ese rango; no se calcula para otras cantidades."
+            },
+            {
+              "id": "pagare-electronico",
+              "name": "Pagaré Electrónico a 1 día",
+              "condition_es": null,
+              "condition_kind": "unknown",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 0.6
+                }
+              ],
+              "gat_nominal_pct": 0.6,
+              "gat_real_pct": -3.34,
+              "computable": false,
+              "published_es": "tasa fija de 0.60% a 1 día (GAT real -3.34%) para montos de 5,000 a 49,999 pesos; mínimo de inversión de 5,000",
+              "note": "La hoja solo publica la tasa para ese rango; no se calcula para otras cantidades."
+            }
+          ],
+          "unk_note_es": "La hoja publica tasas solo para rangos chicos de monto; no se calculan para otras cantidades.",
+          "source_url": "https://cdn.aglty.io/scotia-bank-mexico/pdf/folletos/foe-cuentas-bancarias-cuenta-scotia.pdf",
+          "read_date": "2026-11-23",
+          "tool": "webfetch",
           "status": "verificado-primaria"
         }
       ],
@@ -1257,13 +1308,13 @@
       "type": "banco",
       "official_domain": "bancoppel.com",
       "protection": {
-        "scheme": "SIN_VERIFICAR",
-        "limit_udis": null,
-        "source_url": "https://www.bancoppel.com/descubre-mas/cuenta-efectiva-digital/",
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://www.bancoppel.com/pdf/ficha_producto_inversion_creciente.pdf",
         "read_date": "2026-11-23",
         "tool": "chrome",
-        "status": "sin-verificar",
-        "seen": "No se leyó el aviso del IPAB en el texto de la página."
+        "status": "verificado-primaria",
+        "seen": "Ficha de Inversión Creciente: «Producto garantizado por el IPAB hasta por 400 mil UDI». Ficha de la Cuenta Efectiva Digital: «Operación considerada para la garantía hasta por 400 mil UDIS por persona por institución». Las tablas anexas de esa ficha son de diciembre de 2022 y no se usan."
       },
       "products": [
         {

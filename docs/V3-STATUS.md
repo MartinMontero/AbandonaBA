@@ -148,3 +148,20 @@ Qué cambió en el sitio y en el código:
 Con 40,000 pesos y celular, el selector sugiere Openbank, Nu y Ualá. Sin celular: HSBC, Banamex y BBVA. Con nómina: Ualá, HSBC y Banamex.
 
 Sigue pendiente: aviso de protección de Banorte, Scotiabank y BanCoppel; portabilidad de Klar, Stori, Mercado Pago, bineo y Spin; si Nu y Openbank exigen la app; Inbursa; Afore, Buró, cerrar cuenta y crédito.
+
+## 12. Sexta ronda: avisos de protección y detalles de nómina y app (2026-11-23)
+
+| Pendiente | Resultado | Fuente y herramienta |
+|---|---|---|
+| Aviso de protección de Banorte | Leído: IPAB hasta 400 mil UDIs por persona y por institución | su página «IPAB», Chrome (CB36) |
+| Aviso de protección de Scotiabank | Leído para sus productos de inversión (Scotia Inversión Disponible y Pagaré Único). **No nombra la cuenta de cheques** | folleto PDF (CB38) |
+| Aviso de protección de BanCoppel | Leído en las fichas de la Cuenta Efectiva Digital y de Inversión Creciente. Las tablas anexas son de dic-2022 y no se usan | PDF en Chrome, por captura (CB39) |
+| Comisión de Scotiabank | Saldo promedio mínimo de 5,000 pesos; penalización de hasta 200 pesos; «Administración - renta» no aplica | anexo de comisiones RECA 24/08/2026 (CB38) |
+| Klar, app | Leído: «Desde la app puedes abrir una cuenta… todo desde tu celular» | FAQ oficial (CB40) |
+| bineo, app | Leído: los comprobantes y estados de cuenta solo están en la app | FAQ oficial (CB40) |
+| Mercado Pago, nómina y app | Leído: su blog oficial dice que su cuenta recibe la nómina por portabilidad y que no hay que ir a sucursal | blog oficial (CB40) |
+| Klar, Stori, bineo, nómina | Ni sus páginas ni sus FAQ la mencionan. Sigue sin verificar | CB40 |
+
+Notas de método:
+- Dos PDFs de Scotiabank y uno de BanCoppel no se descargaron con `curl` (falla de revocación de certificado en esta máquina; «Access Denied» en BanCoppel). No se desactivó ninguna verificación ni se saltó el bloqueo: los de Scotiabank se leyeron con el agente de lectura y `pdftotext`, y los de BanCoppel en el visor de Chrome.
+- Mercado Pago sigue sin aparecer en las sugerencias porque no se verificó qué tipo de institución es ni si sus depósitos tienen protección.
