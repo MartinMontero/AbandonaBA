@@ -2,18 +2,78 @@
 import Base from '../layouts/Base.astro';
 import dir from '../data/directorio.json';
 const sources = dir.map((d) => ({ title: d.name, url: d.source_url, read: d.as_of + ' (enlace accesible; contenido no releído salvo donde se cita la ley)' }));
+const by = Object.fromEntries(dir.map((d) => [d.id, d])) as Record<string, (typeof dir)[number]>;
+const short = (n: string) => n.replace(/\s*\(.*\)/, '');
+// Cada ruta usa solo lo que dice directorio.json; los pasos remiten a la entidad.
+const goals = [
+  { t: 'Quiero asesoría gratis', s: 'Hablar con un abogado sin pagar', h: 'Empieza con PROFEDET', steps: [
+    { id: 'profedet', do: 'Pide tu cita de asesoría' },
+  ] },
+  { t: 'Me despidieron o quiero reclamar', s: 'Ruta de un reclamo', h: 'Tres pasos antes de ir al Tribunal', steps: [
+    { id: 'profedet', do: 'Pide asesoría gratis' },
+    { id: 'cfcrl', do: 'Pide la conciliación (obligatoria casi siempre, no pasa de 45 días)' },
+    { id: null, do: 'Si no hay acuerdo, sigue el Tribunal. Cuenta tus plazos desde hoy.', href: '/plazos/', label: 'Mis plazos' },
+  ] },
+  { t: 'Mi trabajo me hace daño', s: 'Estrés, acoso, malas condiciones', h: 'Presenta una queja', steps: [
+    { id: 'stps', do: 'Queja por condiciones de trabajo' },
+    { id: 'profedet', do: 'Asesoría gratis para ver tus opciones' },
+  ] },
+  { t: 'Salud y semanas cotizadas', s: 'Después de salir', h: 'Revisa tu IMSS', steps: [
+    { id: 'imss', do: 'Consulta tus semanas y tu atención médica' },
+  ] },
+  { t: 'Mi dinero: retiro y vivienda', s: 'Afore e Infonavit', h: 'Revisa tus dos cuentas', steps: [
+    { id: 'consar', do: 'Tu Afore y el retiro por desempleo' },
+    { id: 'infonavit', do: 'Tu crédito y tu saldo' },
+  ] },
+  { t: 'Quiero formar una cooperativa', s: 'Con mis compañeros', h: 'Registro gratuito', steps: [
+    { id: 'inaes', do: 'Registra tu cooperativa' },
+    { id: null, do: 'Mira cómo se arma una.', href: '/cooperativa/', label: 'Guía de cooperativa' },
+  ] },
+];
 ---
 <Base art="help" title="Ayuda gratis" description="Dónde pedir ayuda laboral gratuita." path="/ayuda-gratis/" legal claims={['C05','C10','C17']} sources={sources} card="ayuda-gratis">
-  <p>Solo listamos entidades cuyo enlace comprobamos hoy. No publicamos teléfonos porque no pudimos verificarlos en el sitio oficial el día de la revisión. Entra al sitio de cada una.</p>
-  <ul class="plain">
-    {dir.map((d) => (
-      <li class="card" id={d.id}>
-        <strong><a href={d.url} rel="noopener noreferrer">{d.name}</a></strong>
-        <span class={`tag t-${d.status}`}>{d.status}</span>
-        <p>{d.what}</p>
-        <small>Revisado el {d.as_of}.</small>
-      </li>
-    ))}
-  </ul>
-  <p>Cómo funciona la conciliación: se pide antes de ir al Tribunal, salvo las excepciones del Art. 685 Ter (discriminación, acoso, seguridad social, derechos fundamentales y otras). No pasa de 45 días naturales.</p>
+  <p class="lede">Elige lo que necesitas. Te mostramos a dónde ir, en orden.</p>
+  <fieldset class="pick">
+    <legend>¿Qué necesitas?</legend>
+    <div class="pick-opts">
+      {goals.map((g, i) => (<>
+        <input type="radio" name="meta" id={`c${i + 1}`} checked={i === 0} /><label for={`c${i + 1}`}><b>{g.t}</b><span>{g.s}</span></label>
+      </>))}
+      <div class="pick-out" aria-live="polite">
+        {goals.map((g, i) => (
+          <section class={`pk pk${i + 1}`}>
+            <h2>{g.h}</h2>
+            <ol class="steps">
+              {g.steps.map((st) => st.id ? (
+                <li><div>
+                  <h3>{st.do}</h3>
+                  <p><strong>{short(by[st.id].name)}</strong> <span class={`tag t-${by[st.id].status}`}>{by[st.id].status}</span></p>
+                  <a class="btn" href={by[st.id].url} rel="noopener noreferrer">Ir al sitio oficial</a>
+                </div></li>
+              ) : (
+                <li><div><h3>{st.do}</h3><a class="btn tonal" href={st.href}>{st.label}</a></div></li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="callout warn"><p><strong>Cuidado con ofertas de crédito.</strong> {by.finabien.what}</p></div>
+  <p class="small">No publicamos teléfonos porque no pudimos verificarlos en el sitio oficial el día de la revisión. Entra al sitio de cada entidad.</p>
+
+  <details class="compare"><summary>Ver todas las entidades y qué hace cada una</summary>
+    <ul class="plain">
+      {dir.map((d) => (
+        <li class="card" id={d.id}>
+          <strong><a href={d.url} rel="noopener noreferrer">{d.name}</a></strong>
+          <span class={`tag t-${d.status}`}>{d.status}</span>
+          <p>{d.what}</p>
+          <small>Revisado el {d.as_of}.</small>
+        </li>
+      ))}
+    </ul>
+    <p>Cómo funciona la conciliación: se pide antes de ir al Tribunal, salvo las excepciones del Art. 685 Ter (discriminación, acoso, seguridad social, derechos fundamentales y otras). No pasa de 45 días naturales.</p>
+  </details>
 </Base>
