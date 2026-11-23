@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { siteConfig, legalReview, statusLabels, isReview } from '../data/site.config';
+import { siteConfig, legalReview, financialReview, statusLabels, isReview } from '../data/site.config';
 import ReviewPanel from '../components/ReviewPanel.astro';
 import ShareRow from '../components/ShareRow.astro';
 import Art from '../components/Art.astro';
@@ -13,6 +13,7 @@ interface Props {
   path: string; // ruta con barra inicial y final, p. ej. "/salidas/"
   lang?: 'es' | 'en';
   legal?: boolean;
+  finance?: boolean; // páginas de Cámbiate: nota de revisión financiera
   claims?: string[];
   decisions?: string[];
   sources?: Source[];
@@ -24,7 +25,7 @@ interface Props {
   toc?: TocItem[];
   art?: string; // ilustración del encabezado
 }
-const { title, description = '', path, lang = 'es', legal = false, claims = [], decisions = [], sources = [], card, wide = false, hero = false, eyebrow = '', lead = false, toc = [], art = 'shield' } = Astro.props;
+const { title, description = '', path, lang = 'es', legal = false, finance = false, claims = [], decisions = [], sources = [], card, wide = false, hero = false, eyebrow = '', lead = false, toc = [], art = 'shield' } = Astro.props;
 const es = lang === 'es';
 const basePath = path.replace(/^\/en\//, '/');
 const altEs = basePath;
@@ -100,7 +101,12 @@ const hasToc = tocItems.length >= 3;
               {eyebrow && <p class="eyebrow">{eyebrow}</p>}
               <h1>{title}</h1>
               {lead && description && <p class="lead">{description}</p>}
-              {legal && (
+              {finance && (
+                <p class="legal-note" role="note">
+                  <span class="legal-chip">{financialReview.status === 'pendiente' ? siteConfig.financeNote : `Revisión financiera firmada por ${financialReview.reviewers.join(', ')}.`} Datos al {siteConfig.cambiateDate}. · Última revisión: {financialReview.status === 'pendiente' || !financialReview.fecha ? 'pendiente' : financialReview.fecha}</span>
+                </p>
+              )}
+              {legal && !finance && (
                 <p class="legal-note" role="note">
                   <span class="legal-chip">{legalReview.status === 'pendiente' ? siteConfig.legalNote : `Revisión legal firmada por ${legalReview.reviewers.join(', ')}.`} · Última revisión legal: {legalReview.status === 'pendiente' || !legalReview.fecha ? 'pendiente' : legalReview.fecha}</span>
                 </p>

@@ -3,6 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
+const claimCount = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src', 'data', 'claims-register.json'), 'utf8')).length;
 const vec = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'tests', 'vectors.json'), 'utf8'));
 
 function routesFor(review: boolean): string[] {
@@ -132,7 +133,7 @@ test('revisión: pruebas en vivo, dictamen y matriz', async ({ page }, info) => 
   await expect(page.locator('#resumen')).toContainText('0 FAIL');
   expect(await page.locator('td.fail').count()).toBe(0);
   await page.goto('/revision/dictamen/');
-  await expect(page.locator('table.dict').first().locator('tbody tr')).toHaveCount(26);
+  await expect(page.locator('table.dict').first().locator('tbody tr')).toHaveCount(claimCount);
   await page.goto('/revision/');
   await expect(page.locator('#D1-a')).toBeVisible();
   await page.fill('#r-base', '3000'); await page.click('#r-reset');

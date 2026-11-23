@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "version": 1,
+    "built_from_date": "2026-11-23",
+    "note": "Solo valores leídos en páginas oficiales el 2026-11-23. Lo que no aparece aquí no se pudo verificar y la página lo dice. Ver docs/VERIFICATION.md.",
+    "udi": {
+      "value": 8.925504,
+      "date": "2026-11-22",
+      "source_url": "https://www.banxico.org.mx/",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "Indicador UDIS: 8.925504, 22-NOV-2026 (portada de Banxico)"
+    },
+    "cetes28": {
+      "value": 6.19,
+      "date": "2026-11-17",
+      "source_url": "https://www.banxico.org.mx/",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "Indicador CETES 28: 6.19, 17-NOV-2026 (portada de Banxico)"
+    },
+    "fix": {
+      "value": 19.0228,
+      "date": "2026-11-20",
+      "source_url": "https://www.banxico.org.mx/",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "Tipo de cambio FIX: 19.0228, 20-NOV-2026 (portada de Banxico)"
+    }
+  },
+  "protection": {
+    "ipab": {
+      "limit_udis": 400000,
+      "source_url": "https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html",
+      "read_date": "2026-11-23",
+      "tool": "chrome",
+      "status": "verificado-primaria",
+      "seen": "«protegida por el IPAB hasta por el equivalente a 400 mil UDIs, por persona, por banco» (declaración de Banco Azteca en su página oficial; la página del IPAB no mostró el límite)"
+    },
+    "prosofipo": {
+      "limit_udis": 25000,
+      "source_url": "https://www.prosofipo.mx/",
+      "read_date": "2026-11-23",
+      "tool": "webfetch",
+      "status": "verificado-primaria",
+      "seen": "«podrá cubrirle hasta 25,000 Unidades de Inversión (UDIS)»; la SOFIPO debe estar asociada al Fondo"
+    }
+  },
+  "institutions": [
+    {
+      "id": "banco-azteca",
+      "name": "Banco Azteca",
+      "type": "banco",
+      "official_domain": "bancoazteca.com.mx",
+      "official_contact": [
+        {
+          "label": "Línea Azteca",
+          "phone": "55 5447 8810",
+          "source_url": "https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html",
+          "read_date": "2026-11-23",
+          "tool": "chrome"
+        },
+        {
+          "label": "Unidad Especializada",
+          "phone": "55 1720 7272",
+          "source_url": "https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html",
+          "read_date": "2026-11-23",
+          "tool": "chrome"
+        }
+      ],
+      "products": [
+        {
+          "id": "cuenta-operativa",
+          "kind": "cuenta",
+          "name": "Cuenta Operativa Azteca",
+          "fee_admin_mxn": 400,
+          "fee_admin_plus_iva": true,
+          "exemptions_es": [
+            "Saldo promedio mensual de 10,000 pesos o más.",
+            "Recibir tu nómina, portabilidad o pensión en esa cuenta.",
+            "Contratar una inversión a plazo desde 10,000 pesos."
+          ],
+          "promo_es": "Por promoción la comisión puede reducirse según tus movimientos de efectivo y tu saldo promedio mensual; la tabla de referencia está en la página oficial.",
+          "other_es": "Hasta 2 retiros en cajeros o ventanillas de Banco Azteca (beneficio que lista la página).",
+          "interest_annual_pct": 0,
+          "gat_nominal_pct": -53.33,
+          "gat_real_pct": -55.1,
+          "gat_basis": "Cálculo sobre 9,000 pesos a 365 días, fecha de cálculo 2026-11-11",
+          "valid_from": "2026-11-11",
+          "valid_to": "2027-05-11",
+          "source_url": "https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "exempt_balance_mxn": 10000,
+          "term_investment_min_mxn": 10000
+        },
+        {
+          "id": "guardadito",
+          "kind": "cuenta",
+          "name": "Guardadito y Guardadito Digital",
+          "gat_nominal_pct": 0.0,
+          "gat_real_pct": -3.61,
+          "gat_basis": "Cálculo sobre 1,000 pesos a 365 días, fecha de cálculo 2026-05-01",
+          "valid_from": "2026-05-28",
+          "valid_to": "2026-11-28",
+          "source_url": "https://www.bancoazteca.com.mx/productos/cuentas/guardadito.html",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "notes": "La página oficial da GAT nominal 0.00%. La tasa de 0.01% que citaba una fuente anterior no aparece. Ver docs/DISCREPANCIES.md."
+        },
+        {
+          "id": "prestamo-efectivo",
+          "kind": "credito",
+          "name": "Préstamo en efectivo (Credimax Efectivo)",
+          "cat_avg_pct": 85.5,
+          "cat_sin_iva": true,
+          "rate_fixed_annual_pct": 48.17,
+          "rate_sin_iva": true,
+          "amount_min_mxn": 2000,
+          "amount_max_mxn": 200000,
+          "calc_date": "2026-08-31",
+          "valid_from": "2026-09-01",
+          "valid_to": "2027-02-28",
+          "source_url": "https://www.bancoazteca.com.mx/productos/prestamos/prestamos-personales.html",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "notes": "El micrositio de solicitud pudo mostrar otra cifra; no se leyó. Ver docs/DISCREPANCIES.md."
+        }
+      ]
+    }
+  ],
+  "remittance_providers": [
+    {
+      "id": "wise",
+      "name": "Wise",
+      "featured": true,
+      "payout": [
+        "clabe",
+        "debit_card"
+      ],
+      "no_cash_pickup": true,
+      "excluded": [
+        {
+          "name": "BanCoppel",
+          "clabe_prefix": "137"
+        },
+        {
+          "name": "Caja Popular Mexicana",
+          "clabe_prefix": "677"
+        },
+        {
+          "name": "Banco Azteca",
+          "clabe_prefix": "127"
+        },
+        {
+          "name": "CIBanco",
+          "clabe_prefix": null
+        },
+        {
+          "name": "Intercam",
+          "clabe_prefix": null
+        },
+        {
+          "name": "Vector Casa de Bolsa",
+          "clabe_prefix": null
+        }
+      ],
+      "cost_samples": {
+        "send_usd": 1000,
+        "undated": true,
+        "items": [
+          {
+            "funding": "Pago domiciliado",
+            "cost_usd": 7.67
+          },
+          {
+            "funding": "Transferencia bancaria",
+            "cost_usd": 12.07
+          },
+          {
+            "funding": "Tarjeta de débito",
+            "cost_usd": 18.2
+          },
+          {
+            "funding": "Tarjeta de crédito",
+            "cost_usd": 67.33
+          }
+        ],
+        "note": "La página no muestra fecha. No se usan para ordenar. Cotiza hoy en la app de Wise."
+      },
+      "source_url": "https://wise.com/help/articles/2932354",
+      "extra_source_url": "https://wise.com/mx/send-money/send-money-to-mexico",
+      "read_date": "2026-11-23",
+      "tool": "webfetch",
+      "status": "verificado-primaria"
+    },
+    {
+      "id": "remitly",
+      "name": "Remitly",
+      "featured": true,
+      "payout": [
+        "bank_deposit",
+        "mobile_wallet",
+        "cash_pickup"
+      ],
+      "cash_pickup_named": [
+        "Elektra / Banco Azteca",
+        "BanCoppel",
+        "Walmart",
+        "Santander",
+        "HSBC",
+        "Scotiabank",
+        "OXXO",
+        "Farmacias Guadalajara",
+        "Banorte",
+        "Bodega Aurrera",
+        "Mercado Pago"
+      ],
+      "named_note": "La página muestra estos nombres en su red de entrega pero no dice cuáles son pago en efectivo, depósito o cartera.",
+      "promo_es": "Primer envío sin comisión y tipo de cambio promocional para clientes nuevos, por tiempo limitado.",
+      "fees_published": false,
+      "source_url": "https://www.remitly.com/us/en/money-transfer/send-money-to-mexico",
+      "extra_source_url": "https://www.remitly.com/us/es/share-us-mx",
+      "read_date": "2026-11-23",
+      "tool": "webfetch",
+      "status": "verificado-primaria"
+    }
+  ],
+  "us_remittance_tax": {
+    "rate_pct": 1,
+    "applies_when_es": "Cuando el remitente paga con efectivo, giro postal, cheque de caja u otro instrumento físico similar.",
+    "not_applies_es": "No aplica si el envío sale de una cuenta en una institución financiera cubierta o se paga con una tarjeta de débito o crédito emitida en Estados Unidos.",
+    "who_pays_es": "Lo paga el remitente; la empresa lo cobra y lo entrega.",
+    "effective_es": "Envíos hechos después del 31 de diciembre de 2025.",
+    "fee_in_base": "no verificado",
+    "source_url": "https://www.law.cornell.edu/uscode/text/26/4475",
+    "read_date": "2026-11-23",
+    "tool": "webfetch",
+    "status": "verificado-secundaria",
+    "note": "Texto del Código de EE. UU. leído en una copia del Legal Information Institute, no en una fuente oficial del gobierno."
+  }
+}

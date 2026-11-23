@@ -53,7 +53,9 @@ describe('compuerta de revisión legal', () => {
 });
 
 const hasProd = fs.existsSync(path.join(root, 'dist'));
-const hasRev = fs.existsSync(path.join(root, 'dist-review'));
+// Una compilación de revisión anterior al registro de afirmaciones no sirve para esta prueba; `verify:review` la recompila.
+const revIndex = path.join(root, 'dist-review/revision/index.html');
+const hasRev = fs.existsSync(revIndex) && fs.statSync(revIndex).mtimeMs >= fs.statSync(path.join(root, 'src/data/claims-register.json')).mtimeMs;
 
 describe.skipIf(!hasProd)('build de producción', () => {
   const pages = htmlOf('dist');

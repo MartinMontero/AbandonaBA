@@ -1,0 +1,43 @@
+{
+  "_nota": "Vectores de la sección 7B. La tasa 18.00 es un valor de PRUEBA, no una tasa de mercado. UDI 8.927827 es el valor de los vectores, no el del sitio.",
+  "udi": 8.927827,
+  "proteccion": [
+    { "id": "ipab", "udis": 400000, "mxn": 3571130.8 },
+    { "id": "prosofipo", "udis": 25000, "mxn": 223195.68 }
+  ],
+  "ahorro": [
+    { "id": "mezcla-cumple", "amount": 40000, "rateHiPct": 13, "capMxn": 25000, "rateBasePct": 6.5, "conditionsMet": true, "interest": 4225.0, "blendedPct": 10.5625 },
+    { "id": "mezcla-no-cumple", "amount": 40000, "rateHiPct": 13, "capMxn": 25000, "rateBasePct": 6.5, "conditionsMet": false, "interest": 2600.0 },
+    { "id": "simple-001", "amount": 10000, "ratePct": 0.01, "interest": 1.0 },
+    { "id": "simple-650", "amount": 10000, "ratePct": 6.5, "interest": 650.0 }
+  ],
+  "operativa": [
+    { "id": "sin-exencion", "balance": 3000, "payroll": false, "termInvestment": false, "monthly": 464.0, "yearly": 5568.0, "share": 0.154667 },
+    { "id": "saldo-10000", "balance": 10000, "payroll": false, "termInvestment": false, "monthly": 0 },
+    { "id": "nomina", "balance": 500, "payroll": true, "termInvestment": false, "monthly": 0 },
+    { "id": "inversion", "balance": 500, "payroll": false, "termInvestment": true, "monthly": 0 }
+  ],
+  "remesas": [
+    { "id": "banco", "total": 200, "fee": 1.99, "funding": "bank", "rate": 18.0, "refRate": 18.0, "sent": 198.01, "pesos": 3564.18, "costPct": 0.995 },
+    { "id": "efectivo", "total": 200, "fee": 1.99, "funding": "cash", "rate": 18.0, "refRate": 18.0, "sent": 196.0495, "pesos": 3528.89, "costPct": 1.975 }
+  ],
+  "wise": [
+    { "clabe": "127", "puede": false },
+    { "clabe": "137", "puede": false },
+    { "clabe": "677", "puede": false },
+    { "clabe": "012", "puede": true },
+    { "clabe": "", "puede": true }
+  ],
+  "afore": [
+    { "balance": 100000, "gap": 1.77, "pesos": 1770.0 }
+  ],
+  "siefore": [
+    { "year": 1992, "es": "SB 90-94" },
+    { "year": 2001, "es": "SB Inicial" },
+    { "year": 1962, "es": "SB 60-64" },
+    { "year": 1950, "es": "SB Pensiones" }
+  ],
+  "credito": [
+    { "weekly": 215, "weeks": 60, "restante": 12900.0 }
+  ]
+}

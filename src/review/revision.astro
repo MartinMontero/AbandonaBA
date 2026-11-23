@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import { enrichedRegister } from '../lib/claims.mjs';
 import { legalRoutes } from '../data/routes';
 const reg = enrichedRegister();
-const tiers: Record<string, string> = { A: 'Prioridad A: Art. 439 y reducciones disfrazadas, salidas y plazos, fórmulas', B: 'Prioridad B: pago, horarios, reforma de 40 horas, seguridad social, impuestos', C: 'Prioridad C: organización, represalias, redacción del sitio' };
+const tiers: Record<string, string> = { A: 'Prioridad A: Art. 439 y reducciones disfrazadas, salidas y plazos, fórmulas', B: 'Prioridad B: pago, horarios, reforma de 40 horas, seguridad social, impuestos', C: 'Prioridad C: organización, represalias, redacción del sitio', D: 'Prioridad D: Cámbiate (clientes): protección de depósitos, comisiones y CAT publicados, remesas e impuesto de EE. UU., portabilidad de nómina, redacción neutral' };
 ---
 <Base title="Mesa de revisión para abogados" description="Mesa de trabajo para revisar la herramienta." path="/revision/" legal wide claims={['C01','C04','C08','C20']} decisions={['D1','D2','D3','D4','D5']}>
   <h2>Cómo revisar esta herramienta</h2>
@@ -17,7 +17,7 @@ const tiers: Record<string, string> = { A: 'Prioridad A: Art. 439 y reducciones 
   <p><a class="btn" href="/revision/pruebas/">Pruebas en vivo</a> <a class="btn secondary" href="/revision/dictamen/">Hoja de dictamen</a></p>
 
   <h2>Prioridades</h2>
-  {['A','B','C'].map((t) => (
+  {['A','B','C','D'].map((t) => (
     <div class="card"><h3>{tiers[t]}</h3>
       <ul>{reg.filter((c: any) => c.tier === t).map((c: any) => <li><strong>{c.id}</strong> · {c.pages.length ? c.pages.map((p: string) => <><a href={p}>{p}</a>{' '}</>) : 'sin página'} </li>)}</ul>
     </div>

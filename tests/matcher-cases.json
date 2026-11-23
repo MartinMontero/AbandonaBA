@@ -1,0 +1,30 @@
+{
+  "_nota": "Candidatos de PRUEBA (no son instituciones reales). Faltan casos para llegar a 25; ver docs/BLOCKERS.md.",
+  "udi": 8.927827,
+  "candidatos": [
+    { "id": "a-banco", "type": "banco", "appOnly": false, "acceptsPortabilidad": true, "verified": true, "stale": false, "protectedUdis": 400000 },
+    { "id": "b-app-banco", "type": "banco", "appOnly": true, "acceptsPortabilidad": true, "verified": true, "stale": false, "protectedUdis": 400000 },
+    { "id": "c-sofipo-app", "type": "sofipo", "appOnly": true, "acceptsPortabilidad": false, "verified": true, "stale": false, "protectedUdis": 25000 },
+    { "id": "d-ifpe", "type": "ifpe", "appOnly": false, "acceptsPortabilidad": false, "verified": true, "stale": false, "protectedUdis": null },
+    { "id": "e-sin-verificar", "type": "banco", "appOnly": false, "acceptsPortabilidad": true, "verified": false, "stale": false, "protectedUdis": 400000 },
+    { "id": "f-vencido", "type": "banco", "appOnly": false, "acceptsPortabilidad": true, "verified": true, "stale": true, "protectedUdis": 400000 }
+  ],
+  "casos": [
+    { "id": "base", "a": { "smartphone": "si", "wantsPayrollMove": false, "savingsMxn": 1000 }, "ids": ["a-banco", "b-app-banco", "c-sofipo-app"], "excluidos": ["e-sin-verificar", "f-vencido"] },
+    { "id": "sin-celular", "a": { "smartphone": "no", "wantsPayrollMove": false, "savingsMxn": 1000 }, "ids": ["a-banco", "d-ifpe"], "excluidos": ["b-app-banco", "c-sofipo-app"] },
+    { "id": "a-veces-celular", "a": { "smartphone": "a-veces", "wantsPayrollMove": false, "savingsMxn": 1000 }, "ids": ["a-banco", "b-app-banco", "c-sofipo-app"], "excluidos": [] },
+    { "id": "nomina", "a": { "smartphone": "si", "wantsPayrollMove": true, "savingsMxn": 1000 }, "ids": ["a-banco", "b-app-banco"], "excluidos": ["c-sofipo-app", "d-ifpe"] },
+    { "id": "nomina-sin-celular", "a": { "smartphone": "no", "wantsPayrollMove": true, "savingsMxn": 1000 }, "ids": ["a-banco"], "excluidos": ["b-app-banco", "c-sofipo-app", "d-ifpe"] },
+    { "id": "ahorro-alto", "a": { "smartphone": "si", "wantsPayrollMove": false, "savingsMxn": 300000 }, "ids": ["a-banco", "b-app-banco", "d-ifpe"], "excluidos": ["c-sofipo-app"] },
+    { "id": "ahorro-en-el-limite", "a": { "smartphone": "si", "wantsPayrollMove": false, "savingsMxn": 223195 }, "ids": ["a-banco", "b-app-banco", "c-sofipo-app"], "excluidos": [] },
+    { "id": "ahorro-alto-sin-celular", "a": { "smartphone": "no", "wantsPayrollMove": false, "savingsMxn": 300000 }, "ids": ["a-banco", "d-ifpe"], "excluidos": ["b-app-banco", "c-sofipo-app"] }
+  ],
+  "todos_vencidos_o_sin_verificar": {
+    "candidatos": [
+      { "id": "x", "type": "banco", "appOnly": false, "acceptsPortabilidad": true, "verified": false, "stale": false, "protectedUdis": null },
+      { "id": "y", "type": "banco", "appOnly": false, "acceptsPortabilidad": true, "verified": true, "stale": true, "protectedUdis": 400000 }
+    ],
+    "a": { "smartphone": "si", "wantsPayrollMove": false, "savingsMxn": 1000 },
+    "mensaje": "No hay suficientes datos verificados para sugerirte una opción."
+  }
+}

@@ -365,3 +365,129 @@ Bases de un negocio propio. RESICO (LISR Art. 113-E, texto vigente): pueden opta
 **Pregunta para el abogado:** No requiere dictamen laboral; confirma con un contador.
 
 **Páginas:** /negocio/
+
+## CB01 · verificado-primaria · prioridad D
+
+Cuenta Operativa Azteca: comisión de Administración - Renta de 400 pesos más IVA. Se exenta con saldo promedio mensual de 10,000 pesos o más, con nómina, portabilidad o pensión depositada en la cuenta, o con una inversión a plazo desde 10,000 pesos. Por promoción puede reducirse según movimientos de efectivo y saldo promedio.
+
+**Fuentes:** [Banco Azteca: Cuenta Operativa Azteca (página oficial)](https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html) (leída 2026-11-23)
+
+**Conflicto abierto:** No se leyó el folleto informativo ni la tabla de referencia de la promoción (son archivos PDF o imágenes). Una fuente de prensa dice que a algunos clientes de Guardadito les cambiaron la cuenta a Operativa; no se verificó.
+
+**Debe confirmar:** Leer el folleto y los términos de exención en PDF y la tabla de reducción por promoción.
+
+**Pregunta para el abogado:** ¿La descripción de la comisión y de sus exenciones es fiel al folleto vigente y no induce a pensar que a todos los clientes se les cobra?
+
+**Páginas:** /cambiate/cuanto-me-cuesta/, /cambiate/nomina/
+
+## CB03 · verificado-primaria · prioridad D
+
+Guardadito y Guardadito Digital: la página oficial muestra GAT nominal 0.00% y GAT real -3.61% (cálculo del 1 de mayo de 2026 sobre 1,000 pesos; vigencia del 28 de mayo al 28 de noviembre de 2026).
+
+**Fuentes:** [Banco Azteca: Guardadito (página oficial)](https://www.bancoazteca.com.mx/productos/cuentas/guardadito.html) (leída 2026-11-23)
+
+**Conflicto abierto:** Una fuente anterior citaba 0.01% de interés fijo y cargo por inactividad de 10 pesos; no aparecen en la página actual. La vigencia de la GAT termina el 28 de noviembre de 2026.
+
+**Debe confirmar:** Leer el folleto informativo vigente (PDF) y las comisiones en la página de costos.
+
+**Pregunta para el abogado:** ¿Puede publicarse que Guardadito no paga interés según su GAT nominal de 0.00%?
+
+**Páginas:** /cambiate/ahorro/, /cambiate/cuanto-me-cuesta/
+
+## CB04 · verificado-primaria · prioridad D
+
+Préstamo en efectivo (Credimax Efectivo), de 2,000 a 200,000 pesos: CAT promedio 85.5% sin IVA, tasa fija anual ordinaria 48.17% sin IVA, calculado al 31 de agosto de 2026, vigencia del 1 de septiembre de 2026 al 28 de febrero de 2027.
+
+**Fuentes:** [Banco Azteca: préstamos personales (página oficial)](https://www.bancoazteca.com.mx/productos/prestamos/prestamos-personales.html) (leída 2026-11-23)
+
+**Conflicto abierto:** El micrositio de solicitud pudo mostrar otra cifra de CAT y de tasa; no se leyó.
+
+**Debe confirmar:** Leer el micrositio de solicitud y el folleto del producto.
+
+**Pregunta para el abogado:** ¿Es correcto presentar el CAT promedio con su fecha de cálculo y vigencia y avisar que cambia por cliente?
+
+**Páginas:** /cambiate/cuanto-me-cuesta/
+
+## CB06 · verificado-primaria · prioridad D
+
+Banco Azteca declara en su página oficial que sus cuentas están protegidas por el IPAB hasta por el equivalente a 400 mil UDIs por persona y por banco. El valor de la UDI el 22 de noviembre de 2026 fue 8.925504 (Banxico), así que el límite equivale a 3,570,201.60 pesos ese día.
+
+**Fuentes:** [Banco Azteca: Cuenta Operativa (nota de protección)](https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html) (leída 2026-11-23); [Banxico: portada, indicador UDIS](https://www.banxico.org.mx/) (leída 2026-11-23)
+
+**Conflicto abierto:** La página del IPAB en gob.mx no mostró el límite. El límite lo declara el banco, no se leyó en el IPAB ni en la ley.
+
+**Debe confirmar:** Leer el límite en el IPAB o en la Ley de Protección al Ahorro Bancario.
+
+**Pregunta para el abogado:** ¿El límite de 400 mil UDIs por persona y por banco es el vigente según la ley?
+
+**Páginas:** /cambiate/ahorro/, /cambiate/
+
+## CB07 · verificado-primaria · prioridad D
+
+El Fondo de Protección de SOFIPOs dice que puede cubrir hasta 25,000 UDIS por persona en caso de liquidación, y que la SOFIPO debe estar asociada al Fondo.
+
+**Fuentes:** [Prosofipo (sitio oficial del Fondo)](https://www.prosofipo.mx/) (leída 2026-11-23)
+
+**Conflicto abierto:** No se leyó el listado de sociedades asociadas.
+
+**Debe confirmar:** Leer el listado de SOFIPOs asociadas y las reglas del Fondo.
+
+**Pregunta para el abogado:** ¿La explicación de la cobertura de SOFIPOs es correcta y suficiente para el lector?
+
+**Páginas:** /cambiate/ahorro/, /cambiate/
+
+## CB16 · verificado-secundaria · prioridad D
+
+Portabilidad de nómina: derecho a pasar el depósito de tu sueldo de un banco a otro, sin costo y sin límite de veces. Se pide en el banco que recibe la nómina. Plazo reportado: hasta 10 días hábiles.
+
+**Fuentes:** [CONDUSEF vía prensa, y guía de BBVA (citadas en la investigación; no releídas)](https://www.condusef.gob.mx) (leída no releída)
+
+**Conflicto abierto:** Otra fuente dice 5 días hábiles en el banco que envía y 10 por el que recibe. La guía de BBVA cita el Art. 18 de la LTOSF, pero el texto de la LTOSF (reforma DOF 14-11-2025) no menciona la portabilidad; no se cita artículo. La Circular 3/2012 de Banxico no se leyó.
+
+**Debe confirmar:** Leer la Circular 3/2012 de Banxico y la norma que regula la portabilidad.
+
+**Pregunta para el abogado:** ¿Cuál es la norma vigente de portabilidad de nómina y cuál es el plazo correcto?
+
+**Páginas:** /cambiate/nomina/
+
+## CB17 · verificado-primaria · prioridad D
+
+Wise deposita en México a cuenta bancaria (CLABE) o tarjeta de débito; no ofrece pago en efectivo. Su ayuda dice que no puede depositar a Banco Azteca (CLABE 127), BanCoppel (137), Caja Popular Mexicana (677), CIBanco, Intercam y Vector. La página muestra costos de ejemplo para enviar 1,000 USD sin fecha.
+
+**Fuentes:** [Wise: guía de transferencias en MXN (ayuda)](https://wise.com/help/articles/2932354) (leída 2026-11-23); [Wise: enviar dinero a México](https://wise.com/mx/send-money/send-money-to-mexico) (leída 2026-11-23)
+
+**Conflicto abierto:** La página no dice si la lista de exclusión está al día. Una lectura anterior mostraba otro costo por tarjeta de débito (41.11 USD frente a 18.20 USD ahora).
+
+**Debe confirmar:** Volver a leer la lista de exclusión antes de cada actualización y cotizar con fecha.
+
+**Pregunta para el abogado:** ¿Es correcto afirmar que Wise no deposita a Banco Azteca sin riesgo de desactualización?
+
+**Páginas:** /cambiate/remesas/
+
+## CB18 · verificado-primaria · prioridad D
+
+Remitly ofrece depósito bancario, cartera móvil y pago en efectivo en México. Su red nombra a Elektra / Banco Azteca, BanCoppel, Walmart, Santander, HSBC, Scotiabank, OXXO, Farmacias Guadalajara, Banorte, Bodega Aurrera y Mercado Pago. Anuncia primer envío sin comisión para clientes nuevos, por tiempo limitado.
+
+**Fuentes:** [Remitly: enviar dinero a México](https://www.remitly.com/us/en/money-transfer/send-money-to-mexico) (leída 2026-11-23); [Remitly: página en español](https://www.remitly.com/us/es/share-us-mx) (leída 2026-11-23)
+
+**Conflicto abierto:** La página no dice cuáles puntos son efectivo, depósito o cartera ni muestra comisiones fijas. No se confirmó el requisito de identificación para recoger efectivo.
+
+**Debe confirmar:** Leer la página de costos de Remitly y cotizar con fecha.
+
+**Pregunta para el abogado:** ¿Es correcto nombrar la red de Remitly sin decir qué punto ofrece cada método?
+
+**Páginas:** /cambiate/remesas/
+
+## CB19 · verificado-secundaria · prioridad D
+
+Impuesto de EE. UU. a las remesas (26 U.S.C. 4475): 1% sobre el monto del envío cuando el remitente paga con efectivo, giro, cheque de caja u otro instrumento físico similar. No aplica si se paga desde una cuenta en una institución cubierta o con tarjeta de débito o crédito emitida en EE. UU. Lo paga el remitente y la empresa lo cobra. Aplica a envíos después del 31 de diciembre de 2025.
+
+**Fuentes:** [26 U.S.C. 4475 (copia del Legal Information Institute)](https://www.law.cornell.edu/uscode/text/26/4475) (leída 2026-11-23)
+
+**Conflicto abierto:** El texto no dice si la base excluye las comisiones del proveedor (supuesto R1). No se leyeron las reglas del IRS ni el Federal Register; el umbral de 15 USD no se verificó. La fuente es una copia, no el sitio oficial del gobierno.
+
+**Debe confirmar:** Leer irs.gov y los reglamentos propuestos y finales.
+
+**Pregunta para el abogado:** ¿La base del impuesto de 1% incluye o excluye la comisión del proveedor?
+
+**Páginas:** /cambiate/remesas/

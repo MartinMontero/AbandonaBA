@@ -2,6 +2,11 @@
 export interface LegalReview { status: 'pendiente' | 'firmada'; reviewers: string[]; fecha: string | null }
 
 export const legalReview: LegalReview = { status: 'pendiente', reviewers: [], fecha: null };
+export const financialReview: LegalReview = { status: 'pendiente', reviewers: [], fecha: null };
+
+if (financialReview.status === 'firmada' && (financialReview.reviewers.length < 1 || !financialReview.fecha)) {
+  throw new Error('financialReview.status = "firmada" exige al menos un revisor y una fecha.');
+}
 
 // El build falla si se marca "firmada" sin revisores y fecha.
 if (legalReview.status === 'firmada' && (legalReview.reviewers.length < 1 || !legalReview.fecha)) {
@@ -17,6 +22,9 @@ export const siteConfig = {
   bankWarning: 'No uses equipos, Wi-Fi ni internet del banco para entrar a esta página.',
   legalNote: 'Información general. En revisión por abogado laboral. No es asesoría legal.',
   reviewBanner: 'VERSIÓN DE REVISIÓN PARA ABOGADOS. Borrador sin publicar. Los textos y valores están pendientes de su dictamen.',
+  financeNote: 'Información educativa. En revisión. No es asesoría financiera ni legal.',
+  cambiateDate: '2026-11-23',
+  noDataNote: 'Este sitio nunca te pedirá datos, NIP ni códigos.',
   assumptions: 'Estimación con valores de 2026. Pendiente de revisión legal. Lleva esta hoja a PROFEDET.',
   disclaimer: 'Esta página ofrece información general sobre derechos laborales. No es asesoría legal ni crea una relación abogado-cliente. No está afiliada a Banco Azteca ni a Grupo Salinas. Verifica siempre con PROFEDET o con un abogado laboral.',
   footerLine: 'No afiliado a Banco Azteca ni a Grupo Salinas.',

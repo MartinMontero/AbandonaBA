@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+const fmt = (n: number) => n.toLocaleString('es-MX');
+const az = data.institutions[0];
+const op = az.products.find((p: any) => p.id === 'cuenta-operativa') as any;
+const gd = az.products.find((p: any) => p.id === 'guardadito') as any;
+const loan = az.products.find((p: any) => p.id === 'prestamo-efectivo') as any;
+const sources = [
+  { title: 'Banco Azteca: Cuenta Operativa Azteca', url: op.source_url, read: op.read_date },
+  { title: 'Banco Azteca: Guardadito', url: gd.source_url, read: gd.read_date },
+  { title: 'Banco Azteca: préstamos personales', url: loan.source_url, read: loan.read_date },
+];
+---
+<Base art="clipboard" eyebrow="Cuánto me cuesta quedarme" title="Lo que pagas por quedarte" description="Calcula la comisión de la Cuenta Operativa si tu cuenta fue cambiada a esa, y cuánto te falta por pagar de un préstamo." path="/cambiate/cuanto-me-cuesta/" legal finance claims={['CB01','CB03','CB04']} sources={sources} lead>
+  <CambiateNote />
+
+  <section aria-labelledby="op">
+    <h2 id="op">Si tu cuenta es una Cuenta Operativa</h2>
+    <p>Banco Azteca cobra {op.fee_admin_mxn} pesos más IVA al mes de «Administración - Renta». Se exenta si cumples alguna de estas condiciones. <span class="tag t-verificado-primaria">verificado-primaria</span></p>
+    <ul>{op.exemptions_es.map((e: string) => <li>{e}</li>)}</ul>
+    <p class="ref-line">{op.promo_es} Esta calculadora no aplica esa reducción: te muestra el cobro completo si no cumples ninguna exención. No sabemos si tu cuenta fue cambiada a Operativa: revisa tu estado de cuenta y el aviso que te llegó.</p>
+    <form id="c-form" class="cf" novalidate>
+      <label>Saldo promedio mensual (pesos)<input id="c-balance" type="number" inputmode="decimal" min="0" step="any" placeholder="3000" /></label>
+      <label class="check"><input id="c-payroll" type="checkbox" /> Recibo mi nómina, portabilidad o pensión en esa cuenta</label>
+      <label class="check"><input id="c-term" type="checkbox" /> Tengo una inversión a plazo desde {fmt(op.term_investment_min_mxn)} pesos</label>
+    </form>
+    <div id="c-out" class="result-box" hidden aria-live="polite"></div>
+    <p id="c-empty" class="ref-line">Escribe tu saldo promedio para ver el resultado.</p>
+  </section>
+
+  <section aria-labelledby="gd">
+    <h2 id="gd">Lo que paga tu ahorro en Guardadito</h2>
+    <p>La página oficial muestra GAT nominal de {gd.gat_nominal_pct.toFixed(2)}% y GAT real de {gd.gat_real_pct}% (cálculo del {gd.gat_basis.split('fecha de cálculo ')[1]}, vigencia hasta el {gd.valid_to}). Eso quiere decir que tu dinero no crece y pierde valor por la inflación estimada. <span class="tag t-verificado-primaria">verificado-primaria</span></p>
+    <p class="ref-line">GAT es la ganancia anual total. «Real» descuenta la inflación estimada. Esa vigencia vence pronto: vuelve a revisar la página oficial después de esa fecha.</p>
+  </section>
+
+  <section aria-labelledby="pr">
+    <h2 id="pr">Cuánto te falta por pagar de un préstamo</h2>
+    <p>Banco Azteca publica para su préstamo en efectivo ({fmt(loan.amount_min_mxn)} a {fmt(loan.amount_max_mxn)} pesos) un CAT promedio de {loan.cat_avg_pct}% sin IVA y una tasa fija anual de {loan.rate_fixed_annual_pct}% sin IVA, calculados al {loan.calc_date} con vigencia del {loan.valid_from} al {loan.valid_to}. <span class="tag t-verificado-primaria">verificado-primaria</span> El CAT es el costo anual total del crédito. Tu CAT puede ser distinto: mira tu contrato.</p>
+    <form id="l-form" class="cf" novalidate>
+      <label>Tu pago semanal (pesos)<input id="l-week" type="number" inputmode="decimal" min="0" step="any" placeholder="215" /></label>
+      <label>Semanas que te faltan<input id="l-weeks" type="number" inputmode="numeric" min="0" step="1" placeholder="60" /></label>
+      <label>Lo que te cuesta liquidarlo con otra oferta (pesos, total)<input id="l-alt" type="number" inputmode="decimal" min="0" step="any" /><small>Opcional. Escribe el total a pagar de la otra oferta. Compara el CAT con el CAT, los dos sin IVA o los dos con IVA.</small></label>
+    </form>
+    <div id="l-out" class="result-box" hidden aria-live="polite"></div>
+    <p id="l-empty" class="ref-line">Escribe tu pago y las semanas que faltan.</p>
+    <p>Pide por escrito tu saldo para liquidar y, al terminar, tu carta de no adeudo. Esto es práctica general, no lo verificamos en una norma. <span class="tag t-sin-verificar">sin-verificar</span></p>
+  </section>
+
+  <script>import '../../scripts/cambiate-cuesta.ts';</script>
+</Base>

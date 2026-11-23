@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+const fix = data.meta.fix;
+const wise = data.remittance_providers.find((p) => p.id === 'wise')!;
+const remitly = data.remittance_providers.find((p) => p.id === 'remitly')!;
+const tax = data.us_remittance_tax;
+const sources = [
+  { title: 'Wise: guía de transferencias en MXN', url: wise.source_url, read: wise.read_date },
+  { title: 'Wise: enviar dinero a México', url: wise.extra_source_url!, read: wise.read_date },
+  { title: 'Remitly: enviar dinero a México', url: remitly.source_url, read: remitly.read_date },
+  { title: 'Remitly: página en español', url: remitly.extra_source_url!, read: remitly.read_date },
+  { title: '26 U.S.C. 4475 (copia del Legal Information Institute)', url: tax.source_url, read: tax.read_date },
+  { title: 'Banxico: tipo de cambio FIX', url: fix.source_url, read: fix.read_date },
+];
+const es1 = 'Por favor envíame a la CLABE de 18 dígitos [___] del banco [___] a nombre de [nombre como en mi INE]. Paga desde tu cuenta de banco o tarjeta, no en efectivo.';
+const en1 = 'Please send it to the 18-digit CLABE [___] at the bank [___] in the name of [name as on my ID]. Pay from your bank account or card, not with cash.';
+---
+<Base art="steps" eyebrow="Mis remesas" title="Cuánto llega en pesos" description="Escribe lo que te muestra la app de quien envía. Te decimos cuántos pesos recibes y qué tan lejos queda del tipo de cambio de referencia." path="/cambiate/remesas/" legal finance claims={['CB17','CB18','CB19']} sources={sources} lead>
+  <CambiateNote />
+
+  <section aria-labelledby="calc">
+    <h2 id="calc">1. Calcula con la cotización de hoy</h2>
+    <p>Abre la app de quien envía, pon el monto y copia aquí lo que muestra. Nosotros no guardamos cotizaciones: cambian varias veces al día.</p>
+    <form id="r-form" class="cf" novalidate>
+      <label>Total que gasta quien envía (USD)<input id="r-total" type="number" inputmode="decimal" min="0" step="any" placeholder="200" /></label>
+      <label>Comisión que muestra la app (USD)<input id="r-fee" type="number" inputmode="decimal" min="0" step="any" placeholder="1.99" /></label>
+      <label>Tipo de cambio que ofrece la app (pesos por dólar)<input id="r-rate" type="number" inputmode="decimal" min="0" step="any" placeholder="18.50" /></label>
+      <label>Cómo paga quien envía
+        <select id="r-funding"><option value="bank">Desde su cuenta de banco</option><option value="card">Con tarjeta de débito o crédito de EE. UU.</option><option value="cash">En efectivo</option></select>
+      </label>
+      <label>Tipo de cambio de referencia
+        <input id="r-ref" type="number" inputmode="decimal" step="any" value={fix.value} />
+        <small>Banxico FIX del {fix.date} ({fix.value}). Cámbialo si quieres comparar con otro. <span class="tag t-verificado-primaria">verificado-primaria</span></small>
+      </label>
+      <label>Primeros 3 dígitos de la CLABE de quien recibe (opcional)
+        <input id="r-clabe" type="text" inputmode="numeric" maxlength="3" placeholder="127" />
+        <small>Son el código del banco. No escribas la CLABE completa.</small>
+      </label>
+    </form>
+    <div id="r-out" class="result-box" hidden aria-live="polite"></div>
+    <p id="r-empty" class="ref-line">Escribe el total, la comisión y el tipo de cambio para ver el resultado.</p>
+    <p class="ref-line">El FIX no es el tipo de cambio que ofrece una empresa: es una referencia pública. Si la diferencia es grande, la empresa te cobra más por el cambio. Supuestos: el impuesto de EE. UU. se calcula sobre el envío sin la comisión y se compara con el FIX. Ambos están por confirmar.</p>
+  </section>
+
+  <section aria-labelledby="dos">
+    <h2 id="dos">2. Dos opciones que destacamos</h2>
+    <p>Las destacamos por decisión editorial de este sitio. Se comparan con la misma fórmula que cualquier otro servicio. No usamos enlaces de afiliado ni códigos de referido.</p>
+    <div class="pv">
+      <article>
+        <h3>Wise <span class="tag t-verificado-primaria">verificado-primaria</span></h3>
+        <p>Deposita a una cuenta bancaria (CLABE) o a una tarjeta de débito. No paga en efectivo.</p>
+        <p id="r-wise" class="ref-line" aria-live="polite">Wise no puede depositar a: {wise.excluded.map((e) => e.clabe_prefix ? `${e.name} (CLABE ${e.clabe_prefix})` : e.name).join(', ')}.</p>
+        <p class="ref-line">Costos de ejemplo para enviar 1,000 USD, sin fecha en la página: {wise.cost_samples.items.map((i) => `${i.funding} ${i.cost_usd} USD`).join('; ')}. No los usamos para ordenar: cotiza hoy en la app.</p>
+        <p><a class="btn tonal" href="https://wise.com/mx/send-money/send-money-to-mexico" rel="noopener noreferrer">Ver Wise</a></p>
+      </article>
+      <article>
+        <h3>Remitly <span class="tag t-verificado-primaria">verificado-primaria</span></h3>
+        <p>Ofrece depósito bancario, cartera móvil y pago en efectivo, incluido Elektra / Banco Azteca.</p>
+        <p class="ref-line">Su página nombra estos puntos de entrega: {remitly.cash_pickup_named.join(', ')}. No dice cuáles son efectivo, depósito o cartera.</p>
+        <p class="ref-line">Anuncia primer envío sin comisión para clientes nuevos, por tiempo limitado. No publica comisiones fijas: la cotización la ves en su app.</p>
+        <p><a class="btn tonal" href="https://www.remitly.com/us/en/money-transfer/send-money-to-mexico" rel="noopener noreferrer">Ver Remitly</a></p>
+      </article>
+    </div>
+    <p class="ref-line">No tenemos cotizaciones con fecha de otros servicios, por eso no hay una lista ordenada. Si cotizas dos o tres, usa la calculadora de arriba con cada una y compara los pesos que llegan.</p>
+  </section>
+
+  <section aria-labelledby="imp">
+    <h2 id="imp">3. Si quien envía paga en efectivo</h2>
+    <p>Desde 2026, Estados Unidos cobra un impuesto de {tax.rate_pct}% a los envíos pagados con efectivo, giro, cheque de caja u otro instrumento físico similar. Lo paga quien envía y la empresa lo cobra. No aplica si el dinero sale de una cuenta de banco o si se paga con una tarjeta de débito o crédito emitida en EE. UU. <span class="tag t-verificado-secundaria">verificado-secundaria</span> Si puede pagar desde su cuenta o con tarjeta, se ahorra ese impuesto. <span class="tag t-sin-verificar">sin-verificar</span> No confirmamos si el impuesto incluye la comisión de la empresa.</p>
+  </section>
+
+  <section aria-labelledby="msg">
+    <h2 id="msg">4. Mensaje para el que te envía</h2>
+    <p>Toca el mensaje para copiarlo y cambia lo que está entre corchetes en tu teléfono. No escribas tus datos aquí.</p>
+    <ul class="say">
+      <li><button type="button" class="say-btn" data-say>{es1}</button></li>
+      <li><button type="button" class="say-btn" data-say>{en1}</button></li>
+    </ul>
+    <div class="callout"><p><strong>Cuidado con fraudes.</strong> Nadie debe pedirte un pago para «liberar» tu dinero, ni tu NIP, ni códigos que te lleguen por mensaje. Si alguien te llama diciendo que es del banco, cuelga y llama tú al número oficial.</p></div>
+  </section>
+  <script>import '../../scripts/cambiate-remesas.ts';</script>
+</Base>

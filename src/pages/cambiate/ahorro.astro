@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+import { toMxn } from '../../lib/udi';
+import { fmtMXN } from '../../lib/format';
+const udi = data.meta.udi;
+const cetes = data.meta.cetes28;
+const gd = data.institutions[0].products.find((p: any) => p.id === 'guardadito') as any;
+const sources = [
+  { title: 'Banxico: Cetes a 28 días y UDI (portada)', url: cetes.source_url, read: cetes.read_date },
+  { title: 'Banco Azteca: Guardadito', url: gd.source_url, read: gd.read_date },
+  { title: 'Banco Azteca: Cuenta Operativa (nota de protección IPAB)', url: data.protection.ipab.source_url, read: data.protection.ipab.read_date },
+  { title: 'Prosofipo: Fondo de Protección de SOFIPOs', url: data.protection.prosofipo.source_url, read: data.protection.prosofipo.read_date },
+];
+---
+<Base art="store" eyebrow="Mi ahorro" title="Cuánto ganas y cuánto está protegido" description="Escribe una oferta de ahorro que viste. Calculamos cuánto ganarías en un año con tu cantidad y cuánto de tu dinero está protegido." path="/cambiate/ahorro/" legal finance claims={['CB03','CB06','CB07']} sources={sources} lead>
+  <CambiateNote />
+
+  <section aria-labelledby="of">
+    <h2 id="of">1. Cuánto ganarías con una oferta</h2>
+    <p>Muchas ofertas anuncian una tasa alta, pero solo hasta cierta cantidad y si cumples condiciones, como gastar un mínimo cada mes. Escribe lo que dice la oferta.</p>
+    <form id="a-form" class="cf" novalidate>
+      <label>Cuánto quieres ahorrar (pesos)<input id="a-amount" type="number" inputmode="decimal" min="0" step="any" placeholder="40000" /></label>
+      <label>Tasa anual anunciada (%)<input id="a-hi" type="number" inputmode="decimal" min="0" step="any" placeholder="13" /></label>
+      <label>Hasta qué cantidad aplica (pesos)<input id="a-cap" type="number" inputmode="decimal" min="0" step="any" placeholder="25000" /></label>
+      <label>Tasa anual del resto (%)<input id="a-base" type="number" inputmode="decimal" min="0" step="any" placeholder="6.5" /><small>Lo que paga sobre la parte que pasa del tope o si no cumples las condiciones.</small></label>
+      <label>¿Cumples las condiciones de la oferta?
+        <select id="a-cond"><option value="si">Sí, siempre</option><option value="no">No o no estoy seguro</option></select>
+      </label>
+    </form>
+    <div id="a-out" class="result-box" hidden aria-live="polite"></div>
+    <p id="a-empty" class="ref-line">Escribe la cantidad y las tasas para ver el resultado.</p>
+    <p class="ref-line">Interés anual simple, antes de impuestos. Todavía no sabemos la retención de ISR de 2026: no la restamos. <span class="tag t-sin-verificar">sin-verificar</span></p>
+  </section>
+
+  <section aria-labelledby="ref">
+    <h2 id="ref">2. Dos referencias para comparar</h2>
+    <div class="pv">
+      <article>
+        <h3>Guardadito de Banco Azteca</h3>
+        <p>GAT nominal {gd.gat_nominal_pct.toFixed(2)}%: no paga interés. Vigencia hasta el {gd.valid_to}. <span class="tag t-verificado-primaria">verificado-primaria</span></p>
+        <p id="a-gd" class="ref-line"></p>
+      </article>
+      <article>
+        <h3>Cetes a 28 días</h3>
+        <p>{cetes.value}% anual en la subasta del {cetes.date}. Es una referencia del gobierno, no una cuenta de banco. <span class="tag t-verificado-primaria">verificado-primaria</span></p>
+        <p id="a-cetes" class="ref-line"></p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="prot">
+    <h2 id="prot">3. Cuánto de tu dinero está protegido</h2>
+    <p>Elige qué tipo de entidad es. Si no lo sabes, búscala en el sitio de la CNBV o pregúntale a ella.</p>
+    <form id="p-form" class="cf" novalidate>
+      <label>Tipo de entidad
+        <select id="p-kind"><option value="banco">Banco (seguro del IPAB)</option><option value="sofipo">SOFIPO</option><option value="ifpe">IFPE (fintech de pagos)</option><option value="no-se">No sé</option></select>
+      </label>
+    </form>
+    <div id="p-out" class="result-box" hidden aria-live="polite"></div>
+    <p class="ref-line">UDI de {udi.value} del {udi.date} (Banxico). Límite del IPAB: {fmtMXN(toMxn(data.protection.ipab.limit_udis, udi.value))}. Límite en una SOFIPO asociada: {fmtMXN(toMxn(data.protection.prosofipo.limit_udis, udi.value))}.</p>
+  </section>
+
+  <div class="callout info"><p><strong>Por qué una tasa de 13% o 15% casi siempre trae tope y condiciones.</strong> La tasa alta suele valer solo hasta cierta cantidad y solo si gastas un mínimo cada mes. Calcula con tu cantidad real, como arriba, y compara cuántos pesos ganas al año, no el porcentaje que anuncian.</p></div>
+
+  <script>import '../../scripts/cambiate-ahorro.ts';</script>
+</Base>

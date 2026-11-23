@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+const fmt = (n: number) => n.toLocaleString('es-MX');
+const op = data.institutions[0].products.find((p: any) => p.id === 'cuenta-operativa') as any;
+const phones = data.institutions[0].official_contact;
+const sources = [
+  { title: 'Banco Azteca: Cuenta Operativa Azteca (exención por nómina)', url: op.source_url, read: op.read_date },
+  { title: 'CONDUSEF vía prensa y guía de BBVA, citadas en la investigación (no releídas)', url: 'https://www.condusef.gob.mx', read: 'no releída el 2026-11-23' },
+];
+---
+<Base art="briefcase" eyebrow="Mi nómina" title="Cómo pasar tu sueldo a otro banco" description="La portabilidad de nómina es tu derecho a cambiar el banco donde te depositan, sin costo. Estos son los pasos y lo que hay que revisar antes." path="/cambiate/nomina/" legal finance claims={['CB01','CB16']} sources={sources} lead>
+  <CambiateNote />
+
+  <h2>Cinco pasos</h2>
+  <ol class="stepper">
+    <li><div><h3>Abre la cuenta nueva primero</h3><p>El banco al que te quieres pasar te dice qué documentos necesita.</p></div></li>
+    <li><div><h3>Pide la portabilidad en el banco nuevo</h3><p>Es el trámite para que tu empresa te deposite ahí. Lleva tu identificación oficial y un comprobante de que la cuenta actual es tuya, como un estado de cuenta reciente. <span class="tag t-verificado-secundaria">verificado-secundaria</span></p></div></li>
+    <li><div><h3>Cancela o cambia tus domiciliaciones</h3><p>Los cobros automáticos de servicios y créditos pueden seguir saliendo de la cuenta vieja. Cámbialos a la nueva antes de que se muevan tus depósitos.</p></div></li>
+    <li><div><h3>Espera el plazo</h3><p>Se reporta hasta 10 días hábiles. Otra fuente dice 5 días hábiles en el banco que envía y 10 por el que recibe. <span class="tag t-sin-verificar">sin-verificar</span> No leímos la norma que fija el plazo.</p></div></li>
+    <li><div><h3>Revisa tu cuenta anterior</h3><p>Decide si la dejas, la vacías o la cierras. Mira abajo si tienes una Cuenta Operativa.</p></div></li>
+  </ol>
+
+  <details class="acc" id="derecho" open><summary>Lo que se sabe del derecho a la portabilidad</summary><div class="acc-b">
+    <ul>
+      <li>Es un derecho entre bancos. No cuesta, no tiene límite de veces y se puede cancelar. <span class="tag t-verificado-secundaria">verificado-secundaria</span></li>
+      <li>Una fintech que no es banco, como una IFPE, puede no recibir portabilidad. <span class="tag t-sin-verificar">sin-verificar</span> Pregunta antes de abrir.</li>
+      <li>La base legal exacta y el plazo correcto están por confirmar: la guía que revisamos cita una ley que no menciona la portabilidad. No citamos un artículo hasta leer la norma.</li>
+    </ul>
+  </div></details>
+
+  <details class="acc" id="operativa"><summary>Si tienes una Cuenta Operativa de Banco Azteca</summary><div class="acc-b">
+    <p>La comisión de {op.fee_admin_mxn} pesos más IVA al mes se exenta, entre otras condiciones, si recibes tu nómina, portabilidad o pensión en esa cuenta. <span class="tag t-verificado-primaria">verificado-primaria</span> Si mueves tu nómina a otro banco, esa exención ya no te aplica. Revisa si cumples otra: saldo promedio de {fmt(op.exempt_balance_mxn)} pesos o más, o una inversión a plazo desde {fmt(op.term_investment_min_mxn)}. Si no, vacía y cierra la cuenta para no pagar la comisión.</p>
+    <p>Calcula cuánto sería en <a href="/cambiate/cuanto-me-cuesta/">Cuánto me cuesta quedarme</a>.</p>
+  </div></details>
+
+  <details class="acc" id="ayuda"><summary>Si te dicen que no o no te responden</summary><div class="acc-b">
+    <p>Pide por escrito la respuesta y el número de folio. Puedes llamar a Banco Azteca a los números que publica en su página oficial: {phones.map((p) => `${p.label} ${p.phone}`).join('; ')}. Si no lo resuelven, el lugar para quejarte es CONDUSEF. No verificamos hoy su procedimiento, así que entra a su sitio oficial. <span class="tag t-sin-verificar">sin-verificar</span></p>
+  </div></details>
+</Base>

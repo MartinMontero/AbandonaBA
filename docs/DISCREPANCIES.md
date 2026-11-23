@@ -17,3 +17,6 @@
 | 13 | SEPCOOP (C16) | fundadores ratifican identidad por el sistema de INAES | El comunicado no lo dice | Quitado |
 | 14 | Modalidad 40 (C12) | «sin pagos retroactivos» | No aparece en el texto leído del acuerdo; sí: base = último SBC (o menos) + una UMA, mínimo un salario mínimo; ya inscritos siguen igual; solo digital | Corregido |
 | 15 | Conciliación y prescripción (C04) | «suspende» | Art. 518: suspende; Art. 521 fr. III: la solicitud de conciliación «interrumpe» | Pregunta nueva al abogado |
+
+## Pasada v3 (2026-11-23)
+Guardadito (0.01% frente a 0.00% GAT), portabilidad (Art. 18 LTOSF sin el tema), costo de Wise con tarjeta (41.11 frente a 18.20), UDI (8.927827 frente a 8.925504) y limite IPAB declarado por el banco. Detalle en docs/V3-STATUS.md, seccion 4.

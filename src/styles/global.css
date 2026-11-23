@@ -612,3 +612,26 @@ details.acc[open] { background: var(--md-sys-color-surface); }
 .mile li > div { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: var(--space-3); border-radius: var(--radius-lg); background: var(--md-sys-color-surface-container); }
 .mile.sm .big { font-size: 1.125rem; line-height: 1.25; }
 .mile.sm li > div { gap: var(--space-1); }
+
+/* Cámbiate: formularios de cálculo y resultados */
+.cf { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); margin: var(--space-2) 0; }
+.cf label { display: grid; gap: 6px; font-weight: 700; }
+.cf label small { font-weight: 500; color: var(--md-sys-color-on-surface-variant); }
+.cf input[type="text"], .cf input[type="number"], .cf input:not([type]), .cf select { min-height: 3rem; padding: 0 var(--space-2); border-radius: var(--radius-md); border: 2px solid var(--md-sys-color-outline); background: var(--md-sys-color-surface); font: inherit; width: 100%; }
+.cf input:focus-visible, .cf select:focus-visible { outline: 3px solid var(--md-sys-color-primary); outline-offset: 2px; }
+.cf .check { display: flex; align-items: center; gap: var(--space-1); min-height: var(--target); font-weight: 600; }
+.cf .check input { width: 1.5rem; height: 1.5rem; min-height: 0; flex: none; }
+.result-box { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); border-radius: var(--radius-lg); padding: var(--space-3); margin: var(--space-2) 0; }
+.result-box[hidden] { display: none; }
+.result-box h3 { margin: 0 0 var(--space-1); font-size: 1.125rem; }
+.result-box .big { display: block; font-size: 2rem; font-weight: 850; line-height: 1.1; margin: 4px 0 var(--space-1); }
+.result-box ul { margin: var(--space-1) 0 0; padding-left: 1.1rem; display: grid; gap: 4px; }
+.result-box p { margin: 0 0 var(--space-1); }
+.ref-line { font-size: .9375rem; color: var(--md-sys-color-on-surface-variant); }
+.pv { display: grid; gap: var(--space-2); grid-template-columns: 1fr; margin: var(--space-2) 0; }
+@media (min-width: 760px) { .pv { grid-template-columns: 1fr 1fr; } }
+.pv > article { background: var(--md-sys-color-surface-container); border-radius: var(--radius-lg); padding: var(--space-3); }
+.pv h3 { margin: 0 0 var(--space-1); }
+.pv ul { margin: var(--space-1) 0; padding-left: 1.1rem; }
+.pv .no { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
+.tbl-wrap { overflow-x: auto; }

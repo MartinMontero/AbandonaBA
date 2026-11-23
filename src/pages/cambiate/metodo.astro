@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import { siteConfig } from '../../data/site.config';
+---
+<Base art="book" eyebrow="Cómo trabajamos" title="Método de Cámbiate" description="Cómo elegimos qué mostrar, qué hacemos cuando un dato no está verificado y por qué no hay una lista del «mejor banco»." path="/cambiate/metodo/" finance lead>
+  <CambiateNote />
+  <ul class="mile cols3">
+    <li><div><span class="big">Con fecha</span><span class="what">Cada número dice de dónde sale</span><span class="more">Fuente, fecha de lectura y herramienta, en <a href="/cambiate/fuentes/">Fuentes</a>.</span></div></li>
+    <li><div><span class="big">Sin dato, sin consejo</span><span class="what">No recomendamos con datos sin leer</span><span class="more">Si algo no está verificado, la página lo dice y no lo usa para ordenar.</span></div></li>
+    <li><div><span class="big">Neutral</span><span class="what">Sin afiliados ni patrocinios</span><span class="more">No usamos enlaces de afiliado, códigos de referido ni lugares pagados.</span></div></li>
+  </ul>
+
+  <details class="acc" id="etiquetas" open><summary>Las tres etiquetas</summary><div class="acc-b">
+    <ul>
+      <li><span class="tag t-verificado-primaria">verificado-primaria</span> Lo leímos completo en la fuente oficial: el regulador, el texto de la ley o la página del propio banco.</li>
+      <li><span class="tag t-verificado-secundaria">verificado-secundaria</span> Lo vimos solo en prensa, en sitios de terceros o en una copia no oficial.</li>
+      <li><span class="tag t-sin-verificar">sin-verificar</span> No pudimos leerlo. Se muestra aparte y no se usa para recomendar.</li>
+    </ul>
+  </div></details>
+
+  <details class="acc" id="orden"><summary>Cómo se ordenan las opciones</summary><div class="acc-b">
+    <p>Hoy no hay listas ordenadas de instituciones: solo tenemos datos verificados de Banco Azteca, de Wise y de Remitly. Cuando haya listas, se ordenarán por los pesos que ganas o recibes con tu cantidad, y los empates por orden alfabético. Nunca por «destacado». Wise y Remitly se muestran primero en remesas por decisión editorial de este sitio, y se comparan con la misma fórmula que cualquier otro servicio.</p>
+  </div></details>
+
+  <details class="acc" id="vencido"><summary>Qué es «vencido»</summary><div class="acc-b">
+    <p>Una tasa que pasó su fecha de vigencia, o una cifra leída hace mucho, se muestra en gris con el aviso «vencido: verifica en el sitio oficial» y no se usa para ordenar. Ejemplo: la información de Guardadito vence el 28 de noviembre de 2026.</p>
+  </div></details>
+
+  <details class="acc" id="errores"><summary>Cómo avisar de un error</summary><div class="acc-b">
+    <p>Abre un issue en <a href="{siteConfig.issuesUrl}" rel="noopener noreferrer">GitHub</a>. Los issues de GitHub no son anónimos: no publiques datos personales ni documentos.</p>
+  </div></details>
+</Base>

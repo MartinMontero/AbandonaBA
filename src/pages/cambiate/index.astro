@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import Art from '../../components/Art.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+import { toMxn } from '../../lib/udi';
+import { fmtMXN } from '../../lib/format';
+const udi = data.meta.udi;
+const ipabMxn = toMxn(data.protection.ipab.limit_udis, udi.value);
+const prosMxn = toMxn(data.protection.prosofipo.limit_udis, udi.value);
+const tools = [
+  { href: '/cambiate/remesas/', t: 'Mis remesas', d: 'Cuánto llega en pesos y si Wise o Remitly te sirven.', art: 'steps' },
+  { href: '/cambiate/cuanto-me-cuesta/', t: 'Cuánto me cuesta quedarme', d: 'La comisión de la Cuenta Operativa y lo que falta de tu préstamo.', art: 'clipboard' },
+  { href: '/cambiate/ahorro/', t: 'Mi ahorro', d: 'Cuánto ganas con una oferta y cuánto está protegido.', art: 'store' },
+  { href: '/cambiate/nomina/', t: 'Mi nómina', d: 'Cómo pasar tu sueldo a otro banco.', art: 'briefcase' },
+];
+---
+<Base art="shield" eyebrow="Para clientes" title="Tu dinero, tu decisión. Compara antes de cambiarte." description="Herramientas para clientes de Banco Azteca: cuánto cuesta quedarte, cuánto ganas y cómo mover tu dinero. Cada número dice de dónde sale y cuándo se leyó." path="/cambiate/" legal finance claims={['CB06','CB07']} lead>
+  <CambiateNote />
+
+  <div class="panel">
+    <h2>¿Es seguro mi dinero en Banco Azteca?</h2>
+    <p>Esta página no dice que Banco Azteca sea inseguro. Banco Azteca dice en su propia página que sus cuentas están protegidas por el IPAB hasta por 400 mil UDIs por persona y por banco. El {udi.date} esa cantidad equivalía a <strong>{fmtMXN(ipabMxn)}</strong> (UDI de {udi.value}, según Banxico). <span class="tag t-verificado-primaria">verificado-primaria</span></p>
+    <p>No encontramos evidencia oficial de un problema de solvencia, pero tampoco revisamos los estados financieros. <span class="tag t-sin-verificar">sin-verificar</span> Las razones para comparar son el costo, el interés y el servicio, no el miedo.</p>
+    <p class="ref-line">En una SOFIPO la protección es menor: el Fondo de Protección dice hasta 25,000 UDIS, unos {fmtMXN(prosMxn)} el mismo día, y solo si la SOFIPO está asociada. Una IFPE no tiene seguro del IPAB.</p>
+  </div>
+
+  <h2>¿Qué quieres revisar?</h2>
+  <ul class="tiles">
+    {tools.map((x) => (
+      <li><a class="tile" href={x.href}><Art name={x.art} /><span><h3>{x.t}</h3><p>{x.d}</p></span></a></li>
+    ))}
+  </ul>
+
+  <details class="acc" id="pendiente"><summary>Lo que todavía no verificamos</summary><div class="acc-b">
+    <p>Por eso no hay una lista de «el mejor banco»: no recomendamos nada con datos que no leímos en la fuente oficial.</p>
+    <ul>
+      <li>Tasas, comisiones y condiciones de otros bancos y fintech.</li>
+      <li>Rendimientos y comisión de las Afores, y cómo cambiarte de Afore.</li>
+      <li>Reglas del Buró de Crédito, cobranza y cancelación de cuentas.</li>
+      <li>Cuotas de depósito en OXXO y cotizaciones de otros servicios de remesas.</li>
+    </ul>
+    <p>Mira la lista completa de valores en <a href="/cambiate/fuentes/">Fuentes</a> y cómo trabajamos en <a href="/cambiate/metodo/">Método</a>.</p>
+  </div></details>
+</Base>

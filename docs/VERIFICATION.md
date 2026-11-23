@@ -112,3 +112,6 @@ La lista de lo que aún necesita una persona está en `docs/HUMAN-CHECKS.md`.
 - Access aplicado desde el panel de Cloudflare: alcance «All traffic», política reutilizable «Revision para abogados (correo)» con acción Allow y una regla de correos (la lista de correos vive solo en el panel y en el archivo local no versionado), sesión de 24 horas.
 - Comprobado: sin credenciales, todas las rutas probadas responden 302 al inicio de sesión de Access; `check-review-gate.ps1` da PASS contra el despliegue real y FAIL gate open contra un servidor abierto de prueba.
 - Probado a mano por la persona usuaria el 2026-11-23 en ventana privada: el correo permitido entra y el no permitido queda bloqueado. Sin probar: que el PIN sea el único método de inicio de sesión.
+
+## Pasada v3 (2026-11-23)
+Ver docs/V3-STATUS.md, secciones 3 y 4: valores leidos con Chrome y WebFetch, y discrepancias nuevas.
