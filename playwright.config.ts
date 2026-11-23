@@ -14,6 +14,7 @@ const projects = [
 export default defineConfig({
   testDir: './tests/e2e',
   timeout: 60000,
+  use: { reducedMotion: 'reduce' }, // la entrada animada no debe falsear las pruebas de contraste
   fullyParallel: false,
   workers: 1,
   reporter: [['list']],

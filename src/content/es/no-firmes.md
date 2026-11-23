@@ -1,5 +1,6 @@
 ---
 title: "No firmes esto"
+eyebrow: "Protégete hoy"
 description: "Qué papeles no firmar, qué decir y qué hacer el mismo día."
 claims: [C21, C18, C04, C05, C17]
 legal: true
@@ -11,25 +12,31 @@ Esta hoja está en revisión por un abogado laboral. Los textos de abajo son bor
 
 ## No firmes nunca
 
-- Hojas en blanco.
-- Una renuncia sin fecha o con fecha anterior.
-- Un **convenio** (un acuerdo escrito para terminar la relación de trabajo) que no se ratifique ante el Centro de Conciliación o el Tribunal.
-- Un papel que diga que recibiste dinero que no recibiste.
+<div class="callout"><ul>
+<li>Hojas en blanco.</li>
+<li>Una renuncia sin fecha o con fecha anterior.</li>
+<li>Un <strong>convenio</strong> (un acuerdo escrito para terminar la relación de trabajo) que no se ratifique ante el Centro de Conciliación o el Tribunal.</li>
+<li>Un papel que diga que recibiste dinero que no recibiste.</li>
+</ul></div>
 
-<span class="tag t-verificado-primaria">verificado-primaria</span> Según el Art. 33 de la Ley Federal del Trabajo, es nula la renuncia a salarios devengados, indemnizaciones y demás prestaciones. Todo convenio o liquidación debe constar por escrito y contener una relación de los hechos y los derechos. Revisa el texto: [LFT](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf).
+<span class="tag t-verificado-primaria">verificado-primaria</span> Según el Art. 33 de la Ley Federal del Trabajo, es nula la renuncia a salarios devengados, indemnizaciones y demás prestaciones. Todo convenio o liquidación debe constar por escrito, con una relación de los hechos y los derechos, y se ratifica ante el Centro de Conciliación o el Tribunal. Revisa el texto: [LFT](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf).
 
 ## Qué decir
 
-- «Quiero una copia de lo que me piden firmar.»
-- «Voy a revisarlo con PROFEDET.» (La Procuraduría Federal de la Defensa del Trabajo da asesoría gratuita.)
-- «No firmo sin revisar.»
+> «Quiero una copia de lo que me piden firmar.»
+
+> «Voy a revisarlo con PROFEDET.» (La Procuraduría Federal de la Defensa del Trabajo da asesoría gratuita.)
+
+> «No firmo sin revisar.»
 
 ## Qué hacer el mismo día
 
-1. Escribe la fecha, la hora, quién dijo qué y quién estaba presente.
-2. Toma fotos de tus recibos de nómina.
-3. Guarda las copias en tu propio teléfono, no en equipos del banco.
-4. Llama a PROFEDET. Mira [Ayuda gratis](/ayuda-gratis/).
+<ol class="steps">
+<li><div><h3>Anota todo</h3><p>Fecha, hora, quién dijo qué y quién estaba presente.</p></div></li>
+<li><div><h3>Fotografía tus recibos</h3><p>Tus recibos de nómina, tus horarios y cualquier mensaje.</p></div></li>
+<li><div><h3>Guarda copias en tu teléfono</h3><p>En tu propio aparato, no en equipos del banco.</p></div></li>
+<li><div><h3>Pide ayuda</h3><p>Llama a PROFEDET. Mira <a href="/ayuda-gratis/">Ayuda gratis</a>.</p></div></li>
+</ol>
 
 ## Si te despiden
 
@@ -37,4 +44,4 @@ Esta hoja está en revisión por un abogado laboral. Los textos de abajo son bor
 
 <div class="print-only">Información general. En revisión por abogado laboral. No es asesoría legal.</div>
 
-<p class="no-print"><button type="button" class="btn" data-print>Imprimir esta hoja</button></p>
+<p class="no-print"><button type="button" class="btn tonal" data-print>Imprimir esta hoja</button></p>

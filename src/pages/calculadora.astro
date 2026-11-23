@@ -5,8 +5,8 @@ const sources = [
   { title: 'Ley del Impuesto sobre la Renta, Art. 93 fr. XIII', url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf', read: '2026-11-22' },
 ];
 ---
-<Base title="Calcula lo que te toca" description="Calculadora de liquidación en tu teléfono. Nada sale de tu dispositivo." path="/calculadora/" legal claims={['C01','C02','C03','C06','C07','C08','C19','C20']} decisions={['D1','D2','D3','D4','D5']} sources={sources} wide>
-  <p>Escribe tus datos. Todo se calcula aquí, en tu aparato. Nada se envía ni se guarda.</p>
+<Base title="Calcula lo que te toca" description="Calculadora de liquidación en tu teléfono. Nada sale de tu dispositivo." path="/calculadora/" legal claims={['C01','C02','C03','C06','C07','C08','C19','C20']} decisions={['D1','D2','D3','D4','D5']} sources={sources} wide eyebrow="Calculadora" lead>
+  <div class="calc-layout">
   <form id="calc" class="calc" novalidate>
     <fieldset>
       <legend>Tu pago</legend>
@@ -32,7 +32,7 @@ const sources = [
       <label for="daysYear">Días trabajados este año<span class="hint">Si pones fechas, se calcula solo.</span></label><input id="daysYear" inputmode="numeric" autocomplete="off" />
     </fieldset>
     <fieldset>
-      <legend>Cómo se cuenta (decisiones D1 a D5)</legend>
+      <legend>Cómo se cuenta (decisiones D1 a D5, avanzado)</legend>
       <p class="hint">Todavía no hay dictamen de un abogado sobre estas cinco decisiones. Cámbialas para ver el resultado de las dos maneras.</p>
       <label for="art439Days">D1. Art. 439: cuatro meses cuentan como…</label>
       <select id="art439Days"><option value="120">120 días</option><option value="121.6">121.6 días (4 × 30.4)</option></select>
@@ -44,12 +44,16 @@ const sources = [
       <label for="aguinaldoDays">Días de aguinaldo (avanzado)</label><input id="aguinaldoDays" inputmode="numeric" placeholder="15" />
       <p class="hint">D4: el promedio de pago variable cambia si escribes un total de 30 días en lugar de un promedio semanal. Usa la opción de arriba.</p>
     </fieldset>
-    <p class="no-print">
-      <button type="button" class="btn secondary" id="example">Cargar ejemplo: cajero con 5 años (datos inventados)</button>
-      <button type="button" class="btn secondary" id="reset">Borrar todo</button>
-      <button type="button" class="btn" data-print>Imprimir o guardar como PDF</button>
+    <p class="no-print form-actions">
+      <a class="btn" href="#resultado">Ver mi resultado</a>
+      <button type="button" class="btn tonal" id="example">Cargar ejemplo de cajero (datos inventados)</button>
+      <button type="button" class="btn text" id="reset">Borrar todo</button>
     </p>
   </form>
-  <div id="resultado" aria-live="polite"></div>
+  <div class="calc-results">
+    <div id="resultado" aria-live="polite"></div>
+    <p class="no-print"><button type="button" class="btn tonal" data-print>Imprimir o guardar como PDF</button></p>
+  </div>
+  </div>
   <script>import '../scripts/calculadora.ts';</script>
 </Base>

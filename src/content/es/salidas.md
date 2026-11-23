@@ -1,5 +1,6 @@
 ---
 title: "Cuatro formas de salir y qué paga cada una"
+eyebrow: "Tus opciones"
 description: "Renuncia, despido, rescisión por culpa del patrón y reducción por maquinaria nueva, comparadas."
 claims: [C01, C02, C03, C04, C17, C18, C20, C21]
 decisions: [D1, D2, D3, D5]
@@ -9,9 +10,9 @@ sources:
   - { title: "Ley Federal del Trabajo, Arts. 48, 50, 51, 52, 162, 439, 517 y 518", url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf", read: "2026-11-22" }
   - { title: "PROFEDET", url: "https://www.gob.mx/profedet", read: "2026-11-22" }
 ---
-Irte es una decisión legítima. La forma en que te vas decide lo que te llevas.
+<div class="callout info"><p><strong>Irte es una decisión legítima.</strong> La forma en que te vas decide lo que te llevas. Aquí no hay una conclusión legal para tu caso: mira las opciones y calcula con la <a href="/calculadora/">calculadora</a>.</p></div>
 
-Aquí no hay ninguna conclusión legal para tu caso. Solo mira las opciones y calcula con la [calculadora](/calculadora/).
+## Las cuatro salidas, lado a lado
 
 | Salida | Qué paga (según la ley) | Quién debe probar | Plazo |
 |---|---|---|---|
@@ -24,19 +25,21 @@ Aquí no hay ninguna conclusión legal para tu caso. Solo mira las opciones y ca
 
 ## Lo que sí y lo que no
 
-- No hay un aviso legal de 15 días para renunciar. <span class="tag t-sin-verificar">sin-verificar</span> No encontramos esa regla en los artículos que leímos; confírmalo con PROFEDET.
-- Renunciar da solo el finiquito.
+- Una renuncia da solo el finiquito.
 - Una renuncia firmada bajo presión puede cuestionarse como despido. <span class="tag t-sin-verificar">sin-verificar</span> Confírmalo con un abogado.
+- No hay un aviso legal de 15 días para renunciar. <span class="tag t-sin-verificar">sin-verificar</span> No encontramos esa regla en los artículos que leímos; confírmalo con PROFEDET.
 - Un **convenio** (acuerdo escrito para terminar el trabajo) vale solo si consta por escrito y se ratifica (Art. 33). Mira [No firmes esto](/no-firmes/).
 
-## Ayuda para elegir
+## ¿Por dónde empiezo?
 
-Responde en tu cabeza. Esto no es un dictamen: solo te dice qué páginas mirar.
+No es un dictamen: solo te dice qué página mirar según lo que te pasa.
 
-1. ¿Te pidieron renunciar o firmar un papel que no entiendes? Mira [No firmes esto](/no-firmes/).
-2. ¿Te despidieron o te dijeron que ya no hay lugar para ti? Mira [Mis plazos](/plazos/) hoy.
-3. ¿Tu puesto desaparece porque una máquina o un proceso nuevo hace tu trabajo? Mira el Art. 439 arriba y la [calculadora](/calculadora/).
-4. ¿Te bajaron el sueldo o no te pagaron a tiempo? Mira la rescisión del Art. 51 y los plazos.
-5. ¿Quieres irte por tu cuenta? Mira el [checklist de salida](/checklist-salida/) y [Dinero mientras encuentro trabajo](/puente/).
+<ol class="steps">
+<li><div><h3>Me pidieron renunciar o firmar</h3><p>No firmes nada que no entiendas ni nada en blanco.</p><a href="/no-firmes/">Ver qué no firmar</a></div></li>
+<li><div><h3>Me despidieron o me dijeron que ya no hay lugar</h3><p>Los plazos corren desde el día siguiente. Calcula tus fechas hoy.</p><a href="/plazos/">Mis plazos</a></div></li>
+<li><div><h3>Mi puesto desaparece por una máquina</h3><p>Aplica el Art. 439. Calcula el mínimo con tus números.</p><a href="/calculadora/">Calculadora</a></div></li>
+<li><div><h3>Me bajaron el sueldo o no me pagaron a tiempo</h3><p>Puede ser rescisión por culpa del patrón (Art. 51). Revisa los plazos.</p><a href="/plazos/">Mis plazos</a></div></li>
+<li><div><h3>Quiero irme por mi cuenta</h3><p>Revisa lo que debes y lo que te deben, y cómo cubrir los meses sin empleo.</p><a href="/checklist-salida/">Checklist de salida</a></div></li>
+</ol>
 
 Si tu puesto desaparece, esto es lo que dice la ley. No decimos que el banco vaya a despedir a nadie.

@@ -1,5 +1,6 @@
 ---
 title: "Glosario"
+eyebrow: "Referencia"
 description: "Palabras legales explicadas en una frase."
 claims: []
 legal: false

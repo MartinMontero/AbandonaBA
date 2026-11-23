@@ -1,5 +1,6 @@
 ---
 title: "Cooperativa paso a paso"
+eyebrow: "Con tus compañeros"
 description: "Cómo armar una cooperativa de trabajo y registrarla por SEPCOOP."
 claims: [C16]
 legal: true

@@ -14,9 +14,7 @@ function update() {
   if (!d) { out.innerHTML = '<p>Escribe la fecha en que saliste, o la fecha estimada.</p>'; dl.disabled = true; current = []; return; }
   current = computeDeadlines(d, $('p-type').value as ExitType);
   dl.disabled = false;
-  out.innerHTML = `<ul class="plain">${current.map((x) => `<li class="card"><strong>${esc(x.label)}</strong><br>
-    <span id="plazo-${x.id}">${x.date ? fmtDateEs(x.date) : 'Revisa fechas oficiales'}</span> <span class="tag t-${x.status}">${x.status}</span><br>
-    <small>${esc(x.article)}. ${esc(x.note)}</small></li>`).join('')}</ul>`;
+  out.innerHTML = `<ol class="plain timeline">${current.map((x) => `<li class="deadline"><div class="when"><span id="plazo-${x.id}">${x.date ? fmtDateEs(x.date) : 'Revisa fechas oficiales'}</span></div><div class="what"><strong>${esc(x.label)}</strong> <span class="tag t-${x.status}">${x.status}</span><p>${esc(x.article)}. ${esc(x.note)}</p></div></li>`).join('')}</ol>`;
 }
 ['p-date', 'p-type'].forEach((id) => { $(id).addEventListener('input', update); $(id).addEventListener('change', update); });
 document.getElementById('p-ics')!.addEventListener('click', () => {

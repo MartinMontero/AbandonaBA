@@ -48,17 +48,24 @@ function esc(s: string): string {
 export function renderResult(r: Result): string {
   const max = Math.max(...EXITS.map((e) => Math.max(r.A.exits[e].total, r.B.exits[e].total)), 1);
   const fin = r.finiquito;
-  const warn = r.warnings.map((w) => `<p class="warning" role="alert">${esc(w)}</p>`).join('');
-  const rows = EXITS.map((e) => {
+  const warn = r.warnings.map((w) => `<p class="callout" role="alert">${esc(w)}</p>`).join('');
+  const cards = EXITS.map((e) => {
     const a = r.A.exits[e], b = r.B.exits[e];
-    const range = Math.abs(a.total - b.total) < 0.005 ? fmtMXN(a.total) : `${fmtMXN(Math.min(a.total, b.total))} a ${fmtMXN(Math.max(a.total, b.total))}`;
-    return `<tr><th scope="row">${esc(a.label)}<br><small>${esc(a.article)}</small></th>
-      <td id="out-${e}-A">${fmtMXN(a.total)}</td><td id="out-${e}-B">${fmtMXN(b.total)}</td><td>${range}</td>
-      <td><small>${esc(a.formula)}<br>${esc(a.note)}</small></td></tr>`;
+    const same = Math.abs(a.total - b.total) < 0.005;
+    const range = same ? 'Los dos métodos dan lo mismo.' : `Rango: ${fmtMXN(Math.min(a.total, b.total))} a ${fmtMXN(Math.max(a.total, b.total))}`;
+    return `<article class="exit-card${e === 'art439' ? ' featured' : ''}">
+      <header><h3>${esc(a.label)}</h3><span class="art">${esc(a.article)}</span></header>
+      <div class="amounts">
+        <div><span class="k">Método A</span><strong id="out-${e}-A">${fmtMXN(a.total)}</strong></div>
+        <div><span class="k">Método B</span><strong id="out-${e}-B">${fmtMXN(b.total)}</strong></div>
+      </div>
+      <p class="range">${range}</p>
+      <details><summary>Cómo se calcula</summary><p><small>${esc(a.formula)}</small></p><p>${esc(a.note)}</p></details>
+    </article>`;
   }).join('');
   const bars = EXITS.map((e) => {
     const t = r.A.exits[e].total + fin.total;
-    return `<li>${esc(r.A.exits[e].label)}: ${fmtMXN(t)} <div class="bar" aria-hidden="true"><span data-w="${Math.max(1, (t / (max + fin.total)) * 100).toFixed(1)}"></span></div></li>`;
+    return `<li><div class="bar-row"><span>${esc(r.A.exits[e].label)}</span><strong>${fmtMXN(t)}</strong></div><div class="bar" aria-hidden="true"><span data-w="${Math.max(1, (t / (max + fin.total)) * 100).toFixed(1)}"></span></div></li>`;
   }).join('');
   const steps = (s: Result['A']) => `<h4>Método ${s.method} ${s.method === 'A' ? '(comisión ÷ 7)' : '(comisión ÷ días trabajados)'}</h4>
     <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table><thead><tr><th>Concepto</th><th>Cuenta</th><th>Valor</th><th>Artículo</th></tr></thead><tbody>${
@@ -68,22 +75,27 @@ export function renderResult(r: Result): string {
   return `${warn}
   <div class="assumptions" role="note">Estimación con valores de 2026. Pendiente de revisión legal. Lleva esta hoja a PROFEDET.</div>
   <div class="print-only">Información general. En revisión por abogado laboral. No es asesoría legal.</div>
-  <h2>Resultado por salida</h2>
-  <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table><thead><tr><th>Salida</th><th>Método A</th><th>Método B</th><th>Rango</th><th>Cuenta y aviso</th></tr></thead><tbody>${rows}</tbody></table></div>
-  <p><small>Método A: comisión entre 7. Método B: comisión entre los días que trabajas a la semana. Esta diferencia (D2) está pendiente de revisión legal. Años usados en la prima: ${fmtNum(prop)}. SDI método A: ${fmtMXN(r.A.sdi)}; método B: ${fmtMXN(r.B.sdi)}${r.A.capped ? '. El SDI pasa el tope; la prima usa el tope.' : '.'}</small></p>
-  <h2>Finiquito (se suma a cualquier salida)</h2>
-  <ul><li>Sueldo y comisiones pendientes: <span id="out-fin-wages">${fmtMXN(fin.wages)}</span></li>
-  <li>Aguinaldo proporcional (simplificado, sobre el sueldo base): <span id="out-fin-aguinaldo">${fmtMXN(fin.aguinaldo)}</span></li>
-  <li>Vacaciones pendientes con prima del 25%: <span id="out-fin-vac">${fmtMXN(fin.vacation)}</span></li>
-  <li>PTU: cuando se reparta.</li></ul>
-  <p>Total del finiquito: <strong id="out-fin-total">${fmtMXN(fin.total)}</strong></p>
-  <h2>Lo que te llevas, salida por salida (método A, con finiquito)</h2><ul class="plain">${bars}</ul>
-  <h2>Parte exenta de ISR (solo información)</h2>
-  <p>90 × UMA × años de servicio = <strong id="out-isr">${fmtMXN(r.A.isrExempt)}</strong>. La fracción de más de seis meses cuenta como año completo (LISR Art. 93 fr. XIII). Sin contar fracciones: ${fmtMXN(r.A.isrExemptAlt)}. No es un cálculo de impuestos. La ley dice «salario mínimo», pero el Transitorio Tercero del decreto del 27 de enero de 2016 manda leerlo como UMA. Confírmalo con un contador.</p>
-  <details id="pasos"><summary>Ver el cálculo paso a paso</summary>${steps(r.A)}${steps(r.B)}
+  <h2>Lo que paga cada salida</h2>
+  <div class="exit-grid">${cards}</div>
+  <p class="fine">Método A: comisión entre 7. Método B: comisión entre los días que trabajas a la semana. Esta diferencia (D2) está pendiente de revisión legal. Años usados en la prima: ${fmtNum(prop)}. SDI método A: ${fmtMXN(r.A.sdi)}; método B: ${fmtMXN(r.B.sdi)}${r.A.capped ? '. El SDI pasa el tope; la prima usa el tope.' : '.'}</p>
+  <h2>Finiquito: se suma a cualquier salida</h2>
+  <div class="fin-card">
+    <dl>
+      <div><dt>Sueldo y comisiones pendientes</dt><dd id="out-fin-wages">${fmtMXN(fin.wages)}</dd></div>
+      <div><dt>Aguinaldo proporcional (simplificado, sobre el sueldo base)</dt><dd id="out-fin-aguinaldo">${fmtMXN(fin.aguinaldo)}</dd></div>
+      <div><dt>Vacaciones pendientes con prima del 25%</dt><dd id="out-fin-vac">${fmtMXN(fin.vacation)}</dd></div>
+      <div><dt>PTU</dt><dd>Cuando se reparta</dd></div>
+    </dl>
+    <p class="fin-total">Total del finiquito <strong id="out-fin-total">${fmtMXN(fin.total)}</strong></p>
+  </div>
+  <h2>Lo que te llevas, salida por salida</h2>
+  <p class="fine">Método A, con el finiquito incluido.</p>
+  <ul class="plain bars">${bars}</ul>
+  <h2>Parte exenta de ISR</h2>
+  <div class="callout info"><p>90 × UMA × años de servicio = <strong id="out-isr">${fmtMXN(r.A.isrExempt)}</strong>. La fracción de más de seis meses cuenta como año completo (LISR Art. 93 fr. XIII). Sin contar fracciones: ${fmtMXN(r.A.isrExemptAlt)}.</p><p>Solo es información, no un cálculo de impuestos. La ley dice «salario mínimo», pero el Transitorio Tercero del decreto del 27 de enero de 2016 manda leerlo como UMA. Confírmalo con un contador.</p></div>
+  <details id="pasos" class="card"><summary>Ver el cálculo paso a paso</summary>${steps(r.A)}${steps(r.B)}
   <p><small>El promedio de pago variable usa la ventana que elegiste (semanal o total de 30 días). Supuesto D4: Art. 89 habla de 30 días efectivamente trabajados.</small></p></details>`;
 }
-
 export function mount() {
   const out = $('resultado');
   const update = () => {

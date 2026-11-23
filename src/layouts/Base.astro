@@ -5,6 +5,7 @@ import ReviewPanel from '../components/ReviewPanel.astro';
 import ShareRow from '../components/ShareRow.astro';
 
 export interface Source { title: string; url: string; read: string }
+export interface TocItem { depth: number; slug: string; text: string }
 interface Props {
   title: string;
   description?: string;
@@ -16,8 +17,12 @@ interface Props {
   sources?: Source[];
   card?: string;
   wide?: boolean;
+  hero?: boolean; // la página trae su propia portada y encabezado
+  eyebrow?: string;
+  lead?: boolean; // muestra la descripción como entrada del texto
+  toc?: TocItem[];
 }
-const { title, description = '', path, lang = 'es', legal = false, claims = [], decisions = [], sources = [], card, wide = false } = Astro.props;
+const { title, description = '', path, lang = 'es', legal = false, claims = [], decisions = [], sources = [], card, wide = false, hero = false, eyebrow = '', lead = false, toc = [] } = Astro.props;
 const es = lang === 'es';
 const basePath = path.replace(/^\/en\//, '/');
 const altEs = basePath;
@@ -32,6 +37,8 @@ const nav = [
 ];
 const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 const ogImage = card ? `${siteConfig.siteUrl}/cards/${card}-1080x1080.png` : '';
+const tocItems = toc.filter((t) => t.depth === 2);
+const hasToc = tocItems.length >= 3;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -40,7 +47,7 @@ const ogImage = card ? `${siteConfig.siteUrl}/cards/${card}-1080x1080.png` : '';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#111111" />
+    <meta name="theme-color" content="#0045fc" />
     {isReview && <meta name="robots" content="noindex, nofollow, noarchive" />}
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -57,10 +64,15 @@ const ogImage = card ? `${siteConfig.siteUrl}/cards/${card}-1080x1080.png` : '';
     <div class="bank-warning" role="note">{es ? siteConfig.bankWarning : 'Do not use bank devices, Wi-Fi or internet to visit this page.'}</div>
     <div id="offline-banner" class="offline" role="status" hidden>{es ? 'Sin conexión. Puedes seguir usando las páginas que ya abriste.' : 'You are offline. Pages you already opened still work.'}</div>
     <a class="skip" href="#contenido">{es ? 'Saltar al contenido' : 'Skip to content'}</a>
-    <header class="top">
-      <a class="brand" href={es ? '/' : '/en/'}>{siteConfig.name}</a>
-      <button type="button" class="quick-exit" id="quick-exit" aria-label={es ? 'Salida rápida: abre otra página al instante' : 'Quick exit'}>{es ? 'Salida rápida' : 'Quick exit'}</button>
-
+    <header class="top" id="app-bar">
+      <a class="brand" href={es ? '/' : '/en/'}>
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" /><path d="M9 12l2 2 4-4" /></svg></span>
+        <span class="brand-text">{siteConfig.name}<small>{es ? 'Tus derechos, claros' : 'Your rights, clear'}</small></span>
+      </a>
+      <button type="button" class="quick-exit" id="quick-exit" aria-label={es ? 'Salida rápida: abre otra página al instante' : 'Quick exit'}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6H5v12h4M14 8l4 4-4 4M18 12H9" /></svg>
+        {es ? 'Salida rápida' : 'Quick exit'}
+      </button>
     </header>
     {es && (
       <nav class="navbar" aria-label="Principal">
@@ -72,42 +84,65 @@ const ogImage = card ? `${siteConfig.siteUrl}/cards/${card}-1080x1080.png` : '';
       </nav>
     )}
     <div id="snackbar" class="snackbar" role="status" aria-live="polite" hidden></div>
-    <main id="contenido" class={wide ? 'wide' : ''}>
-      <h1>{title}</h1>
-      {legal && (
-        <p class="legal-note" role="note">
-          {legalReview.status === 'pendiente' ? siteConfig.legalNote : `Revisión legal firmada por ${legalReview.reviewers.join(', ')}.`}
-          <br /><span>Última revisión legal: {legalReview.status === 'pendiente' || !legalReview.fecha ? 'pendiente' : legalReview.fecha}</span>
-        </p>
+    <main id="contenido" class={`${!wide && !hero ? 'narrow' : ''}${hasToc ? ' has-toc' : ''}`.trim()}>
+      {hero ? (
+        <slot name="hero" />
+      ) : (
+        <header class="page-head">
+          {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+          <h1>{title}</h1>
+          {lead && description && <p class="lead">{description}</p>}
+          {legal && (
+            <p class="legal-note" role="note">
+              <span class="legal-chip">{legalReview.status === 'pendiente' ? siteConfig.legalNote : `Revisión legal firmada por ${legalReview.reviewers.join(', ')}.`} · Última revisión legal: {legalReview.status === 'pendiente' || !legalReview.fecha ? 'pendiente' : legalReview.fecha}</span>
+            </p>
+          )}
+        </header>
       )}
-      <slot />
-      {sources.length > 0 && (
-        <section class="sources" aria-labelledby="fuentes">
-          <h2 id="fuentes">{es ? 'Fuentes' : 'Sources'}</h2>
-          <ul>{sources.map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.title}</a> · {es ? 'leída el' : 'read on'} {s.read}</li>)}</ul>
-        </section>
-      )}
-      {legal && (
-        <section class="legend" aria-labelledby="leyenda">
-          <h2 id="leyenda">{es ? 'Qué significan las etiquetas' : 'What the labels mean'}</h2>
-          <ul>
-            {Object.entries(statusLabels).map(([k, v]) => <li><span class={`tag t-${k}`}>{k}</span> {v}</li>)}
-          </ul>
-        </section>
-      )}
-      {card && <ShareRow card={card} path={path} />}
-      {isReview && legal && <ReviewPanel claims={claims} decisions={decisions} />}
+      <div class={`page-grid${hasToc ? ' has-toc' : ''}`}>
+        <div class={`body${wide || hero ? '' : ' measure'}`}>
+          <slot />
+          {sources.length > 0 && (
+            <section class="sources" aria-labelledby="fuentes">
+              <h2 id="fuentes">{es ? 'Fuentes' : 'Sources'}</h2>
+              <ul>{sources.map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.title}</a> · {es ? 'leída el' : 'read on'} {s.read}</li>)}</ul>
+            </section>
+          )}
+          {legal && (
+            <section class="legend" aria-labelledby="leyenda">
+              <h2 id="leyenda">{es ? 'Qué significan las etiquetas' : 'What the labels mean'}</h2>
+              <ul>
+                {Object.entries(statusLabels).map(([k, v]) => <li><span class={`tag t-${k}`}>{k}</span> {v}</li>)}
+              </ul>
+            </section>
+          )}
+          {card && <ShareRow card={card} path={path} />}
+          {isReview && legal && <ReviewPanel claims={claims} decisions={decisions} />}
+        </div>
+        {hasToc && (
+          <aside class="toc" aria-label={es ? 'En esta página' : 'On this page'}>
+            <h2>{es ? 'En esta página' : 'On this page'}</h2>
+            <ul>{tocItems.map((t) => <li><a href={`#${t.slug}`}>{t.text}</a></li>)}</ul>
+          </aside>
+        )}
+      </div>
     </main>
     <footer>
-      <p>{siteConfig.footerLine}</p>
-      <p>{siteConfig.disclaimer}</p>
-      <p>
-        <a href="/acerca/">{es ? 'Acerca y privacidad' : 'About'}</a> ·
-        <a href="/glosario/">Glosario</a> ·
-        <a href="/actualizaciones/">Actualizaciones</a> ·
-        <a href={siteConfig.repoUrl} rel="noopener noreferrer">Código abierto</a>
-      </p>
-      <p class="small">Texto: CC BY-SA 4.0. Código: MIT.</p>
+      <div class="foot-inner">
+        <div>
+          <p><strong>{siteConfig.footerLine}</strong></p>
+          <p>{siteConfig.disclaimer}</p>
+        </div>
+        <div>
+          <p class="foot-links">
+            <a href="/acerca/">{es ? 'Acerca y privacidad' : 'About'}</a>
+            <a href="/glosario/">Glosario</a>
+            <a href="/actualizaciones/">Actualizaciones</a>
+            <a href={siteConfig.repoUrl} rel="noopener noreferrer">Código abierto</a>
+          </p>
+          <p class="small">Texto: CC BY-SA 4.0. Código: MIT.</p>
+        </div>
+      </div>
     </footer>
     <script>import '../scripts/site.ts';</script>
   </body>

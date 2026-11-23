@@ -12,9 +12,20 @@ document.addEventListener('keydown', (e) => {
   lastEsc = now;
 });
 
-// Las tablas de los textos (Markdown) no traen contenedor: se envuelven para que se desplacen en el teléfono y se puedan enfocar con el teclado.
-document.querySelectorAll('main table').forEach((t) => {
+document.documentElement.classList.add('js');
+
+// Tablas de los textos: con pocas columnas se vuelven tarjetas apiladas en el teléfono (cada celda lleva su rótulo);
+// las demás se envuelven en una región desplazable que se puede enfocar con el teclado.
+document.querySelectorAll<HTMLTableElement>('main table').forEach((t) => {
   if (t.closest('.table-wrap')) return;
+  const heads = Array.from(t.querySelectorAll('thead th')).map((h) => (h.textContent || '').trim());
+  if (heads.length > 0 && heads.length <= 5 && t.closest('.prose')) {
+    t.classList.add('rt');
+    t.querySelectorAll('tbody tr').forEach((tr) => {
+      Array.from(tr.children).forEach((c, i) => { if (heads[i]) c.setAttribute('data-label', heads[i]); });
+    });
+    return;
+  }
   const w = document.createElement('div');
   w.className = 'table-wrap';
   w.tabIndex = 0;
@@ -23,6 +34,38 @@ document.querySelectorAll('main table').forEach((t) => {
   t.replaceWith(w);
   w.append(t);
 });
+
+// Barra superior: sombra al desplazarse.
+const bar = document.getElementById('app-bar');
+const onScroll = () => bar?.classList.toggle('scrolled', window.scrollY > 8);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// Entrada suave de las secciones (se respeta prefers-reduced-motion en el CSS).
+const reveals = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
+if ('IntersectionObserver' in window && reveals.length) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px 6% 0px', threshold: 0 });
+  reveals.forEach((r) => io.observe(r));
+} else {
+  reveals.forEach((r) => r.classList.add('in'));
+}
+
+// Tabla de contenido: marca la sección visible.
+const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.toc a'));
+if (tocLinks.length && 'IntersectionObserver' in window) {
+  const map = new Map<Element, HTMLAnchorElement>();
+  tocLinks.forEach((a) => { const el = document.getElementById(decodeURIComponent(a.hash.slice(1))); if (el) map.set(el, a); });
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      tocLinks.forEach((a) => a.removeAttribute('aria-current'));
+      map.get(e.target)?.setAttribute('aria-current', 'true');
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+  map.forEach((_, el) => spy.observe(el));
+}
 
 const offline = document.getElementById('offline-banner');
 const sync = () => { if (offline) offline.hidden = navigator.onLine; };

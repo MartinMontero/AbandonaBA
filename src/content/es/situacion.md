@@ -1,5 +1,6 @@
 ---
 title: "Qué se dijo y qué no está confirmado"
+eyebrow: "Los hechos"
 description: "Hechos sobre las declaraciones de Ricardo Salinas Pliego y lo que no se ha confirmado."
 claims: [C01, C24, C25]
 legal: true

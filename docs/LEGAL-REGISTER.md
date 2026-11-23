@@ -14,7 +14,7 @@ LFT Art. 439: si la maquinaria o los procedimientos nuevos reducen personal, hac
 
 **Pregunta para el abogado:** ¿Aplica el Art. 439 a la sustitución de cajeros por cajeros automáticos o robots, y el monto mínimo es 120 días más 20 días por año, o corresponde otra lectura?
 
-**Páginas:** /en/situacion/, /, /salidas/, /situacion/, /calculadora/, /revision/dictamen/, /revision/
+**Páginas:** /en/situacion/, /salidas/, /situacion/, /calculadora/, /, /revision/dictamen/, /revision/
 
 ## C02 · verificado-primaria · prioridad A
 
@@ -56,7 +56,7 @@ Prescripción: Art. 518, dos meses para quien es separado del trabajo (corre des
 
 **Pregunta para el abogado:** ¿Qué plazo debe usar un trabajador que se separa por culpa del patrón: el mes del Art. 517 o los treinta días del Art. 52? Y tras pedir la conciliación, ¿el plazo se suspende o se interrumpe, y cuándo vuelve a correr?
 
-**Páginas:** /, /no-firmes/, /salidas/, /plazos/, /revision/
+**Páginas:** /no-firmes/, /salidas/, /, /plazos/, /revision/
 
 ## C05 · verificado-primaria · prioridad A
 

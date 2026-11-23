@@ -1,5 +1,6 @@
 ---
 title: "Dinero mientras encuentro trabajo"
+eyebrow: "Después de salir"
 description: "Comparaciones neutrales de opciones para los meses sin empleo."
 claims: [C10, C11, C12, C13, C14, C15]
 legal: true

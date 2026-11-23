@@ -1,5 +1,6 @@
 ---
 title: "Inteligencia Aumentada: diez lecciones"
+eyebrow: "Aprende y prepárate"
 description: "Diez lecciones cortas con una instrucción para copiar y pegar."
 claims: []
 legal: false

@@ -200,5 +200,5 @@ test('teclado: se llega a la calculadora y se enfoca el campo', async ({ page })
   for (let i = 0; i < 40; i++) { await page.keyboard.press('Tab'); if ((await page.evaluate(() => document.activeElement?.id)) === 'weeklyBase') break; }
   expect(await page.evaluate(() => document.activeElement?.id)).toBe('weeklyBase');
   await page.keyboard.type('2205.28');
-  await expect(page.locator('#resultado')).toContainText('Resultado por salida');
+  await expect(page.locator('#resultado')).toContainText('Lo que paga cada salida');
 });

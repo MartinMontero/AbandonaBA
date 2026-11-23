@@ -1,5 +1,6 @@
 ---
 title: "Mi propio negocio"
+eyebrow: "Después de salir"
 description: "Ideas de negocio con lo que ya sabes, primeros 30 días y riesgos."
 claims: [C15, C26]
 legal: true
