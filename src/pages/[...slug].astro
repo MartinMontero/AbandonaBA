@@ -15,9 +15,11 @@ const { mod, lang, slug } = Astro.props as any;
 const fm = mod.frontmatter;
 const path = (lang === 'en' ? '/en/' : '/') + (slug ? slug + '/' : '');
 const Content = mod.Content;
+const artMap: Record<string, string> = { salidas: 'door', 'no-firmes': 'shield', situacion: 'news', evidencia: 'clipboard', puente: 'steps', negocio: 'store', cooperativa: 'coop', glosario: 'book', 'inteligencia-aumentada': 'spark', acerca: 'shield' };
+const art = fm.art ?? artMap[slug] ?? 'shield';
 const toc = (typeof mod.getHeadings === 'function' ? mod.getHeadings() : []) as { depth: number; slug: string; text: string }[];
 ---
-<Base title={fm.title} description={fm.description} path={path} lang={lang} legal={fm.legal ?? false} claims={fm.claims ?? []} decisions={fm.decisions ?? []} sources={fm.sources ?? []} card={fm.card} wide={fm.wide ?? false} eyebrow={fm.eyebrow ?? ''} lead={true} toc={toc}>
+<Base title={fm.title} description={fm.description} path={path} lang={lang} legal={fm.legal ?? false} claims={fm.claims ?? []} decisions={fm.decisions ?? []} sources={fm.sources ?? []} card={fm.card} wide={fm.wide ?? false} eyebrow={fm.eyebrow ?? ''} lead={true} toc={toc} art={art}>
   <div class="prose">
     <Content />
   </div>

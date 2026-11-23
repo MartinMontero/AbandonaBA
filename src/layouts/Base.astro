@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { siteConfig, legalReview, statusLabels, isReview } from '../data/site.config';
 import ReviewPanel from '../components/ReviewPanel.astro';
 import ShareRow from '../components/ShareRow.astro';
+import Art from '../components/Art.astro';
 
 export interface Source { title: string; url: string; read: string }
 export interface TocItem { depth: number; slug: string; text: string }
@@ -21,8 +22,9 @@ interface Props {
   eyebrow?: string;
   lead?: boolean; // muestra la descripción como entrada del texto
   toc?: TocItem[];
+  art?: string; // ilustración del encabezado
 }
-const { title, description = '', path, lang = 'es', legal = false, claims = [], decisions = [], sources = [], card, wide = false, hero = false, eyebrow = '', lead = false, toc = [] } = Astro.props;
+const { title, description = '', path, lang = 'es', legal = false, claims = [], decisions = [], sources = [], card, wide = false, hero = false, eyebrow = '', lead = false, toc = [], art = 'shield' } = Astro.props;
 const es = lang === 'es';
 const basePath = path.replace(/^\/en\//, '/');
 const altEs = basePath;
@@ -66,7 +68,7 @@ const hasToc = tocItems.length >= 3;
     <a class="skip" href="#contenido">{es ? 'Saltar al contenido' : 'Skip to content'}</a>
     <header class="top" id="app-bar">
       <a class="brand" href={es ? '/' : '/en/'}>
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" /><path d="M9 12l2 2 4-4" /></svg></span>
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 17l5-5 4 4 7-8M15 8h5v5" /></svg></span>
         <span class="brand-text">{siteConfig.name}<small>{es ? 'Tus derechos, claros' : 'Your rights, clear'}</small></span>
       </a>
       <button type="button" class="quick-exit" id="quick-exit" aria-label={es ? 'Salida rápida: abre otra página al instante' : 'Quick exit'}>
@@ -89,14 +91,19 @@ const hasToc = tocItems.length >= 3;
         <slot name="hero" />
       ) : (
         <header class="page-head">
-          {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-          <h1>{title}</h1>
-          {lead && description && <p class="lead">{description}</p>}
-          {legal && (
-            <p class="legal-note" role="note">
-              <span class="legal-chip">{legalReview.status === 'pendiente' ? siteConfig.legalNote : `Revisión legal firmada por ${legalReview.reviewers.join(', ')}.`} · Última revisión legal: {legalReview.status === 'pendiente' || !legalReview.fecha ? 'pendiente' : legalReview.fecha}</span>
-            </p>
-          )}
+          <div class="page-head-in">
+            <div>
+              {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+              <h1>{title}</h1>
+              {lead && description && <p class="lead">{description}</p>}
+              {legal && (
+                <p class="legal-note" role="note">
+                  <span class="legal-chip">{legalReview.status === 'pendiente' ? siteConfig.legalNote : `Revisión legal firmada por ${legalReview.reviewers.join(', ')}.`} · Última revisión legal: {legalReview.status === 'pendiente' || !legalReview.fecha ? 'pendiente' : legalReview.fecha}</span>
+                </p>
+              )}
+            </div>
+            <Art name={art} class="art-head" />
+          </div>
         </header>
       )}
       <div class={`page-grid${hasToc ? ' has-toc' : ''}`}>

@@ -1,16 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
+import Art from '../components/Art.astro';
 import '../styles/empleos.css';
 import data from '../data/empleos.json';
 import vac from '../data/vacantes.json';
 
 const roles = [
-  { id: 'cajero', label: 'Cajero/a', family: 'Cajero y servicio' },
-  { id: 'asesor', label: 'Asesor/a financiero', family: 'Asesor, ventas y crédito' },
-  { id: 'cobranza', label: 'Gestor/a de cobranza', family: 'Cobranza y campo' },
-  { id: 'verificador', label: 'Verificador/a', family: 'Verificación, fraude y cumplimiento' },
-  { id: 'gerente', label: 'Gerente de sucursal', family: 'Gerencia de sucursal' },
-  { id: 'oficinas', label: 'Oficinas centrales', family: '' },
+  { id: 'cajero', label: 'Cajero/a', sub: 'Ventanilla y caja', family: 'Cajero y servicio' },
+  { id: 'asesor', label: 'Asesor/a financiero', sub: 'Ventas y crédito', family: 'Asesor, ventas y crédito' },
+  { id: 'cobranza', label: 'Gestor/a de cobranza', sub: 'Campo y teléfono', family: 'Cobranza y campo' },
+  { id: 'verificador', label: 'Verificador/a', sub: 'Fraude y cumplimiento', family: 'Verificación, fraude y cumplimiento' },
+  { id: 'gerente', label: 'Gerente de sucursal', sub: 'Equipo y operación', family: 'Gerencia de sucursal' },
+  { id: 'oficinas', label: 'Oficinas centrales', sub: 'Operaciones y análisis', family: '' },
 ];
 const types: [string, string][] = [['todos', 'Todos'], ['banco', 'Bancos'], ['banco-digital', 'Bancos sin sucursales'], ['fintech', 'Fintech'], ['gobierno', 'Gobierno'], ['remesas', 'Remesas y atención']];
 const typeLabel: Record<string, string> = { banco: 'Banco', 'banco-digital': 'Banco sin sucursales', fintech: 'Fintech', gobierno: 'Gobierno', remesas: 'Remesas y atención' };
@@ -45,39 +46,47 @@ const cards = (data as any).employers.map((e: any) => {
   }
   return { ...e, perRole, seenFit: s?.fit_count ?? null };
 });
+const initials = (n: string) => n.replace(/\(.*?\)/g, '').trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+const hue = (n: string) => [...n].reduce((a, c) => a + c.charCodeAt(0), 0) % 6;
 const sources = [];
+const tips = [
+  { art: 'shield', t: 'Postula en privado', d: 'Desde tu teléfono o computadora personal, no desde equipos ni Wi-Fi del banco.' },
+  { art: 'clipboard', t: 'Lleva tu currículum listo', d: 'Frases para cada puesto en Buscar trabajo.', href: '/trabajo/', a: 'Ver frases' },
+  { art: 'news', t: 'Ojo con los filtros', d: 'Algunas ofertas del Grupo Salinas piden «no haber laborado en Grupo Salinas». Se reporta en ofertas y reseñas.' },
+  { art: 'calc', t: 'Confirma en el enlace', d: `Vacantes vistas el ${(vac as any).seen}; cambian a diario. El encaje es una estimación nuestra.` },
+];
 ---
-<Base title="Banco de empleo" description="Todos los bancos, fintech y bolsas en un solo lugar. Elige lo que haces hoy y te mostramos dónde encaja mejor." path="/empleos/" legal claims={['C22','C23']} sources={sources} card="empleos" wide>
-  <p class="lead">Elige lo que haces hoy. Te ponemos primero a quienes más se parecen a tu puesto.</p>
-
+<Base art="briefcase" eyebrow="Banco de empleo" title="Encuentra dónde encajas" description="Bancos y fintech en un solo lugar. Elige lo que haces hoy y te mostramos dónde encaja mejor." path="/empleos/" legal claims={['C22','C23']} sources={sources} card="empleos" wide lead>
   <form id="empleos-form" class="tool" role="search" aria-label="Buscar empleo">
-    <fieldset class="chips">
-      <legend>1. ¿Qué haces hoy en el banco?</legend>
-      <div class="chip-row">
-        {roles.map((r, i) => (
-          <label class="chip"><input type="radio" name="role" value={r.id} /><span>{r.label}</span></label>
+    <fieldset class="roles">
+      <legend><span class="step">1</span> ¿Qué haces hoy en el banco?</legend>
+      <div class="role-grid">
+        {roles.map((r) => (
+          <label class="role-card"><input type="radio" name="role" value={r.id} /><span class="rc"><Art kind="role" name={r.id} /><strong>{r.label}</strong><small>{r.sub}</small></span></label>
         ))}
       </div>
     </fieldset>
 
-    <fieldset class="chips">
-      <legend>2. ¿Dónde quieres buscar?</legend>
-      <div class="chip-row">
-        {types.map(([v, l], i) => (
-          <label class="chip"><input type="radio" name="type" value={v} checked={i === 0} /><span>{l}</span></label>
-        ))}
+    <div class="filters">
+      <fieldset class="chips">
+        <legend><span class="step">2</span> ¿Dónde quieres buscar?</legend>
+        <div class="chip-row">
+          {types.map(([v, l], i) => (
+            <label class="chip"><input type="radio" name="type" value={v} checked={i === 0} /><span>{l}</span></label>
+          ))}
+        </div>
+      </fieldset>
+      <div class="filter-row">
+        <label class="switch"><input type="checkbox" role="switch" id="seen-only" /><span>Solo con vacantes vistas hoy</span></label>
+        <div class="search"><label for="q" class="sr-only">Buscar una empresa por nombre</label><input id="q" type="search" autocomplete="off" placeholder="Buscar empresa: Banorte, Nu…" /></div>
       </div>
-    </fieldset>
-
-    <div class="row">
-      <label class="switch"><input type="checkbox" role="switch" id="seen-only" /><span>Solo con vacantes que vimos hoy para mi puesto</span></label>
     </div>
-    <label for="q" class="field">Buscar una empresa por nombre</label>
-    <input id="q" type="search" autocomplete="off" placeholder="Por ejemplo: Banorte" />
   </form>
 
-  <p id="summary" class="summary" aria-live="polite">Elige tu puesto arriba. Mientras tanto, estas son todas las opciones.</p>
-  <p class="no-print"><button type="button" class="btn tonal" id="copy-top">Copiar enlaces de las 10 mejores</button></p>
+  <div class="results-bar">
+    <p id="summary" class="summary" aria-live="polite">Elige tu puesto arriba. Mientras tanto, estas son todas las opciones.</p>
+    <button type="button" class="btn tonal no-print" id="copy-top">Copiar las 10 mejores</button>
+  </div>
 
   <ol id="cards" class="cards">
     {cards.map((e: any) => (
@@ -85,15 +94,20 @@ const sources = [];
         data-fit-cajero={e.perRole.cajero.fit} data-fit-asesor={e.perRole.asesor.fit} data-fit-cobranza={e.perRole.cobranza.fit} data-fit-verificador={e.perRole.verificador.fit} data-fit-gerente={e.perRole.gerente.fit} data-fit-oficinas={e.perRole.oficinas.fit}
         data-n-cajero={e.perRole.cajero.count} data-n-asesor={e.perRole.asesor.count} data-n-cobranza={e.perRole.cobranza.count} data-n-verificador={e.perRole.verificador.count} data-n-gerente={e.perRole.gerente.count} data-n-oficinas={e.perRole.oficinas.count}
         data-url={e.url}>
+        <span class="rank" data-rank hidden></span>
         <div class="job-head">
-          <h2>{e.name}</h2>
-          <span class="chip-tag">{typeLabel[e.type]}</span>
+          <span class={`avatar av-${hue(e.name)}`} aria-hidden="true">{initials(e.name)}</span>
+          <div class="job-id">
+            <h2>{e.name}</h2>
+            <span class="chip-tag">{typeLabel[e.type]}</span>
+          </div>
           <span class="fit" data-fit-badge hidden></span>
         </div>
+        <div class="meter" data-meter hidden aria-hidden="true"><i></i><i></i><i></i></div>
         {roles.map((r) => (
           <p class="hint-line" data-role-hint={r.id} hidden>
             <strong>{e.hints?.[r.id] ?? generic[r.id]}.</strong>
-            {e.perRole[r.id].count > 0 && <span> Vimos {e.perRole[r.id].count} puesto{e.perRole[r.id].count === 1 ? '' : 's'} parecido{e.perRole[r.id].count === 1 ? '' : 's'} el {(vac as any).seen}.</span>}
+            {e.perRole[r.id].count > 0 && <span class="seen-pill">{e.perRole[r.id].count} vista{e.perRole[r.id].count === 1 ? '' : 's'} hoy</span>}
             {e.perRole[r.id].ex && <span> Por ejemplo: <a href={e.perRole[r.id].ex.url} rel="noopener noreferrer" target="_blank">{e.perRole[r.id].ex.title}</a>.</span>}
           </p>
         ))}
@@ -109,20 +123,24 @@ const sources = [];
   <p id="empty" class="summary" hidden>No hay resultados con esos filtros. Quita «Solo con vacantes vistas» o cambia de lugar.</p>
   <p id="reviewed" class="summary" aria-live="polite"></p>
 
-  <h2>Bolsas generales</h2>
-  <p>Aquí puedes buscar en muchas empresas a la vez. Pon el puesto y tu ciudad.</p>
-  <ul class="boards">
-    {(data as any).boards.map((b: any) => <li class="card"><a href={b.url} rel="noopener noreferrer" target="_blank"><strong>{b.name}</strong></a><br /><small>{b.note}</small></li>)}
-  </ul>
+  <section class="boards-sec" aria-labelledby="bolsas">
+    <h2 id="bolsas">Busca en muchas empresas a la vez</h2>
+    <p class="muted">Pon el puesto y tu ciudad. Todas son gratis.</p>
+    <ul class="board-grid">
+      {(data as any).boards.map((b: any) => (
+        <li><a class="board" href={b.url} rel="noopener noreferrer" target="_blank"><span class={`avatar lg av-${hue(b.name)}`} aria-hidden="true">{initials(b.name)}</span><span class="board-body"><strong>{b.name}</strong><small>{b.note}</small></span><span class="board-go" aria-hidden="true">↗</span></a></li>
+      ))}
+    </ul>
+  </section>
 
-  <h2>Antes de postular</h2>
-  <ul>
-    <li>Postula desde tu teléfono o computadora personal, no desde equipos ni el Wi-Fi del banco.</li>
-    <li>Tus frases para el currículum están en <a href="/trabajo/">Buscar trabajo</a>.</li>
-    <li>Algunas ofertas del Grupo Salinas piden «no haber laborado en Grupo Salinas». <span class="tag t-verificado-secundaria">verificado-secundaria</span> Se reporta en ofertas y reseñas.</li>
-    <li>Vacantes vistas el {(vac as any).seen} con un programa que lee los listados públicos de cada empresa. Cambian a diario: confirma en el enlace. El encaje es una <strong>estimación nuestra</strong>, no un dato de la empresa.</li>
-    <li>Fuera del programa quedan bancos cuyos listados no pudimos leer. Si no ves una vacante aquí, no significa que no exista.</li>
-  </ul>
+  <section class="tips-sec" aria-labelledby="antes">
+    <h2 id="antes">Antes de postular</h2>
+    <ul class="tips">
+      {tips.map((x) => (
+        <li class="tip"><Art name={x.art} /><h3>{x.t}</h3><p>{x.d} {x.href && <a href={x.href}>{x.a}</a>}</p></li>
+      ))}
+    </ul>
+  </section>
 
   <script>import '../scripts/empleos.ts';</script>
 </Base>

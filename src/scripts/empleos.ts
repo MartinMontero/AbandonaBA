@@ -27,6 +27,7 @@ if (form) {
       const show = okType && okName && okSeen;
       c.hidden = !show;
       const badge = c.querySelector<HTMLElement>('[data-fit-badge]')!;
+      const meter = c.querySelector<HTMLElement>('[data-meter]')!;
       c.querySelectorAll<HTMLElement>('[data-role-hint]').forEach((h) => { h.hidden = h.dataset.roleHint !== role; });
       if (role) {
         const f = num(c, 'fit' + cap(role));
@@ -35,7 +36,7 @@ if (form) {
         badge.textContent = `${fitMark[f]} ${fitText[f]}`;
         c.classList.toggle('dim', f === 0);
       } else {
-        badge.hidden = true;
+        badge.hidden = true; meter.hidden = true;
         c.classList.remove('dim');
       }
       if (show) visible.push(c);
@@ -47,6 +48,15 @@ if (form) {
       return num(b, 'fit' + k) - num(a, 'fit' + k) || num(b, 'n' + k) - num(a, 'n' + k) || (a.dataset.name ?? '').localeCompare(b.dataset.name ?? '', 'es');
     });
     list.append(...sorted);
+    // Los tres mejores se destacan.
+    let rank = 0;
+    for (const c of sorted) {
+      const r = c.querySelector<HTMLElement>('[data-rank]')!;
+      const top = !!role && !c.hidden && rank < 3 && num(c, 'fit' + cap(role)) >= 2;
+      c.classList.toggle('best', top);
+      r.hidden = !top;
+      if (top) { rank++; r.textContent = ['Mejor encaje', 'Segundo mejor', 'Tercer mejor'][rank - 1]; }
+    }
     empty.hidden = visible.length > 0;
     summary.textContent = role
       ? `${visible.length} empresa${visible.length === 1 ? '' : 's'} para ${labels[role]}, las que más encajan primero.`

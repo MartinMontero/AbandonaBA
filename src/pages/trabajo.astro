@@ -15,7 +15,7 @@ const roles = [
 ];
 const sources = [...emp.empleadores, ...emp.bolsas, ...emp.capacitacion].map((e) => ({ title: e.name, url: e.url, read: '2026-11-22 (enlace accesible; contenido no releído)' }));
 ---
-<Base title="Buscar trabajo" description="Traductor de habilidades, empleadores y bolsas de trabajo." path="/trabajo/" legal claims={['C22','C23']} sources={sources}>
+<Base art="briefcase" title="Buscar trabajo" description="Traductor de habilidades, empleadores y bolsas de trabajo." path="/trabajo/" legal claims={['C22','C23']} sources={sources}>
   <h2>Traduce tu puesto</h2>
   <p>Elige tu puesto en el banco. Verás puestos equivalentes y seis frases para tu currículum. Cambia lo que está entre corchetes.</p>
   {roles.map((r) => (

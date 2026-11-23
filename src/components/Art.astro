@@ -1,0 +1,10 @@
+---
+// Ilustración decorativa. kind: 'spot' (160x120) o 'role' (96x96). name: clave de art.ts.
+import { spots, roles, heroScene } from './art';
+import '../styles/art.css';
+interface Props { name: string; kind?: 'spot' | 'role' | 'scene'; class?: string }
+const { name, kind = 'spot', class: cls = '' } = Astro.props;
+const body = kind === 'role' ? roles[name] : kind === 'scene' ? heroScene : spots[name];
+const box = kind === 'role' ? '0 0 96 96' : kind === 'scene' ? '0 0 560 470' : '0 0 160 120';
+---
+<svg class={`art art-${kind} ${cls}`.trim()} viewBox={box} aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" set:html={body} />

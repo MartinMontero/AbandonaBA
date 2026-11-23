@@ -1,0 +1,6 @@
+---
+// Separador de olas. Toma el color del texto (currentColor) para fundirse con la sección de abajo.
+interface Props { flip?: boolean; class?: string }
+const { flip = false, class: cls = '' } = Astro.props;
+---
+<svg class={`wave ${flip ? 'flip' : ''} ${cls}`.trim()} viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 70C180 130 360 10 600 60s420 70 600 10c100-34 180-40 240-20V120H0z" /></svg>

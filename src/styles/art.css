@@ -1,0 +1,59 @@
+/* Paleta de ilustración y movimiento. Son tokens de arte: escenas fijas (amanecer sobre el mar) que no cambian con el modo oscuro. */
+:root {
+  --art-n1: #061735;
+  --art-n2: #0e2c63;
+  --art-dusk: #355fae;
+  --art-d1: #ff8a5b;
+  --art-d2: #ffd68a;
+  --art-sun: #ffc83a;
+  --art-s1: #0a4766;
+  --art-s2: #12809b;
+  --art-s3: #44bccb;
+  --art-foam: #eafcff;
+  --art-rock: #16253f;
+  --art-light: #fff4c7;
+  --art-coral: #ff6a52;
+  --art-leaf: #2fb67c;
+  --art-k1: #f5d1ae;
+  --art-k2: #cf9566;
+  --art-k3: #8e5d3e;
+  --art-ink: #10223f;
+  --art-paper: #ffffff;
+  --art-sand: #ffe6b4;
+  --art-teal: #00788c;
+}
+/* Rellenos y trazos por nombre (las ilustraciones usan clases porque la política de seguridad no permite estilos en línea). */
+.f-n1 { fill: var(--art-n1); } .f-n2 { fill: var(--art-n2); } .f-dusk { fill: var(--art-dusk); } .f-d1 { fill: var(--art-d1); } .f-d2 { fill: var(--art-d2); }
+.f-sun { fill: var(--art-sun); } .f-s1 { fill: var(--art-s1); } .f-s2 { fill: var(--art-s2); } .f-s3 { fill: var(--art-s3); } .f-foam { fill: var(--art-foam); }
+.f-rock { fill: var(--art-rock); } .f-light { fill: var(--art-light); } .f-coral { fill: var(--art-coral); } .f-leaf { fill: var(--art-leaf); }
+.f-k1 { fill: var(--art-k1); } .f-k2 { fill: var(--art-k2); } .f-k3 { fill: var(--art-k3); } .f-ink { fill: var(--art-ink); } .f-paper { fill: var(--art-paper); }
+.f-sand { fill: var(--art-sand); } .f-teal { fill: var(--art-teal); } .f-none { fill: none; } .f-shadow { fill: var(--art-ink); opacity: 0.12; }
+.s-n1 { stroke: var(--art-n1); } .s-n2 { stroke: var(--art-n2); } .s-sun { stroke: var(--art-sun); } .s-d1 { stroke: var(--art-d1); } .s-s2 { stroke: var(--art-s2); }
+.s-s3 { stroke: var(--art-s3); } .s-foam { stroke: var(--art-foam); } .s-coral { stroke: var(--art-coral); } .s-leaf { stroke: var(--art-leaf); } .s-ink { stroke: var(--art-ink); }
+.s-paper { stroke: var(--art-paper); } .s-light { stroke: var(--art-light); } .s-teal { stroke: var(--art-teal); } .s-sand { stroke: var(--art-sand); }
+.sw2 { stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; } .sw3 { stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.sw26 { stroke-width: 26; fill: none; }
+.sw5 { stroke-width: 5; fill: none; stroke-linecap: round; stroke-linejoin: round; } .sw8 { stroke-width: 8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.o5 { opacity: 0.5; } .o3 { opacity: 0.3; } .o7 { opacity: 0.7; } .o85 { opacity: 0.85; }
+
+/* ---- Movimiento de la escena ---- */
+@keyframes beam-sweep { 0%, 100% { opacity: 0.55; } 50% { opacity: 0.95; } }
+@keyframes drift-x { from { transform: translateX(0); } to { transform: translateX(-120px); } }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1.2deg); } 50% { transform: translateY(-6px) rotate(1.2deg); } }
+@keyframes twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+@keyframes fly { from { transform: translateX(0); } to { transform: translateX(-60px); } }
+@keyframes rise { from { transform: translateY(60px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.scene .beam { transform-origin: 1180px 301px; animation: beam-sweep 5s ease-in-out infinite; }
+.scene .w1 { animation: drift-x 16s linear infinite; }
+.scene .w2 { animation: drift-x 11s linear infinite reverse; }
+.scene .boat { animation: bob 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center bottom; }
+.scene .star { animation: twinkle 4s ease-in-out infinite; }
+.scene .star:nth-child(2n) { animation-delay: 1.3s; }
+.scene .star:nth-child(3n) { animation-delay: 2.1s; }
+.scene .bird { animation: fly 9s ease-in-out infinite alternate; }
+.scene .sunball { animation: rise 2.2s var(--motion-easing-emphasized) both; }
+.float { animation: float-y 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .scene *, .float { animation: none !important; }
+}

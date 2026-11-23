@@ -3,10 +3,10 @@
 import fs from 'node:fs';
 import { argbFromHex, hexFromArgb, Hct, SchemeVibrant, MaterialDynamicColors, themeFromSourceColor } from '@material/material-color-utilities';
 
-const SEED = '#2f4fd6';
+const SEED = '#00788c';
 const roles = ['primary', 'onPrimary', 'primaryContainer', 'onPrimaryContainer', 'secondary', 'onSecondary', 'secondaryContainer', 'onSecondaryContainer', 'tertiary', 'onTertiary', 'tertiaryContainer', 'onTertiaryContainer', 'error', 'onError', 'errorContainer', 'onErrorContainer', 'surface', 'onSurface', 'onSurfaceVariant', 'surfaceContainerLowest', 'surfaceContainerLow', 'surfaceContainer', 'surfaceContainerHigh', 'surfaceContainerHighest', 'outline', 'outlineVariant', 'inverseSurface', 'inverseOnSurface', 'inversePrimary', 'scrim'];
 const kebab = (s) => s.replace(/[A-Z]/g, (c) => '-' + c.toLowerCase());
-const custom = [{ name: 'ok', value: argbFromHex('#2e7d32'), blend: true }, { name: 'warn', value: argbFromHex('#b26a00'), blend: true }, { name: 'accent', value: argbFromHex('#f0a000'), blend: true }];
+const custom = [{ name: 'ok', value: argbFromHex('#2e7d32'), blend: true }, { name: 'warn', value: argbFromHex('#b26a00'), blend: true }, { name: 'accent', value: argbFromHex('#f0a000'), blend: true }, { name: 'coral', value: argbFromHex('#e8503a'), blend: true }];
 const theme = themeFromSourceColor(argbFromHex(SEED), custom);
 
 function block(dark) {
