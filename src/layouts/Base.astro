@@ -55,7 +55,8 @@ const hasToc = tocItems.length >= 3;
     <meta name="theme-color" content="#0045fc" />
     {isReview && <meta name="robots" content="noindex, nofollow, noarchive" />}
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="alternate" hreflang="es" href={siteConfig.siteUrl + altEs} />
     {['/', '/situacion/', '/acerca/'].includes(basePath) && <link rel="alternate" hreflang="en" href={siteConfig.siteUrl + altEn} />}
     <link rel="alternate" hreflang="x-default" href={siteConfig.siteUrl + altEs} />
@@ -71,7 +72,7 @@ const hasToc = tocItems.length >= 3;
     <a class="skip" href="#contenido">{es ? 'Saltar al contenido' : 'Skip to content'}</a>
     <header class="top" id="app-bar">
       <a class="brand" href={es ? '/' : '/en/'}>
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 20"><rect width="9.34" height="20" fill="#006847" /><rect x="9.33" width="9.34" height="20" fill="#ffffff" /><rect x="18.66" width="9.34" height="20" fill="#ce1126" /></svg></span>
+        <span class="brand-mark" aria-hidden="true"><img src="/flag-96.png" alt="" width="40" height="40" /></span>
         <span class="brand-text">{siteConfig.name}<small>{es ? 'Tus derechos, claros' : 'Your rights, clear'}</small></span>
       </a>
       <button type="button" class="quick-exit" id="quick-exit" aria-label={es ? 'Salida rápida: abre otra página al instante' : 'Quick exit'}>
