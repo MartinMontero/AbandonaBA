@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import CambiateNote from '../../components/CambiateNote.astro';
+import data from '../../data/cambiate.json';
+import rules from '../../data/matcher-rules.json';
+const insts = (data.institutions as any[]).filter((i) => i.id !== 'banco-azteca');
+const sources = insts.flatMap((i) => [
+  { title: `${i.name}: canal de apertura`, url: i.channels.source_url, read: i.channels.read_date },
+  { title: `${i.name}: portabilidad de nómina`, url: i.payroll_portability.source_url, read: i.payroll_portability.read_date },
+]);
+---
+<Base art="steps" eyebrow="¿Qué me conviene?" title="Tres preguntas, hasta tres opciones" description="Dinos si tienes celular con internet, si quieres pasar tu nómina y cuánto quieres ahorrar. Te mostramos hasta tres opciones con datos verificados y por qué no aparecen las demás." path="/cambiate/que-me-conviene/" legal finance claims={['CB06','CB07','CB11','CB12','CB40']} sources={sources} lead>
+  <CambiateNote />
+
+  <form id="m-form" class="cf" novalidate>
+    <label>¿Tienes celular con internet?
+      <select id="m-phone"><option value="si">Sí</option><option value="a-veces">A veces</option><option value="no">No</option></select>
+    </label>
+    <label>¿Quieres pasar tu nómina a otro banco?
+      <select id="m-pay"><option value="no">No</option><option value="si">Sí</option></select>
+    </label>
+    <label>¿Cuánto quieres ahorrar? (pesos)
+      <input id="m-amount" type="number" inputmode="decimal" min="0" step="any" placeholder="0" />
+      <small>Déjalo vacío si no por ahora.</small>
+    </label>
+  </form>
+
+  <div id="m-msg" class="callout info" hidden><p></p></div>
+  <ol id="m-out" class="offers" aria-live="polite"></ol>
+  <p class="ref-line" id="m-note">Esto no es una recomendación personalizada. Solo aparecen instituciones cuyos datos leímos completos en su página oficial. Revisa siempre las condiciones y el contrato.</p>
+  <p><button type="button" class="btn tonal" id="m-copy" hidden>Copiar resultado</button></p>
+
+  <details class="acc" id="m-excl"><summary>Por qué no aparecen las demás</summary><div class="acc-b"><ul id="m-excl-list"></ul></div></details>
+
+  <details class="acc" id="m-rules"><summary>Las reglas, en palabras sencillas</summary><div class="acc-b">
+    <ol>{rules.map((r) => <li>{r.text_es}</li>)}</ol>
+    <p>Mira cómo trabajamos en <a href="/cambiate/metodo/">Método</a> y todos los datos en <a href="/cambiate/fuentes/">Fuentes</a>.</p>
+  </div></details>
+  <script>import '../../scripts/cambiate-matcher.ts';</script>
+</Base>

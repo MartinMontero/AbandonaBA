@@ -127,3 +127,24 @@ Dato útil para los bancos grandes: Banamex paga 0.00% en su ahorro básico y al
 | Inbursa | La página de cuentas básicas no mostró contenido en dos intentos | Chrome | sin verificar |
 
 Con esto el ahorro sin condiciones queda así para 40,000 pesos: Openbank 2,800; Nu 2,600; Ualá 2,025; bineo 1,857; HSBC 400; Banamex y BanCoppel 0.
+
+## 11. Quinta ronda: canal de apertura y portabilidad de nómina; el selector ya funciona (2026-11-23)
+
+Se leyó, en la página oficial de cada institución, si la cuenta exige la app y si recibe portabilidad de nómina (claim CB40; datos en `channels` y `payroll_portability` de `cambiate.json`).
+
+| Institución | Sucursal u otra vía | Recibe portabilidad |
+|---|---|---|
+| Banco Azteca, BBVA, Banamex, Santander, Banorte, HSBC, Scotiabank, BanCoppel | sí (con cita) | sí |
+| Ualá | solo app | sí (desde la app) |
+| Nu, Openbank | digitales; **no dicen si exigen la app** | no todavía («próximamente») |
+| Klar, Stori, Mercado Pago, bineo, Spin | solo app | **no mencionan nada** (sin verificar) |
+
+Qué cambió en el sitio y en el código:
+- `src/lib/matcher.ts`: los campos pueden ser `null` (sin verificar); un `null` excluye la opción solo cuando la regla lo necesita. Orden por pesos al año con la cantidad de la persona; empates alfabéticos.
+- `/cambiate/que-me-conviene/`: tres preguntas (celular, nómina, cuánto ahorrar) y hasta tres opciones, cada una con por qué, un «ojo», su protección y su fecha. Debajo, la lista de por qué no aparecen las demás. Las reglas están en `src/data/matcher-rules.json` y se publican en `/cambiate/metodo/`.
+- Se exige protección de depósitos verificada para sugerir. Por eso Banorte, Scotiabank y BanCoppel no aparecen todavía, aunque tienen sucursales.
+- 25 casos de oro (`tests/matcher-cases.json`): 11 escritos a mano y 14 generados con una versión independiente de las reglas en Python (no con el mismo código). Todas pasan.
+
+Con 40,000 pesos y celular, el selector sugiere Openbank, Nu y Ualá. Sin celular: HSBC, Banamex y BBVA. Con nómina: Ualá, HSBC y Banamex.
+
+Sigue pendiente: aviso de protección de Banorte, Scotiabank y BanCoppel; portabilidad de Klar, Stori, Mercado Pago, bineo y Spin; si Nu y Openbank exigen la app; Inbursa; Afore, Buró, cerrar cuenta y crédito.

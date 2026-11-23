@@ -1,0 +1,30 @@
+[
+  {
+    "id": "R1",
+    "text_es": "Si no tienes celular con internet, quitamos las opciones que solo funcionan con la app y las que no dicen si necesitan la app."
+  },
+  {
+    "id": "R2",
+    "text_es": "Si quieres pasar tu nómina, solo mostramos instituciones que dicen en su página que reciben portabilidad de nómina. Si dicen «próximamente» o no dicen nada, no las mostramos."
+  },
+  {
+    "id": "R3",
+    "text_es": "Si tu ahorro pasa del límite de protección de una SOFIPO, quitamos las SOFIPO como cuenta principal y te decimos por qué."
+  },
+  {
+    "id": "R4",
+    "text_es": "Una IFPE no tiene seguro del IPAB. Si aparece, siempre lleva ese aviso."
+  },
+  {
+    "id": "R5",
+    "text_es": "Nunca sugerimos con un dato sin verificar. Si no hay datos verificados suficientes, te lo decimos en lugar de adivinar."
+  },
+  {
+    "id": "R6",
+    "text_es": "Las ofertas vencidas no se usan. Mostramos como máximo tres opciones."
+  },
+  {
+    "id": "R7",
+    "text_es": "Si ahorras, ordenamos por los pesos que ganarías en un año con tu cantidad y sin contar condiciones de gasto. Los empates van en orden alfabético. Nunca hay lugares destacados."
+  }
+]

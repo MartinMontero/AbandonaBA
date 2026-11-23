@@ -137,7 +137,23 @@
           "status": "verificado-primaria",
           "notes": "El micrositio de solicitud pudo mostrar otra cifra; no se leyó. Ver docs/DISCREPANCIES.md."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": false,
+        "seen": "La página de la cuenta dice «Más de 2,000 sucursales de Banco Azteca con horario de atención de 9:00 a 21:00 hrs».",
+        "source_url": "https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": true,
+        "seen": "La exención de la comisión aplica si «recibes tu nómina, portabilidad o pensión en tu Cuenta Operativa Azteca».",
+        "source_url": "https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "nu-mexico",
@@ -260,7 +276,23 @@
           "status": "verificado-primaria",
           "notes": "Tasas fijas anuales antes de impuestos. «Valores calculados el 18 de noviembre de 2026… Vigencia al 30 de noviembre de 2026»."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": null,
+        "seen": "Es un banco digital, pero la página no dice si exige la app ni si hay otra forma de abrir la cuenta. No encontramos una declaración en su página.",
+        "source_url": "https://nubank.com.mx/cuenta/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar"
+      },
+      "payroll_portability": {
+        "accepts": false,
+        "seen": "Su FAQ dice que la Cuenta Nu Básica de Nómina, con portabilidad de nómina, «estará disponible próximamente».",
+        "source_url": "https://nubank.com.mx/cuenta/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "openbank",
@@ -343,7 +375,23 @@
             "text_es": "Sin comisiones por saldo mínimo, mantenimiento ni administración, según su página."
           }
         }
-      ]
+      ],
+      "channels": {
+        "app_required": null,
+        "seen": "Dice «somos digitales» y que manejas tu dinero desde su app, pero no dice si exige la app para abrir la cuenta. No encontramos una declaración en su página.",
+        "source_url": "https://www.openbank.mx/cuenta-debito-open-plus/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar"
+      },
+      "payroll_portability": {
+        "accepts": false,
+        "seen": "La Cuenta Básica de Nómina dice «Próximamente disponible».",
+        "source_url": "https://www.openbank.mx/cuenta-basica-nomina/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "uala",
@@ -433,7 +481,23 @@
           "status": "verificado-primaria",
           "notes": "«Calculado el 26 de agosto de 2026. Oferta vigente al 30 de noviembre de 2026». Esta página ofrece también portabilidad de nómina."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": true,
+        "seen": "Se presenta como banco digital y dice «Desde tu app entra a la sección portabilidad de nómina». Ofrece «Descarga la app».",
+        "source_url": "https://www.uala.mx/portabilidad-nomina",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": true,
+        "seen": "«Realiza tu portabilidad de nómina con nosotros… Desde tu app entra a la sección portabilidad de nómina».",
+        "source_url": "https://www.uala.mx/portabilidad-nomina",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "klar",
@@ -513,7 +577,23 @@
           "status": "verificado-primaria",
           "notes": "«GAT calculado del 05 de noviembre al 07 de diciembre de 2026». El segmento (Light o Plus) lo asigna Klar según sus criterios comerciales."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": true,
+        "seen": "Su cuenta se maneja desde la app: pagos, tarjeta virtual, bloqueo de tarjeta y depósito en comercios «que te aparece en la app».",
+        "source_url": "https://www.klar.mx/cuenta",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": null,
+        "seen": "La página de la cuenta no menciona nómina ni portabilidad.",
+        "source_url": "https://www.klar.mx/cuenta",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar"
+      }
     },
     {
       "id": "mercado-pago",
@@ -542,7 +622,23 @@
           "seen_es": "Anuncia «hasta 15% anual en Apartados con tu suscripción» y «hasta 12% anual». Dice que es la suma de dos componentes: un beneficio de Mercado Pago Standard y la tasa de rendimiento de un fondo de inversión administrado por GBM. No es una tasa de depósito fija.",
           "notes": "No se calcula ni se ordena: las condiciones, topes, GAT y protección no se leyeron."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": true,
+        "seen": "«Abre tu cuenta en minutos desde el celular»; «Mercado Pago: Cuenta Digital» disponible en la app y el sitio.",
+        "source_url": "https://www.mercadopago.com.mx/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": null,
+        "seen": "La portada no menciona nómina ni portabilidad.",
+        "source_url": "https://www.mercadopago.com.mx/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar"
+      }
     },
     {
       "id": "bineo",
@@ -596,7 +692,23 @@
           "status": "verificado-primaria",
           "notes": "GAT nominal 4.69% y real 0.54% calculadas al 01/09/2026, vigentes al 01/03/2027, «puede cambiar en función a la tasa de referencia Cetes 28 días»."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": true,
+        "seen": "Se presenta como «100% digital»; el estado de cuenta se consulta desde la app.",
+        "source_url": "https://www.bineo.com/cuenta-bineo",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": null,
+        "seen": "La página de la cuenta no menciona nómina ni portabilidad.",
+        "source_url": "https://www.bineo.com/cuenta-bineo",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar"
+      }
     },
     {
       "id": "stori",
@@ -724,7 +836,23 @@
           "tool": "chrome",
           "status": "verificado-primaria"
         }
-      ]
+      ],
+      "channels": {
+        "app_required": true,
+        "seen": "«Abre tu cuenta en minutos desde la app, sin papeleos ni comisiones».",
+        "source_url": "https://www.storicard.com/stori-cuentamas",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": null,
+        "seen": "La página de la cuenta no menciona nómina ni portabilidad.",
+        "source_url": "https://www.storicard.com/stori-cuentamas",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar"
+      }
     },
     {
       "id": "spin-by-oxxo",
@@ -740,7 +868,23 @@
         "status": "verificado-primaria",
         "seen": "Compropago, S.A. de C.V., Institución de Fondos de Pago Electrónico: «Ni el Gobierno Federal ni las entidades de la administración pública paraestatal podrán responsabilizarse o garantizar los recursos de los Clientes»"
       },
-      "products": []
+      "products": [],
+      "channels": {
+        "app_required": true,
+        "seen": "«Crea tu Cuenta digital en Spin by OXXO»; se maneja desde la app.",
+        "source_url": "https://spinbyoxxo.com.mx/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": null,
+        "seen": "La página no menciona portabilidad de nómina.",
+        "source_url": "https://spinbyoxxo.com.mx/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar"
+      }
     },
     {
       "id": "bbva",
@@ -791,7 +935,23 @@
           "status": "verificado-primaria",
           "notes": "Términos y condiciones de la exención, vigencia indefinida (BBVA avisa con 30 días). La ficha técnica no publica tasa de interés. Descargados a .cache/sources y leídos con pdftotext."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": false,
+        "seen": "La ficha técnica del Libretón Básico dice «Apertura presencial en sucursal». La página de portabilidad ofrece también una línea telefónica de ayuda.",
+        "source_url": "https://www.bbva.mx/content/dam/public-web/mexico/documents/personas/cuentas/TCR_LibretonBasico.pdf",
+        "read_date": "2026-11-23",
+        "tool": "powershell",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": true,
+        "seen": "Página «Portabilidad de nómina»: «Traer tu nómina a BBVA…». Si ya eres cliente, desde la app; si no, hay línea de ayuda.",
+        "source_url": "https://www.bbva.mx/personas/productos/nomina/portabilidad-de-nomina.html",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "banamex",
@@ -856,7 +1016,23 @@
           "status": "verificado-primaria",
           "notes": "«GAT nominal 0.00% GAT real -3.79% antes de impuestos, desde $1 calculado el 18 de noviembre de 2026, y vigente al 22 de diciembre de 2026». Las comisiones de la cuenta Switch no se pudieron leer con claridad en el PDF y no se publican."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": false,
+        "seen": "Su anexo de comisiones lista «Operaciones en Sucursal Banamex» para la cuenta Switch.",
+        "source_url": "https://www.banamex.com/resources/pdf/es/ley_transparencia/comisiones/Anexo-de-Comisiones-Switch.pdf",
+        "read_date": "2026-11-23",
+        "tool": "powershell",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": true,
+        "seen": "Tiene una página de «Portabilidad de nómina»: «Antes de traer tu nómina…».",
+        "source_url": "https://www.banamex.com/portabilidad-de-nomina/index.html",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "santander",
@@ -890,7 +1066,23 @@
           "status": "verificado-primaria",
           "notes": "Folleto informativo leído con pdftotext. Los productos LikeU, SuperDigital y Dinero Creciente no se pudieron leer: sus páginas no publican comisiones ni tasa."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": false,
+        "seen": "El folleto de la Súper Cuenta Básica dice «Solo deberás acudir a cualquiera de nuestras sucursales».",
+        "source_url": "https://assets.santandermedia.com/adobe/assets/urn:aaid:aem:4a674bbe-aa7d-49b2-9568-0585df018299/original/as/folleto-basica.pdf",
+        "read_date": "2026-11-23",
+        "tool": "powershell",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": true,
+        "seen": "Tiene una página de «Portabilidad de nómina»: «Haz tu portabilidad de nómina hoy mismo».",
+        "source_url": "https://www.santander.com.mx/personas/cuentas/portabilidad-de-nomina/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "banorte",
@@ -923,7 +1115,23 @@
           "status": "verificado-primaria",
           "notes": "No se leyó el documento de costos y comisiones."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": false,
+        "seen": "La página de nómina ofrece «Sucursales y cajeros» además de Banorte Móvil.",
+        "source_url": "https://www.banorte.com/Personal/Nomina/Nomina-Personas-Fisicas.html",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": true,
+        "seen": "«Trae tu Nómina»; su FAQ dice que el cambio de nómina no tiene costo.",
+        "source_url": "https://www.banorte.com/Personal/Nomina/Nomina-Personas-Fisicas.html",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "hsbc",
@@ -977,7 +1185,23 @@
           "status": "verificado-primaria",
           "notes": "«Tasa de rendimiento fija anual. GAT Nominal 1.00% GAT Real -3.00% Antes de Impuestos… Fecha de cálculo al 01 de septiembre de 2026. Vigencia al 01 de marzo de 2027»."
         }
-      ]
+      ],
+      "channels": {
+        "app_required": false,
+        "seen": "«Trae tu nómina con nosotros. Abre tu cuenta en la Sucursal más cercana».",
+        "source_url": "https://www.hsbc.com.mx/cuentas/nomina/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": true,
+        "seen": "«Trae tu nómina con nosotros… Cámbiate: Conoce cómo cambiarte a HSBC»; sin comisión de Administración Renta al recibir nómina.",
+        "source_url": "https://www.hsbc.com.mx/cuentas/nomina/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "scotiabank",
@@ -1009,7 +1233,23 @@
           "tool": "chrome",
           "status": "verificado-primaria"
         }
-      ]
+      ],
+      "channels": {
+        "app_required": false,
+        "seen": "La página de la cuenta dice «También puedes abrir una Cuenta Scotia Chequera Saldo Promedio, en sucursal».",
+        "source_url": "https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": true,
+        "seen": "Página «Portabilidad de nómina»: «Cambia o regresa tu nómina a Scotiabank desde la app ScotiaMóvil».",
+        "source_url": "https://www.scotiabank.com.mx/personas/cuentas-bancarias/nomina/portabilidad-nomina.aspx",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     },
     {
       "id": "bancoppel",
@@ -1068,7 +1308,23 @@
           "tool": "chrome",
           "status": "verificado-primaria"
         }
-      ]
+      ],
+      "channels": {
+        "app_required": false,
+        "seen": "Dice «Acude a tu sucursal más cercana» y «Solicita a un asesor la apertura de una Cuenta Efectiva Digital».",
+        "source_url": "https://www.bancoppel.com/descubre-mas/inversion-creciente/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      },
+      "payroll_portability": {
+        "accepts": true,
+        "seen": "La página de nómina dice «Solicita tu Portabilidad y goza de más beneficios exclusivos».",
+        "source_url": "https://www.bancoppel.com/descubre-mas/cuenta-nomina-bancoppel/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria"
+      }
     }
   ],
   "remittance_providers": [

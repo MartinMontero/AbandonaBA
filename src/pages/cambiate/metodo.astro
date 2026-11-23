@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import CambiateNote from '../../components/CambiateNote.astro';
 import { siteConfig } from '../../data/site.config';
+import rules from '../../data/matcher-rules.json';
 ---
 <Base art="book" eyebrow="Cómo trabajamos" title="Método de Cámbiate" description="Cómo elegimos qué mostrar, qué hacemos cuando un dato no está verificado y por qué no hay una lista del «mejor banco»." path="/cambiate/metodo/" finance lead>
   <CambiateNote />
@@ -21,6 +22,11 @@ import { siteConfig } from '../../data/site.config';
 
   <details class="acc" id="orden"><summary>Cómo se ordenan las opciones</summary><div class="acc-b">
     <p>En <a href="/cambiate/ahorro/">Mi ahorro</a> las ofertas verificadas se ordenan por los pesos que ganas al año con tu cantidad, y los empates por orden alfabético. Nunca por «destacado». Solo entran las ofertas cuya tasa, tope y condiciones leímos completos; las demás se explican aparte. En remesas no hay lista ordenada porque no tenemos cotizaciones con fecha de otros servicios. Wise y Remitly se muestran primero ahí por decisión editorial de este sitio, y se comparan con la misma fórmula que cualquier otro servicio.</p>
+  </div></details>
+
+  <details class="acc" id="reglas"><summary>Las reglas de «¿Qué me conviene?»</summary><div class="acc-b">
+    <ol>{rules.map((r) => <li>{r.text_es}</li>)}</ol>
+    <p>Pruébalo en <a href="/cambiate/que-me-conviene/">¿Qué me conviene?</a>. Las reglas están probadas con 25 casos.</p>
   </div></details>
 
   <details class="acc" id="vencido"><summary>Qué es «vencido»</summary><div class="acc-b">

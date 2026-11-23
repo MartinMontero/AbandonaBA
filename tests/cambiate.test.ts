@@ -92,6 +92,45 @@ describe('selector de necesidades (datos de prueba)', () => {
   });
 });
 
+describe('selector: orden por pesos y datos nulos', () => {
+  it('orden por pesos al año, empates alfabéticos', () => {
+    const c = (id: string, score: number) => ({ id, type: 'banco' as const, appOnly: false, acceptsPortabilidad: true, verified: true, stale: false, protectedUdis: 400000, score });
+    const r = match({ smartphone: 'si', wantsPayrollMove: false, savingsMxn: 100 }, [c('b', 50), c('a', 50), c('c', 90), c('d', 10)], 8.9);
+    expect(r.ids).toEqual(['c', 'a', 'b']);
+    expect(r.eligible).toEqual(['c', 'a', 'b', 'd']);
+  });
+  it('sin puntaje se ordena alfabéticamente', () => {
+    const c = (id: string) => ({ id, type: 'banco' as const, appOnly: false, acceptsPortabilidad: true, verified: true, stale: false, protectedUdis: 400000 });
+    expect(match({ smartphone: 'si', wantsPayrollMove: false, savingsMxn: 0 }, [c('z'), c('m'), c('a')], 8.9).ids).toEqual(['a', 'm', 'z']);
+  });
+  it('un null solo excluye cuando la regla lo necesita', () => {
+    const n = { id: 'n', type: 'banco' as const, appOnly: null, acceptsPortabilidad: null, verified: true, stale: false, protectedUdis: null };
+    expect(match({ smartphone: 'si', wantsPayrollMove: false, savingsMxn: 0 }, [n], 8.9).ids).toEqual(['n']);
+    expect(match({ smartphone: 'no', wantsPayrollMove: false, savingsMxn: 0 }, [n], 8.9).ids).toEqual([]);
+    expect(match({ smartphone: 'si', wantsPayrollMove: true, savingsMxn: 0 }, [n], 8.9).ids).toEqual([]);
+  });
+});
+
+describe('banderas de canal y portabilidad en los datos', () => {
+  it('cada institución trae ambas, con fuente, fecha y herramienta', () => {
+    for (const i of data.institutions as any[]) {
+      for (const k of ['channels', 'payroll_portability']) {
+        expect(i[k], `${i.id}.${k}`).toBeTruthy();
+        expect(i[k].source_url).toMatch(/^https:\/\//);
+        expect(i[k].read_date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(i[k].tool).toBeTruthy();
+        expect(['verificado-primaria', 'verificado-secundaria', 'sin-verificar']).toContain(i[k].status);
+      }
+    }
+  });
+  it('un valor null solo aparece con etiqueta sin-verificar', () => {
+    for (const i of data.institutions as any[]) {
+      if (i.channels.app_required === null) expect(i.channels.status).toBe('sin-verificar');
+      if (i.payroll_portability.accepts === null) expect(i.payroll_portability.status).toBe('sin-verificar');
+    }
+  });
+});
+
 describe('datos de Cámbiate', () => {
   const flat: { label: string; status: string; source_url?: string; read_date?: string; tool?: string }[] = [];
   const walk = (o: any, path: string) => {

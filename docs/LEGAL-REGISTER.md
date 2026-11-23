@@ -420,7 +420,7 @@ Banco Azteca declara en su página oficial que sus cuentas están protegidas por
 
 **Pregunta para el abogado:** ¿El límite de 400 mil UDIs por persona y por banco es el vigente según la ley?
 
-**Páginas:** /cambiate/ahorro/, /cambiate/
+**Páginas:** /cambiate/ahorro/, /cambiate/, /cambiate/que-me-conviene/
 
 ## CB07 · verificado-primaria · prioridad D
 
@@ -434,7 +434,7 @@ El Fondo de Protección de SOFIPOs dice que puede cubrir hasta 25,000 UDIS por p
 
 **Pregunta para el abogado:** ¿La explicación de la cobertura de SOFIPOs es correcta y suficiente para el lector?
 
-**Páginas:** /cambiate/ahorro/, /cambiate/
+**Páginas:** /cambiate/ahorro/, /cambiate/, /cambiate/que-me-conviene/
 
 ## CB16 · verificado-secundaria · prioridad D
 
@@ -518,7 +518,7 @@ Openbank y Ualá dicen en sus páginas oficiales que sus cuentas están protegid
 
 **Pregunta para el abogado:** ¿Las declaraciones de protección de cada empresa son suficientes para mostrarlas con la etiqueta primaria?
 
-**Páginas:** /cambiate/ahorro/
+**Páginas:** /cambiate/ahorro/, /cambiate/que-me-conviene/
 
 ## CB12 · verificado-primaria · prioridad D
 
@@ -532,7 +532,7 @@ Tasas de ahorro publicadas en las páginas oficiales entre el 18 de noviembre y 
 
 **Pregunta para el abogado:** ¿Es correcto presentar tasas promocionales con sus condiciones y fechas, sin llamarlas «las mejores»?
 
-**Páginas:** /cambiate/ahorro/, /cambiate/cuanto-me-cuesta/
+**Páginas:** /cambiate/ahorro/, /cambiate/cuanto-me-cuesta/, /cambiate/que-me-conviene/
 
 ## CB27 · verificado-secundaria · prioridad D
 
@@ -673,3 +673,17 @@ BanCoppel, Cuenta Efectiva Digital: la página muestra GAT nominal 0.00% y GAT r
 **Pregunta para el abogado:** ¿Es correcto listar Inversión Creciente como no calculada por falta de la tabla de tasas?
 
 **Páginas:** /cambiate/ahorro/
+
+## CB40 · verificado-primaria · prioridad D
+
+Canal de apertura y portabilidad de nómina por institución, según sus páginas oficiales. Reciben portabilidad de nómina: Banco Azteca, BBVA, Banamex, Santander, Banorte, HSBC, Scotiabank, BanCoppel y Ualá. Nu y Openbank dicen que su cuenta de nómina estará disponible «próximamente». Klar, Stori, Mercado Pago, bineo y Spin no la mencionan. Tienen sucursales: Banco Azteca, BBVA, Banamex, Santander, Banorte, HSBC, Scotiabank y BanCoppel. Dicen que se manejan desde la app o el celular: Ualá, Klar, Mercado Pago, bineo, Stori y Spin. Nu y Openbank son digitales pero no dicen si exigen la app.
+
+**Fuentes:** [Páginas de portabilidad y de cuentas de cada institución (ver «Fuentes»)](https://www.bancoazteca.com.mx/productos/cuentas/operativa-azteca.html) (leída 2026-11-23)
+
+**Conflicto abierto:** Que una página no mencione la portabilidad no prueba que no la reciba: queda sin verificar y la opción no se sugiere a quien quiere pasar su nómina. Las instituciones con sucursal pueden tener cuentas digitales que sí exigen la app.
+
+**Debe confirmar:** Preguntar a cada institución, y revisar la norma de portabilidad de nómina que obliga a los bancos.
+
+**Pregunta para el abogado:** ¿Es correcto excluir de las sugerencias a quien no dice en su página que recibe portabilidad, aunque la ley pudiera obligarlo?
+
+**Páginas:** /cambiate/que-me-conviene/
