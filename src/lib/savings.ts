@@ -20,3 +20,19 @@ export function operativaFee(o: { balance: number; payroll: boolean; termInvestm
 
 /** Lo que falta por pagar de un préstamo con pago semanal. */
 export const loanRemaining = (weeklyPayment: number, weeksLeft: number) => Math.max(0, weeklyPayment) * Math.max(0, weeksLeft);
+
+/** Tramos de una oferta: `upto` es el tope acumulado del tramo (null = sin tope). Interés anual simple, antes de impuestos. */
+export interface Band { upto: number | null; rate: number }
+export function bandsInterest(amount: number, bands: Band[]): number {
+  let left = Math.max(0, amount);
+  let from = 0;
+  let total = 0;
+  for (const b of bands) {
+    if (left <= 0) break;
+    const size = b.upto === null ? left : Math.max(0, Math.min(left, b.upto - from));
+    total += (size * b.rate) / 100;
+    left -= size;
+    if (b.upto !== null) from = b.upto;
+  }
+  return total;
+}

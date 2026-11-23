@@ -12,13 +12,32 @@ const sources = [
   { title: 'Banco Azteca: Guardadito', url: gd.source_url, read: gd.read_date },
   { title: 'Banco Azteca: Cuenta Operativa (nota de protección IPAB)', url: data.protection.ipab.source_url, read: data.protection.ipab.read_date },
   { title: 'Prosofipo: Fondo de Protección de SOFIPOs', url: data.protection.prosofipo.source_url, read: data.protection.prosofipo.read_date },
+  ...data.institutions.filter((i: any) => i.id !== 'banco-azteca').flatMap((i: any) => i.products.map((pr: any) => ({ title: `${i.name}: ${pr.name}`, url: pr.source_url, read: pr.read_date }))),
 ];
 ---
-<Base art="store" eyebrow="Mi ahorro" title="Cuánto ganas y cuánto está protegido" description="Escribe una oferta de ahorro que viste. Calculamos cuánto ganarías en un año con tu cantidad y cuánto de tu dinero está protegido." path="/cambiate/ahorro/" legal finance claims={['CB03','CB06','CB07']} sources={sources} lead>
+<Base art="store" eyebrow="Mi ahorro" title="Cuánto ganas y cuánto está protegido" description="Compara ofertas de ahorro verificadas con tu cantidad, calcula una oferta que viste y mira cuánto de tu dinero está protegido." path="/cambiate/ahorro/" legal finance claims={['CB03','CB06','CB07','CB08','CB11','CB12']} sources={sources} lead>
   <CambiateNote />
 
+  <section aria-labelledby="ver">
+    <h2 id="ver">1. Ofertas que verificamos</h2>
+    <p>Leímos estas ofertas en las páginas oficiales de cada empresa el {data.meta.built_from_date}. Cambian y vencen, por eso cada una trae su fecha. Escribe cuánto quieres ahorrar y te mostramos cuánto ganarías en un año, antes de impuestos.</p>
+    <form id="o-form" class="cf" novalidate>
+      <label>Cuánto quieres ahorrar (pesos)<input id="o-amount" type="number" inputmode="decimal" min="0" step="any" placeholder="40000" /></label>
+      <label>¿Puedes cumplir condiciones de gasto o de nómina cada mes?
+        <select id="o-spend"><option value="no">No o no estoy seguro</option><option value="si">Sí</option></select>
+      </label>
+      <label>¿Puedes dejar el dinero congelado por un plazo?
+        <select id="o-term"><option value="no">No</option><option value="si">Sí</option></select>
+      </label>
+    </form>
+    <p id="o-empty" class="ref-line">Escribe una cantidad para ver el resultado.</p>
+    <ol id="o-list" class="offers" aria-live="polite"></ol>
+    <p class="ref-line">Orden: más pesos al año con tu cantidad. Los empates, por orden alfabético. No hay lugares destacados ni patrocinados. Interés anual simple, antes de impuestos.</p>
+    <details class="acc" id="o-unk"><summary>Ofertas que no calculamos, y por qué</summary><div class="acc-b"><ul id="o-unk-list"></ul></div></details>
+  </section>
+
   <section aria-labelledby="of">
-    <h2 id="of">1. Cuánto ganarías con una oferta</h2>
+    <h2 id="of">2. Otra oferta que viste</h2>
     <p>Muchas ofertas anuncian una tasa alta, pero solo hasta cierta cantidad y si cumples condiciones, como gastar un mínimo cada mes. Escribe lo que dice la oferta.</p>
     <form id="a-form" class="cf" novalidate>
       <label>Cuánto quieres ahorrar (pesos)<input id="a-amount" type="number" inputmode="decimal" min="0" step="any" placeholder="40000" /></label>
@@ -35,7 +54,7 @@ const sources = [
   </section>
 
   <section aria-labelledby="ref">
-    <h2 id="ref">2. Dos referencias para comparar</h2>
+    <h2 id="ref">3. Dos referencias para comparar</h2>
     <div class="pv">
       <article>
         <h3>Guardadito de Banco Azteca</h3>
@@ -51,7 +70,7 @@ const sources = [
   </section>
 
   <section aria-labelledby="prot">
-    <h2 id="prot">3. Cuánto de tu dinero está protegido</h2>
+    <h2 id="prot">4. Cuánto de tu dinero está protegido</h2>
     <p>Elige qué tipo de entidad es. Si no lo sabes, búscala en el sitio de la CNBV o pregúntale a ella.</p>
     <form id="p-form" class="cf" novalidate>
       <label>Tipo de entidad

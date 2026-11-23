@@ -12,7 +12,16 @@ push('Cetes a 28 días', m.cetes28, `${m.cetes28.value}% el ${m.cetes28.date}`);
 push('Tipo de cambio FIX', m.fix, `${m.fix.value} el ${m.fix.date}`);
 push('Límite IPAB', data.protection.ipab, `${data.protection.ipab.limit_udis.toLocaleString('es-MX')} UDIs por persona y por banco (lo declara Banco Azteca)`);
 push('Límite Fondo de SOFIPOs', data.protection.prosofipo, `${data.protection.prosofipo.limit_udis.toLocaleString('es-MX')} UDIs`);
-for (const i of data.institutions) for (const p of i.products as any[]) push(`${i.name}: ${p.name}`, p, p.id === 'cuenta-operativa' ? `${p.fee_admin_mxn} pesos + IVA; exenciones publicadas` : p.id === 'guardadito' ? `GAT nominal ${p.gat_nominal_pct}%, vigencia hasta ${p.valid_to}` : `CAT promedio ${p.cat_avg_pct}% sin IVA, vigencia hasta ${p.valid_to}`);
+for (const i of data.institutions as any[]) {
+  if (i.id !== 'banco-azteca') push(`${i.name}: protección de depósitos`, i.protection, `${i.protection.seen}`);
+  for (const p of i.products as any[]) {
+    const seen = p.id === 'cuenta-operativa' ? `${p.fee_admin_mxn} pesos + IVA; exenciones publicadas`
+      : p.id === 'guardadito' ? `GAT nominal ${p.gat_nominal_pct}%, vigencia hasta ${p.valid_to}`
+      : p.kind === 'ahorro' ? (p.levels.length ? `Tasas de ${p.levels.length} niveles; calculadas el ${p.calc_date}; vigentes hasta ${p.valid_to}` : (p.seen_es ?? 'Sin tasa fija publicada'))
+      : `CAT promedio ${p.cat_avg_pct}% sin IVA, vigencia hasta ${p.valid_to}`;
+    push(`${i.name}: ${p.name}`, p, seen);
+  }
+}
 for (const p of data.remittance_providers as any[]) push(p.name, p, p.id === 'wise' ? 'Deposita a CLABE o tarjeta; lista de bancos excluidos' : 'Depósito, cartera y efectivo; red de entrega nombrada');
 push('Impuesto de EE. UU. a las remesas', data.us_remittance_tax, '1% con efectivo o instrumento físico');
 const sources = rows.slice(0, 0);

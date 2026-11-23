@@ -635,3 +635,14 @@ details.acc[open] { background: var(--md-sys-color-surface); }
 .pv ul { margin: var(--space-1) 0; padding-left: 1.1rem; }
 .pv .no { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
 .tbl-wrap { overflow-x: auto; }
+
+/* Ofertas de ahorro verificadas */
+.offers { list-style: none; padding: 0; margin: var(--space-2) 0; display: grid; gap: var(--space-2); grid-template-columns: 1fr; }
+@media (min-width: 760px) { .offers { grid-template-columns: 1fr 1fr; } }
+.prose .offers { padding-left: 0; }
+.offer { background: var(--md-sys-color-surface-container); border-radius: var(--radius-lg); padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-1); }
+.offer h3 { margin: 0; font-size: 1.0625rem; }
+.offer .big { font-size: 1.75rem; font-weight: 850; line-height: 1.1; color: var(--md-sys-color-primary); }
+.offer p { margin: 0; }
+.offer.stale { opacity: .6; }
+.offer .btn { align-self: flex-start; margin-top: auto; }

@@ -133,6 +133,406 @@
           "notes": "El micrositio de solicitud pudo mostrar otra cifra; no se leyó. Ver docs/DISCREPANCIES.md."
         }
       ]
+    },
+    {
+      "id": "nu-mexico",
+      "name": "Nu México",
+      "type": "banco",
+      "official_domain": "nubank.com.mx",
+      "protection": {
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://nubank.com.mx/cuenta/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria",
+        "seen": "«Producto garantizado por el IPAB hasta por 400,000 UDIs» (aviso de la GAT de Cajita Turbo en su página oficial)"
+      },
+      "products": [
+        {
+          "id": "nu-ahorro",
+          "kind": "ahorro",
+          "name": "Cuenta Nu: Cajitas y Ahorro Congelado",
+          "calc_date": "2026-11-18",
+          "valid_to": "2026-11-30",
+          "min_amount_mxn": 0.01,
+          "levels": [
+            {
+              "id": "cajita-turbo",
+              "name": "Cajita Turbo",
+              "condition_es": null,
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 13.0
+                }
+              ],
+              "gat_nominal_pct": 13.88,
+              "gat_real_pct": 9.56,
+              "computable": false,
+              "note": "El tope de saldo y la condición de uso de tarjeta no aparecen en la página oficial (solo en «Términos y Condiciones», que no se leyeron). No se calcula ni se ordena.",
+              "condition_kind": "unknown"
+            },
+            {
+              "id": "cajitas",
+              "name": "Cajitas Nu",
+              "condition_es": null,
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 6.5
+                }
+              ],
+              "gat_nominal_pct": 6.72,
+              "gat_real_pct": 2.67,
+              "computable": true,
+              "condition_kind": "none"
+            },
+            {
+              "id": "congelado-7",
+              "name": "Ahorro Congelado, 7 días",
+              "condition_es": "Tu dinero queda congelado 7 días.",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 6.55
+                }
+              ],
+              "gat_nominal_pct": 6.77,
+              "gat_real_pct": 2.72,
+              "computable": true,
+              "condition_kind": "term"
+            },
+            {
+              "id": "congelado-28",
+              "name": "Ahorro Congelado, 28 días",
+              "condition_es": "Tu dinero queda congelado 28 días.",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 6.6
+                }
+              ],
+              "gat_nominal_pct": 6.82,
+              "gat_real_pct": 2.77,
+              "computable": true,
+              "condition_kind": "term"
+            },
+            {
+              "id": "congelado-90",
+              "name": "Ahorro Congelado, 90 días",
+              "condition_es": "Tu dinero queda congelado 90 días.",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 6.7
+                }
+              ],
+              "gat_nominal_pct": 6.93,
+              "gat_real_pct": 2.88,
+              "computable": true,
+              "condition_kind": "term"
+            },
+            {
+              "id": "congelado-180",
+              "name": "Ahorro Congelado, 180 días",
+              "condition_es": "Tu dinero queda congelado 180 días.",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 6.8
+                }
+              ],
+              "gat_nominal_pct": 7.04,
+              "gat_real_pct": 2.98,
+              "computable": true,
+              "condition_kind": "term"
+            }
+          ],
+          "source_url": "https://nubank.com.mx/gat/",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "notes": "Tasas fijas anuales antes de impuestos. «Valores calculados el 18 de noviembre de 2026… Vigencia al 30 de noviembre de 2026»."
+        }
+      ]
+    },
+    {
+      "id": "openbank",
+      "name": "Openbank",
+      "type": "banco",
+      "official_domain": "openbank.mx",
+      "protection": {
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://www.openbank.mx/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria",
+        "seen": "Cuenta Débito Open Light y Open + «protegidas por el IPAB hasta por 400,000 UDIS por cliente, por institución»"
+      },
+      "products": [
+        {
+          "id": "openbank-apartados",
+          "kind": "ahorro",
+          "name": "Apartados Open (Cuenta Débito Open +)",
+          "calc_date": "2026-09-07",
+          "valid_to": "2027-02-07",
+          "min_amount_mxn": 0.01,
+          "levels": [
+            {
+              "id": "promocional",
+              "name": "Tasa promocional",
+              "condition_es": "Hacer cada mes una compra, pago de servicios o recarga con una tarjeta Openbank.",
+              "bands": [
+                {
+                  "upto": 30000,
+                  "rate": 13.0
+                },
+                {
+                  "upto": 1000000,
+                  "rate": 7.0
+                },
+                {
+                  "upto": null,
+                  "rate": 6.5
+                }
+              ],
+              "gat_nominal_pct": 13.88,
+              "gat_real_pct": 9.31,
+              "computable": true,
+              "note": "GAT nominal 13.88% y real 9.31% para el tramo de 0.01 a 30,000 pesos. Tramo hasta 1,000,000: 7% (GAT 7.25% / 2.95%); más de 1,000,000: 6.5% (GAT 6.72% / 2.43%).",
+              "condition_kind": "spend"
+            },
+            {
+              "id": "ordinaria",
+              "name": "Tasa ordinaria",
+              "condition_es": null,
+              "bands": [
+                {
+                  "upto": 1000000,
+                  "rate": 7.0
+                },
+                {
+                  "upto": null,
+                  "rate": 6.5
+                }
+              ],
+              "gat_nominal_pct": 7.25,
+              "gat_real_pct": 2.95,
+              "computable": true,
+              "condition_kind": "none"
+            }
+          ],
+          "fees_es": "Sin comisiones por saldo mínimo, mantenimiento o administración, según su página.",
+          "deposit_cap_es": "Depósitos mensuales hasta 30,000 UDIS.",
+          "source_url": "https://www.openbank.mx/legales",
+          "extra_source_url": "https://www.openbank.mx/cuenta-debito-open-plus/",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "notes": "Tasas sujetas a cambios sin previo aviso, según el aviso legal. Fecha de cálculo 7 de septiembre de 2026, vigente al 7 de febrero de 2027."
+        }
+      ]
+    },
+    {
+      "id": "uala",
+      "name": "Ualá",
+      "type": "banco",
+      "official_domain": "uala.mx",
+      "protection": {
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://www.uala.mx/cuenta-con-rendimiento",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria",
+        "seen": "«protegido por el IPAB hasta por 400 mil UDIS»; Ualá dice que adquirió ABC Capital y cuenta con autorización de la CNBV"
+      },
+      "products": [
+        {
+          "id": "uala-rendimiento",
+          "kind": "ahorro",
+          "name": "Cuenta con rendimiento Ualá",
+          "calc_date": "2026-08-26",
+          "valid_to": "2026-11-30",
+          "min_amount_mxn": 100,
+          "levels": [
+            {
+              "id": "base",
+              "name": "Tasa base",
+              "condition_es": "Mantener un saldo diario de al menos 100 pesos.",
+              "bands": [
+                {
+                  "upto": 30000,
+                  "rate": 6.75
+                },
+                {
+                  "upto": null,
+                  "rate": 0.0
+                }
+              ],
+              "gat_nominal_pct": 6.98,
+              "gat_real_pct": 2.69,
+              "computable": true,
+              "condition_kind": "none"
+            },
+            {
+              "id": "plus",
+              "name": "Tasa plus",
+              "condition_es": "Acreditar un consumo o nómina mínimo de 3,000 pesos al mes.",
+              "bands": [
+                {
+                  "upto": 30000,
+                  "rate": 12.0
+                },
+                {
+                  "upto": null,
+                  "rate": 0.0
+                }
+              ],
+              "gat_nominal_pct": 12.75,
+              "gat_real_pct": 8.22,
+              "computable": true,
+              "condition_kind": "spend"
+            },
+            {
+              "id": "plus-alta",
+              "name": "Tasa plus más alta",
+              "condition_es": "Acreditar un consumo o nómina mínimo de 6,000 pesos al mes.",
+              "bands": [
+                {
+                  "upto": 30000,
+                  "rate": 15.0
+                },
+                {
+                  "upto": null,
+                  "rate": 0.0
+                }
+              ],
+              "gat_nominal_pct": 16.18,
+              "gat_real_pct": 11.52,
+              "computable": true,
+              "condition_kind": "spend"
+            }
+          ],
+          "cap_es": "Solo genera rendimiento el saldo hasta 30,000 pesos.",
+          "source_url": "https://www.uala.mx/cuenta-con-rendimiento",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "notes": "«Calculado el 26 de agosto de 2026. Oferta vigente al 30 de noviembre de 2026». Esta página ofrece también portabilidad de nómina."
+        }
+      ]
+    },
+    {
+      "id": "klar",
+      "name": "Klar",
+      "type": "sofipo",
+      "official_domain": "klar.mx",
+      "protection": {
+        "scheme": "PROSOFIPO",
+        "limit_udis": 25000,
+        "source_url": "https://www.klar.mx/productos-garantizados-por-el-fondo-de-proteccion",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "verificado-primaria",
+        "seen": "Fondo de Protección: «hasta por el equivalente a 25,000 UDIS por persona física o moral y por institución» (Ley de Ahorro y Crédito Popular)"
+      },
+      "products": [
+        {
+          "id": "klar-rendimiento",
+          "kind": "ahorro",
+          "name": "Klar: cuenta a la vista y modalidades",
+          "calc_date": "2026-11-05",
+          "valid_to": "2026-12-07",
+          "min_amount_mxn": null,
+          "levels": [
+            {
+              "id": "vista-light",
+              "name": "Cuenta a la vista, segmento Light",
+              "condition_es": null,
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 3.0
+                }
+              ],
+              "gat_nominal_pct": 3.04,
+              "gat_real_pct": -0.86,
+              "computable": false,
+              "note": "El tope y las condiciones del segmento no aparecen en la página de GAT. No se calcula.",
+              "condition_kind": "unknown"
+            },
+            {
+              "id": "vista-plus",
+              "name": "Cuenta a la vista, segmento Plus y Platino",
+              "condition_es": null,
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 5.0
+                }
+              ],
+              "gat_nominal_pct": 5.12,
+              "gat_real_pct": 1.14,
+              "computable": false,
+              "note": "Igual: sin tope ni condiciones leídos.",
+              "condition_kind": "unknown"
+            },
+            {
+              "id": "fondos",
+              "name": "Modalidad Fondos de Rendimientos (Light y Plus/Platino)",
+              "condition_es": null,
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 15.0
+                }
+              ],
+              "gat_nominal_pct": 16.16,
+              "gat_real_pct": 11.76,
+              "computable": false,
+              "note": "La página de GAT no dice el tope de saldo ni la condición de gasto. No se calcula.",
+              "condition_kind": "unknown"
+            }
+          ],
+          "source_url": "https://www.klar.mx/gat",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "notes": "«GAT calculado del 05 de noviembre al 07 de diciembre de 2026». El segmento (Light o Plus) lo asigna Klar según sus criterios comerciales."
+        }
+      ]
+    },
+    {
+      "id": "mercado-pago",
+      "name": "Mercado Pago",
+      "type": "sin-verificar",
+      "official_domain": "mercadopago.com.mx",
+      "protection": {
+        "scheme": "SIN_VERIFICAR",
+        "limit_udis": null,
+        "source_url": "https://www.mercadopago.com.mx/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar",
+        "seen": "La portada no dice si hay seguro de depósitos."
+      },
+      "products": [
+        {
+          "id": "mp-rendimiento",
+          "kind": "ahorro",
+          "name": "Mercado Pago: «la cuenta donde más crece tu dinero»",
+          "levels": [],
+          "source_url": "https://www.mercadopago.com.mx/",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "seen_es": "Anuncia «hasta 15% anual en Apartados con tu suscripción» y «hasta 12% anual». Dice que es la suma de dos componentes: un beneficio de Mercado Pago Standard y la tasa de rendimiento de un fondo de inversión administrado por GBM. No es una tasa de depósito fija.",
+          "notes": "No se calcula ni se ordena: las condiciones, topes, GAT y protección no se leyeron."
+        }
+      ]
     }
   ],
   "remittance_providers": [

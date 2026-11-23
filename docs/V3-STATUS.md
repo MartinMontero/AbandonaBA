@@ -76,3 +76,21 @@ Descarga: `LTOSF.pdf` (575 KB) de diputados.gob.mx a `.cache/sources/` (ignorado
 1. Confirmar las dos decisiones de la sección 1 (término «IA» y salida rápida a Google).
 2. Si quiere que siga con la verificación de otras instituciones (Chrome) para habilitar el selector y el comparador de ahorro.
 3. El uso de la bandera nacional en el encabezado y el ícono (la revisión de abogados debe confirmarlo).
+
+## 8. Segunda ronda de verificación con Chrome (2026-11-23)
+
+Se leyeron las páginas oficiales de Nu, Openbank, Ualá, Klar y Mercado Pago. Detalle en `src/data/cambiate.json` y en CB08, CB11 y CB12 del registro.
+
+| Institución | Qué se leyó | Etiqueta |
+|---|---|---|
+| Nu México | Tabla de GAT: Cajitas 6.50%, Ahorro Congelado 6.55% a 6.80%, Cajita Turbo 13.00% (calculado el 18-nov; vigencia al 30-nov); IPAB hasta 400,000 UDIs | primaria |
+| Openbank | 13% fijo en los primeros 30,000 pesos con una compra, pago o recarga al mes; 7% ordinario hasta 1,000,000; 6.5% arriba; GAT; calculado el 7-sep-2026, vigente al 7-feb-2027; IPAB 400,000 UDIs | primaria |
+| Ualá | 6.75% base, 12% con 3,000 de consumo o nómina, 15% con 6,000; solo hasta 30,000 de saldo; vigente al 30-nov; IPAB 400,000 UDIs | primaria |
+| Klar (SOFIPO) | 3% (Light) y 5% (Plus y Platino) a la vista; 15% en Fondos de Rendimientos; cálculo del 5-nov al 7-dic; Fondo de Protección 25,000 UDIS | primaria |
+| Mercado Pago | «hasta 15%» como suma de un beneficio y el rendimiento de un fondo de GBM; sin protección ni condiciones leídas | no se calcula |
+
+Discrepancias con la prensa: Openbank dice 30,000 pesos (no 40,000); Cajita Turbo y Klar no muestran en su página de GAT el tope ni la condición de gasto que citaba la prensa, así que no se calculan.
+
+Qué cambió en el sitio: `/cambiate/ahorro/` ahora ordena las ofertas verificadas con la cantidad de la persona (solo los niveles que puede cumplir; vencidas en gris). La función `bandsInterest` y 9 pruebas nuevas cubren los tramos.
+
+Sigue pendiente: Stori, Bineo, Spin, los bancos grandes, el selector (faltan banderas de «solo app» y portabilidad por institución), Afore y Buró.

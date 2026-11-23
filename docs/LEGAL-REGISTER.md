@@ -491,3 +491,45 @@ Impuesto de EE. UU. a las remesas (26 U.S.C. 4475): 1% sobre el monto del envío
 **Pregunta para el abogado:** ¿La base del impuesto de 1% incluye o excluye la comisión del proveedor?
 
 **Páginas:** /cambiate/remesas/
+
+## CB08 · verificado-primaria · prioridad D
+
+Nu México dice en su página oficial que su ahorro (Cajitas y Ahorro Congelado) está garantizado por el IPAB hasta por 400,000 UDIs.
+
+**Fuentes:** [Nu México: Cuenta Nu, aviso de la GAT de Cajita Turbo](https://nubank.com.mx/cuenta/) (leída 2026-11-23)
+
+**Conflicto abierto:** No se leyó el registro de la CNBV ni el DOF sobre su autorización como banco; se confía en lo que dice la empresa.
+
+**Debe confirmar:** Leer la autorización de la CNBV o el DOF.
+
+**Pregunta para el abogado:** ¿Puede afirmarse que el ahorro de Nu México está protegido por el IPAB con base en su aviso?
+
+**Páginas:** /cambiate/ahorro/
+
+## CB11 · verificado-primaria · prioridad D
+
+Openbank y Ualá dicen en sus páginas oficiales que sus cuentas están protegidas por el IPAB hasta por 400,000 UDIs. Klar es una SOFIPO y dice en su página oficial que sus depósitos están cubiertos por el Fondo de Protección hasta por 25,000 UDIS por persona y por institución (Ley de Ahorro y Crédito Popular). Ualá dice que adquirió ABC Capital y que cuenta con autorización de la CNBV.
+
+**Fuentes:** [Openbank (portada)](https://www.openbank.mx/) (leída 2026-11-23); [Ualá: cuenta con rendimiento](https://www.uala.mx/cuenta-con-rendimiento) (leída 2026-11-23); [Klar: productos garantizados por el Fondo de Protección](https://www.klar.mx/productos-garantizados-por-el-fondo-de-proteccion) (leída 2026-11-23)
+
+**Conflicto abierto:** Solo se leyeron las declaraciones de cada empresa. No se verificó la autorización en la CNBV. Plata, Fondeadora y Kapital no se revisaron.
+
+**Debe confirmar:** Leer la lista de entidades autorizadas de la CNBV y el listado de SOFIPOs asociadas al Fondo.
+
+**Pregunta para el abogado:** ¿Las declaraciones de protección de cada empresa son suficientes para mostrarlas con la etiqueta primaria?
+
+**Páginas:** /cambiate/ahorro/
+
+## CB12 · verificado-primaria · prioridad D
+
+Tasas de ahorro publicadas en las páginas oficiales entre el 18 de noviembre y el 5 de diciembre de 2026. Nu: Cajitas 6.50% (GAT nominal 6.72%), Ahorro Congelado de 6.55% a 6.80% de 7 a 180 días, Cajita Turbo 13.00% (valores calculados el 18 de noviembre, vigencia al 30 de noviembre). Openbank: 13% fijo en los primeros 30,000 pesos con una compra, pago o recarga al mes; 7% ordinario hasta 1,000,000 y 6.5% por encima (calculado el 7 de septiembre de 2026, vigente al 7 de febrero de 2027). Ualá: 6.75% base, 12% con 3,000 pesos de consumo o nómina y 15% con 6,000, solo sobre saldos de hasta 30,000 (vigente al 30 de noviembre de 2026). Klar: 3% (Light) o 5% (Plus y Platino) a la vista y 15% en la modalidad Fondos de Rendimientos (cálculo del 5 de noviembre al 7 de diciembre de 2026). Mercado Pago anuncia hasta 15% anual en Apartados con suscripción, como suma de un beneficio y el rendimiento de un fondo de inversión.
+
+**Fuentes:** [Nu México: GAT](https://nubank.com.mx/gat/) (leída 2026-11-23); [Openbank: legales](https://www.openbank.mx/legales) (leída 2026-11-23); [Ualá: cuenta con rendimiento](https://www.uala.mx/cuenta-con-rendimiento) (leída 2026-11-23); [Klar: GAT](https://www.klar.mx/gat) (leída 2026-11-23); [Mercado Pago (portada)](https://www.mercadopago.com.mx/) (leída 2026-11-23)
+
+**Conflicto abierto:** La prensa decía que Openbank llegaba a 30,000 o 40,000; su página oficial dice 30,000. La prensa daba tope de 25,000 y una compra al mes para Cajita Turbo, y 15% con tope en Klar: esas condiciones no aparecen en las páginas de GAT y no se calculan. Stori, Bineo y Spin no se revisaron. Las ofertas de Nu y Ualá vencen el 30 de noviembre de 2026.
+
+**Debe confirmar:** Leer los términos y condiciones de Nu (Cajita Turbo), de Klar (Fondos de Rendimientos) y de Mercado Pago; volver a leer todas después del 30 de noviembre.
+
+**Pregunta para el abogado:** ¿Es correcto presentar tasas promocionales con sus condiciones y fechas, sin llamarlas «las mejores»?
+
+**Páginas:** /cambiate/ahorro/

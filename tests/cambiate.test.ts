@@ -3,7 +3,7 @@ import v from './cambiate-vectors.json';
 import m from './matcher-cases.json';
 import data from '../src/data/cambiate.json';
 import { toMxn, insuredPart } from '../src/lib/udi';
-import { blendedInterest, simpleInterest, operativaFee, loanRemaining } from '../src/lib/savings';
+import { blendedInterest, simpleInterest, operativaFee, loanRemaining, bandsInterest } from '../src/lib/savings';
 import { transfer, wiseCanReceive } from '../src/lib/remesas';
 import { gapPesosPerYear, sieforeForBirthYear } from '../src/lib/afore';
 import { match } from '../src/lib/matcher';
@@ -33,6 +33,11 @@ describe('ahorro', () => {
     expect(blendedInterest({ amount: -5, rateHiPct: 13, capMxn: 1, rateBasePct: 1, conditionsMet: true }).interest).toBe(0);
     expect(blendedInterest({ amount: 0, rateHiPct: 13, capMxn: 1, rateBasePct: 1, conditionsMet: true }).blendedPct).toBe(0);
   });
+});
+
+describe('ahorro por tramos (ofertas publicadas)', () => {
+  for (const c of (v as any).tramos) it(c.id, () => near(bandsInterest(c.amount, c.bands), c.interest));
+  it('tramos vacíos o montos negativos dan cero', () => { expect(bandsInterest(100, [])).toBe(0); expect(bandsInterest(-5, [{ upto: null, rate: 5 }])).toBe(0); });
 });
 
 describe('Cuenta Operativa', () => {

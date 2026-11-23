@@ -11,7 +11,7 @@ const prosMxn = toMxn(data.protection.prosofipo.limit_udis, udi.value);
 const tools = [
   { href: '/cambiate/remesas/', t: 'Mis remesas', d: 'Cuánto llega en pesos y si Wise o Remitly te sirven.', art: 'steps' },
   { href: '/cambiate/cuanto-me-cuesta/', t: 'Cuánto me cuesta quedarme', d: 'La comisión de la Cuenta Operativa y lo que falta de tu préstamo.', art: 'clipboard' },
-  { href: '/cambiate/ahorro/', t: 'Mi ahorro', d: 'Cuánto ganas con una oferta y cuánto está protegido.', art: 'store' },
+  { href: '/cambiate/ahorro/', t: 'Mi ahorro', d: 'Compara ofertas verificadas con tu cantidad y mira cuánto está protegido.', art: 'store' },
   { href: '/cambiate/nomina/', t: 'Mi nómina', d: 'Cómo pasar tu sueldo a otro banco.', art: 'briefcase' },
 ];
 ---
@@ -35,7 +35,8 @@ const tools = [
   <details class="acc" id="pendiente"><summary>Lo que todavía no verificamos</summary><div class="acc-b">
     <p>Por eso no hay una lista de «el mejor banco»: no recomendamos nada con datos que no leímos en la fuente oficial.</p>
     <ul>
-      <li>Tasas, comisiones y condiciones de otros bancos y fintech.</li>
+      <li>Tasas y condiciones de otros bancos y fintech que aún no revisamos: Stori, Bineo, Spin, BBVA, Banorte, Santander, Banamex y los demás. Ya revisamos Nu, Openbank, Ualá, Klar y Mercado Pago solo en ahorro.</li>
+      <li>Los topes y condiciones de gasto de Cajita Turbo de Nu y de Klar (Fondos de Rendimientos), que sus páginas de GAT no muestran.</li>
       <li>Rendimientos y comisión de las Afores, y cómo cambiarte de Afore.</li>
       <li>Reglas del Buró de Crédito, cobranza y cancelación de cuentas.</li>
       <li>Cuotas de depósito en OXXO y cotizaciones de otros servicios de remesas.</li>
