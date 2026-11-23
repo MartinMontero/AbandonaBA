@@ -13,7 +13,7 @@ export const siteConfig = {
   siteUrl: 'https://abandonabancoazteca.mx',
   repoUrl: 'https://github.com/MartinMontero/AbandonaBA',
   issuesUrl: 'https://github.com/MartinMontero/AbandonaBA/issues',
-  quickExitUrl: 'https://www.gob.mx/',
+  quickExitUrl: 'https://www.google.com/',
   bankWarning: 'No uses equipos, Wi-Fi ni internet del banco para entrar a esta página.',
   legalNote: 'Información general. En revisión por abogado laboral. No es asesoría legal.',
   reviewBanner: 'VERSIÓN DE REVISIÓN PARA ABOGADOS. Borrador sin publicar. Los textos y valores están pendientes de su dictamen.',

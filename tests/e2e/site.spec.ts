@@ -57,14 +57,14 @@ test('cabeceras de seguridad y caché', async ({ request }, info) => {
 });
 
 test('salida rápida: botón y doble Escape', async ({ page }) => {
-  await page.route('https://www.gob.mx/**', (route) => route.fulfill({ status: 200, contentType: 'text/html', body: '<title>gob</title>' }));
+  await page.route('https://www.google.com/**', (route) => route.fulfill({ status: 200, contentType: 'text/html', body: '<title>gob</title>' }));
   await page.goto('/');
   await page.click('#quick-exit');
-  await page.waitForURL('https://www.gob.mx/');
+  await page.waitForURL('https://www.google.com/');
   await page.goto('/');
   await page.keyboard.press('Escape');
   await page.keyboard.press('Escape');
-  await page.waitForURL('https://www.gob.mx/');
+  await page.waitForURL('https://www.google.com/');
 });
 
 async function fillCalc(page: Page, extra: Record<string, string> = {}) {
