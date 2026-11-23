@@ -1,0 +1,192 @@
+---
+import Base from '../layouts/Base.astro';
+// Definiciones tomadas tal cual del glosario anterior; solo cambia cómo se muestran.
+const terms = [
+  {
+    "t": "Afore",
+    "d": "empresa que administra tu ahorro para el retiro.",
+    "c": "seg"
+  },
+  {
+    "t": "Aguinaldo",
+    "d": "pago anual de al menos quince días de sueldo, antes del 20 de diciembre.",
+    "c": "din"
+  },
+  {
+    "t": "Amparo",
+    "d": "juicio para pedir a un juez federal que proteja un derecho.",
+    "c": "ayu"
+  },
+  {
+    "t": "Centro Federal de Conciliación y Registro Laboral (CFCRL)",
+    "d": "oficina federal que lleva la conciliación laboral.",
+    "c": "ayu"
+  },
+  {
+    "t": "CFDI",
+    "d": "comprobante fiscal digital; tu recibo de nómina electrónico.",
+    "c": "din"
+  },
+  {
+    "t": "Conciliación",
+    "d": "reunión, antes del juicio, para intentar un acuerdo con el patrón.",
+    "c": "ayu"
+  },
+  {
+    "t": "Convenio",
+    "d": "acuerdo escrito para terminar la relación de trabajo; solo vale si se ratifica ante la autoridad.",
+    "c": "fin"
+  },
+  {
+    "t": "Cooperativa",
+    "d": "empresa propiedad de sus socios, donde cada socio tiene un voto.",
+    "c": "neg"
+  },
+  {
+    "t": "Despido injustificado",
+    "d": "cuando el patrón te despide y no puede probar una causa.",
+    "c": "fin"
+  },
+  {
+    "t": "Escalafón",
+    "d": "la lista de trabajadores por antigüedad.",
+    "c": "fin"
+  },
+  {
+    "t": "Finiquito",
+    "d": "lo que ya ganaste y el patrón te debe al terminar, como sueldo, aguinaldo y vacaciones proporcionales.",
+    "c": "din"
+  },
+  {
+    "t": "IA (inteligencia artificial)",
+    "d": "un asistente de computadora al que le escribes lo que necesitas para que te ayude a redactar y preparar; tú decides y verificas.",
+    "c": "ia"
+  },
+  {
+    "t": "IMSS",
+    "d": "el Instituto Mexicano del Seguro Social, que da atención médica y pensiones a trabajadores.",
+    "c": "seg"
+  },
+  {
+    "t": "Indemnización",
+    "d": "dinero que la ley manda pagar cuando te quitan el trabajo sin causa o cuando el patrón da causa para que te vayas.",
+    "c": "din"
+  },
+  {
+    "t": "Liquidación",
+    "d": "el pago total al terminar la relación de trabajo, que puede incluir finiquito e indemnización.",
+    "c": "din"
+  },
+  {
+    "t": "Modalidad 10 y 40",
+    "d": "formas de seguir cotizando al IMSS por tu cuenta.",
+    "c": "seg"
+  },
+  {
+    "t": "Prescripción",
+    "d": "el plazo después del cual pierdes el derecho a reclamar.",
+    "c": "fin"
+  },
+  {
+    "t": "Prima de antigüedad",
+    "d": "doce días de salario por año de servicio, con un tope, que se paga en ciertos casos de salida.",
+    "c": "din"
+  },
+  {
+    "t": "Prima vacacional",
+    "d": "pago extra, de al menos el 25%, sobre tus días de vacaciones.",
+    "c": "din"
+  },
+  {
+    "t": "PROFEDET",
+    "d": "procuraduría que da asesoría laboral gratuita a trabajadores.",
+    "c": "ayu"
+  },
+  {
+    "t": "PTU",
+    "d": "reparto de utilidades de la empresa entre sus trabajadores.",
+    "c": "din"
+  },
+  {
+    "t": "Ratificación",
+    "d": "confirmar un acuerdo ante el Centro de Conciliación o el Tribunal.",
+    "c": "fin"
+  },
+  {
+    "t": "Rescisión",
+    "d": "terminar la relación de trabajo por una causa grave que la ley señala.",
+    "c": "fin"
+  },
+  {
+    "t": "RESICO",
+    "d": "régimen fiscal simplificado para personas con ingresos bajos.",
+    "c": "neg"
+  },
+  {
+    "t": "Salario diario integrado (SDI)",
+    "d": "tu sueldo diario más la parte diaria de aguinaldo y prima vacacional.",
+    "c": "din"
+  },
+  {
+    "t": "Salarios vencidos",
+    "d": "el sueldo que se acumula desde el despido hasta el pago, hasta por doce meses.",
+    "c": "din"
+  },
+  {
+    "t": "SAS",
+    "d": "Sociedad por Acciones Simplificada, una forma de empresa que se abre en línea.",
+    "c": "neg"
+  },
+  {
+    "t": "Semanas cotizadas",
+    "d": "las semanas en que se pagó tu seguro social; cuentan para tu pensión.",
+    "c": "seg"
+  },
+  {
+    "t": "SEPCOOP",
+    "d": "sistema electrónico del padrón nacional de cooperativas.",
+    "c": "neg"
+  },
+  {
+    "t": "SOCAP",
+    "d": "sociedad cooperativa de ahorro y préstamo.",
+    "c": "neg"
+  },
+  {
+    "t": "Tribunal laboral",
+    "d": "juzgado que resuelve conflictos de trabajo.",
+    "c": "ayu"
+  },
+  {
+    "t": "UMA",
+    "d": "Unidad de Medida y Actualización, un valor diario que se usa para topes y montos.",
+    "c": "seg"
+  }
+];
+const cats = [
+  { id: 'din', t: 'Dinero al salir' },
+  { id: 'fin', t: 'Cómo termina el trabajo' },
+  { id: 'ayu', t: 'Dónde pedir ayuda' },
+  { id: 'seg', t: 'Seguro social y retiro' },
+  { id: 'neg', t: 'Negocio y cooperativa' },
+  { id: 'ia', t: 'IA' },
+];
+---
+<Base art="book" eyebrow="Referencia" title="Glosario" description="Palabras legales explicadas en una frase. Busca una o elige un tema." path="/glosario/" wide lead>
+  <div class="gl">
+    <label for="gl-q" class="gl-search-label">Busca una palabra</label>
+    <input id="gl-q" type="search" class="gl-search" placeholder="Por ejemplo: finiquito" autocomplete="off" />
+    <div class="gl-cats">
+      <input type="radio" name="gcat" id="g-all" checked /><label for="g-all">Todas</label>
+      {cats.map((c) => (<><input type="radio" name="gcat" id={`g-${c.id}`} /><label for={`g-${c.id}`}>{c.t}</label></>))}
+    </div>
+    <p id="gl-count" class="small" aria-live="polite"></p>
+    <ul class="gl-grid">
+      {terms.map((x) => (
+        <li class="gl-card" data-cat={x.c} data-q={(x.t + ' ' + x.d).toLowerCase()}><h2>{x.t}</h2><p>{x.d.charAt(0).toUpperCase() + x.d.slice(1)}</p></li>
+      ))}
+    </ul>
+    <p id="gl-empty" class="gl-empty" hidden>No encontramos esa palabra. Prueba con otra o elige «Todas».</p>
+  </div>
+  <script>import '../scripts/glosario.ts';</script>
+</Base>

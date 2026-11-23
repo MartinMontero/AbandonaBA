@@ -12,28 +12,50 @@ const items = [
   { t: 'PTU', ask: 'Pregunta cuándo se reparte y si te toca la parte proporcional.', writing: 'Constancia de participación.', unk: 'Fecha de reparto. Sin verificar.', tag: 'sin-verificar' },
   { t: 'Papel de finiquito o convenio', ask: 'Pide una copia antes de firmar. Revísalo con PROFEDET.', writing: 'Nada se firma en blanco. Un convenio vale solo si consta por escrito y se ratifica (Art. 33).', unk: '', tag: 'verificado-primaria' },
 ];
+const groups = [
+  { t: 'Lo que te deben', ids: [5, 6, 7, 8] },
+  { t: 'Lo que tú le debes', ids: [0, 1, 4] },
+  { t: 'Tus cuentas y papeles', ids: [2, 3, 9] },
+];
 const sources = [
   { title: 'Ley Federal del Trabajo, Arts. 33, 76, 79, 87 y 110', url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf', read: '2026-11-22' },
 ];
 ---
 <Base art="clipboard" title="Lo que el banco te debe y lo que le debes" description="Lista para revisar antes de irte." path="/checklist-salida/" legal claims={['C19','C21','C14','C23']} sources={sources} card="checklist-salida">
   <p>Marca lo que ya hiciste. Lo que marques no se guarda: si cierras la página, se borra.</p>
-  <ul class="plain">
-    {items.map((i, n) => (
-      <li class="card">
-        <label><input type="checkbox" id={`chk-${n}`} /> <strong>{i.t}</strong></label>
-        <p><span class={`tag t-${i.tag}`}>{i.tag}</span></p>
-        <p><strong>Qué pedir:</strong> {i.ask}</p>
-        <p><strong>Qué pedir por escrito:</strong> {i.writing}</p>
-        {i.unk && <p class="unverified"><strong>Lo que no sabemos:</strong> {i.unk}</p>}
-      </li>
-    ))}
-  </ul>
-  <h2>Dos advertencias</h2>
-  <ul>
-    <li>Irte puede cerrar la puerta a volver al Grupo. <span class="tag t-verificado-secundaria">verificado-secundaria</span> Se reporta en ofertas y reseñas (no es una regla confirmada).</li>
-    <li>Los descuentos a tu sueldo están limitados por la ley (Art. 110). <span class="tag t-verificado-primaria">verificado-primaria</span> La deuda con el patrón por anticipos no puede pasar de un mes de salario; confirma el resto con PROFEDET.</li>
-  </ul>
+
+  <div class="progress-card" role="group" aria-label="Tu avance">
+    <p class="progress-text" id="chk-text" aria-live="polite">Revisaste 0 de {items.length}.</p>
+    <progress id="chk-bar" max={items.length} value="0" aria-labelledby="chk-text"></progress>
+  </div>
+
+  {groups.map((g) => (
+    <section class="chk-group">
+      <h2>{g.t}</h2>
+      <ul class="chk-list">
+        {g.ids.map((n) => { const i = items[n]; return (
+          <li class="chk-item">
+            <label class="chk-head"><input type="checkbox" id={`chk-${n}`} /> <span>{i.t}</span> <span class={`tag t-${i.tag}`}>{i.tag}</span></label>
+            <details>
+              <summary>Qué pedir y qué no sabemos</summary>
+              <p><strong>Qué pedir:</strong> {i.ask}</p>
+              <p><strong>Qué pedir por escrito:</strong> {i.writing}</p>
+              {i.unk && <p class="unverified"><strong>Lo que no sabemos:</strong> {i.unk}</p>}
+            </details>
+          </li>
+        ); })}
+      </ul>
+    </section>
+  ))}
+
+  <details class="acc" id="advertencias"><summary>Dos advertencias</summary><div class="acc-b">
+    <ul>
+      <li>Irte puede cerrar la puerta a volver al Grupo. <span class="tag t-verificado-secundaria">verificado-secundaria</span> Se reporta en ofertas y reseñas (no es una regla confirmada).</li>
+      <li>Los descuentos a tu sueldo están limitados por la ley (Art. 110). <span class="tag t-verificado-primaria">verificado-primaria</span> La deuda con el patrón por anticipos no puede pasar de un mes de salario; confirma el resto con PROFEDET.</li>
+    </ul>
+  </div></details>
+
   <p class="no-print"><button type="button" class="btn" data-print>Imprimir esta lista</button></p>
   <div class="print-only">Información general. En revisión por abogado laboral. No es asesoría legal.</div>
+  <script>import '../scripts/checklist.ts';</script>
 </Base>

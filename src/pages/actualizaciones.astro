@@ -13,15 +13,21 @@ const triggers = [
 ];
 ---
 <Base art="news" title="Actualizaciones y valores" description="Valores legales con su fuente y fecha, y calendario de cambios." path="/actualizaciones/" legal claims={['C06','C07','C09','C12','C15']} wide>
-  <h2>Valores</h2>
+  <h2>Lo que cambia y cuándo</h2>
+  <ol class="mile cols3 sm">
+    {triggers.map(([w, t]) => (
+      <li><div><span class="big">{w}</span><span class="more">{t}</span></div></li>
+    ))}
+  </ol>
+  <details class="acc" id="valores" open><summary>Valores</summary><div class="acc-b">
   <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla desplazable"><table>
     <thead><tr><th>Valor</th><th>Cantidad</th><th>Estado</th><th>Fuente</th><th>Última verificación</th></tr></thead>
     <tbody>{valores.map((v) => (
       <tr id={v.id}><th scope="row">{v.label_es}</th><td>{String(v.unit).startsWith('MXN') ? fmtMXN(v.value) : fmtNum(v.value) + ' ' + v.unit}</td><td><span class={`tag t-${v.status}`}>{v.status}</span></td><td><a href={v.source_url} rel="noopener noreferrer">{v.source_name}</a></td><td>{v.as_of}</td></tr>
     ))}</tbody>
   </table></div>
-  <h2>Calendario de cambios</h2>
-  <ul>{triggers.map(([w, t]) => <li><strong>{w}:</strong> {t}</li>)}</ul>
-  <h2>Cambios del sitio</h2>
+  </div></details>
+  <details class="acc" id="cambios"><summary>Cambios del sitio</summary><div class="acc-b">
   <ul><li>2026-11-22: primera versión del borrador. Pendiente de revisión legal.</li></ul>
+  </div></details>
 </Base>

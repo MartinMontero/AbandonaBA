@@ -16,15 +16,25 @@ const roles = [
 const sources = [...emp.empleadores, ...emp.bolsas, ...emp.capacitacion].map((e) => ({ title: e.name, url: e.url, read: '2026-11-22 (enlace accesible; contenido no releído)' }));
 ---
 <Base art="briefcase" title="Buscar trabajo" description="Traductor de habilidades, empleadores y bolsas de trabajo." path="/trabajo/" legal claims={['C22','C23']} sources={sources}>
+  <p class="lede-cta">¿Quieres ver dónde encajas mejor? <a class="btn tonal" href="/empleos/">Abrir el banco de empleo</a></p>
+  <div class="tabs">
+    <input type="radio" name="tab" id="t1" checked /><label for="t1">Traduce tu puesto</label>
+    <input type="radio" name="tab" id="t2" /><label for="t2">Vacantes de hoy</label>
+    <input type="radio" name="tab" id="t3" /><label for="t3">Empleadores</label>
+    <input type="radio" name="tab" id="t4" /><label for="t4">Bolsas y capacitación</label>
+    <div class="tab-panels">
+      <section class="tp tp1">
   <h2>Traduce tu puesto</h2>
-  <p>Elige tu puesto en el banco. Verás puestos equivalentes y seis frases para tu currículum. Cambia lo que está entre corchetes.</p>
+  <p>Elige tu puesto en el banco. Verás puestos equivalentes y seis frases para tu currículum. Toca una frase para copiarla y cambia lo que está entre corchetes.</p>
   {roles.map((r) => (
     <details class="card"><summary><strong>{r.role}</strong></summary>
       <p><strong>Puestos equivalentes:</strong> {r.titles}</p>
       <p><strong>Habilidades que piden las ofertas:</strong> {r.skills}</p>
-      <ol>{r.cv.map((c) => <li>{c}</li>)}</ol>
+      <ul class="say">{r.cv.map((c) => <li><button type="button" class="say-btn" data-say>{c}</button></li>)}</ul>
     </details>
   ))}
+      </section>
+      <section class="tp tp2">
   <h2>Vacantes afines que vimos hoy</h2>
   <p>Estas son vacantes públicas de las propias empresas, vistas el {vac.seen} con un programa que consulta sus listados de empleo. Buscamos puestos parecidos a los de un banco: caja y servicio, asesoría y ventas, cobranza, verificación y fraude, y gerencia de sucursal. Cambian a diario. Confirma siempre en el enlace.</p>
   {vac.companies.filter((c: any) => c.fit_count > 0).map((c: any) => (
@@ -36,6 +46,8 @@ const sources = [...emp.empleadores, ...emp.bolsas, ...emp.capacitacion].map((e)
     </details>
   ))}
   <p><span class="tag t-sin-verificar">sin-verificar</span> No pudimos consultar los listados de Banorte, Santander, BanCoppel, Banjercito, Banregio, Scotiabank, Banamex/Citi, HSBC, Inbursa, Mifel ni Mercado Pago desde un programa. Algunas bolsas de terceros (OCC, Computrabajo, Indeed) muestran puestos de cajero de Banorte y Santander, pero no las damos por confirmadas: abre la bolsa de cada banco.</p>
+      </section>
+      <section class="tp tp3">
   <h2>Empleadores por segmento</h2>
   <p>{emp.nota}</p>
   {segs.map((s) => (
@@ -43,9 +55,14 @@ const sources = [...emp.empleadores, ...emp.bolsas, ...emp.capacitacion].map((e)
   ))}
   <p>BBVA México tenía publicada una oferta de «Personal de Cajas» en la CDMX con sueldo mensual de {fmtMXN(getValue('bbva_cajas_salary'))} más un bono anual de {fmtMXN(getValue('bbva_cajas_bonus'))}, según la oferta publicada en la bolsa de BBVA (leída el 22 de noviembre de 2026; la bolsa listaba 45 resultados para «Personal de Cajas» en varias ciudades). Las ofertas cambian: confirma en <a href="https://bbva.wd3.myworkdayjobs.com/en-US/BBVA" rel="noopener noreferrer">la bolsa de BBVA</a>.</p>
   <p>Algunas ofertas del Grupo Salinas piden «no haber laborado en Grupo Salinas» o «no adeudos con Elektra o Banco Azteca». <span class="tag t-verificado-secundaria">verificado-secundaria</span> Reportado en ofertas y reseñas.</p>
+      </section>
+      <section class="tp tp4">
   <h2>Bolsas de trabajo</h2>
   <ul>{emp.bolsas.map((b) => <li><a href={b.url} rel="noopener noreferrer">{b.name}</a></li>)}</ul>
   <p>Faltan por la revisión de enlaces: Indeed México y OCC Mundial bloquearon nuestra revisión automática; los verificaremos a mano.</p>
   <h2>Capacitación pública</h2>
   <ul>{emp.capacitacion.map((b) => <li><a href={b.url} rel="noopener noreferrer">{b.name}</a></li>)}</ul>
+      </section>
+    </div>
+  </div>
 </Base>

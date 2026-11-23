@@ -3,20 +3,30 @@ import Base from '../layouts/Base.astro';
 import { siteConfig, legalReview, isReview, statusLabels } from '../data/site.config';
 ---
 <Base art="shield" title="Acerca, verificación y privacidad" description="Qué es este sitio, cómo verificamos y qué datos no recogemos." path="/acerca/" legal>
-  <h2>Qué es y qué no es</h2>
+  <ul class="mile cols3">
+    <li><div><span class="big">0 datos</span><span class="what">No recogemos ninguno</span><span class="more">No hay cuentas, cookies, estadísticas ni solicitudes a terceros. Cloudflare, que lleva el sitio, sí ve datos de la conexión: lee «Qué datos recogemos».</span></div></li>
+    <li><div><span class="big">3 etiquetas</span><span class="what">Cada dato dice cómo se verificó</span><span class="more">Leído en la fuente oficial, visto en prensa o sin verificar.</span></div></li>
+    <li><div><span class="big">Abierto</span><span class="what">Código y textos libres</span><span class="more">Código: MIT. Texto: CC BY-SA 4.0.</span></div></li>
+  </ul>
+  <details class="acc" id="que-es" open><summary>Qué es y qué no es</summary><div class="acc-b">
   <p>Es un sitio gratuito con información y calculadoras para personas que trabajan en un banco en México. No es un despacho de abogados ni da consejo para tu caso.</p>
   <p>{siteConfig.disclaimer}</p>
-  <h2>Cómo verificamos</h2>
+  </div></details>
+  <details class="acc" id="verificamos"><summary>Cómo verificamos</summary><div class="acc-b">
   <p>Cada dato legal, de dinero o de fecha lleva una etiqueta:</p>
   <ul>{Object.entries(statusLabels).map(([k, v]) => <li><span class={`tag t-${k}`}>{k}</span> {v}</li>)}</ul>
   <p>Nunca subimos una etiqueta sin leer la fuente oficial y anotar la fecha. Los valores viven en un solo archivo, con su fuente y fecha, y las calculadoras leen de ahí. Para corregir un valor, abre un issue en el repositorio o manda un cambio.</p>
   <p>La revisión por un abogado laboral {legalReview.status === 'pendiente' ? 'está pendiente' : 'está firmada'}. Eso cambia solo cuando el archivo de configuración del sitio lo dice.</p>
-  <h2>Qué datos recogemos</h2>
+  </div></details>
+  <details class="acc" id="datos"><summary>Qué datos recogemos</summary><div class="acc-b">
   <p>Ninguno. No hay cuentas, cookies, estadísticas ni solicitudes a terceros. Lo que escribes en las calculadoras no sale de tu aparato y no se guarda.</p>
   <p>Lo que sí queda: Cloudflare, que lleva este sitio a tu pantalla, puede ver datos de la conexión, como tu dirección IP. El sitio no puede impedirlo. Usa una ventana privada y un aparato personal. El botón «Salida rápida» te lleva a otra página al instante, pero no borra el historial de tu navegador.</p>
   {isReview && <p>En esta versión de revisión, Cloudflare Access pone su propia cookie de inicio de sesión en tu navegador. El código del sitio no pone ninguna.</p>}
-  <h2>Reportar un error</h2>
+  </div></details>
+  <details class="acc" id="errores"><summary>Reportar un error</summary><div class="acc-b">
   <p>Abre un issue en <a href={siteConfig.issuesUrl} rel="noopener noreferrer">GitHub</a>. Los issues de GitHub no son anónimos. No publiques datos personales ni documentos.</p>
-  <h2>Licencias</h2>
+  </div></details>
+  <details class="acc" id="licencias"><summary>Licencias</summary><div class="acc-b">
   <p>Código: MIT. Texto: CC BY-SA 4.0. <a href={siteConfig.repoUrl} rel="noopener noreferrer">Código abierto</a>.</p>
+  </div></details>
 </Base>

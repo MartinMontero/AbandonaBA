@@ -6,7 +6,7 @@ claims: [C10, C11, C12, C13, C14, C15]
 legal: true
 sources:
   - { title: "Ley del Seguro Social, Arts. 109, 191 y 198", url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf", read: "2026-11-22" }
-  - { title: "DOF 21/10/2026: Acuerdo del IMSS sobre Continuación Voluntaria", url: "https://dof.gob.mx/nota_detalle.php?codigo=5801708&fecha=21/10/1926", read: "2026-11-22" }
+  - { title: "DOF 21/10/2026: Acuerdo del IMSS sobre Continuación Voluntaria", url: "https://dof.gob.mx/nota_detalle.php?codigo=5801708&fecha=21/10/2026", read: "2026-11-22" }
   - { title: "FINABIEN", url: "https://www.finabien.gob.mx", read: "enlace accesible el 2026-11-22; el decreto no se encontró" }
 ---
 No damos consejos financieros personales. Solo comparaciones neutrales.

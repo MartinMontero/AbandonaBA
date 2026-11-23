@@ -106,3 +106,12 @@ function openHash() {
 }
 window.addEventListener('hashchange', openHash);
 openHash();
+
+// Frases listas para copiar (botones con data-say).
+document.querySelectorAll<HTMLButtonElement>('[data-say]').forEach((b) => {
+  b.addEventListener('click', async () => {
+    const text = (b.textContent ?? '').trim();
+    const say = (window as unknown as { aba?: { say: (s: string) => void } }).aba?.say;
+    try { await navigator.clipboard.writeText(text); say?.('Frase copiada'); } catch { say?.('No se pudo copiar. Selecciónala y cópiala a mano.'); }
+  });
+});

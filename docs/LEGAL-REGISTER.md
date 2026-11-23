@@ -160,7 +160,7 @@ Retiro parcial de la Afore por desempleo (LSS Art. 191 fr. II): desde el día na
 
 Acuerdo del Consejo Técnico del IMSS ACDO.AS2.HCT.101026/302.P.DG (sesión del 10 de octubre de 2026; DOF 21 de octubre de 2026; entra en vigor el día hábil siguiente a su publicación, que sería el 22 de octubre). Medida temporal sobre la Continuación Voluntaria (Modalidad 40): quien ya estaba inscrito sigue en las condiciones actuales hasta terminar el periodo contratado; quien lo pida después se inscribe con el último salario base de cotización (o menos) más una UMA, nunca menos de un salario mínimo; las nuevas inscripciones solo por medios digitales. Finanzas debe presentar un análisis en seis meses.
 
-**Fuentes:** [DOF 21/10/2026, Acuerdo ACDO.AS2.HCT.101026/302.P.DG](https://dof.gob.mx/nota_detalle.php?codigo=5801708&fecha=21/10/1926) (leída 2026-11-22)
+**Fuentes:** [DOF 21/10/2026, Acuerdo ACDO.AS2.HCT.101026/302.P.DG](https://dof.gob.mx/nota_detalle.php?codigo=5801708&fecha=21/10/2026) (leída 2026-11-22)
 
 **Conflicto abierto:** El acuerdo es primaria; la fecha exacta de entrada en vigor (22 de octubre) es deducción mía del texto. Los amparos que se reportan en prensa no se verificaron. No encontré copia en el sitio del IMSS. Mi borrador decía «sin pagos retroactivos»: esa frase no se encontró en lo que se leyó.
 

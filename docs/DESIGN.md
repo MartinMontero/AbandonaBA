@@ -4,14 +4,14 @@ Fuente: `The Design Field Manual - Apple HIG vs Google Material Design.pdf` (13 
 
 | Directriz del manual | Qué se hizo | Dónde |
 |---|---|---|
-| Tokens `--md-sys-color-*` desde una sola semilla, con Material Color Utilities (HCT) | Semilla `#0b3d91`; `npm run tokens` genera el CSS | `scripts/gen-tokens.mjs`, `src/styles/tokens.css` |
+| Tokens `--md-sys-color-*` desde una sola semilla, con Material Color Utilities (HCT) | Semilla `#00788c` (teal), esquema vibrante; `npm run tokens` genera el CSS | `scripts/gen-tokens.mjs`, `src/styles/tokens.css` |
 | Sin colores literales en los componentes | Todos los componentes usan tokens. Los únicos literales son los del propio archivo de tokens y blanco y negro de la hoja de impresión | `src/styles/*.css` |
 | Cuadrícula de 8 px en `rem`, radios, movimiento | `--space-*`, `--radius-*`, `--motion-*` | `src/styles/global.css` |
 | Modo oscuro con `prefers-color-scheme` | Conjunto de tokens oscuro generado | `tokens.css` |
 | Tipografía del sistema, escala en `rem` | `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, system-ui` | `global.css` |
 | WCAG 2.2 AA como piso; contraste 4.5:1 y 3:1; `:focus-visible`; foco no tapado por barras fijas | axe en 4 configuraciones sin violaciones serias o críticas; `scroll-padding` para la cabecera y la barra inferior | `tests/e2e` |
 | Objetivos de 44 a 48 px | Botones, chips y barra de 48 px; prueba automática a 360 px | `tests/e2e/empleos.spec.ts` |
-| Barra inferior en compacto (<600 px), riel desde 600 px, sin cajones; `<nav>` + `aria-current` | Cinco destinos: Inicio, Calcular, Plazos, Empleos, Ayuda | `Base.astro`, `global.css` |
+| Barra inferior en compacto (<600 px), riel desde 600 px, sin cajones; `<nav>` + `aria-current` | Seis destinos: Inicio, Calcular, Plazos, Empleos, Emprender, Ayuda (brújula) | `Base.astro`, `global.css` |
 | Tres niveles de botón, un primario por vista | Relleno, tonal y texto | `.btn`, `.btn.tonal`, `.btn.text` |
 | Interruptor nativo `input type=checkbox role=switch` con etiqueta | «Solo con vacantes…» y «Ya la revisé» | `empleos.astro`, `empleos.css` |
 | Avisos no bloqueantes como snackbar | «Copiado» y «Copiaste N enlaces» | `site.ts` |
@@ -25,3 +25,19 @@ Fuente: `The Design Field Manual - Apple HIG vs Google Material Design.pdf` (13 
 - Los íconos de la barra son SVG propios simples, no los de Material.
 - Las páginas de contenido anteriores a esta ronda heredaron los tokens y la navegación nueva, pero no se rediseñaron una por una.
 - El manual pide volver a verificar medidas exactas en el momento de construir; las cifras usadas (48 px, 8 px, 600 px) coinciden con lo que dice.
+
+## Patrones de página (reducir la carga cognitiva)
+Regla: una página nunca es una pared de texto. Cada una abre con algo que se entiende de un vistazo y deja el detalle a un toque.
+
+| Patrón | Dónde | Cómo funciona |
+|---|---|---|
+| Selector de situación | `/salidas/`, `/ayuda-gratis/` | Botones de radio + `:has()`: eliges qué te pasa y solo ves esa respuesta. Sin JavaScript |
+| Acordeón `details.acc` | puente, negocio, cooperativa, situación, acerca, actualizaciones | El texto legal completo y su fuente quedan a un toque. `site.ts` abre el acordeón al que apunta un `#id` |
+| Hitos y cifras `.mile`, `.facts` | puente, cooperativa, acerca, actualizaciones | Tarjetas con lo esencial y su etiqueta de verificación |
+| Pasos `.stepper`, `.steps` | equipo, cooperativa, evidencia | Una acción por paso, en orden |
+| Pestañas y filtros por radio | `/trabajo/`, IA, glosario | Un tema a la vez |
+| Frases para copiar `[data-say]`, botón Copiar | no-firmes, trabajo, IA | Copiar con un toque; el aviso sale en el snackbar |
+| Avance sin guardar `<progress>` | `/checklist-salida/` | «Revisaste X de 10»; nada se guarda |
+| Búsqueda en el aparato | glosario | Filtra tarjetas sin enviar nada |
+
+Imágenes e ilustraciones: personas, producto y objetos; nada náutico. El ícono de la pestaña, el de la pantalla de inicio y la marca de la cabecera son la bandera de México proporcionada por la persona responsable del sitio.
