@@ -16,7 +16,7 @@ const sources = [
   ...data.institutions.filter((i: any) => i.id !== 'banco-azteca').flatMap((i: any) => i.products.map((pr: any) => ({ title: `${i.name}: ${pr.name}`, url: pr.source_url, read: pr.read_date }))),
 ];
 ---
-<Base art="store" eyebrow="Mi ahorro" title="Cuánto ganas y cuánto está protegido" description="Compara ofertas de ahorro verificadas con tu cantidad, calcula una oferta que viste y mira cuánto de tu dinero está protegido." path="/cambiate/ahorro/" legal finance claims={['CB03','CB06','CB07','CB08','CB11','CB12','CB27','CB32','CB33','CB34']} sources={sources} lead>
+<Base art="store" eyebrow="Mi ahorro" title="Cuánto ganas y cuánto está protegido" description="Compara ofertas de ahorro verificadas con tu cantidad, calcula una oferta que viste y mira cuánto de tu dinero está protegido." path="/cambiate/ahorro/" legal finance claims={['CB03','CB06','CB07','CB08','CB11','CB12','CB27','CB32','CB33','CB34','CB37','CB39']} sources={sources} lead>
   <CambiateNote />
 
   <section aria-labelledby="ver">

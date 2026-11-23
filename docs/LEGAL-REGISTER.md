@@ -603,3 +603,73 @@ bineo (Banco Bineo, Grupo Financiero Banorte): Pockets bineo rinde 75% de Cetes 
 **Pregunta para el abogado:** ¿Es correcto presentar una tasa variable ligada a Cetes con la fecha de la referencia?
 
 **Páginas:** /cambiate/ahorro/, /cambiate/cuanto-me-cuesta/
+
+## CB35 · verificado-primaria · prioridad D
+
+Santander México, Súper Cuenta Básica: sin monto mínimo de apertura, sin comisión por manejo de cuenta y sin saldo promedio mínimo mensual; retirar en cajeros de otros bancos o en corresponsales puede generar comisiones. Producto garantizado por el IPAB hasta por 400 mil UDIS por cliente y por institución.
+
+**Fuentes:** [Santander: folleto informativo de la Súper Cuenta Básica (PDF)](https://assets.santandermedia.com/adobe/assets/urn:aaid:aem:4a674bbe-aa7d-49b2-9568-0585df018299/original/as/folleto-basica.pdf) (leída 2026-11-23); [Santander: Súper Cuenta Básica](https://www.santander.com.mx/personas/cuentas/basica/) (leída 2026-11-23)
+
+**Conflicto abierto:** Solo se leyó la cuenta básica. LikeU, SuperDigital y Dinero Creciente no publican comisiones ni tasa en sus páginas.
+
+**Debe confirmar:** Leer las comisiones de LikeU y la tasa de Dinero Creciente.
+
+**Pregunta para el abogado:** ¿Es correcto presentar la cuenta básica de Santander como sin comisión por manejo con la advertencia sobre cajeros ajenos?
+
+**Páginas:** /cambiate/cuanto-me-cuesta/
+
+## CB36 · verificado-primaria · prioridad D
+
+Banorte, Cuenta Enlace Digital: monto mínimo de apertura de 0 pesos y, según su página, «sin membresía ni comisiones» si se mantiene la cuenta activa. La tarjeta física se envía cuando el saldo llega a 100 pesos.
+
+**Fuentes:** [Banorte: Cuenta Enlace Digital](https://www.banorte.com/Personal/Cuentas/Cuenta-Enlace-Digital.html) (leída 2026-11-23)
+
+**Conflicto abierto:** La página no define «activa» y no se leyó el documento de costos y comisiones ni el aviso del IPAB.
+
+**Debe confirmar:** Leer el documento de costos y comisiones de la cuenta.
+
+**Pregunta para el abogado:** ¿Puede mostrarse «sin comisiones si mantienes la cuenta activa» sin definir qué es una cuenta activa?
+
+**Páginas:** /cambiate/cuanto-me-cuesta/
+
+## CB37 · verificado-primaria · prioridad D
+
+HSBC México, Ahorro Flexible: tasa fija anual de 1.00% (GAT nominal 1.00%, real -3.00%) desde 1 peso, calculada el 1 de septiembre de 2026 y vigente al 1 de marzo de 2027. Su anexo de comisiones no cobra administración ni penaliza por saldo promedio mínimo. Está protegida por el IPAB hasta 400 mil UDIs por cliente por institución.
+
+**Fuentes:** [HSBC: tasas de interés de Ahorro Flexible (PDF)](https://www.hsbc.com.mx/content/dam/hsbc/mx/documents/cuentas/vista/ahorro_flexible/tasa_interes.pdf) (leída 2026-11-23); [HSBC: anexo de comisiones de Ahorro Flexible (PDF)](https://www.hsbc.com.mx/content/dam/hsbc/mx/documents/cuentas/vista/ahorro_flexible/anexo_comisiones.pdf) (leída 2026-11-23); [HSBC: folleto digital de Ahorro Flexible (PDF)](https://www.hsbc.com.mx/content/dam/hsbc/mx/documents/cuentas/vista/ahorro_flexible/folleto_digital_ahorro_flexible.pdf) (leída 2026-11-23)
+
+**Conflicto abierto:** El texto extraído del anexo de comisiones tiene letras perdidas; se leyeron las filas de administración y penalización.
+
+**Debe confirmar:** Leer el anexo en una versión sin pérdida de formato.
+
+**Pregunta para el abogado:** ¿Es correcto afirmar que Ahorro Flexible no cobra comisión de administración?
+
+**Páginas:** /cambiate/ahorro/, /cambiate/cuanto-me-cuesta/
+
+## CB38 · verificado-primaria · prioridad D
+
+Scotiabank México, Cuenta Scotia digital abierta desde la app: sin comisión por manejo de cuenta los primeros tres meses. El beneficio se conserva con nómina, saldo promedio, domiciliación de servicios digitales o un crédito de auto o hipoteca de Scotiabank.
+
+**Fuentes:** [Scotiabank: Cuenta Scotia](https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx) (leída 2026-11-23)
+
+**Conflicto abierto:** La página no dice el monto de la comisión ni el saldo promedio requerido ni el aviso del IPAB.
+
+**Debe confirmar:** Leer el anexo de comisiones y el folleto.
+
+**Pregunta para el abogado:** ¿Puede publicarse la condición sin el monto de la comisión?
+
+**Páginas:** /cambiate/cuanto-me-cuesta/
+
+## CB39 · verificado-primaria · prioridad D
+
+BanCoppel, Cuenta Efectiva Digital: la página muestra GAT nominal 0.00% y GAT real -3.97%, con cálculo del 1 de septiembre de 2026 y vigencia del 24 de septiembre de 2026 al 24 de marzo de 2027. Las tasas de Inversión Creciente están en un documento que el sitio no entregó (acceso denegado).
+
+**Fuentes:** [BanCoppel: Cuenta Efectiva Digital](https://www.bancoppel.com/descubre-mas/cuenta-efectiva-digital/) (leída 2026-11-23); [BanCoppel: Inversión Creciente](https://www.bancoppel.com/descubre-mas/inversion-creciente/) (leída 2026-11-23)
+
+**Conflicto abierto:** No se leyeron las comisiones, el aviso del IPAB ni las tasas de Inversión Creciente.
+
+**Debe confirmar:** Leer «Tasas y Comisiones» con un navegador normal.
+
+**Pregunta para el abogado:** ¿Es correcto listar Inversión Creciente como no calculada por falta de la tabla de tasas?
+
+**Páginas:** /cambiate/ahorro/

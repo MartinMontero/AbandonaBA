@@ -857,6 +857,218 @@
           "notes": "«GAT nominal 0.00% GAT real -3.79% antes de impuestos, desde $1 calculado el 18 de noviembre de 2026, y vigente al 22 de diciembre de 2026». Las comisiones de la cuenta Switch no se pudieron leer con claridad en el PDF y no se publican."
         }
       ]
+    },
+    {
+      "id": "santander",
+      "name": "Santander México",
+      "type": "banco",
+      "official_domain": "santander.com.mx",
+      "protection": {
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://assets.santandermedia.com/adobe/assets/urn:aaid:aem:4a674bbe-aa7d-49b2-9568-0585df018299/original/as/folleto-basica.pdf",
+        "read_date": "2026-11-23",
+        "tool": "powershell",
+        "status": "verificado-primaria",
+        "seen": "«Producto garantizado por el IPAB hasta por 400 mil UDIS por cliente y por institución» (folleto de la Súper Cuenta Básica)"
+      },
+      "products": [
+        {
+          "id": "super-cuenta-basica",
+          "kind": "cuenta",
+          "name": "Súper Cuenta Básica",
+          "fee_summary": {
+            "monthly_mxn": 0,
+            "plus_iva": false,
+            "text_es": "Sin comisión por manejo de cuenta, sin monto mínimo de apertura y sin saldo promedio mínimo mensual. Retirar en cajeros de otros bancos o en corresponsales puede generar comisiones."
+          },
+          "interest_published": false,
+          "source_url": "https://assets.santandermedia.com/adobe/assets/urn:aaid:aem:4a674bbe-aa7d-49b2-9568-0585df018299/original/as/folleto-basica.pdf",
+          "extra_source_url": "https://www.santander.com.mx/personas/cuentas/basica/",
+          "read_date": "2026-11-23",
+          "tool": "powershell",
+          "status": "verificado-primaria",
+          "notes": "Folleto informativo leído con pdftotext. Los productos LikeU, SuperDigital y Dinero Creciente no se pudieron leer: sus páginas no publican comisiones ni tasa."
+        }
+      ]
+    },
+    {
+      "id": "banorte",
+      "name": "Banorte",
+      "type": "banco",
+      "official_domain": "banorte.com",
+      "protection": {
+        "scheme": "SIN_VERIFICAR",
+        "limit_udis": null,
+        "source_url": "https://www.banorte.com/Personal/Cuentas/Cuenta-Enlace-Digital.html",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar",
+        "seen": "La página de la cuenta no mostró el aviso del IPAB en el texto leído."
+      },
+      "products": [
+        {
+          "id": "cuenta-enlace-digital",
+          "kind": "cuenta",
+          "name": "Cuenta Enlace Digital",
+          "fee_summary": {
+            "monthly_mxn": 0,
+            "plus_iva": false,
+            "text_es": "Monto mínimo de apertura de 0 pesos. «Sin membresía ni comisiones» si mantienes la cuenta activa; la página no define qué es «activa». La tarjeta física se envía cuando el saldo llega a 100 pesos."
+          },
+          "interest_published": false,
+          "source_url": "https://www.banorte.com/Personal/Cuentas/Cuenta-Enlace-Digital.html",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria",
+          "notes": "No se leyó el documento de costos y comisiones."
+        }
+      ]
+    },
+    {
+      "id": "hsbc",
+      "name": "HSBC México",
+      "type": "banco",
+      "official_domain": "hsbc.com.mx",
+      "protection": {
+        "scheme": "IPAB",
+        "limit_udis": 400000,
+        "source_url": "https://www.hsbc.com.mx/content/dam/hsbc/mx/documents/cuentas/vista/ahorro_flexible/folleto_digital_ahorro_flexible.pdf",
+        "read_date": "2026-11-23",
+        "tool": "powershell",
+        "status": "verificado-primaria",
+        "seen": "«Ahorro Flexible HSBC se encuentra protegida por el IPAB hasta por un monto equivalente a 400 mil UDIs por cliente por Institución»"
+      },
+      "products": [
+        {
+          "id": "ahorro-flexible",
+          "kind": "ahorro",
+          "name": "Ahorro Flexible HSBC",
+          "calc_date": "2026-09-01",
+          "valid_to": "2027-03-01",
+          "min_amount_mxn": 1,
+          "levels": [
+            {
+              "id": "unico",
+              "name": "Tasa fija",
+              "condition_es": null,
+              "condition_kind": "none",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 1.0
+                }
+              ],
+              "gat_nominal_pct": 1.0,
+              "gat_real_pct": -3.0,
+              "computable": true,
+              "note": "Desde 1 peso. El monto mínimo para mantener la cuenta abierta es 1 peso."
+            }
+          ],
+          "fee_summary": {
+            "monthly_mxn": 0,
+            "plus_iva": false,
+            "text_es": "Sin comisión de administración y sin penalización por saldo promedio mínimo, según su anexo de comisiones."
+          },
+          "source_url": "https://www.hsbc.com.mx/content/dam/hsbc/mx/documents/cuentas/vista/ahorro_flexible/tasa_interes.pdf",
+          "extra_source_url": "https://www.hsbc.com.mx/content/dam/hsbc/mx/documents/cuentas/vista/ahorro_flexible/anexo_comisiones.pdf",
+          "read_date": "2026-11-23",
+          "tool": "powershell",
+          "status": "verificado-primaria",
+          "notes": "«Tasa de rendimiento fija anual. GAT Nominal 1.00% GAT Real -3.00% Antes de Impuestos… Fecha de cálculo al 01 de septiembre de 2026. Vigencia al 01 de marzo de 2027»."
+        }
+      ]
+    },
+    {
+      "id": "scotiabank",
+      "name": "Scotiabank México",
+      "type": "banco",
+      "official_domain": "scotiabank.com.mx",
+      "protection": {
+        "scheme": "SIN_VERIFICAR",
+        "limit_udis": null,
+        "source_url": "https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar",
+        "seen": "No se leyó el aviso del IPAB en la página."
+      },
+      "products": [
+        {
+          "id": "cuenta-scotia-digital",
+          "kind": "cuenta",
+          "name": "Cuenta Scotia digital (desde ScotiaMóvil)",
+          "fee_summary": {
+            "monthly_mxn": null,
+            "plus_iva": false,
+            "text_es": "Sin comisión por manejo de cuenta los primeros tres meses al abrirla desde la app. Después se conserva el beneficio con nómina, saldo promedio, domiciliación de servicios digitales o un crédito de auto o hipoteca de Scotiabank. La página no dice el monto de la comisión ni el saldo promedio."
+          },
+          "interest_published": false,
+          "source_url": "https://www.scotiabank.com.mx/personas/cuentas-bancarias/cuenta-scotia.aspx",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria"
+        }
+      ]
+    },
+    {
+      "id": "bancoppel",
+      "name": "BanCoppel",
+      "type": "banco",
+      "official_domain": "bancoppel.com",
+      "protection": {
+        "scheme": "SIN_VERIFICAR",
+        "limit_udis": null,
+        "source_url": "https://www.bancoppel.com/descubre-mas/cuenta-efectiva-digital/",
+        "read_date": "2026-11-23",
+        "tool": "chrome",
+        "status": "sin-verificar",
+        "seen": "No se leyó el aviso del IPAB en el texto de la página."
+      },
+      "products": [
+        {
+          "id": "cuenta-efectiva-digital",
+          "kind": "ahorro",
+          "name": "Cuenta Efectiva Digital",
+          "calc_date": "2026-09-01",
+          "valid_to": "2027-03-24",
+          "min_amount_mxn": null,
+          "levels": [
+            {
+              "id": "unico",
+              "name": "Cuenta de débito",
+              "condition_es": null,
+              "condition_kind": "none",
+              "bands": [
+                {
+                  "upto": null,
+                  "rate": 0.0
+                }
+              ],
+              "gat_nominal_pct": 0.0,
+              "gat_real_pct": -3.97,
+              "computable": true,
+              "note": "La página da GAT nominal 0.00% y real -3.97%; vigencia del 24 de septiembre de 2026 al 24 de marzo de 2027."
+            }
+          ],
+          "source_url": "https://www.bancoppel.com/descubre-mas/cuenta-efectiva-digital/",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria"
+        },
+        {
+          "id": "inversion-creciente",
+          "kind": "ahorro",
+          "name": "Inversión Creciente",
+          "levels": [],
+          "seen_es": "Las tasas están en un documento («Tasas y Comisiones») que el sitio de BanCoppel no entregó a nuestro lector (acceso denegado).",
+          "notes": "No se calcula ni se ordena. No se intentó saltar el bloqueo.",
+          "source_url": "https://www.bancoppel.com/descubre-mas/inversion-creciente/",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-primaria"
+        }
+      ]
     }
   ],
   "remittance_providers": [

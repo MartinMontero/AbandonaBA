@@ -15,7 +15,7 @@ const sources = [
   ...feeRows.filter((r) => r.inst !== 'Banco Azteca').map((r) => ({ title: `${r.inst}: ${r.prod}`, url: r.url, read: r.read })),
 ];
 ---
-<Base art="clipboard" eyebrow="Cuánto me cuesta quedarme" title="Lo que pagas por quedarte" description="Calcula la comisión de la Cuenta Operativa si tu cuenta fue cambiada a esa, y cuánto te falta por pagar de un préstamo." path="/cambiate/cuanto-me-cuesta/" legal finance claims={['CB01','CB03','CB04','CB12','CB31','CB34']} sources={sources} lead>
+<Base art="clipboard" eyebrow="Cuánto me cuesta quedarme" title="Lo que pagas por quedarte" description="Calcula la comisión de la Cuenta Operativa si tu cuenta fue cambiada a esa, y cuánto te falta por pagar de un préstamo." path="/cambiate/cuanto-me-cuesta/" legal finance claims={['CB01','CB03','CB04','CB12','CB31','CB34','CB35','CB36','CB37','CB38']} sources={sources} lead>
   <CambiateNote />
 
   <section aria-labelledby="op">
@@ -40,12 +40,12 @@ const sources = [
         <thead><tr><th>Banco y cuenta</th><th>Comisión mensual publicada</th><th>Cómo se evita</th><th>Fuente</th></tr></thead>
         <tbody>
           {feeRows.map((r) => (
-            <tr><th scope="row">{r.inst}: {r.prod}</th><td>{r.f.monthly_mxn === 0 ? 'Sin comisión' : `${fmt(r.f.monthly_mxn)} pesos${r.f.plus_iva ? ' más IVA' : ''}`}</td><td>{r.f.text_es}</td><td><a href={r.url} rel="noopener noreferrer">Fuente</a> <span class={`tag t-${r.status}`}>{r.status}</span></td></tr>
+            <tr><th scope="row">{r.inst}: {r.prod}</th><td>{r.f.monthly_mxn === null ? 'Monto no publicado en la página' : r.f.monthly_mxn === 0 ? 'Sin comisión' : `${fmt(r.f.monthly_mxn)} pesos${r.f.plus_iva ? ' más IVA' : ''}`}</td><td>{r.f.text_es}</td><td><a href={r.url} rel="noopener noreferrer">Fuente</a> <span class={`tag t-${r.status}`}>{r.status}</span></td></tr>
           ))}
         </tbody>
       </table>
     </div>
-    <p class="ref-line">Solo aparecen las cuentas que leímos completas. No leímos las comisiones de Banorte, Santander, HSBC, Scotiabank, Inbursa ni BanCoppel, y las de Banamex no se pudieron leer con claridad.</p>
+    <p class="ref-line">Solo aparecen las cuentas que leímos completas. No leímos las comisiones de Nu, Ualá, Klar, Inbursa ni BanCoppel; las de Banamex no se pudieron leer con claridad, y las de Santander (LikeU) y Banorte (otras cuentas) tampoco se publican en sus páginas.</p>
   </section>
 
   <section aria-labelledby="gd">

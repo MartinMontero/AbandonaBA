@@ -114,3 +114,16 @@ Sin leer, y por qué:
 Resultado en el sitio: `/cambiate/ahorro/` suma bineo y Banamex al orden (Banamex rinde 0 pesos) y explica por qué Stori y Spin no se calculan; `/cambiate/cuanto-me-cuesta/` suma una tabla de comisiones publicadas (Azteca, BBVA, bineo, Openbank).
 
 Dato útil para los bancos grandes: Banamex paga 0.00% en su ahorro básico y alrededor de 1% en pagarés, frente a 6.5% a 7% de las ofertas digitales sin condición.
+
+## 10. Cuarta ronda: Santander, Banorte, HSBC, Scotiabank, BanCoppel e Inbursa (2026-11-23)
+
+| Institución | Qué se leyó | Cómo | Etiqueta |
+|---|---|---|---|
+| Santander | Súper Cuenta Básica: sin monto de apertura, sin comisión por manejo, sin saldo promedio mínimo; IPAB 400 mil UDIS | folleto PDF con `pdftotext` y Chrome | primaria (CB35) |
+| Banorte | Cuenta Enlace Digital: apertura de 0 pesos; «sin membresía ni comisiones» si la cuenta está activa | Chrome | primaria (CB36); sin aviso del IPAB leído |
+| HSBC | Ahorro Flexible: 1.00% fijo (GAT real -3.00%), vigente al 1-mar-2027; sin comisión de administración; IPAB 400 mil UDIs | PDFs oficiales | primaria (CB37) |
+| Scotiabank | Cuenta Scotia digital: sin comisión de manejo 3 meses; condiciones para conservar el beneficio; sin montos | Chrome | primaria (CB38), incompleta |
+| BanCoppel | Cuenta Efectiva Digital: GAT 0.00% (real -3.97%), vigente al 24-mar-2027. Inversión Creciente: tabla de tasas bloqueada («Access Denied»); no se saltó el bloqueo | Chrome y curl | primaria (CB39) |
+| Inbursa | La página de cuentas básicas no mostró contenido en dos intentos | Chrome | sin verificar |
+
+Con esto el ahorro sin condiciones queda así para 40,000 pesos: Openbank 2,800; Nu 2,600; Ualá 2,025; bineo 1,857; HSBC 400; Banamex y BanCoppel 0.
