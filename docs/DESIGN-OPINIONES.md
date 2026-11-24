@@ -84,3 +84,37 @@ src/data/opiniones-empleados.json  <----  mismo archivo, con via="proveedor"
 1. ¿Se pasa a la fase 1 (instantánea con un proveedor)? Requiere cuenta, clave y visto bueno legal.
 2. ¿Se quiere solo Glassdoor o también Indeed y Computrabajo? Ninguno tiene API pública; Indeed bloquea igual.
 3. ¿Se muestran estas cifras en producción o solo en la versión de revisión mientras se dictamina?
+
+## 8. Términos de servicio leídos (2026-11-23)
+
+Se leyeron los términos de Glassdoor (en la copia del Internet Archive del 16-nov-2026, porque la página oficial dio 403 a la lectura automática), de Indeed y de los cuatro proveedores. Los puntos, con su enlace, están en `src/data/opiniones-empleados.json` (clave `terms`).
+
+| Quién | Qué dice | Consecuencia para este sitio |
+|---|---|---|
+| **Glassdoor** (Indeed, Inc.) | Prohíbe raspar o minar datos sin permiso por escrito; copiar su contenido sin permiso; enlazar de forma profunda sin permiso salvo que ofrezca API o incrustación. La licencia de las reseñas es de Glassdoor | Ningún proveedor de raspado le da permiso a quien publica. **Mostrar calificaciones y enlazar a páginas de empresa tiene un riesgo que debe dictaminar la persona de prensa y propiedad intelectual** |
+| **Indeed** | El contenido es para uso personal y no comercial de quien busca empleo | Un sitio que publica sus cifras no es «uso personal» |
+| **OpenWeb Ninja** | Permite usar y redistribuir los datos en productos propios; la persona usuaria responde por los términos de la fuente original | La más permisiva; el riesgo frente a Glassdoor queda en quien publica |
+| **SearchAPI** | Datos de páginas públicas; solo se usan con licencia o si la ley lo permite; prohíbe revender | Igual: riesgo en quien publica |
+| **ScrapingBee** | Solo uso profesional; el uso personal está «estrictamente» prohibido; prohíbe incumplir términos de otros sitios | **Descartada** para personas trabajadoras que lo usen por su cuenta |
+| **Bright Data** | Licencia solo para operaciones internas de negocio; sin sublicencia | **Descartada** (además no admite llamadas desde el navegador) |
+
+### Modelo «cada persona trae su propia cuenta» (BYOK)
+Se probó con una consulta previa de CORS si el navegador puede llamar directo al proveedor (sin enviar claves): **OpenWeb Ninja, SearchAPI y ScrapingBee sí; Bright Data no.**
+
+Lo que implicaría para este sitio:
+- **Un cambio en la promesa de privacidad.** Hoy ninguna página hace solicitudes a terceros. Con BYOK, una página sí las haría, solo tras una acción explícita, con una excepción de CSP para un solo dominio y solo en esa ruta.
+- **La clave de la persona** se escribiría en la página y viviría solo en memoria; nunca se guardaría. Hoy el sitio se compromete a no pedir contraseñas ni claves.
+- **La persona quedaría identificada ante el proveedor** (correo y, si pasa del nivel gratuito, tarjeta) y sus consultas sobre un empleador serían visibles para él. Es un riesgo para quien teme represalias.
+- **Los términos del proveedor** obligan a la persona, no al sitio: ScrapingBee y Bright Data no sirven para uso personal; OpenWeb Ninja y SearchAPI son compatibles en el papel.
+- **No se puede probar en vivo sin una clave.** Se probaría con respuestas de ejemplo; las pruebas reales quedarían como UNTESTED hasta que alguien con clave las corra.
+
+Alternativa más segura con la misma idea: **instantánea mensual hecha por ti** (sección 5), que no pide nada a quienes visitan.
+
+### Sobre «saltarse» los bloqueos de Glassdoor e Indeed
+No se saltan. Evadir una verificación contra robots está fuera de lo que este asistente hace, y además chocaría con los términos de Glassdoor leídos arriba. Lo que sí es posible: abrir la página en tu propio navegador, pasar la verificación tú, y decirme las cifras o dejarme leer la página ya cargada en tu sesión.
+
+## 9. Decisiones abiertas (actualizado)
+1. ¿Se mantienen las calificaciones de Glassdoor e Indeed en la página mientras se dictamina, o se dejan solo los enlaces?
+2. ¿Los enlaces a Glassdoor se dejan profundos (página de la empresa) o se apuntan a su portada, dado lo que dicen sus términos?
+3. ¿Se construye la opción BYOK (con las implicaciones de privacidad de arriba) o se prefiere la instantánea mensual?
+4. ¿Se hace de una vez la lectura manual de las cifras en tu navegador para sustituir las de resultados de búsqueda?

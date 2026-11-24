@@ -230,5 +230,119 @@
       "text_es": "Según JobsPipe, la API oficial de Glassdoor dejó de responder en agosto de 2025 (error HTTP 410) y nunca hubo una clave de uso libre. Según el artículo de Zuplo, Glassdoor cerró el acceso público a su API en 2021.",
       "second_url": "https://dev.to/zuplo/what-is-the-glassdoor-api-how-to-use-it-and-alternatives-35d7"
     }
-  }
+  },
+  "terms": [
+    {
+      "party": "Glassdoor",
+      "document": "Terms of Use (revisados el 1 de julio de 2026)",
+      "url": "https://web.archive.org/web/20261116074029/https://www.glassdoor.com/about/terms/",
+      "copy": "Copia del Internet Archive del 16-nov-2026; la página oficial dio 403 a la lectura automática.",
+      "read_date": "2026-11-23",
+      "tool": "powershell",
+      "status": "verificado-primaria",
+      "points": [
+        "Prohíbe introducir software o agentes automáticos para raspar, extraer o minar datos del servicio sin permiso expreso por escrito.",
+        "Prohíbe enmarcar, replicar o enlazar de forma profunda («deep-link») a cualquier parte del servicio sin permiso, salvo cuando ofrezca una API o una función formal de incrustación.",
+        "Prohíbe copiar, modificar o crear obras derivadas del servicio o de su contenido, excepto el propio de la persona, sin permiso.",
+        "Quien escribe una reseña le da a Glassdoor una licencia mundial, perpetua y sublicenciable sobre ella: la licencia es de Glassdoor, no de terceros.",
+        "Glassdoor es un servicio de Indeed, Inc."
+      ]
+    },
+    {
+      "party": "Indeed",
+      "document": "Terms of Service (última actualización: 29 de septiembre de 2026)",
+      "url": "https://www.indeed.com/legal",
+      "read_date": "2026-11-23",
+      "tool": "powershell",
+      "status": "verificado-primaria",
+      "points": [
+        "A quien busca empleo le permite usar el sitio y su contenido «para su propósito personal y no comercial de buscar empleo o información relacionada con su búsqueda»; la licencia se revoca si lo usa para otro fin.",
+        "Prohíbe usar automatización, scripts o bots en el proceso de Indeed Apply fuera de sus proveedores oficiales."
+      ]
+    },
+    {
+      "party": "OpenWeb Ninja",
+      "document": "Terms of Use (última actualización: 14 de octubre de 2026)",
+      "url": "https://www.openwebninja.com/terms",
+      "read_date": "2026-11-23",
+      "tool": "powershell",
+      "status": "verificado-primaria",
+      "points": [
+        "Da licencia para usar, reproducir y explotar comercialmente los datos de su API en productos propios, incluso redistribuirlos como parte de una oferta más amplia, pero no como producto de datos independiente que reemplace sus servicios.",
+        "La licencia es solo en la medida de sus derechos; los datos pueden venir de sitios de terceros.",
+        "La persona usuaria es la única responsable de que el uso cumpla la ley, los derechos de propiedad intelectual de terceros y los términos de la fuente original de los datos."
+      ]
+    },
+    {
+      "party": "SearchAPI",
+      "document": "Terms of Service (última actualización: 11 de abril de 2026)",
+      "url": "https://www.searchapi.io/legal/terms",
+      "read_date": "2026-11-23",
+      "tool": "powershell",
+      "status": "verificado-primaria",
+      "points": [
+        "Dice que reúne datos de páginas web públicas y que el contenido de terceros puede estar sujeto a derechos: solo puede usarse con licencia o si la ley lo permite.",
+        "Prohíbe falsear la fuente o quitar avisos de derechos, y prohíbe copiar, vender o revender cualquier parte del servicio sin permiso."
+      ]
+    },
+    {
+      "party": "ScrapingBee",
+      "document": "General Terms and Conditions (última actualización: 15 de julio de 2024)",
+      "url": "https://www.scrapingbee.com/terms-and-conditions/",
+      "read_date": "2026-11-23",
+      "tool": "powershell",
+      "status": "verificado-primaria",
+      "points": [
+        "Limita el uso a un uso individual en actividades profesionales y prohíbe «estrictamente» el uso personal.",
+        "Prohíbe incumplir los términos de sitios de terceros o usar el servicio para hacerlo, y dice que revisar si un sitio prohíbe el raspado es responsabilidad de la persona usuaria.",
+        "Prohíbe comunicar a terceros elementos obtenidos del servicio salvo autorización expresa."
+      ]
+    },
+    {
+      "party": "Bright Data",
+      "document": "Master Service Agreement (última actualización: 12 de octubre de 2026)",
+      "url": "https://brightdata.com/license",
+      "read_date": "2026-11-23",
+      "tool": "powershell",
+      "status": "verificado-primaria",
+      "points": [
+        "Da una licencia limitada, revocable, intransferible y sin derecho de sublicencia, solo para las operaciones internas de negocio del cliente.",
+        "Prohíbe revender el servicio, y dice que no entrega datos si hacerlo infringiría la ley o derechos de terceros."
+      ]
+    }
+  ],
+  "cors": [
+    {
+      "provider": "OpenWeb Ninja",
+      "endpoint": "https://api.openwebninja.com/realtime-glassdoor-data/company-search",
+      "result": "Responde a la consulta previa del navegador con Access-Control-Allow-Origin: * y acepta el encabezado X-Api-Key",
+      "browser_callable": true,
+      "read_date": "2026-11-23",
+      "tool": "powershell"
+    },
+    {
+      "provider": "SearchAPI",
+      "endpoint": "https://www.searchapi.io/api/v1/search",
+      "result": "Access-Control-Allow-Origin: *; acepta el encabezado Authorization",
+      "browser_callable": true,
+      "read_date": "2026-11-23",
+      "tool": "powershell"
+    },
+    {
+      "provider": "ScrapingBee",
+      "endpoint": "https://app.scrapingbee.com/api/v1/",
+      "result": "Devuelve el mismo origen que le llega y acepta X-Api-Key",
+      "browser_callable": true,
+      "read_date": "2026-11-23",
+      "tool": "powershell"
+    },
+    {
+      "provider": "Bright Data",
+      "endpoint": "https://api.brightdata.com/datasets/v3/trigger",
+      "result": "La consulta previa recibe 403 sin encabezados CORS",
+      "browser_callable": false,
+      "read_date": "2026-11-23",
+      "tool": "powershell"
+    }
+  ]
 }

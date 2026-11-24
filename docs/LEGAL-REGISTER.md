@@ -996,16 +996,16 @@ Calificaciones de empleados que muestran otras plataformas el 23 de noviembre de
 
 **Páginas:** /empleos/opiniones/
 
-## T18 · verificado-secundaria · prioridad E
+## T18 · verificado-primaria · prioridad E
 
-Glassdoor no tiene una API pública vigente: según JobsPipe, la API de socios dejó de responder en agosto de 2025 (HTTP 410) y nunca hubo clave de uso libre; según Zuplo, cerró el acceso público en 2021. Los servicios que ofrecen datos de Glassdoor (ScrapingBee, SearchAPI, Bright Data, OpenWeb Ninja) lo obtienen leyendo sus páginas y son de pago, con niveles gratuitos limitados.
+Glassdoor no tiene una API pública vigente: según JobsPipe, la API de socios dejó de responder en agosto de 2025 (HTTP 410) y nunca hubo clave de uso libre; según Zuplo, cerró el acceso público en 2021. Los servicios que ofrecen datos de Glassdoor (ScrapingBee, SearchAPI, Bright Data, OpenWeb Ninja) lo obtienen leyendo sus páginas y son de pago, con niveles gratuitos limitados. Los términos de uso de Glassdoor (revisados el 1 de julio de 2026) prohíben raspar o minar datos del servicio sin permiso por escrito, copiar su contenido sin permiso y enlazar de forma profunda a cualquier parte del servicio salvo que ofrezca una API o función de incrustación. Los términos de Indeed permiten a quien busca empleo usar el contenido para fines personales y no comerciales.
 
-**Fuentes:** [JobsPipe y Zuplo (más las páginas de precios de cada proveedor)](https://jobspipe.dev/sources/glassdoor) (leída 2026-11-23)
+**Fuentes:** [JobsPipe y Zuplo (más las páginas de precios de cada proveedor)](https://jobspipe.dev/sources/glassdoor) (leída 2026-11-23); [Glassdoor, Terms of Use (copia del Internet Archive del 16 de noviembre de 2026)](https://web.archive.org/web/20261116074029/https://www.glassdoor.com/about/terms/) (leída 2026-11-23); [Indeed, Terms of Service (29 de septiembre de 2026)](https://www.indeed.com/legal) (leída 2026-11-23)
 
-**Conflicto abierto:** Son páginas de los propios proveedores y blogs, no de Glassdoor. No leímos los términos de servicio de Glassdoor.
+**Conflicto abierto:** La página oficial de los términos de Glassdoor dio 403 a la lectura automática; se leyó una copia pública del Internet Archive. Los términos obligan a quienes usan el servicio; esta página enlaza y muestra calificaciones agregadas sin usar el servicio de forma automatizada, pero la calificación podría considerarse contenido.
 
-**Debe confirmar:** Leer los términos de servicio de Glassdoor y de cada proveedor.
+**Debe confirmar:** Dictamen sobre si basta con enlazar y mostrar calificaciones agregadas atribuidas, o si hay que quitar las cifras y dejar solo los enlaces, o enlazar solo a la portada.
 
-**Pregunta para el abogado:** ¿Es viable usar datos de proveedores que leen páginas de Glassdoor sin violar sus términos, y qué puede mostrarse?
+**Pregunta para el abogado:** ¿Pueden mostrarse calificaciones agregadas de Glassdoor e Indeed, atribuidas y con fecha, y enlazar a sus páginas de empresa, dado lo que dicen sus términos de uso?
 
 **Páginas:** /empleos/opiniones/

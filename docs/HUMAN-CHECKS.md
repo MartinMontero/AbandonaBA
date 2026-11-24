@@ -113,3 +113,11 @@ Revisión editorial pendiente de la persona que dictamina: cómo se nombra a las
 | BanCoppel en Indeed | https://mx.indeed.com/cmp/Bancoppel | 4.1 con 1,168 evaluaciones; la cifra cambia según la página |
 | Santander, Banorte y BanCoppel en la otra plataforma | https://mx.indeed.com/cmp/Banco-Azteca | No se encontraron páginas |
 | Términos de servicio de Glassdoor y de cada proveedor de datos | https://www.openwebninja.com/api/real-time-glassdoor-data | No se leyeron; necesarios antes de la fase 1 (ver docs/DESIGN-OPINIONES.md) |
+
+Términos leídos (2026-11-23), para que la persona de prensa y propiedad intelectual los revise:
+- Glassdoor, Terms of Use: https://www.glassdoor.com/about/terms/ (la página oficial dio 403 a la lectura automática; se leyó la copia https://web.archive.org/web/20261116074029/https://www.glassdoor.com/about/terms/)
+- Indeed, Terms of Service: https://www.indeed.com/legal
+- OpenWeb Ninja: https://www.openwebninja.com/terms
+- SearchAPI: https://www.searchapi.io/legal/terms
+- ScrapingBee: https://www.scrapingbee.com/terms-and-conditions/
+- Bright Data: https://brightdata.com/license

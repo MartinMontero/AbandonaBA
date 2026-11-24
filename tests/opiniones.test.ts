@@ -28,4 +28,14 @@ describe('opiniones de empleados: los datos son atribuidos, fechados y sin texto
     for (const b of data.blocked as any[]) { expect(b.url).toMatch(/^https:\/\//); expect(b.read_date).toMatch(/^\d{4}-\d{2}-\d{2}$/); }
     expect((data.blocked as any[]).length).toBeGreaterThanOrEqual(2);
   });
+  it('los términos leídos traen enlace, fecha, etiqueta y puntos', () => {
+    const terms = (data as any).terms as any[];
+    expect(terms.map((x) => x.party)).toEqual(expect.arrayContaining(['Glassdoor', 'Indeed', 'OpenWeb Ninja', 'SearchAPI', 'ScrapingBee', 'Bright Data']));
+    for (const x of terms) { expect(x.url, x.party).toMatch(/^https:\/\//); expect(x.read_date, x.party).toMatch(/^\d{4}-\d{2}-\d{2}$/); expect(x.points.length, x.party).toBeGreaterThan(0); }
+  });
+  it('las pruebas de CORS registran qué proveedores pueden llamarse desde el navegador', () => {
+    const cors = (data as any).cors as any[];
+    expect(cors.find((c) => c.provider === 'Bright Data').browser_callable).toBe(false);
+    expect(cors.find((c) => c.provider === 'OpenWeb Ninja').browser_callable).toBe(true);
+  });
 });
