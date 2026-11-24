@@ -29,12 +29,16 @@ if (form) {
     empty.hidden = !!r;
     if (!r) return;
     const cash = $('r-funding').value === 'cash';
-    const lines = [
-      `Se envían ${usd.format(r.sent)} después de la comisión${cash ? ' y del impuesto de EE. UU.' : ''}.`,
-      cash ? `Impuesto de EE. UU. (1%): ${usd.format(r.tax)}. Lo paga quien envía. Si paga desde su cuenta o con tarjeta, no lo paga.` : 'Sin impuesto de EE. UU. si paga desde su cuenta o con tarjeta emitida en EE. UU.',
-      `Con el tipo de cambio de referencia recibirías ${mxn.format(r.refValue)}. Esta cotización queda ${r.costPct >= 0 ? 'por debajo' : 'por encima'} en ${pct.format(Math.abs(r.costPct))}%.`,
+    const times = Math.max(1, Math.round(num($('r-times'))) || 1);
+    const lost = r.lossPesos;
+    const parts = [
+      `Comisión de la app: ${mxn.format(r.feePesos)}.`,
+      cash ? `Impuesto de EE. UU. (1%): ${mxn.format(r.taxPesos)}. Lo paga quien envía; si paga desde su cuenta o con tarjeta, no lo paga.` : 'Impuesto de EE. UU.: ninguno si paga desde su cuenta o con tarjeta emitida en EE. UU.',
+      r.marginPesos >= 0 ? `Diferencia en el tipo de cambio: ${mxn.format(r.marginPesos)}. Es lo que la empresa gana al cambiar dólares a pesos a un precio peor que el de referencia.` : `Diferencia en el tipo de cambio: ${mxn.format(-r.marginPesos)} a tu favor, porque la app ofrece un tipo de cambio mejor que el de referencia.`,
     ];
-    out.innerHTML = `<h3>Con esta cotización recibes</h3><span class="big">${mxn.format(r.pesos)}</span><ul>${lines.map((l) => `<li>${l}</li>`).join('')}</ul>`;
+    const head = lost > 0 ? `En este envío se pierden ${mxn.format(lost)}` : `En este envío no se pierde nada frente a la referencia`;
+    const year = lost > 0 ? `<li><strong>Si se repite ${times} ${times === 1 ? 'vez' : 'veces'} al año, son ${mxn.format(lost * times)} al año.</strong></li>` : '';
+    out.innerHTML = `<h3>¿Cuánto pierdes?</h3><span class="big">${head}</span><p>Es ${pct.format(Math.abs(r.costPct))}% de lo que gastó quien envía (${usd.format(num($('r-total')))}). Si no hubiera comisión, impuesto ni diferencia, llegarían ${mxn.format(r.refValue)}. Con esta cotización llegan <strong>${mxn.format(r.pesos)}</strong>.</p><ul>${parts.map((l) => `<li>${l}</li>`).join('')}${year}</ul><p class="ref-line">Es una comparación con el FIX de Banxico, no una promesa de que otra empresa cobre menos.</p>`;
   }
   form.addEventListener('input', update);
   update();

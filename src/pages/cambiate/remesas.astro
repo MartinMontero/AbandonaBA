@@ -17,16 +17,20 @@ const sources = [
 const es1 = 'Por favor envíame a la CLABE de 18 dígitos [___] del banco [___] a nombre de [nombre como en mi INE]. Paga desde tu cuenta de banco o tarjeta, no en efectivo.';
 const en1 = 'Please send it to the 18-digit CLABE [___] at the bank [___] in the name of [name as on my ID]. Pay from your bank account or card, not with cash.';
 ---
-<Base art="steps" eyebrow="Mis remesas" title="Cuánto llega en pesos" description="Escribe lo que te muestra la app de quien envía. Te decimos cuántos pesos recibes y qué tan lejos queda del tipo de cambio de referencia." path="/cambiate/remesas/" legal finance claims={['CB17','CB18','CB19']} sources={sources} lead>
+<Base art="steps" eyebrow="Mis remesas" title="Cuánto llega en pesos" description="Escribe lo que te muestra la app de quien envía. Te decimos cuántos pesos llegan, cuántos se pierden en cada envío y cuántos al año." path="/cambiate/remesas/" legal finance claims={['CB17','CB18','CB19']} sources={sources} lead>
   <CambiateNote />
 
   <section aria-labelledby="calc">
-    <h2 id="calc">1. Calcula con la cotización de hoy</h2>
-    <p>Abre la app de quien envía, pon el monto y copia aquí lo que muestra. Nosotros no guardamos cotizaciones: cambian varias veces al día.</p>
+    <h2 id="calc">1. ¿Cuánto pierdes cuando te envían dólares?</h2>
+    <p>Cada envío pierde dinero en tres lugares: la comisión, el impuesto de EE. UU. si se paga en efectivo y el tipo de cambio. Abre la app de quien envía, pon el monto y copia aquí lo que muestra. Te decimos cuántos pesos se pierden y cuántos al año. Nosotros no guardamos cotizaciones: cambian varias veces al día.</p>
     <form id="r-form" class="cf" novalidate>
       <label>Total que gasta quien envía (USD)<input id="r-total" type="number" inputmode="decimal" min="0" step="any" placeholder="200" /></label>
       <label>Comisión que muestra la app (USD)<input id="r-fee" type="number" inputmode="decimal" min="0" step="any" placeholder="1.99" /></label>
       <label>Tipo de cambio que ofrece la app (pesos por dólar)<input id="r-rate" type="number" inputmode="decimal" min="0" step="any" placeholder="18.50" /></label>
+      <label>¿Cuántas veces al año te envían?
+        <input id="r-times" type="number" inputmode="numeric" min="1" step="1" value="12" />
+        <small>12 si es cada mes. 24 si es cada quincena.</small>
+      </label>
       <label>Cómo paga quien envía
         <select id="r-funding"><option value="bank">Desde su cuenta de banco</option><option value="card">Con tarjeta de débito o crédito de EE. UU.</option><option value="cash">En efectivo</option></select>
       </label>

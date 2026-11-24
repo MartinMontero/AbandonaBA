@@ -13,7 +13,12 @@ export function transfer(o: { total: number; fee: number; funding: Funding; rate
   const tax = o.funding === 'cash' ? sent * (taxPct / 100) : 0;
   const pesos = sent * o.rate;
   const refValue = o.total * o.refRate;
-  return { sent, tax, pesos, refValue, costPct: (1 - pesos / refValue) * 100 };
+  // Lo que se pierde frente al tipo de cambio de referencia, en pesos: comisión + impuesto + diferencia en el tipo de cambio.
+  const feePesos = o.fee * o.refRate;
+  const taxPesos = tax * o.refRate;
+  const marginPesos = sent * (o.refRate - o.rate);
+  const lossPesos = refValue - pesos;
+  return { sent, tax, pesos, refValue, costPct: (1 - pesos / refValue) * 100, feePesos, taxPesos, marginPesos, lossPesos };
 }
 
 /** Wise no puede depositar a las cuentas cuyos tres primeros dígitos de CLABE están en su lista de exclusión. */
