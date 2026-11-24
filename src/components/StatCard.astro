@@ -1,0 +1,15 @@
+---
+// Una cifra esencial: qué es, cuánto, una comparación visual, quién lo dice y a dónde ir para ver el detalle.
+// La tarjeta entera lleva al detalle; «Fuente» es un enlace aparte al documento.
+import { voices } from '../lib/transparencia';
+interface Props { kicker: string; big: string; unit: string; voice: string; status: string; source: string; href: string; go: string }
+const { kicker, big, unit, voice, status, source, href, go } = Astro.props;
+---
+<li class="ess-card">
+  <p class="ess-k">{kicker}</p>
+  <p class="ess-big"><strong>{big}</strong><span>{unit}</span></p>
+  <div class="ess-viz"><slot /></div>
+  <p class="ess-note"><slot name="note" /></p>
+  <p class="ess-foot"><span class="tag t-voz">{voices[voice]}</span><span class={`tag t-${status}`}>{status}</span></p>
+  <p class="ess-act"><a class="ess-go" href={href}>{go} <span aria-hidden="true">→</span></a><a class="ess-src" href={source} rel="noopener noreferrer">Fuente</a></p>
+</li>

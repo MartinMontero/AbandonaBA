@@ -866,3 +866,29 @@ details.mini ul { margin: 4px 0 0; padding-left: var(--space-3); font-size: var(
 .tiles .feat { grid-column: 1 / -1; }
 .tiles .feat .tile { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
 .tiles .feat .tile p { color: inherit; }
+
+/* ---- Transparencia: lo esencial (tarjetas) ---- */
+.ess-intro { margin: 0 0 var(--space-2); color: var(--md-sys-color-on-surface-variant); }
+.ess { list-style: none; margin: 0 0 var(--space-4); padding: 0; display: grid; gap: var(--space-2); grid-template-columns: 1fr; }
+@media (min-width: 640px) { .ess { grid-template-columns: repeat(2, 1fr); } }
+.ess-card { position: relative; display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; padding: var(--space-3); background: var(--md-sys-color-surface-container-low); border: 1.5px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-lg); transition: transform var(--motion-duration-short) var(--motion-easing-standard), box-shadow var(--motion-duration-short) var(--motion-easing-standard); }
+.ess-card:hover { transform: translateY(-3px); box-shadow: var(--elev-2); }
+.ess-card:focus-within { outline: 3px solid var(--md-sys-color-primary); outline-offset: 2px; }
+.ess-k { margin: 0; font-size: var(--type-label); font-weight: 750; letter-spacing: .04em; text-transform: uppercase; color: var(--md-sys-color-on-surface-variant); }
+.ess-big { display: flex; flex-direction: column; gap: 2px; margin: 0; }
+.ess-big strong { font-size: clamp(2.25rem, 4vw + 1rem, 3rem); font-weight: 850; line-height: 1.05; color: var(--md-sys-color-primary); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.ess-big span { font-size: 1rem; line-height: 1.35; }
+.ess-viz { min-width: 0; margin: var(--space-1) 0; }
+.ess-viz .chart.sm { max-width: 100%; margin: 0; }
+.ess-viz .legend-inline { margin: 6px 0 0; }
+.ess-note { flex: 1; margin: 0; font-size: var(--type-small); color: var(--md-sys-color-on-surface-variant); }
+.ess-note strong { color: var(--md-sys-color-on-surface); }
+.ess-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 0; font-size: var(--type-small); }
+.ess-act { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin: 0; }
+.ess-src { position: relative; z-index: 1; font-size: var(--type-small); }
+.ess-go { font-weight: 750; color: var(--md-sys-color-primary); text-decoration: none; }
+.ess-go::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-lg); }
+.ess-go:focus-visible { outline: none; }
+.ess-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.ess-chips li { padding: 4px 10px; border-radius: var(--radius-full); background: var(--md-sys-color-surface-container-high); font-size: var(--type-small); font-weight: 650; }
+@media (prefers-reduced-motion: reduce) { .ess-card { transition: none; } .ess-card:hover { transform: none; } }

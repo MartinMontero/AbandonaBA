@@ -1,9 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Art from '../../components/Art.astro';
-import Cifra from '../../components/Cifra.astro';
+import StatCard from '../../components/StatCard.astro';
 import TranspNote from '../../components/TranspNote.astro';
-import { T, latest, ann, n, voices } from '../../lib/transparencia';
+import { T, latest, ann, annual, n, voices } from '../../lib/transparencia';
 const doors = [
   { href: '/transparencia/mapa/', t: 'Mapa de conexiones', d: 'Todo está conectado. Sigue el dinero y mira con qué se relaciona cada cifra, en dos pasos.', art: 'mapa', feat: true },
   { href: '/transparencia/dinero/', t: '¿De dónde sale el dinero?', d: 'Cinco años de intereses, reservas y comisiones del banco.', art: 'store' },
@@ -20,6 +20,16 @@ const doors = [
 const a25 = ann(2025);
 const ag = T.tax.elektra;
 const g = T.compensation.group;
+// Tarjeta 1: utilidad de enero a septiembre, dos años
+const uNow = latest.net_ytd as number, uPrev = latest.net_ytd_prev as number;
+const uChange = ((uNow - uPrev) / uPrev) * 100;
+const uMax = Math.max(uNow, uPrev);
+// Tarjeta 2: personal al cierre de cada año
+const emp = annual.filter((a: any) => a.year >= 2022 && a.employees_direct);
+const eMax = Math.max(...emp.map((a: any) => a.employees_direct));
+const eBars = emp.map((a: any, i: number) => { const h = (a.employees_direct / eMax) * 42; return { year: a.year, v: n(a.employees_direct), x: 18 + i * 75, h, y: 58 - h, last: i === emp.length - 1 }; });
+// Tarjeta 4: adeudo fiscal, pago inicial y resto
+const initShare = ag.initial_payment_mdp / ag.total_mdp;
 const sources = [
   { title: latest.source_name, url: latest.source_url, read: latest.read_date },
   { title: g.source_name, url: g.source_url, read: g.read_date },
@@ -30,11 +40,54 @@ const sources = [
   <TranspNote />
 
   <h2>Lo esencial</h2>
-  <ul class="facts">
-    <Cifra big={n(latest.net_ytd)} what="millones de pesos de utilidad neta del banco, de enero a septiembre de 2026" period={`En enero a septiembre de 2025 fueron ${n(latest.net_ytd_prev)} millones.`} voice={latest.voice} status={latest.status} url={latest.source_url} />
-    <Cifra big={n(a25.employees_direct)} what="personas contratadas directamente por el banco, al cierre de 2025" period="Eran 16,036 al cierre de 2022." voice={a25.voice} status={a25.status} url={a25.notes_url} />
-    <Cifra big={`${n(g.amount_mdp, 1)}`} what="millones de pesos: total de pagos a consejeros, directivos relevantes y personas relacionadas de Grupo Elektra en 2025" period="Es un total de varias personas, no un sueldo." voice={g.voice} status={g.status} url={g.source_url} />
-    <Cifra big={n(ag.total_mdp)} what="millones de pesos que Grupo Elektra dice deber pagar en parcialidades al SAT por sus juicios de ISR resueltos" period="Pago inicial de 6,475 millones el 29 de enero de 2026." voice={ag.voice} status={ag.status} url={ag.source_url} />
+  <p class="ess-intro">Cuatro cifras para empezar. Toca una tarjeta para ver el detalle.</p>
+  <ul class="ess">
+    <StatCard kicker="Utilidad del banco" big={n(uNow)} unit="millones de pesos, de enero a septiembre de 2026" voice={latest.voice} status={latest.status} source={latest.source_url} href="/transparencia/mapa/#b-1" go="Ver por qué cambió">
+      <svg class="chart sm" viewBox="0 0 300 46" role="img" aria-label={`Utilidad de enero a septiembre, en millones de pesos: 2025, ${n(uPrev)}; 2026, ${n(uNow)}.`}>
+        <text x="0" y="15" class="mu">Ene–sep 2025</text>
+        <rect x="92" y="3" width={((uPrev / uMax) * 150).toFixed(1)} height="16" class="q-admin" />
+        <text x={(92 + (uPrev / uMax) * 150 + 6).toFixed(1)} y="15" class="vl">{n(uPrev)}</text>
+        <text x="0" y="39" class="mu">Ene–sep 2026</text>
+        <rect x="92" y="27" width={((uNow / uMax) * 150).toFixed(1)} height="16" class="q-people" />
+        <text x={(92 + (uNow / uMax) * 150 + 6).toFixed(1)} y="39" class="vl">{n(uNow)}</text>
+      </svg>
+      <Fragment slot="note">{`${uChange < 0 ? 'Bajó' : 'Subió'} `}<strong>{n(Math.abs(uChange))}%</strong>{' frente al mismo periodo de 2025.'}</Fragment>
+    </StatCard>
+
+    <StatCard kicker="Personal del banco" big={n(a25.employees_direct)} unit="personas contratadas directamente, al cierre de 2025" voice={a25.voice} status={a25.status} source={a25.notes_url} href="/transparencia/mapa/#d-1" go="Ver cómo cambió">
+      <svg class="chart sm" viewBox="0 0 300 78" role="img" aria-label={`Personas que contrata el banco, al cierre de cada año: ${emp.map((a: any) => `${a.year}, ${n(a.employees_direct)}`).join('; ')}.`}>
+        <line x1="4" x2="296" y1="58" y2="58" class="axis" />
+        {eBars.map((b) => (
+          <g>
+            <rect x={b.x} y={b.y.toFixed(1)} width="42" height={b.h.toFixed(1)} class={b.last ? 'q-people' : 'q-admin'} />
+            <text x={b.x + 21} y={(b.y - 4).toFixed(1)} text-anchor="middle" class="vl">{b.v}</text>
+            <text x={b.x + 21} y="73" text-anchor="middle" class="mu">{b.year}</text>
+          </g>
+        ))}
+      </svg>
+      <Fragment slot="note">No es el número de cajeros: no hay un número auditado de cajeros.</Fragment>
+    </StatCard>
+
+    <StatCard kicker="Pagos a directivos" big={n(g.amount_mdp, 1)} unit="millones de pesos en 2025, de Grupo Elektra y sus subsidiarias" voice={g.voice} status={g.status} source={g.source_url} href="/transparencia/directivos/" go="Ver el detalle">
+      <ul class="ess-chips">
+        <li>Es un total de varias personas</li>
+        <li>No es un sueldo</li>
+        <li>No dice cuántas personas son</li>
+      </ul>
+      <Fragment slot="note">Incluye a consejeros, directivos relevantes y personas relacionadas.</Fragment>
+    </StatCard>
+
+    <StatCard kicker="Adeudo fiscal del grupo" big={n(ag.total_mdp)} unit="millones de pesos en parcialidades, según Grupo Elektra" voice={ag.voice} status={ag.status} source={ag.source_url} href="/transparencia/impuestos/" go="Ver el detalle">
+      <svg class="chart sm" viewBox="0 0 300 24" role="img" aria-label={`Del total, ${n(ag.initial_payment_mdp)} millones fueron el pago inicial y ${n(ag.remaining_mdp)} millones quedan en ${ag.installments} parcialidades.`}>
+        <rect x="0" y="3" width={(initShare * 300).toFixed(1)} height="18" class="q-people" />
+        <rect x={(initShare * 300).toFixed(1)} y="3" width={((1 - initShare) * 300).toFixed(1)} height="18" class="q-wage" />
+      </svg>
+      <ul class="legend-inline">
+        <li><i class="sw q-people"></i>Pago inicial: {n(ag.initial_payment_mdp)}</li>
+        <li><i class="sw q-wage"></i>Resto, en {ag.installments} pagos: {n(ag.remaining_mdp)}</li>
+      </ul>
+      <Fragment slot="note">Por juicios de ISR ya resueltos. El pago inicial fue el 29 de enero de 2026.</Fragment>
+    </StatCard>
   </ul>
 
   <h2>¿Qué quieres saber?</h2>
