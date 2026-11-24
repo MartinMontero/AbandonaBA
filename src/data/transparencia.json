@@ -315,6 +315,30 @@
         "other_delta": 3240,
         "trading_delta": 669,
         "trading_delta_pct": 50.8
+      },
+      "ytd_prev": {
+        "interest_income": 81298,
+        "interest_expense": 9165,
+        "provisions": 16524,
+        "admin_expenses": 54181,
+        "operating_result": 5975,
+        "income_tax": 1719,
+        "net_income": 4259,
+        "label": "Enero a septiembre de 2025",
+        "statement_url": "https://www.grupoelektra.com.mx/api/pdfEkt/4123",
+        "other_items": {
+          "commissions_received": 4378,
+          "commissions_paid": -3107,
+          "trading": 1317,
+          "other": 1959
+        },
+        "capital_contributions": []
+      },
+      "report_says_2t": {
+        "other_delta_q": 2750,
+        "other_delta_ytd": 2978,
+        "label": "Reporte al 30 de junio de 2026",
+        "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4259"
       }
     }
   },

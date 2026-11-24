@@ -1,34 +1,132 @@
 ---
 import Base from '../../layouts/Base.astro';
 import TranspNote from '../../components/TranspNote.astro';
-import { n, annual } from '../../lib/transparencia';
+import Waffle from '../../components/Waffle.astro';
+import JourneyStep from '../../components/JourneyStep.astro';
+import { n, pesos } from '../../lib/transparencia';
 import {
-  periods, defaultPeriod, flow, flowRows, per100, f1, changes, maxPartPer100,
-  groups, kinds, sources, nodes, shown, factsOf, relationsOf, edgeSource, edgeText, calcText, calcByPeriod, looked, inputs, periodRow,
+  periods, defaultPeriod, periodRow, f1, splitOf, splitPrev, segMeta, bridge, ownersRows, ownersTotals, peopleRows, peopleChange,
+  wageBars, timesMin, quarterly, huecos, kinds, sources, edges, nodeById, edgeText, edgeSource, looked, inputs, factsOf, calcText, calcByPeriod,
 } from '../../lib/mapa';
 
-const flows = periods.map((p) => ({ p, f: flow(p.key), ch: changes(p.key) }));
-const prevLabel = (k: string) => periods[periods.findIndex((x) => x.key === k) - 1]?.label;
-const sg = (key: string, v: number) => (key === 'ii' ? '' : key === 'op' || key === 'net' ? '=' : key === 'other' ? (v >= 0 ? '+' : '−') : '−');
-const groupName = (id: string) => groups.find((g) => g.id === id)!.name;
-const stmtLinks = periods.map((p) => ({ label: p.label, url: p.key === '2026' ? sources.e3t26.url : (periodRow(p.key) as any).statement_url }));
-const pageSources = [
-  ...Object.values(sources).map((s) => ({ title: s.name, url: s.url, read: s.read })),
-  ...annual.filter((a: any) => a.year >= 2022 && a.year <= 2024).map((a: any) => ({ title: `Banco Azteca: estados financieros ${a.year}`, url: a.statement_url, read: a.read_date })),
+const signed = (x: number) => `${x < 0 ? '−' : '+'}${n(Math.abs(x))}`;
+const pl = (k: number, one: string, many: string) => (k === 1 ? one : many);
+const sgn = (x: number) => `${x < 0 ? '−' : ''}${n(Math.abs(x))}`;
+
+const splits = periods.map((p) => ({ p, s: splitOf(p.key), r: periodRow(p.key) as any }));
+const sNow = splitOf('2026');
+const sPrev = splitPrev();
+const br = bridge();
+const ow = ownersRows();
+const owT = ownersTotals();
+const pr = peopleRows();
+const pc = peopleChange();
+const wb = wageBars();
+const gaps = huecos();
+const stmtUrl = (k: string) => (k === '2026' ? sources.e3t26.url : (periodRow(k as any) as any).statement_url);
+const segLegend = sNow.segs.filter((g) => g.key !== 'ocost');
+
+// ----- Recorridos (tarjetas del inicio y sugerencias al final) -----
+const J = [
+  { id: 'a', first: 'a-1', title: '¿A dónde va el dinero que cobra el banco?', big: '100 pesos', sub: `se reparten en ${sNow.segs.length} partes` },
+  { id: 'b', first: 'b-1', title: '¿Por qué bajó la utilidad en 2026?', big: `${n(br.start)} → ${n(br.end)}`, sub: 'millones de pesos de utilidad, de enero a septiembre' },
+  { id: 'c', first: 'c-1', title: '¿Qué sale a los dueños y qué entra?', big: `${n(owT.div)} y ${n(owT.contrib)}`, sub: 'millones: dividendos que salen y aportaciones que entran, 2022 a 2026' },
+  { id: 'd', first: 'd-1', title: '¿Y las personas que trabajan ahí?', big: `${n(pc.from.employees)} → ${n(pc.to.employees)}`, sub: 'personas que el banco contrata directamente, 2022 a 2025' },
 ];
-const kindTag = (k: string) => kinds[k].label;
-const partCap = Math.max(0.01, Math.ceil(maxPartPer100 * 100) / 100);
+const others = (id: string) => J.filter((j) => j.id !== id);
+
+// ----- Paso A2: barras apiladas, una por periodo -----
+const SL = 98, SB = 190, RH = 38, ST = 22;
+const stack = splits.map((x, i) => {
+  let acc = 0;
+  return {
+    label: x.p.label, y: ST + i * RH, net: f1(x.s.netShare),
+    segs: x.s.segs.map((g) => { const w = (g.pct / 100) * SB; const o = { key: g.key, x: SL + acc, w }; acc += w; return o; }),
+  };
+});
+const stackH = ST + splits.length * RH + 4;
+const adminMin = Math.round(Math.min(...splits.map((x) => x.s.adminShare)));
+const adminMax = Math.round(Math.max(...splits.map((x) => x.s.adminShare)));
+const netMin = Math.min(...splits.map((x) => x.s.netShare));
+const netMax = Math.max(...splits.map((x) => x.s.netShare));
+
+// ----- Paso B2: cuánto empujó cada renglón la utilidad -----
+const top = br.items[0];
+
+// ----- Paso B3: utilidad por trimestre -----
+const qBase = 104, qScale = 70 / Math.max(...quarterly.map((q) => Math.abs(q.value)));
+const qBars = quarterly.map((q, i) => {
+  const h = Math.abs(q.value) * qScale;
+  return { period: q.period, value: q.value, x: 14 + i * 68, y: q.value >= 0 ? qBase - h : qBase, h, ty: q.value >= 0 ? qBase - h - 5 : qBase + h + 14 };
+});
+const qLoss = quarterly.find((q) => q.value < 0);
+
+// ----- Paso C1 y C2: dividendos y aportaciones -----
+const OL = 88, OM = 206;
+const maxO = Math.max(...ow.map((r) => Math.max(r.div, r.contrib)));
+const ownG = ow.map((r, i) => ({ label: r.p.label, y: 4 + i * 46, dw: (r.div / maxO) * OM, cw: (r.contrib / maxO) * OM, div: n(r.div), contrib: r.contrib > 0 ? n(r.contrib) : 'ninguna' }));
+const ownH = 4 + ow.length * 46;
+const ratioG = ow.map((r, i) => ({ label: r.p.label, y: 24 + i * 34, w: Math.min(r.ratio ?? 0, 200), v: r.ratio === null ? '—' : `${n(r.ratio)}%` }));
+const ratioH = 24 + ow.length * 34;
+const over100 = ow.filter((r) => r.ratio !== null && r.ratio > 100).length;
+
+// ----- Paso D1 y D2: personal y gastos de administración -----
+const maxE = Math.max(...pr.map((r) => r.employees));
+const peopleG = pr.map((r, i) => ({ label: String(r.year), y: 4 + i * 34, w: (r.employees / maxE) * 214, v: n(r.employees) }));
+const peopleH = 4 + pr.length * 34;
+const IX0 = 40, IX1 = 236, IY0 = 14, IY1 = 150;
+const allIdx = pr.flatMap((r) => [r.empIdx, r.admIdx]);
+const lo = Math.floor(Math.min(...allIdx) / 10) * 10, hi = Math.ceil(Math.max(...allIdx) / 10) * 10;
+const xAt = (i: number) => IX0 + (i * (IX1 - IX0)) / (pr.length - 1);
+const yAt = (v: number) => IY1 - ((v - lo) / (hi - lo)) * (IY1 - IY0);
+const lineEmp = pr.map((r, i) => `${xAt(i).toFixed(1)},${yAt(r.empIdx).toFixed(1)}`).join(' ');
+const lineAdm = pr.map((r, i) => `${xAt(i).toFixed(1)},${yAt(r.admIdx).toFixed(1)}`).join(' ');
+const lastR = pr[pr.length - 1];
+
+// ----- Paso D3: sueldos -----
+const maxW = Math.max(...wb.map((x) => x.value));
+const wageG = wb.map((x, i) => ({ label: x.label, y: 4 + i * 52, w: (x.value / maxW) * 236, v: pesos(x.value) }));
+const medOffer = wb.find((x) => x.id === 'med')!.value;
+const minMonthly = wb.find((x) => x.id === 'min')!.value;
+const gap = (id: string) => edges.find((e) => e.id === id)!;
+
+// ----- Referencia -----
+const identity = edges.filter((e) => e.kind === 'identidad');
+const dice = edges.filter((e) => e.kind === 'dice');
+const calc = edges.filter((e) => e.kind === 'calculo');
+const pair = (e: any) => `${nodeById(e.from).short} y ${nodeById(e.to).short}`;
+const pageSources = Object.values(sources).map((s) => ({ title: s.name, url: s.url, read: s.read }));
 ---
-<Base art="spark" eyebrow="Transparencia" title="Mapa de conexiones" description="Cómo se conectan el dinero, el riesgo, las personas y los dueños de Banco Azteca según sus propios reportes: qué dice la empresa, qué calculamos y qué no encontramos." path="/transparencia/mapa/" legal transp claims={['T01','T02','T10','T11','T12','T15','T19']} sources={pageSources} lead>
+<Base art="spark" eyebrow="Transparencia" title="Mapa de conexiones" description="Entiende cómo se conectan el dinero, el riesgo, las personas y los dueños de Banco Azteca, con cuatro preguntas, tres pasos cada una y la fuente de cada dato." path="/transparencia/mapa/" legal transp claims={['T01','T02','T10','T11','T12','T15','T19']} sources={pageSources} lead>
   <TranspNote />
-  <p class="lede">Las cifras de esta sección dependen unas de otras. Aquí ves cómo, en dos pasos. De cada conexión ves quién la dice.</p>
 
   <div class="mapa">
-    <!-- Paso 1 -->
-    <section id="flujo" aria-labelledby="h-flujo">
-      <p class="step">Paso 1 de 2</p>
-      <h2 id="h-flujo">Sigue el dinero</h2>
-      <p>Por cada 100 pesos de intereses que cobra el banco, ¿cuánto se va en cada cosa? Elige un periodo.</p>
+    <!-- ============ INICIO ============ -->
+    <section id="preguntas" class="hub-only" aria-labelledby="h-preguntas">
+      <h2 id="h-preguntas" class="hub-title">¿Qué quieres entender?</h2>
+      <p>Elige una pregunta. La contestamos en tres pasos cortos, con una imagen y la fuente de cada dato.</p>
+      <ul class="cards">
+        {J.map((j) => (
+          <li>
+            <a class="qcard" href={`#${j.first}`}>
+              <span class="q-n">3 pasos · 1 minuto</span>
+              <h3>{j.title}</h3>
+              <span class="q-big">{j.big}</span>
+              <span class="q-sub">{j.sub}</span>
+              <span class="q-go">Empezar →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="tagrow">En cada dato verás quién lo dice: <span class="tag t-voz">Lo dice la empresa</span> viene de sus reportes. <span class="tag t-voz">Cálculo propio</span> lo calculamos nosotros. <span class="tag k-hueco">Sin documento</span> no lo encontramos.</p>
+    </section>
+
+    <!-- ============ A: ¿A DÓNDE VA EL DINERO? ============ -->
+    <JourneyStep id="a-1" title="¿A dónde va el dinero que cobra el banco?" step={1} total={3} next="a-2">
+      {splits.map(({ p, s }) => (
+        <h2 class="st-h" data-p={p.key}>De cada 100 pesos que entran al banco, <mark class="net">{s.netSq}</mark> {pl(s.netSq, 'se queda', 'se quedan')} como utilidad {p.key === '2026' ? 'de enero a septiembre de 2026' : `en ${p.key}`}.</h2>
+      ))}
+      <p class="st-p">«Entra» lo que cobra de intereses y otras ganancias. Cada cuadro es 1 peso de cada 100. Elige un periodo:</p>
       <fieldset class="per">
         <legend class="sr-only">Periodo</legend>
         <div class="per-opts">
@@ -38,171 +136,273 @@ const partCap = Math.max(0.01, Math.ceil(maxPartPer100 * 100) / 100);
           </>))}
         </div>
       </fieldset>
-
-      {flows.map(({ p, f, ch }) => (
-        <div class="flow-box" data-p={p.key}>
-          <p class="flow-sum">De cada 100 pesos que cobró en intereses, el banco terminó con <strong>{f1(f.per.net)}</strong> de utilidad neta en {p.long}.</p>
-          <ol class="flow" aria-label={`Reparto de cada 100 pesos de intereses cobrados en ${p.long}`}>
-            {flowRows.map((r) => {
-              const v = per100(f, r.key);
-              const s = sg(r.key, v);
-              return (
-                <li class={`fl${r.sign === '=' ? ' tot' : ''}`}>
-                  <span class="fl-l">{r.node ? <a class="goto" href={`#n-${r.node}`}>{r.label}</a> : r.label}</span>
-                  <span class="fl-v">{s && <span class="sg" aria-hidden="true">{s}</span>}{f1(Math.abs(v))}</span>
-                  <meter min="0" max="100" value={Math.abs(v)} aria-label={`${r.label}: ${f1(Math.abs(v))} de cada 100 pesos`}></meter>
-                </li>
-              );
-            })}
-          </ol>
-          {ch ? (
-            <p class="flow-ch"><span class="tag t-voz">Cálculo propio</span> Frente a {prevLabel(p.key)}, lo que más cambió por cada 100 pesos: {ch.top.map((t, i) => <>{i > 0 ? ' y ' : ''}<strong>{t.label.toLowerCase()}</strong> (de {f1(t.from)} a {f1(t.to)})</>)}. La utilidad neta pasó de {f1(ch.net.from)} a {f1(ch.net.to)}.</p>
-          ) : (
-            <p class="flow-ch"><span class="tag t-voz">Cálculo propio</span> Es el primer periodo del mapa. El estado de resultados de 2021 no trae el resultado de la operación que usamos.</p>
-          )}
+      {splits.map(({ p, s, r }) => (
+        <div data-p={p.key}>
+          <Waffle split={s} label={`Cien pesos que entran, ${p.long}`} />
+          <ul class="lg">
+            {s.segs.map((g) => <li><i class={`sw q-${g.key}`}></i><span>{g.label}</span><strong>{f1(g.pct)}</strong></li>)}
+          </ul>
           {p.key === '2026' && <p class="ref-line">Enero a septiembre son nueve meses. Las proporciones se pueden comparar con años completos; los montos, no.</p>}
+          <details class="mini"><summary>Cómo lo calculamos</summary>
+            <p>Entra = intereses cobrados ({n(r.interest_income)}) + comisiones, intermediación y otros, neto ({n(s.entra - r.interest_income)}) = {n(s.entra)} millones de pesos. Cada parte se divide entre esa cifra. Lo que se queda es la utilidad, más o menos una participación mínima en otras entidades.</p>
+          </details>
+          <p class="srcline"><span class="tag t-voz">Lo dice la empresa</span><span class="tag t-verificado-primaria">verificado-primaria</span> las cifras. <span class="tag t-voz">Cálculo propio</span> el reparto. <a href={stmtUrl(p.key)} rel="noopener noreferrer">Estado de resultados</a></p>
         </div>
       ))}
+    </JourneyStep>
 
-      <p class="ref-line"><span class="tag t-voz">Lo dice la empresa</span> <span class="tag t-verificado-primaria">verificado-primaria</span> Cada renglón sale del estado de resultados del banco. «Comisiones, intermediación y otros» lo sacamos por resta y lo comprobamos con los cuatro renglones del estado. Más una participación en otras entidades de menos de {n(partCap, 2)} por cada 100 pesos. Toca un renglón para ver con qué se conecta.</p>
-
-      <details class="acc" id="cifras"><summary>Ver las cifras en millones de pesos</summary><div class="acc-b">
-        <div class="tbl-wrap">
-          <table class="rt">
-            <thead><tr><th scope="col">Renglón</th>{periods.map((p) => <th scope="col">{p.label}</th>)}</tr></thead>
-            <tbody>
-              {[['ii', 'Intereses cobrados'], ['ie', 'Intereses pagados'], ['prov', 'Apartado por riesgo de crédito'], ['admin', 'Gastos de administración y promoción'], ['other', 'Comisiones, intermediación y otros (neto)'], ['op', 'Resultado de la operación'], ['tax', 'Impuestos a la utilidad'], ['part', 'Participación en otras entidades'], ['net', 'Utilidad neta']].map(([key, label]) => (
-                <tr><th scope="row">{label}</th>{flows.map(({ f }) => <td>{n((f as any)[key])}</td>)}</tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p class="ref-line">Millones de pesos de cada periodo, sin ajustar por inflación. Estados de resultados: {stmtLinks.map((l, i) => <>{i > 0 ? ' · ' : ''}<a href={l.url} rel="noopener noreferrer">{l.label}</a></>)}.</p>
-      </div></details>
-    </section>
-
-    <!-- Paso 2 -->
-    <section id="elegir" aria-labelledby="h-elegir">
-      <p class="step">Paso 2 de 2</p>
-      <h2 id="h-elegir">Explora las conexiones</h2>
-      <p>Elige una pieza. Verás de qué depende, qué dice la empresa y qué no encontramos. Sigue los enlaces de una pieza a otra.</p>
-      <ul class="legend">
-        {Object.entries(kinds).map(([k, v]) => <li><span class={`tag k-${k}`}>{v.label}</span> <span>{v.help}</span></li>)}
+    <JourneyStep id="a-2" title="¿A dónde va el dinero que cobra el banco?" step={2} total={3} prev="a-1" next="a-3">
+      <h2 class="st-h">Los gastos de administración y promoción son lo más grande, en todos los periodos.</h2>
+      <p class="st-p">Se llevan entre <strong>{adminMin}</strong> y <strong>{adminMax}</strong> de cada 100 pesos que entran. Lo que se queda como utilidad va de <strong>{f1(netMin)}</strong> a <strong>{f1(netMax)}</strong>.</p>
+      <ul class="legend-inline" aria-label="Qué significa cada color">
+        {segLegend.map((g) => <li><i class={`sw q-${g.key}`}></i>{segMeta[g.key].short}</li>)}
       </ul>
-      <nav aria-label="Piezas del mapa" class="chips">
-        {groups.map((g) => (
-          <div class="chipset">
-            <h3>{g.name}</h3>
-            <ul>{nodes.filter((x) => x.group === g.id).map((x) => <li><a class="chip" href={`#n-${x.id}`}>{x.short}</a></li>)}</ul>
-          </div>
+      <svg class="chart" viewBox={`0 0 360 ${stackH}`} role="img" aria-label={`Cómo se reparten 100 pesos en cada periodo. Utilidad: ${splits.map((x) => `${x.p.label} ${f1(x.s.netShare)}`).join(', ')}.`}>
+        <text x="294" y="12" class="mu">Utilidad</text>
+        {stack.map((r) => (
+          <g>
+            <text x="0" y={r.y + 21} class="lb">{r.label}</text>
+            {r.segs.map((g) => <rect x={g.x.toFixed(1)} y={r.y + 5} width={Math.max(g.w, 0.5).toFixed(1)} height="22" class={`q-${g.key}`} />)}
+            <text x="294" y={r.y + 21} class="vl">{r.net}</text>
+          </g>
         ))}
-      </nav>
+      </svg>
+      <p class="srcline"><span class="tag t-voz">Cálculo propio</span> con cifras de los estados de resultados del banco. Cada fila suma 100.</p>
+    </JourneyStep>
 
-      <div class="pbar" aria-hidden="true">
-        <span>Cifras de:</span>
-        {periods.map((p) => <label for={`p${p.key}`} class="pchip">{p.label}</label>)}
+    <JourneyStep id="a-3" title="¿A dónde va el dinero que cobra el banco?" step={3} total={3} prev="a-2">
+      <h2 class="st-h">Lo que dice el propio banco de cada parte</h2>
+      <ul class="say">
+        <li><h3>Lo que cobra</h3><p>{edgeText(gap('d_consumo'))}</p><p class="srcline"><span class="tag t-verificado-primaria">verificado-primaria</span><a href={edgeSource(gap('d_consumo')).url} rel="noopener noreferrer">{edgeSource(gap('d_consumo')).name}</a></p></li>
+        <li><h3>Lo que paga</h3><p>{edgeText(gap('d_captacion'))}</p><p class="srcline"><span class="tag t-verificado-primaria">verificado-primaria</span><a href={edgeSource(gap('d_captacion')).url} rel="noopener noreferrer">{edgeSource(gap('d_captacion')).name}</a></p></li>
+        <li><h3>Lo que aparta por riesgo</h3><p>{edgeText(gap('d_moroso'))}</p><p class="srcline"><span class="tag t-verificado-primaria">verificado-primaria</span><a href={edgeSource(gap('d_moroso')).url} rel="noopener noreferrer">{edgeSource(gap('d_moroso')).name}</a></p></li>
+        <li><h3>Lo que gasta en administración</h3>{factsOf('admin').map((f) => <p>{f.text} <a href={f.src.url} rel="noopener noreferrer">Fuente</a></p>)}<p class="srcline"><span class="tag t-verificado-primaria">verificado-primaria</span></p></li>
+      </ul>
+      <p class="ref-line"><span class="tag k-hueco">Sin documento</span> No encontramos cuánto del gasto de administración es de personal. <a href="#d-2">Mira qué pasó con el personal</a>.</p>
+      <div slot="end" class="next-q">
+        <h3>Sigue con otra pregunta</h3>
+        <ul class="cards">{others('a').slice(0, 2).map((j) => <li><a class="qcard" href={`#${j.first}`}><h3>{j.title}</h3><span class="q-go">Empezar →</span></a></li>)}</ul>
       </div>
+    </JourneyStep>
 
-      <div class="panels">
-        {nodes.map((x) => {
-          const rel = relationsOf(x.id);
-          const facts = factsOf(x.id);
-          const fixed = x.unit === 'fijo';
+    <!-- ============ B: ¿POR QUÉ BAJÓ LA UTILIDAD? ============ -->
+    <JourneyStep id="b-1" title="¿Por qué bajó la utilidad en 2026?" step={1} total={3} next="b-2">
+      <h2 class="st-h">De enero a septiembre, la utilidad bajó de {n(br.start)} a {n(br.end)} millones: <mark>{n(Math.abs(br.pctChange))}% menos</mark>.</h2>
+      <p class="st-p">Mismo periodo, dos años. De cada 100 pesos que entraron, se quedaron <strong>{sPrev.netSq}</strong> y ahora <strong>{sNow.netSq}</strong>.</p>
+      <div class="duo">
+        <figure><Waffle split={sPrev} label="Cien pesos que entraron de enero a septiembre de 2025" /><figcaption>Ene–sep 2025</figcaption></figure>
+        <figure><Waffle split={sNow} label="Cien pesos que entraron de enero a septiembre de 2026" /><figcaption>Ene–sep 2026</figcaption></figure>
+      </div>
+      <table class="lg2">
+        <thead><tr><th scope="col">De cada 100 pesos…</th><th scope="col">2025</th><th scope="col">2026</th></tr></thead>
+        <tbody>
+          {sNow.segs.filter((g) => g.key !== 'ocost').map((g) => <tr><th scope="row"><i class={`sw q-${g.key}`}></i> {segMeta[g.key].short}</th><td>{f1(sPrev.segs.find((x) => x.key === g.key)!.pct)}</td><td>{f1(g.pct)}</td></tr>)}
+        </tbody>
+      </table>
+      <p class="srcline"><span class="tag t-voz">Lo dice la empresa</span><span class="tag t-verificado-primaria">verificado-primaria</span> las cifras: <a href={sources.e3t25.url} rel="noopener noreferrer">estado de enero a septiembre de 2025</a> y <a href={sources.e3t26.url} rel="noopener noreferrer">de 2026</a>. <span class="tag t-voz">Cálculo propio</span> el reparto.</p>
+    </JourneyStep>
+
+    <JourneyStep id="b-2" title="¿Por qué bajó la utilidad en 2026?" step={2} total={3} prev="b-1" next="b-3">
+      <h2 class="st-h">Lo que más movió la utilidad: {top.label.toLowerCase()}, <mark>{signed(top.effect)} millones</mark>.</h2>
+      <p class="st-p">Cada barra muestra cuánto empujó la utilidad hacia arriba (▲) o hacia abajo (▼) frente a enero a septiembre de 2025, en millones de pesos.</p>
+      <ul class="brs">
+        {br.items.map((it) => {
+          const w = (Math.abs(it.effect) / br.maxAbs) * 150;
           return (
-            <article class={`np${x.id === 'utilidad' ? ' def' : ''}`} id={`n-${x.id}`} tabindex="-1" aria-labelledby={`t-${x.id}`}>
-              <header>
-                <p class="np-g">{groupName(x.group)}</p>
-                <h3 id={`t-${x.id}`}>{x.name}</h3>
-                <p class="np-what">{x.what}</p>
-              </header>
-
-              {fixed ? (() => { const s = shown(x.id, defaultPeriod); return <div class="np-val"><span class="big">{s.big}</span><span>{s.label}</span>{s.note && <span class="more">{s.note}</span>}</div>; })() : periods.map((p) => {
-                const s = shown(x.id, p.key);
-                return <div class="np-val" data-p={p.key}><span class="big">{s.big}</span>{s.label && <span>{s.label}</span>}{s.note && <span class="more">{s.note}</span>}</div>;
-              })}
-
-              {facts.length > 0 && (
-                <section class="rel">
-                  <h4>Lo que dice el reporte</h4>
-                  <ul>{facts.map((f) => <li>{f.text} <a href={f.src.url} rel="noopener noreferrer">Fuente</a></li>)}</ul>
-                </section>
-              )}
-
-              {rel.identidad.length > 0 && (
-                <section class="rel">
-                  <h4><span class="tag k-identidad">{kindTag('identidad')}</span> {rel.identidad.some((r) => r.incoming) ? 'Así se calcula' : 'Entra en el cálculo de'}</h4>
-                  <ul class="eq">
-                    {rel.identidad.map((r) => <li><span class="sg" aria-hidden="true">{r.e.sign}</span> <a class="goto" href={`#n-${r.partner.id}`}>{r.partner.name}</a><span class="sr-only"> ({r.e.sign === '+' ? 'suma' : r.e.sign === '−' ? 'resta' : 'suma o resta'})</span></li>)}
-                  </ul>
-                  <p class="src"><span class="tag t-verificado-primaria">verificado-primaria</span> <a href={edgeSource(rel.identidad[0].e).url} rel="noopener noreferrer">Estado de resultados del banco</a>. El orden es el mismo en cada año.</p>
-                </section>
-              )}
-
-              {rel.dice.length > 0 && (
-                <section class="rel">
-                  <h4><span class="tag k-dice">{kindTag('dice')}</span> Lo que dicen los reportes</h4>
-                  <ul>
-                    {rel.dice.map((r) => (
-                      <li>
-                        <a class="goto" href={`#n-${r.partner.id}`}>{r.partner.name}</a>
-                        <p>{edgeText(r.e)}</p>
-                        <p class="src"><span class="tag t-verificado-primaria">verificado-primaria</span> <a href={edgeSource(r.e).url} rel="noopener noreferrer">{edgeSource(r.e).name}</a></p>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-
-              {rel.calculo.length > 0 && (
-                <section class="rel">
-                  <h4><span class="tag k-calculo">{kindTag('calculo')}</span> Lo que calculamos</h4>
-                  <ul>
-                    {rel.calculo.map((r) => (
-                      <li>
-                        <a class="goto" href={`#n-${r.partner.id}`}>{r.partner.name}</a>
-                        {calcByPeriod(r.e)
-                          ? periods.map((p) => <p data-p={p.key}>{calcText(r.e, p.key)}</p>)
-                          : <p>{calcText(r.e)}</p>}
-                        {r.e.calc.type === 'ratio' && <p class="src">Un dividendo puede salir de utilidades de años anteriores. El cálculo no dice de cuáles salió.</p>}
-                        <details class="mini"><summary>Datos usados</summary><ul>{inputs(r.e).map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.name}</a></li>)}</ul></details>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-
-              {rel.hueco.length > 0 && (
-                <section class="rel">
-                  <h4><span class="tag k-hueco">{kindTag('hueco')}</span> Lo que no encontramos</h4>
-                  <ul>
-                    {rel.hueco.map((r) => (
-                      <li>
-                        <a class="goto" href={`#n-${r.partner.id}`}>{r.partner.name}</a>
-                        <p>{edgeText(r.e)}</p>
-                        <details class="mini"><summary>Qué revisamos</summary><ul>{looked(r.e).map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.name}</a></li>)}</ul></details>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-
-              <p class="np-nav"><a href="#elegir">↑ Elegir otra pieza</a> <a href="#flujo">↑ Sigue el dinero</a> <a href={x.more}>Ver el detalle</a></p>
-            </article>
+            <li>
+              <div class="br-h"><span>{it.label}</span><span class="br-v">{it.effect < 0 ? '▼' : '▲'} {signed(it.effect)}</span></div>
+              <svg class="br-svg" viewBox="0 0 320 14" aria-hidden="true" focusable="false">
+                <line x1="160" x2="160" y1="0" y2="14" class="axis" />
+                <rect x={(it.effect < 0 ? 160 - w : 160).toFixed(1)} y="2" width={Math.max(w, 1).toFixed(1)} height="10" class={it.effect < 0 ? 'q-down' : 'q-up'} />
+              </svg>
+              <p class="br-w">{it.what}</p>
+            </li>
           );
         })}
+      </ul>
+      <p class="st-p"><strong>Suma de todo: {signed(br.change)} millones</strong>, que es {n(br.end)} menos {n(br.start)}.</p>
+      <div class="say-one">
+        <p>{factsOf('otros')[0].text}</p>
+        <p class="srcline"><span class="tag t-verificado-primaria">verificado-primaria</span><a href={factsOf('otros')[0].src.url} rel="noopener noreferrer">{factsOf('otros')[0].src.name}</a></p>
       </div>
+      <p class="srcline"><span class="tag t-voz">Cálculo propio</span> resta de los dos estados de resultados; cada cambio coincide con la variación que dice el reporte. Lo que dice el banco de las demás partes está en <a href="#a-3">Lo que dice el propio banco</a>.</p>
+    </JourneyStep>
+
+    <JourneyStep id="b-3" title="¿Por qué bajó la utilidad en 2026?" step={3} total={3} prev="b-2">
+      <h2 class="st-h">Un trimestre tuvo pérdida, y no sabemos si se repite.</h2>
+      <p class="st-p">{qLoss ? `En el segundo trimestre de 2026 el banco tuvo una pérdida de ${n(Math.abs(qLoss.value))} millones. ` : ''}Utilidad de cada trimestre, en millones de pesos:</p>
+      <svg class="chart" viewBox="0 0 360 184" role="img" aria-label={`Utilidad por trimestre: ${quarterly.map((q) => `${q.period} ${sgn(q.value)}`).join(', ')}.`}>
+        <line x1="6" x2="354" y1={qBase} y2={qBase} class="axis" />
+        {qBars.map((b) => (
+          <g>
+            <rect x={b.x} y={b.y.toFixed(1)} width="48" height={Math.max(b.h, 1).toFixed(1)} class={b.value < 0 ? 'q-down' : 'q-up'} />
+            <text x={b.x + 24} y={b.ty.toFixed(1)} text-anchor="middle" class="vl">{sgn(b.value)}</text>
+            <text x={b.x + 24} y="178" text-anchor="middle" class="mu">{b.period}</text>
+          </g>
+        ))}
+      </svg>
+      <p class="st-p">El renglón que más pesó, «otros ingresos (egresos)», es el del paso anterior. Esto dice el banco de él:</p>
+      <ul class="say">
+        {factsOf('otros').slice(1, 3).map((f) => <li><p>{f.text}</p><p class="srcline"><span class="tag t-verificado-primaria">verificado-primaria</span><a href={f.src.url} rel="noopener noreferrer">{f.src.name}</a></p></li>)}
+      </ul>
+      <p class="ref-line"><span class="tag k-hueco">Sin documento</span> No encontramos cuánto de ese renglón es valuación del oro ni si volverá a pasar. Los reportes dicen «principalmente», sin cifra.</p>
+      <p class="srcline"><span class="tag t-voz">Lo dice la empresa</span> la utilidad de cada trimestre: <a href={sources.r3t26.url} rel="noopener noreferrer">reporte del 3T 2026</a>. Más trimestres en <a href="/transparencia/utilidades/">¿Cuánto gana el banco?</a></p>
+      <div slot="end" class="next-q">
+        <h3>Sigue con otra pregunta</h3>
+        <ul class="cards">{others('b').slice(1, 3).map((j) => <li><a class="qcard" href={`#${j.first}`}><h3>{j.title}</h3><span class="q-go">Empezar →</span></a></li>)}</ul>
+      </div>
+    </JourneyStep>
+
+    <!-- ============ C: DUEÑOS ============ -->
+    <JourneyStep id="c-1" title="¿Qué sale a los dueños y qué entra?" step={1} total={3} next="c-2">
+      <h2 class="st-h">De 2022 a septiembre de 2026 salieron <mark>{n(owT.div)} millones</mark> en dividendos y entraron <mark>{n(owT.contrib)}</mark> en aportaciones.</h2>
+      <p class="st-p">Un <strong>dividendo</strong> es dinero que el banco paga a sus accionistas: sale. Una <strong>aportación</strong> es dinero que los accionistas meten al banco para futuros aumentos de capital: entra.{owT.diff > 0 ? ` En total salieron ${n(owT.diff)} millones más de los que entraron.` : ` En total entraron ${n(-owT.diff)} millones más de los que salieron.`}</p>
+      <ul class="legend-inline"><li><i class="sw q-div"></i>Dividendos (salen)</li><li><i class="sw q-contrib"></i>Aportaciones (entran)</li></ul>
+      <svg class="chart" viewBox={`0 0 360 ${ownH}`} role="img" aria-label={`Dividendos y aportaciones por periodo, en millones de pesos. ${ow.map((r) => `${r.p.label}: dividendos ${n(r.div)}, aportaciones ${n(r.contrib)}`).join('; ')}.`}>
+        {ownG.map((r) => (
+          <g>
+            <text x="0" y={r.y + 20} class="lb">{r.label}</text>
+            <rect x={OL} y={r.y + 3} width={Math.max(r.dw, 0.5).toFixed(1)} height="15" class="q-div" />
+            <text x={(OL + r.dw + 6).toFixed(1)} y={r.y + 15} class="vl">{r.div}</text>
+            <rect x={OL} y={r.y + 22} width={Math.max(r.cw, 0.5).toFixed(1)} height="15" class="q-contrib" />
+            <text x={(OL + r.cw + 6).toFixed(1)} y={r.y + 34} class="vl">{r.contrib}</text>
+          </g>
+        ))}
+      </svg>
+      <p class="ref-line">Son pesos de cada periodo, sin ajustar por inflación. De enero a septiembre de 2026 son nueve meses.</p>
+      <details class="mini"><summary>Fechas de las aportaciones</summary>
+        <ul>{ow.filter((r) => r.dates.length > 0).flatMap((r) => r.dates.map((d) => <li>{d.date}: {n(d.amount_mdp)} millones</li>))}</ul>
+      </details>
+      <p class="srcline"><span class="tag t-voz">Lo dice la empresa</span><span class="tag t-verificado-primaria">verificado-primaria</span> los pagos y aportaciones que aprobaron las asambleas, en los reportes del banco: <a href={sources.r25.url} rel="noopener noreferrer">2025</a>, <a href={sources.r3t26.url} rel="noopener noreferrer">3T 2026</a>.</p>
+    </JourneyStep>
+
+    <JourneyStep id="c-2" title="¿Qué sale a los dueños y qué entra?" step={2} total={3} prev="c-1" next="c-3">
+      <h2 class="st-h">En {over100} de {ow.length} periodos, los dividendos fueron más del 100% de la utilidad del mismo periodo.</h2>
+      <p class="st-p">La línea punteada marca el 100%: lo mismo que ganó el banco en ese periodo.</p>
+      <svg class="chart" viewBox={`0 0 360 ${ratioH}`} role="img" aria-label={`Dividendos como porcentaje de la utilidad neta del mismo periodo. ${ow.map((r) => `${r.p.label}: ${r.ratio === null ? 'sin dato' : n(r.ratio) + '%'}`).join(', ')}.`}>
+        <text x="352" y="11" text-anchor="end" class="mu">Línea punteada = 100% de la utilidad</text>
+        <line x1="188" x2="188" y1="16" y2={ratioH} class="ref" />
+        {ratioG.map((r) => (
+          <g>
+            <text x="0" y={r.y + 15} class="lb">{r.label}</text>
+            <rect x="88" y={r.y + 2} width={Math.max(r.w, 0.5).toFixed(1)} height="18" class="q-div" />
+            <text x={(88 + r.w + 6).toFixed(1)} y={r.y + 16} class="vl">{r.v}</text>
+          </g>
+        ))}
+      </svg>
+      <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> dividendos entre utilidad neta del mismo periodo. Un dividendo puede salir de utilidades de años anteriores: el cálculo no dice de cuáles salió.</p>
+    </JourneyStep>
+
+    <JourneyStep id="c-3" title="¿Qué sale a los dueños y qué entra?" step={3} total={3} prev="c-2">
+      <h2 class="st-h">Los reportes dicen que se paga «a sus accionistas». No dicen cuánto recibió cada uno.</h2>
+      <ul class="say">
+        {factsOf('grupo').map((f) => <li><p>{f.text}</p><p class="srcline"><span class="tag t-verificado-primaria">verificado-primaria</span><a href={f.src.url} rel="noopener noreferrer">{f.src.name}</a></p></li>)}
+      </ul>
+      <p class="ref-line"><span class="tag k-hueco">Sin documento</span> {edgeText(gap('h_div_grupo'))}</p>
+      <details class="mini"><summary>Qué revisamos</summary><ul>{looked(gap('h_div_grupo')).map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.name}</a></li>)}</ul></details>
+      <p><a href="/transparencia/quien-es-quien/">Ver cómo se relacionan el banco y el grupo</a></p>
+      <div slot="end" class="next-q">
+        <h3>Sigue con otra pregunta</h3>
+        <ul class="cards">{others('c').filter((j) => j.id !== 'a').slice(0, 2).map((j) => <li><a class="qcard" href={`#${j.first}`}><h3>{j.title}</h3><span class="q-go">Empezar →</span></a></li>)}</ul>
+      </div>
+    </JourneyStep>
+
+    <!-- ============ D: PERSONAS ============ -->
+    <JourneyStep id="d-1" title="¿Y las personas que trabajan ahí?" step={1} total={3} next="d-2">
+      <h2 class="st-h">El banco contrata directamente a <mark>{n(pc.empAbs)} personas menos</mark> que en 2022: {n(Math.abs(pc.empPct))}% menos.</h2>
+      <p class="st-p">Personas que el banco dice contratar directamente, al cierre de cada año. No es el número de cajeros: no hay un número auditado de cajeros.</p>
+      <svg class="chart" viewBox={`0 0 360 ${peopleH}`} role="img" aria-label={`Personas que contrata el banco: ${pr.map((r) => `${r.year} ${n(r.employees)}`).join(', ')}.`}>
+        {peopleG.map((r) => (
+          <g>
+            <text x="0" y={r.y + 19} class="lb">{r.label}</text>
+            <rect x="52" y={r.y + 3} width={r.w.toFixed(1)} height="22" class="q-people" />
+            <text x={(52 + r.w + 6).toFixed(1)} y={r.y + 19} class="vl">{r.v}</text>
+          </g>
+        ))}
+      </svg>
+      <p class="ref-line">El reporte trimestral de 2026 no trae esta cifra: el banco la publica una vez al año.</p>
+      <p class="srcline"><span class="tag t-voz">Lo dice la empresa</span><span class="tag t-verificado-primaria">verificado-primaria</span> <a href={sources.n25.url} rel="noopener noreferrer">notas a los estados financieros</a> de cada año.</p>
+    </JourneyStep>
+
+    <JourneyStep id="d-2" title="¿Y las personas que trabajan ahí?" step={2} total={3} prev="d-1" next="d-3">
+      <h2 class="st-h">El personal bajó {n(Math.abs(pc.empPct))}% y los gastos de administración subieron <mark>{n(pc.admPct)}%</mark>.</h2>
+      <p class="st-p">Las dos cifras de 2022 valen 100. Después se comparan con ese punto de partida.</p>
+      <svg class="chart" viewBox="0 0 360 190" role="img" aria-label={`Personal del banco y gastos de administración, 2022 igual a 100. Personal: ${pr.map((r) => `${r.year} ${n(r.empIdx)}`).join(', ')}. Gastos de administración: ${pr.map((r) => `${r.year} ${n(r.admIdx)}`).join(', ')}.`}>
+        {[lo, 100, hi].map((v) => (
+          <g>
+            <line x1={IX0} x2={IX1} y1={yAt(v).toFixed(1)} y2={yAt(v).toFixed(1)} class={v === 100 ? 'ref' : 'grid'} />
+            <text x={IX0 - 6} y={(yAt(v) + 4).toFixed(1)} text-anchor="end" class="mu">{v}</text>
+          </g>
+        ))}
+        {pr.map((r, i) => <text x={xAt(i).toFixed(1)} y="172" text-anchor="middle" class="mu">{r.year}</text>)}
+        <polyline points={lineEmp} class="ln-a" />
+        <polyline points={lineAdm} class="ln-b" />
+        {pr.map((r, i) => (
+          <g>
+            <circle cx={xAt(i).toFixed(1)} cy={yAt(r.empIdx).toFixed(1)} r="4.5" class="mk-a" />
+            <rect x={(xAt(i) - 4).toFixed(1)} y={(yAt(r.admIdx) - 4).toFixed(1)} width="8" height="8" class="mk-b" />
+          </g>
+        ))}
+        <text x={IX1 + 12} y={(yAt(lastR.empIdx) - 6).toFixed(1)} class="lb"><tspan x={IX1 + 12} dy="0">Personal</tspan><tspan x={IX1 + 12} dy="15">{n(lastR.empIdx)}</tspan></text>
+        <text x={IX1 + 12} y={(yAt(lastR.admIdx) - 6).toFixed(1)} class="lb"><tspan x={IX1 + 12} dy="0">Gastos de</tspan><tspan x={IX1 + 12} dy="15">administración</tspan><tspan x={IX1 + 12} dy="15">{n(lastR.admIdx)}</tspan></text>
+      </svg>
+      <p class="ref-line"><span class="tag k-hueco">Sin documento</span> {edgeText(gap('h_admin_plan'))}</p>
+      <p class="srcline"><span class="tag t-voz">Cálculo propio</span> con las notas y los estados de resultados del banco. Que dos cifras se muevan al revés no prueba que una cause la otra.</p>
+    </JourneyStep>
+
+    <JourneyStep id="d-3" title="¿Y las personas que trabajan ahí?" step={3} total={3} prev="d-2">
+      <h2 class="st-h">La oferta mediana de cajero {medOffer >= minMonthly ? 'supera' : 'queda por debajo de'} el salario mínimo mensual en <mark>{n(Math.abs((medOffer / minMonthly - 1) * 100))}%</mark>.</h2>
+      <p class="st-p">Ofertas de empleo de Banco Azteca del 23 de noviembre de 2026, junto al salario mínimo y al promedio nacional. En pesos por mes.</p>
+      <svg class="chart" viewBox="0 0 360 160" role="img" aria-label={`Pesos por mes: ${wb.map((x) => `${x.label}, ${pesos(x.value)}`).join('; ')}.`}>
+        {wageG.map((r) => (
+          <g>
+            <text x="0" y={r.y + 13} class="mu">{r.label}</text>
+            <rect x="0" y={r.y + 20} width={r.w.toFixed(1)} height="18" class="q-wage" />
+            <text x={(r.w + 8).toFixed(1)} y={r.y + 34} class="vl">{r.v}</text>
+          </g>
+        ))}
+      </svg>
+      <div class="callout info"><p><strong>Una oferta no es lo que cobra cada persona.</strong> Muestra el sueldo que la empresa ofrece en una ciudad y un día. No sabemos si incluye comisiones u otros pagos.</p></div>
+      <p class="ref-line"><span class="tag k-hueco">Sin documento</span> {edgeText(gap('h_sueldos_plan'))} {edgeText(gap('h_remun_plan'))}</p>
+      <p><a href="/transparencia/sueldos/">Ver todas las ofertas</a></p>
+      <div slot="end" class="next-q">
+        <h3>Sigue con otra pregunta</h3>
+        <ul class="cards">{others('d').slice(0, 2).map((j) => <li><a class="qcard" href={`#${j.first}`}><h3>{j.title}</h3><span class="q-go">Empezar →</span></a></li>)}</ul>
+      </div>
+    </JourneyStep>
+
+    <!-- ============ REFERENCIA (solo en el inicio) ============ -->
+    <section class="hub-only refs" aria-label="Para revisar a fondo">
+      <details class="acc" id="huecos"><summary>Lo que no encontramos ({gaps.length})</summary><div class="acc-b">
+        <ul class="say">
+          {gaps.map((e) => (
+            <li><h3>{pair(e)}</h3><p>{edgeText(e)}</p>
+              <details class="mini"><summary>Qué revisamos</summary><ul>{looked(e).map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.name}</a></li>)}</ul></details>
+            </li>
+          ))}
+        </ul>
+      </div></details>
+
+      <details class="acc" id="referencia"><summary>Referencia: todas las conexiones y sus fuentes</summary><div class="acc-b">
+        <h3><span class="tag k-identidad">{kinds.identidad.label}</span></h3>
+        <p>La utilidad neta es: {identity.map((e, i) => <>{i > 0 ? ' ' : ''}<strong>{e.sign}</strong> {nodeById(e.from).short.toLowerCase()}</>)}.
+          <a href={sources.e3t26.url} rel="noopener noreferrer">Estado de resultados</a>. El orden es el mismo en cada año.</p>
+        <h3><span class="tag k-dice">{kinds.dice.label}</span></h3>
+        <ul class="say">{dice.map((e) => <li><h3>{pair(e)}</h3><p>{edgeText(e)}</p><p class="srcline"><span class="tag t-verificado-primaria">verificado-primaria</span><a href={edgeSource(e).url} rel="noopener noreferrer">{edgeSource(e).name}</a></p></li>)}</ul>
+        <h3><span class="tag k-calculo">{kinds.calculo.label}</span></h3>
+        <ul class="say">{calc.map((e) => <li><h3>{pair(e)}</h3><p>{calcByPeriod(e) ? `Enero a septiembre de 2026: ${calcText(e, '2026')}` : calcText(e)}</p>
+          <details class="mini"><summary>Datos usados</summary><ul>{inputs(e).map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.name}</a></li>)}</ul></details></li>)}</ul>
+      </div></details>
+
+      <details class="acc" id="limites"><summary>Qué no dice este mapa</summary><div class="acc-b">
+        <ul>
+          <li>Una conexión no es una causa. «Se mueven juntas» describe lo que pasó con pocas cifras; no explica por qué.</li>
+          <li>Son cifras de los documentos que leímos, con su fecha. Si un documento no dice algo, lo marcamos como «sin documento».</li>
+          <li>El mapa no suma lo de Grupo Elektra con lo del banco: son empresas distintas con reportes distintos.</li>
+          <li>Si ves un error, escríbenos desde <a href="/transparencia/metodo/">Método y derecho de réplica</a>.</li>
+        </ul>
+      </div></details>
+      <p><a class="btn tonal" href="/transparencia/">Volver a Transparencia</a> <a class="btn tonal" href="/transparencia/como-verificarlo/">Cómo verificarlo tú</a></p>
     </section>
   </div>
-
-  <details class="acc" id="limites"><summary>Qué no dice este mapa</summary><div class="acc-b">
-    <ul>
-      <li>Una conexión no es una causa. «Se mueven juntas» describe lo que pasó con pocas cifras; no explica por qué.</li>
-      <li>Son cifras de los documentos que leímos, con su fecha. Si un documento no dice algo, lo marcamos como «sin documento».</li>
-      <li>El mapa no suma lo de Grupo Elektra con lo del banco: son empresas distintas con reportes distintos.</li>
-      <li>Si ves un error, escríbenos desde <a href="/transparencia/metodo/">Método y derecho de réplica</a>.</li>
-    </ul>
-  </div></details>
-
-  <p><a class="btn tonal" href="/transparencia/">Volver a Transparencia</a> <a class="btn tonal" href="/transparencia/como-verificarlo/">Cómo verificarlo tú</a></p>
-  <script>import '../../scripts/transp-mapa.ts';</script>
 </Base>

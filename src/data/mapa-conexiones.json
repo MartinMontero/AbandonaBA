@@ -16,6 +16,8 @@
   "sources": {
     "r3t26": { "name": "Banco Azteca: reporte de la Administración al 30 de septiembre de 2026", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4295", "read": "2026-11-23" },
     "e3t26": { "name": "Banco Azteca: estado de resultado integral, enero a septiembre de 2026", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4291", "read": "2026-11-23" },
+    "e3t25": { "name": "Banco Azteca: estado de resultado integral, enero a septiembre de 2025", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4123", "read": "2026-11-23" },
+    "r2t26": { "name": "Banco Azteca: reporte de la Administración al 30 de junio de 2026", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4259", "read": "2026-11-23" },
     "r25": { "name": "Banco Azteca: reporte de la Administración al 31 de diciembre de 2025", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4166", "read": "2026-11-23" },
     "e25": { "name": "Banco Azteca: estado de resultado integral al 31 de diciembre de 2025", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4162", "read": "2026-11-23" },
     "n25": { "name": "Banco Azteca: notas a los estados financieros al 31 de diciembre de 2025", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4165", "read": "2026-11-23" },
@@ -51,6 +53,7 @@
     { "node": "admin", "src": "r3t26", "text": "De enero a septiembre de 2026 subió {rs.admin_delta} millones ({rs.admin_delta_pct}%) frente al mismo periodo de 2025, por operación y publicidad." },
     { "node": "otros", "src": "r3t26", "text": "Frente a enero–septiembre de 2025, «otros ingresos (egresos)» varió {rs.other_delta} millones. El banco dice que se debe sobre todo a la valuación del oro." },
     { "node": "otros", "src": "r25", "text": "En 2025 dijo que ese renglón se debía sobre todo a la venta de cartera vencida, menos la valuación del oro." },
+    { "node": "otros", "src": "r2t26", "text": "En el reporte del segundo trimestre de 2026 dijo lo mismo: ese renglón varió {rs2.other_delta_q} millones frente al primer trimestre, sobre todo por la valuación del oro." },
     { "node": "reserva", "src": "r3t26", "text": "Aparte de reservar, el banco canceló cartera ya reservada al 100% por {L.stage3_writeoffs_ytd} millones (enero–septiembre de 2026). Dice que eso no afecta los resultados." },
     { "node": "grupo", "src": "estructura", "text": "Su página de estructura lista a Banco Azteca como subsidiaria al 100%, al 31 de diciembre de 2024." },
     { "node": "grupo", "src": "ra_owner", "text": "Su reporte anual dice que la mayoría de su capital la controlan sus accionistas mayoritarios, entre quienes nombra a Ricardo B. Salinas Pliego." }

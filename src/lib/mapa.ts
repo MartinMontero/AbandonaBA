@@ -67,7 +67,7 @@ export const edges = map.edges as any[];
 export const nodeById = (id: string) => nodes.find((x) => x.id === id);
 
 const ctx: any = {
-  rs: latest.report_says, rs25: ann(2025).report_says, L: latest, y25: ann(2025),
+  rs: latest.report_says, rs2: latest.report_says_2t, rs25: ann(2025).report_says, L: latest, y25: ann(2025),
   tx: T.elektra.tax, grp: T.compensation.group, emp: T.elektra.employees, st: T.structure.quarterly,
 };
 /** Rellena {ruta.a.cifra} con la cifra del archivo de datos. Siempre en positivo: el texto dice «subió» o «bajó». */
@@ -200,3 +200,105 @@ export function calcText(e: any, k?: PKey): string {
 export const calcByPeriod = (e: any) => e.calc.type === 'ratio' || e.calc.type === 'net';
 export const looked = (e: any) => (e.looked as string[]).map((s) => sources[s]);
 export const inputs = (e: any) => (e.inputs as string[]).map((s) => sources[s]);
+
+// ====================== Recorridos guiados ======================
+// Todo sale de los estados de resultados del banco. «Entra» = intereses cobrados + comisiones, intermediación y otros (neto).
+export const ytdPrev: any = latest.ytd_prev;
+export type SegKey = 'net' | 'tax' | 'prov' | 'ie' | 'admin' | 'ocost';
+export const segMeta: Record<SegKey, { label: string; short: string }> = {
+  net: { label: 'Se queda como utilidad', short: 'Utilidad' },
+  tax: { label: 'Impuestos', short: 'Impuestos' },
+  prov: { label: 'Reserva por créditos que podrían no pagarse', short: 'Reserva por riesgo' },
+  ie: { label: 'Intereses que paga el banco', short: 'Intereses pagados' },
+  admin: { label: 'Gastos de administración y promoción', short: 'Administración' },
+  ocost: { label: 'Comisiones y otros (resta)', short: 'Otros (resta)' },
+};
+const otherOf = (r: any) => r.operating_result - (r.interest_income - r.interest_expense - r.provisions - r.admin_expenses);
+
+/** Reparte 100 cuadros por el método del mayor residuo: siempre suman 100. */
+export function squares(pcts: number[]): number[] {
+  const fl = pcts.map((p) => Math.floor(p));
+  const rest = 100 - fl.reduce((a, b) => a + b, 0);
+  const order = pcts.map((p, i) => ({ i, f: p - Math.floor(p) })).sort((a, b) => b.f - a.f);
+  for (let j = 0; j < rest; j++) fl[order[j % order.length].i]++;
+  return fl;
+}
+export interface SplitSeg { key: SegKey; label: string; value: number; pct: number; sq: number }
+export interface Split { entra: number; segs: SplitSeg[]; left: number; netShare: number; netSq: number; adminShare: number }
+export function splitRow(r: any): Split {
+  const other = otherOf(r);
+  const entra = r.interest_income + Math.max(other, 0);
+  const ocost = Math.max(-other, 0);
+  const vals: [SegKey, number][] = [['tax', r.income_tax], ['prov', r.provisions], ['ie', r.interest_expense], ['admin', r.admin_expenses]];
+  if (ocost > 0) vals.push(['ocost', ocost]);
+  const costs = vals.reduce((s, [, v]) => s + v, 0);
+  const left = entra - costs;
+  const all: [SegKey, number][] = [['net', left], ...vals];
+  const pcts = all.map(([, v]) => (v / entra) * 100);
+  const sq = squares(pcts);
+  const segs = all.map(([key, value], i) => ({ key, label: segMeta[key].label, value, pct: pcts[i], sq: sq[i] }));
+  return { entra, segs, left, netShare: pcts[0], netSq: sq[0], adminShare: pcts[all.findIndex(([k]) => k === 'admin')] };
+}
+export const splitOf = (k: PKey): Split => splitRow(periodRow(k));
+export const splitPrev = (): Split => splitRow(ytdPrev);
+
+// ---- ¿Por qué bajó la utilidad? Dos estados de resultados: enero a septiembre de 2025 y de 2026. ----
+export interface BridgeItem { id: string; label: string; effect: number; what: string }
+export function bridge() {
+  const a = ytdPrev, b = latest.ytd;
+  const oi = (r: any, k: string) => r.other_items[k];
+  const neg = (x: number) => `${x < 0 ? '−' : ''}${n(Math.abs(x))}`;
+  const items: BridgeItem[] = [
+    { id: 'ii', label: 'Intereses que cobra', effect: b.interest_income - a.interest_income, what: `Cobró ${n(b.interest_income - a.interest_income)} millones más.` },
+    { id: 'ie', label: 'Intereses que paga', effect: -(b.interest_expense - a.interest_expense), what: `Pagó ${n(a.interest_expense - b.interest_expense)} millones menos.` },
+    { id: 'prov', label: 'Reserva por riesgo de crédito', effect: -(b.provisions - a.provisions), what: `Apartó ${n(b.provisions - a.provisions)} millones más.` },
+    { id: 'admin', label: 'Gastos de administración y promoción', effect: -(b.admin_expenses - a.admin_expenses), what: `Gastó ${n(b.admin_expenses - a.admin_expenses)} millones más.` },
+    { id: 'other', label: 'Otros ingresos (egresos) de la operación', effect: oi(b, 'other') - oi(a, 'other'), what: `Pasó de ${neg(oi(a, 'other'))} a ${neg(oi(b, 'other'))} millones.` },
+    { id: 'trading', label: 'Resultado por intermediación', effect: oi(b, 'trading') - oi(a, 'trading'), what: `Pasó de ${neg(oi(a, 'trading'))} a ${neg(oi(b, 'trading'))} millones.` },
+    { id: 'comm', label: 'Comisiones (cobradas menos pagadas)', effect: (oi(b, 'commissions_received') - oi(a, 'commissions_received')) + (oi(b, 'commissions_paid') - oi(a, 'commissions_paid')),
+      what: `Cobró ${n(oi(b, 'commissions_received') - oi(a, 'commissions_received'))} millones más y pagó ${n(Math.abs(oi(b, 'commissions_paid') - oi(a, 'commissions_paid')))} más.` },
+    { id: 'tax', label: 'Impuestos a la utilidad', effect: -(b.income_tax - a.income_tax), what: `Registró ${n(a.income_tax - b.income_tax)} millones menos de impuesto.` },
+  ];
+  const partChange = (b.net_income - (b.operating_result - b.income_tax)) - (a.net_income - (a.operating_result - a.income_tax));
+  items.sort((x, y) => Math.abs(y.effect) - Math.abs(x.effect));
+  return { start: a.net_income as number, end: b.net_income as number, change: b.net_income - a.net_income, partChange, items, maxAbs: Math.max(...items.map((i) => Math.abs(i.effect))), pctChange: ((b.net_income - a.net_income) / a.net_income) * 100 };
+}
+
+// ---- ¿Qué sale a los dueños y qué entra? ----
+export function ownersRows() {
+  return periods.map((p) => {
+    const r = periodRow(p.key);
+    const div = dividendsOf(p.key) ?? 0;
+    const contrib = contributionsOf(p.key) ?? 0;
+    return { p, div, contrib, net: r.net_income as number, ratio: r.net_income > 0 ? (div / r.net_income) * 100 : null, dates: (r.capital_contributions ?? []) as { date: string; amount_mdp: number }[] };
+  });
+}
+export function ownersTotals() {
+  const rows = ownersRows();
+  const div = rows.reduce((s, r) => s + r.div, 0), contrib = rows.reduce((s, r) => s + r.contrib, 0);
+  return { div, contrib, diff: div - contrib, net: rows.reduce((s, r) => s + r.net, 0) };
+}
+
+// ---- ¿Y las personas? ----
+export function peopleRows() {
+  const base = ann(2022);
+  return annual.filter((a: any) => a.year >= 2022).map((a: any) => ({
+    year: a.year as number, employees: a.employees_direct as number, admin: a.admin_expenses as number,
+    empIdx: (a.employees_direct / base.employees_direct) * 100, admIdx: (a.admin_expenses / base.admin_expenses) * 100,
+  }));
+}
+export function peopleChange() {
+  const rows = peopleRows(), a = rows[0], b = rows[rows.length - 1];
+  return { from: a, to: b, empAbs: a.employees - b.employees, empPct: ((b.employees - a.employees) / a.employees) * 100, admPct: ((b.admin - a.admin) / a.admin) * 100 };
+}
+export function wageBars() {
+  const minMonthly = minWageDaily * 30.4;
+  return [
+    { id: 'min', label: 'Salario mínimo general, por mes', value: minMonthly },
+    { id: 'avg', label: 'Promedio nacional de cajeros (Data México)', value: T.wage_stats.avg_monthly_mxn as number },
+    { id: 'med', label: 'Mediana de las ofertas de Banco Azteca', value: sueldosMediana },
+  ];
+}
+export const timesMin = (monthly: number) => timesMinWage(monthly, minWageDaily);
+export const quarterly: { period: string; value: number }[] = latest.quarterly_net;
+export const huecos = () => edges.filter((e) => e.kind === 'hueco');

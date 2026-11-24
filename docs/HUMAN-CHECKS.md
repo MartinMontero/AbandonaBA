@@ -136,3 +136,5 @@ Página: `/transparencia/mapa/`. Afirmación: T19 en `docs/LEGAL-REGISTER.md`. D
 | Personal de Servicios Laborales y Ejecutivos | https://www.grupoelektra.com.mx/api/pdfEkt/4295 | El banco la consolida con 99.9%. No se leyó cuántas personas trabajan ahí |
 
 Preguntas para el abogado (ver T19): ¿es correcto presentar como «lo dice la empresa» las frases parafraseadas de los reportes y como «cálculo propio» las comparaciones de «mismo sentido o al revés» (con cuatro cambios anuales o menos), sin sugerir causa?
+
+Recorridos del mapa (segunda versión, 2026-11-23): se agregó el estado de resultados de enero a septiembre de 2025 (https://www.grupoelektra.com.mx/api/pdfEkt/4123, descargado y leído con pdftotext). Pendiente de una persona: abrirlo en pantalla y confirmar que los cuatro renglones entre el margen y el resultado de la operación (4,378; −3,107; 1,317; 1,959) están en ese orden. Ya coinciden por suma y contra las variaciones del reporte del 3T 2026 (https://www.grupoelektra.com.mx/api/pdfEkt/4295) y del 2T 2026 (https://www.grupoelektra.com.mx/api/pdfEkt/4259).

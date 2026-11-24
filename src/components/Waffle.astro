@@ -1,0 +1,11 @@
+---
+// Cien cuadros = cien pesos. Cada color es una parte. La imagen no sustituye a la leyenda: los números van aparte.
+import { segMeta } from '../lib/mapa';
+import type { Split } from '../lib/mapa';
+interface Props { split: Split; label: string; class?: string }
+const { split, label, class: cls = '' } = Astro.props;
+const aria = `${label}: ${split.segs.map((g) => `${g.sq} ${segMeta[g.key].short.toLowerCase()}`).join(', ')}.`;
+---
+<div class={`waffle ${cls}`.trim()} role="img" aria-label={aria}>
+  {split.segs.map((g) => Array.from({ length: g.sq }, () => <i class={`sq q-${g.key}`}></i>))}
+</div>

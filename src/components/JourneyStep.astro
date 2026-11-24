@@ -1,0 +1,18 @@
+---
+// Un paso de un recorrido. Se muestra cuando la dirección de la página apunta a él (#a-1, #b-2...). Sin JavaScript.
+interface Props { id: string; title: string; step: number; total: number; prev?: string; next?: string }
+const { id, title, step, total, prev, next } = Astro.props;
+---
+<section class="st" id={id} aria-label={`${title}. Paso ${step} de ${total}`}>
+  <header class="st-top">
+    <a class="st-back" href="#preguntas">← Todas las preguntas</a>
+    <p class="st-prog">Paso {step} de {total} · {title}</p>
+    <ol class="dots" aria-hidden="true">{Array.from({ length: total }, (_, i) => <li class={i + 1 === step ? 'on' : i + 1 < step ? 'done' : ''}></li>)}</ol>
+  </header>
+  <slot />
+  <nav class="st-nav" aria-label="Pasos del recorrido">
+    {prev ? <a class="btn tonal" href={`#${prev}`}>← Atrás</a> : <a class="btn tonal" href="#preguntas">← Preguntas</a>}
+    {next && <a class="btn" href={`#${next}`}>Siguiente →</a>}
+  </nav>
+  <slot name="end" />
+</section>
