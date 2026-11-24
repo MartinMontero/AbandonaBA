@@ -717,3 +717,31 @@ ul.plain { list-style: none; padding-left: 0; }
 ul.plain li { margin: 4px 0; }
 /* La etiqueta más larga («Transparencia») cabe en la barra lateral sin partirse */
 @media (min-width: 600px) { :root { --rail-width: 6rem; } .navbar a span:last-child { font-size: 0.6875rem; letter-spacing: -0.01em; white-space: nowrap; } }
+/* Opiniones de empleados: selector y tarjetas de calificación */
+.pick-opts:has(#c7:checked) .pk7, .pick-opts:has(#c8:checked) .pk8 { display: block; }
+.rate-grid { list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr)); }
+.rate-card { background: var(--md-sys-color-surface); border-radius: var(--radius-lg); padding: var(--space-2); display: flex; flex-direction: column; gap: 6px; }
+.rate-card h3 { margin: 0; font-size: 1rem; }
+.rate-big { margin: 0; font-size: 2.5rem; font-weight: 850; line-height: 1; color: var(--md-sys-color-primary); }
+.rate-big small { font-size: 1rem; font-weight: 600; color: var(--md-sys-color-on-surface-variant); margin-left: 4px; }
+.rate-none { color: var(--md-sys-color-on-surface-variant); font-weight: 700; }
+.rate-card meter { width: 100%; height: 0.75rem; }
+.rate-count { margin: 0; font-size: .9375rem; color: var(--md-sys-color-on-surface-variant); }
+.chip-warn { margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: var(--md-sys-color-warn-container, #fde7c8); color: var(--md-sys-color-on-surface); font-size: .8125rem; font-weight: 700; }
+.rate-card .btn { align-self: flex-start; margin-top: auto; }
+details.mini summary { font-size: .875rem; cursor: pointer; padding: 4px 0; }
+details.mini p { margin: 4px 0 0; font-size: .875rem; }
+.tips-mini { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-1); }
+
+.cmp { width: 100%; border-collapse: collapse; }
+.cmp th, .cmp td { padding: 10px 8px; text-align: left; vertical-align: middle; border-bottom: 1px solid var(--md-sys-color-outline-variant, var(--md-sys-color-outline)); }
+.cmp thead th { font-size: .875rem; color: var(--md-sys-color-on-surface-variant); }
+.cmp tbody th { font-weight: 700; }
+.cmp td strong { display: block; font-size: 1.125rem; }
+.cmp meter { width: 100%; min-width: 3.5rem; height: .625rem; }
+@media (max-width: 480px) { .cmp th, .cmp td { padding: 8px 4px; font-size: .875rem; } .cmp td strong { font-size: 1rem; } }
+
+.pick.compact .pick-opts { grid-template-columns: repeat(2, 1fr); gap: var(--space-1); }
+.pick.compact .pick-out { grid-column: 1 / -1; }
+.pick.compact .pick-opts > label { padding: var(--space-1) var(--space-2); min-height: 3.5rem; }
+@media (min-width: 600px) { .pick.compact .pick-opts { grid-template-columns: repeat(4, 1fr); } }

@@ -1,69 +1,92 @@
 ---
 import Base from '../../layouts/Base.astro';
 import data from '../../data/opiniones-empleados.json';
-import { voices } from '../../lib/transparencia';
 const emp = data.employers as any[];
 const nf = (x: number) => x.toLocaleString('es-MX');
+const rf = (x: number) => x.toLocaleString('es-MX', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const platforms = ['Indeed', 'Glassdoor', 'Computrabajo'];
+// Calificación que se muestra en la tarjeta del banco: el promedio simple de lo que leímos.
+const avg = (e: any) => { const r = e.sources.filter((s: any) => s.rating !== null).map((s: any) => s.rating); return r.length ? r.reduce((a: number, b: number) => a + b, 0) / r.length : null; };
 const sources = [
   ...emp.flatMap((e) => e.sources.map((s: any) => ({ title: `${e.name} en ${s.platform}`, url: s.url, read: s.read_date }))),
   { title: data.api.glassdoor_official.source_name, url: data.api.glassdoor_official.source_url, read: data.api.glassdoor_official.read_date },
   { title: 'Zuplo: What is the Glassdoor API?', url: data.api.glassdoor_official.second_url, read: data.api.glassdoor_official.read_date },
 ];
 const tips = [
-  { t: 'Mira la fecha', d: 'Una reseña de hace cuatro años puede no describir cómo es hoy. Busca las más recientes.' },
-  { t: 'Mira cuántas hay', d: 'Una calificación con 40 reseñas dice menos que una con 5,000. Con pocas reseñas, unas cuantas opiniones cambian el promedio.' },
-  { t: 'Mira el puesto y el lugar', d: 'Un cajero de una sucursal y alguien de oficinas centrales no viven lo mismo. Filtra por puesto y por ciudad.' },
-  { t: 'Busca lo que se repite', d: 'Una queja aislada es una opinión. La misma queja en muchas reseñas, sobre horarios o metas, es una señal.' },
-  { t: 'Compara con los datos duros', d: 'Contrasta lo que leas con las ofertas de empleo y con las cifras de personal en Transparencia.' },
+  ['📅', 'La fecha', 'Busca reseñas recientes.'],
+  ['#', 'Cuántas hay', 'Con pocas reseñas, un par de opiniones mueven el promedio.'],
+  ['📍', 'Puesto y lugar', 'Filtra por tu puesto y tu ciudad.'],
+  ['🔁', 'Lo que se repite', 'Una queja aislada es opinión; la misma en muchas, una señal.'],
 ];
 ---
-<Base art="spark" eyebrow="Banco de empleo" title="Opiniones de quienes trabajan ahí" description="Qué calificación muestra cada plataforma para cada banco, cuántas reseñas tiene, y enlaces directos para leerlas. No copiamos reseñas." path="/empleos/opiniones/" legal claims={['T17','T18']} sources={sources} lead>
-  <div class="callout info"><p><strong>Aquí no hay reseñas copiadas.</strong> Te decimos qué calificación muestra cada plataforma, cuántas reseñas tiene y la fecha en que la vimos, y te llevamos a leerlas donde están. Son opiniones de usuarios de otras plataformas, no datos de este sitio. Lo que escribas en esas plataformas depende de sus reglas, no de las nuestras.</p></div>
+<Base art="spark" eyebrow="Banco de empleo" title="Opiniones de quienes trabajan ahí" description="Elige un banco y mira qué calificación le dan en cada plataforma." path="/empleos/opiniones/" legal claims={['T17','T18']} sources={sources}>
+  <p class="lede">Elige un banco. Verás su calificación en cada plataforma y un botón para leer las reseñas allá. <span class="tag t-voz">Datos de otras plataformas · 23-nov-2026</span></p>
 
-  <h2>Bancos que revisamos</h2>
-  <p>Las cifras son de otras plataformas y cambian. Las vimos el 23 de noviembre de 2026. «Sin calificación leída» significa que la página existe pero no pudimos leer el promedio.</p>
-  {emp.map((e) => (
-    <section class="card" aria-labelledby={`e-${e.id}`}>
-      <h3 id={`e-${e.id}`}>{e.name}</h3>
-      <div class="tbl-wrap">
-        <table class="rt">
-          <thead><tr><th>Plataforma</th><th>Calificación</th><th>Reseñas</th><th>Cómo lo vimos</th><th>Leer</th></tr></thead>
-          <tbody>
-            {e.sources.map((s: any) => (
-              <tr>
-                <th scope="row">{s.platform}</th>
-                <td>{s.rating === null ? 'sin calificación leída' : `${s.rating.toLocaleString('es-MX', { minimumFractionDigits: 1 })} de ${s.scale}`}</td>
-                <td>{s.review_count === null ? 'no leídas' : nf(s.review_count)}{s.review_count !== null && s.review_count < 100 ? ' (pocas)' : ''}</td>
-                <td>{s.via}. <span class="tag t-voz">{voices.plataforma}</span> <span class={`tag t-${s.status}`}>{s.status}</span>{s.note ? ` ${s.note}` : ''}</td>
-                <td><a class="btn tonal" href={s.url} rel="noopener noreferrer">Ver reseñas</a></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+  <fieldset class="pick compact">
+    <legend>¿Qué banco te interesa?</legend>
+    <div class="pick-opts">
+      {emp.map((e, i) => (<>
+        <input type="radio" name="banco" id={`c${i + 1}`} checked={i === 0} />
+        <label for={`c${i + 1}`}><b>{e.name}</b><span>{avg(e) === null ? 'sin cifra' : `${rf(avg(e) as number)} de 5`}</span></label>
+      </>))}
+      <div class="pick-out" aria-live="polite">
+        {emp.map((e, i) => (
+          <section class={`pk pk${i + 1}`} aria-label={e.name}>
+            <h2>{e.name}</h2>
+            <ul class="rate-grid">
+              {e.sources.map((s: any) => (
+                <li class="rate-card">
+                  <h3>{s.platform}</h3>
+                  <p class="rate-big">{s.rating === null ? <span class="rate-none">—</span> : <>{rf(s.rating)}<small>/ {s.scale}</small></>}</p>
+                  {s.rating !== null && <meter min="0" max={s.scale} value={s.rating} aria-label={`${s.platform}: ${rf(s.rating)} de ${s.scale}`}></meter>}
+                  <p class="rate-count">{s.review_count === null ? '—' : `${nf(s.review_count)} reseñas`}{s.review_count !== null && s.review_count < 100 ? <span class="chip-warn">pocas</span> : null}</p>
+                  <a class="btn" href={s.url} rel="noopener noreferrer">Ver reseñas</a>
+                  {s.note && <details class="mini"><summary>Nota</summary><p>{s.note}</p></details>}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
       </div>
-    </section>
-  ))}
-  <p class="ref-line">Las calificaciones no son comparables entre plataformas: cada una tiene su público y su forma de calcular. No ordenamos los bancos por calificación.</p>
+    </div>
+  </fieldset>
 
-  <h2>Cómo leer las opiniones</h2>
-  <ul class="tips">
-    {tips.map((x) => <li class="tip"><h3>{x.t}</h3><p>{x.d}</p></li>)}
-  </ul>
+  <h2>Todos juntos</h2>
+  <div class="tbl-wrap">
+    <table class="cmp">
+      <thead><tr><th scope="col">Banco</th>{platforms.map((pl) => <th scope="col">{pl}</th>)}</tr></thead>
+      <tbody>
+        {emp.map((e) => (
+          <tr>
+            <th scope="row">{e.name}</th>
+            {platforms.map((pl) => {
+              const s = e.sources.find((x: any) => x.platform === pl);
+              return <td>{s && s.rating !== null ? <><strong>{rf(s.rating)}</strong><meter min="0" max="5" value={s.rating} aria-label={`${e.name} en ${pl}: ${rf(s.rating)} de 5`}></meter></> : <span class="rate-none">—</span>}</td>;
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="ref-line">Cada plataforma calcula distinto: no se pueden restar entre sí. No ordenamos los bancos.</p>
 
-  <details class="acc" id="por-que"><summary>Por qué no copiamos las reseñas</summary><div class="acc-b">
+  <details class="acc" id="leer"><summary>Cómo leer una reseña</summary><div class="acc-b">
+    <ul class="tips-mini">{tips.map(([ic, t, d]) => <li><span aria-hidden="true">{ic}</span> <strong>{t}.</strong> {d}</li>)}</ul>
+  </div></details>
+
+  <details class="acc" id="por-que"><summary>Por qué no copiamos reseñas</summary><div class="acc-b">
     <ul>
-      <li>Glassdoor no ofrece hoy una API pública. Según JobsPipe, la API de socios dejó de responder en agosto de 2025 y nunca hubo una clave de uso libre; según Zuplo, cerró el acceso público en 2021. <span class="tag t-voz">Lo dice la prensa</span> <span class="tag t-verificado-secundaria">verificado-secundaria</span></li>
-      <li>Los términos de uso de Glassdoor prohíben raspar o minar datos del servicio sin permiso por escrito y copiar su contenido. Los servicios que venden «datos de Glassdoor» leen sus páginas y cobran por ello. Las reseñas son de quienes las escribieron, con licencia para Glassdoor. Copiarlas aquí es una decisión legal que no hemos tomado. <a href="https://web.archive.org/web/20261116074029/https://www.glassdoor.com/about/terms/" rel="noopener noreferrer">Términos de Glassdoor (copia del Internet Archive)</a>.</li>
-      <li>Este sitio no carga nada de otras páginas y no cobra a nadie. Un enlace sí es una decisión tuya: al tocarlo sales de este sitio.</li>
+      <li>Glassdoor ya no ofrece API pública y sus términos prohíben raspar su contenido sin permiso. <a href="https://web.archive.org/web/20261116074029/https://www.glassdoor.com/about/terms/" rel="noopener noreferrer">Términos (copia del Internet Archive)</a></li>
+      <li>Las reseñas son de quienes las escribieron. Aquí solo mostramos calificaciones y enlaces.</li>
     </ul>
   </div></details>
 
-  <details class="acc" id="bloqueado"><summary>Lo que no pudimos leer</summary><div class="acc-b">
+  <details class="acc" id="bloqueado"><summary>Cifras que faltan (—)</summary><div class="acc-b">
     <ul>
-      {(data.blocked as any[]).map((b) => <li><a href={b.url} rel="noopener noreferrer">{b.platform}</a>: {b.what} <span class="tag t-sin-verificar">sin-verificar</span></li>)}
-      <li>Por eso las calificaciones de Glassdoor e Indeed salen de resultados de búsqueda y no de la lectura directa de sus páginas. Verifícalas en el sitio.</li>
+      {(data.blocked as any[]).map((b) => <li><a href={b.url} rel="noopener noreferrer">{b.platform}</a> pidió verificación contra robots y no se saltó.</li>)}
+      <li>Si abres esas páginas en tu navegador y pasas la verificación, podemos leer la cifra y sustituir la que sale de una búsqueda.</li>
     </ul>
   </div></details>
 
-  <p><a class="btn" href="/empleos/">Volver al banco de empleo</a> <a class="btn tonal" href="/transparencia/sueldos/">Ver sueldos ofrecidos</a></p>
+  <p><a class="btn tonal" href="/empleos/">Volver al banco de empleo</a> <a class="btn tonal" href="/transparencia/sueldos/">Ver sueldos ofrecidos</a></p>
 </Base>
