@@ -118,3 +118,7 @@ No se saltan. Evadir una verificación contra robots está fuera de lo que este 
 2. ¿Los enlaces a Glassdoor se dejan profundos (página de la empresa) o se apuntan a su portada, dado lo que dicen sus términos?
 3. ¿Se construye la opción BYOK (con las implicaciones de privacidad de arriba) o se prefiere la instantánea mensual?
 4. ¿Se hace de una vez la lectura manual de las cifras en tu navegador para sustituir las de resultados de búsqueda?
+
+## 10. Decisiones tomadas
+- **2026-11-23, dueño del proyecto:** se mantienen las calificaciones de Glassdoor e Indeed en `/empleos/opiniones/` mientras se dictamina. La pregunta de la afirmación T18 sigue abierta para la persona de prensa y propiedad intelectual: si basta con mostrar calificaciones agregadas atribuidas y fechadas y enlazar a las páginas de empresa, o si hay que dejar solo enlaces o apuntar a la portada de Glassdoor.
+- Sin cambios de código con esta decisión. Siguen sin resolver los puntos 2 a 4 de la sección 9.
