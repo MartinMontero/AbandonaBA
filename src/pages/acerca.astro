@@ -1,4 +1,5 @@
 ---
+import Disclaimer from '../components/Disclaimer.astro';
 import Base from '../layouts/Base.astro';
 import { siteConfig, legalReview, isReview, statusLabels } from '../data/site.config';
 ---
@@ -10,7 +11,7 @@ import { siteConfig, legalReview, isReview, statusLabels } from '../data/site.co
   </ul>
   <details class="acc" id="que-es" open><summary>Qué es y qué no es</summary><div class="acc-b">
   <p>Es un sitio gratuito con información y calculadoras para personas que trabajan en un banco en México. No es un despacho de abogados ni da consejo para tu caso.</p>
-  <p>{siteConfig.disclaimer}</p>
+  <p><Disclaimer /></p>
   </div></details>
   <details class="acc" id="verificamos"><summary>Cómo verificamos</summary><div class="acc-b">
   <p>Cada dato legal, de dinero o de fecha lleva una etiqueta:</p>

@@ -4,6 +4,7 @@ import { siteConfig, legalReview, financialReview, editorialReview, statusLabels
 import ReviewPanel from '../components/ReviewPanel.astro';
 import ShareRow from '../components/ShareRow.astro';
 import { canShare } from '../lib/share';
+import Disclaimer from '../components/Disclaimer.astro';
 import Art from '../components/Art.astro';
 
 export interface Source { title: string; url: string; read: string }
@@ -165,7 +166,7 @@ const hasToc = tocItems.length >= 3;
       <div class="foot-inner">
         <div>
           <p><strong>{siteConfig.footerLine}</strong></p>
-          <p>{siteConfig.disclaimer}</p>
+          <p><Disclaimer /></p>
         </div>
         <div>
           <p class="foot-links">

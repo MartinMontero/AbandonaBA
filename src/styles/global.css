@@ -377,6 +377,7 @@ ul.plain { list-style: none; padding: 0; }
 footer { margin-top: var(--space-6); background: var(--md-sys-color-surface-container); border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
 .foot-inner { max-width: var(--wide); margin: 0 auto; padding: var(--space-3) var(--space-2) var(--space-4); display: grid; gap: var(--space-3); font-size: var(--type-small); color: var(--md-sys-color-on-surface-variant); }
 .foot-inner p { margin: 0 0 var(--space-1); }
+.foot-inner > div:first-child { font-size: var(--type-body); line-height: 1.5; }
 .foot-links { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); }
 .foot-links a { color: var(--md-sys-color-on-surface); font-weight: 650; min-height: 1.5rem; display: inline-flex; align-items: center; }
 @media (min-width: 860px) { .foot-inner { grid-template-columns: 1.4fr 1fr; } }

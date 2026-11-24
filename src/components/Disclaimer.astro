@@ -1,0 +1,6 @@
+---
+// Aviso general. «PROFEDET» es un enlace a la página oficial de la Procuraduría.
+import { siteConfig } from '../data/site.config';
+const [before, after = ''] = siteConfig.disclaimer.split('PROFEDET');
+---
+{before}<a href={siteConfig.profedetUrl} rel="noopener noreferrer">PROFEDET</a>{after}

@@ -33,6 +33,7 @@ export const siteConfig = {
   assumptions: 'Estimación con valores de 2026. Pendiente de revisión legal. Lleva esta hoja a PROFEDET.',
   disclaimer: 'Esta página ofrece información general sobre derechos laborales. No es asesoría legal ni crea una relación abogado-cliente. No está afiliada a Banco Azteca ni a Grupo Salinas. Verifica siempre con PROFEDET o con un abogado laboral.',
   footerLine: 'No afiliado a Banco Azteca ni a Grupo Salinas.',
+  profedetUrl: 'https://www.gob.mx/profedet',
   heroTitle: 'Si decides irte, sal bien.',
   heroSub: 'Calcula primero. No firmes en blanco ni bajo presión. Elige la ruta que conserva tus derechos.',
   heroAlt: 'No renuncies ni firmes nada bajo presión sin calcular antes.',
