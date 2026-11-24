@@ -981,3 +981,31 @@ Data México (Secretaría de Economía), con datos de la ENOE del primer trimest
 **Pregunta para el abogado:** ¿Se puede citar con la advertencia de baja precisión?
 
 **Páginas:** /transparencia/sueldos/
+
+## T17 · verificado-secundaria · prioridad E
+
+Calificaciones de empleados que muestran otras plataformas el 23 de noviembre de 2026: Banco Azteca, 3.8 de 5 en Indeed (5,734 evaluaciones), 3.4 en Glassdoor (41 reseñas; otra página de Glassdoor México dice 3.2) y 4.3 en el listado de ofertas de Computrabajo; BBVA, 3.9 en Glassdoor en todo el mundo (3,136 reseñas) y 4.6 en Computrabajo; Santander México, 3.8 en Indeed (12,573); Banorte, 4.1 en Glassdoor (90); BanCoppel, 4.1 en Indeed (1,168); Banamex, 4.5 en Computrabajo y 1,274 reseñas en Glassdoor sin promedio leído.
+
+**Fuentes:** [Páginas de empresa de Indeed, Glassdoor y listados de Computrabajo](https://mx.indeed.com/cmp/Banco-Azteca) (leída 2026-11-23)
+
+**Conflicto abierto:** Las calificaciones de Indeed y Glassdoor llegaron por resultados de búsqueda: las dos plataformas bloquearon la lectura automática. Las cifras cambian y no son comparables entre plataformas.
+
+**Debe confirmar:** Leer cada página en un navegador y anotar la fecha.
+
+**Pregunta para el abogado:** ¿Es correcto mostrar calificaciones agregadas de terceros, atribuidas, con fecha y sin copiar reseñas?
+
+**Páginas:** /empleos/opiniones/
+
+## T18 · verificado-secundaria · prioridad E
+
+Glassdoor no tiene una API pública vigente: según JobsPipe, la API de socios dejó de responder en agosto de 2025 (HTTP 410) y nunca hubo clave de uso libre; según Zuplo, cerró el acceso público en 2021. Los servicios que ofrecen datos de Glassdoor (ScrapingBee, SearchAPI, Bright Data, OpenWeb Ninja) lo obtienen leyendo sus páginas y son de pago, con niveles gratuitos limitados.
+
+**Fuentes:** [JobsPipe y Zuplo (más las páginas de precios de cada proveedor)](https://jobspipe.dev/sources/glassdoor) (leída 2026-11-23)
+
+**Conflicto abierto:** Son páginas de los propios proveedores y blogs, no de Glassdoor. No leímos los términos de servicio de Glassdoor.
+
+**Debe confirmar:** Leer los términos de servicio de Glassdoor y de cada proveedor.
+
+**Pregunta para el abogado:** ¿Es viable usar datos de proveedores que leen páginas de Glassdoor sin violar sus términos, y qué puede mostrarse?
+
+**Páginas:** /empleos/opiniones/

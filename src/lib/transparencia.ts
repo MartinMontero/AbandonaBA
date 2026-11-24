@@ -14,6 +14,7 @@ export const voices: Record<string, string> = {
   empresa: 'Lo dice la empresa',
   medio: 'Lo dice la prensa',
   calculo: 'Cálculo propio',
+  plataforma: 'Lo dicen usuarios de una plataforma',
 };
 
 const val = (id: string) => (valores as any[]).find((v) => v.id === id);

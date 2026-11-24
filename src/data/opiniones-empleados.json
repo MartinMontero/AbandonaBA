@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "version": "2026-11-23",
+    "built_from_date": "2026-11-23"
+  },
+  "employers": [
+    {
+      "id": "banco-azteca",
+      "name": "Banco Azteca",
+      "sources": [
+        {
+          "platform": "Indeed",
+          "url": "https://mx.indeed.com/cmp/Banco-Azteca",
+          "rating": 3.8,
+          "scale": 5,
+          "review_count": 5734,
+          "via": "resultado de búsqueda",
+          "note": "La categoría más baja es el equilibrio entre vida laboral y personal: 3.3. Hay calificaciones por sucursal que van de 3.4 a 4.3.",
+          "read_date": "2026-11-23",
+          "tool": "websearch",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        },
+        {
+          "platform": "Glassdoor",
+          "url": "https://www.glassdoor.com/Reviews/Banco-Azteca-Reviews-E641153.htm",
+          "rating": 3.4,
+          "scale": 5,
+          "review_count": 41,
+          "via": "resultado de búsqueda",
+          "note": "Una página de Glassdoor México muestra 3.2 con más de 41 reseñas y 2.1 en equilibrio entre vida laboral y personal. Pocas reseñas: tómalo con cuidado.",
+          "read_date": "2026-11-23",
+          "tool": "websearch",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        },
+        {
+          "platform": "Computrabajo",
+          "url": "https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca",
+          "rating": 4.3,
+          "scale": 5,
+          "review_count": null,
+          "via": "lectura directa del listado de ofertas",
+          "note": "La calificación aparece junto a las ofertas publicadas a nombre de «Grupo Salinas».",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        }
+      ]
+    },
+    {
+      "id": "grupo-elektra",
+      "name": "Grupo Elektra",
+      "sources": [
+        {
+          "platform": "Indeed",
+          "url": "https://mx.indeed.com/cmp/Grupo-Elektra",
+          "rating": null,
+          "scale": 5,
+          "review_count": null,
+          "via": "resultado de búsqueda",
+          "note": "Existe la página de la empresa; no leímos su calificación.",
+          "read_date": "2026-11-23",
+          "tool": "websearch",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        }
+      ]
+    },
+    {
+      "id": "bbva-mexico",
+      "name": "BBVA México",
+      "sources": [
+        {
+          "platform": "Indeed",
+          "url": "https://mx.indeed.com/cmp/Bbva",
+          "rating": null,
+          "scale": 5,
+          "review_count": 7813,
+          "via": "resultado de búsqueda",
+          "note": "La página dice 7,813 evaluaciones; no confirmamos la calificación promedio.",
+          "read_date": "2026-11-23",
+          "tool": "websearch",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        },
+        {
+          "platform": "Glassdoor",
+          "url": "https://www.glassdoor.com/Reviews/BBVA-Reviews-E1237.htm",
+          "rating": 3.9,
+          "scale": 5,
+          "review_count": 3136,
+          "via": "resultado de búsqueda",
+          "note": "La cifra es de BBVA en todo el mundo, no solo de México.",
+          "read_date": "2026-11-23",
+          "tool": "websearch",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        },
+        {
+          "platform": "Computrabajo",
+          "url": "https://mx.computrabajo.com/trabajo-de-cajero-bbva",
+          "rating": 4.6,
+          "scale": 5,
+          "review_count": null,
+          "via": "lectura directa del listado de ofertas",
+          "note": "La calificación aparece junto a las ofertas de BBVA.",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        }
+      ]
+    },
+    {
+      "id": "santander-mexico",
+      "name": "Santander México",
+      "sources": [
+        {
+          "platform": "Indeed",
+          "url": "https://mx.indeed.com/cmp/Santander",
+          "rating": 3.8,
+          "scale": 5,
+          "review_count": 12573,
+          "via": "resultado de búsqueda",
+          "note": "",
+          "read_date": "2026-11-23",
+          "tool": "websearch",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        }
+      ]
+    },
+    {
+      "id": "banorte",
+      "name": "Banorte",
+      "sources": [
+        {
+          "platform": "Glassdoor",
+          "url": "https://www.glassdoor.com/Reviews/Banorte-Reviews-E8236.htm",
+          "rating": 4.1,
+          "scale": 5,
+          "review_count": 90,
+          "via": "resultado de búsqueda",
+          "note": "La página no muestra fecha: puede estar desactualizada.",
+          "read_date": "2026-11-23",
+          "tool": "websearch",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        }
+      ]
+    },
+    {
+      "id": "banamex",
+      "name": "Banamex",
+      "sources": [
+        {
+          "platform": "Glassdoor",
+          "url": "https://www.glassdoor.com/Reviews/Banamex-Reviews-E7833.htm",
+          "rating": null,
+          "scale": 5,
+          "review_count": 1274,
+          "via": "resultado de búsqueda",
+          "note": "Hay 1,274 reseñas; no encontramos la calificación promedio.",
+          "read_date": "2026-11-23",
+          "tool": "websearch",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        },
+        {
+          "platform": "Computrabajo",
+          "url": "https://mx.computrabajo.com/trabajo-de-cajero-banamex",
+          "rating": 4.5,
+          "scale": 5,
+          "review_count": null,
+          "via": "lectura directa del listado de ofertas",
+          "note": "La calificación aparece junto a las ofertas de Banamex.",
+          "read_date": "2026-11-23",
+          "tool": "chrome",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        }
+      ]
+    },
+    {
+      "id": "bancoppel",
+      "name": "BanCoppel",
+      "sources": [
+        {
+          "platform": "Indeed",
+          "url": "https://mx.indeed.com/cmp/Bancoppel",
+          "rating": 4.1,
+          "scale": 5,
+          "review_count": 1168,
+          "via": "resultado de búsqueda",
+          "note": "La cifra cambia según la página de Indeed.",
+          "read_date": "2026-11-23",
+          "tool": "websearch",
+          "status": "verificado-secundaria",
+          "voice": "plataforma"
+        }
+      ]
+    }
+  ],
+  "blocked": [
+    {
+      "platform": "Glassdoor",
+      "url": "https://www.glassdoor.com/Reviews/Banco-Azteca-Reviews-E641153.htm",
+      "what": "Pantalla «Just a moment...» (verificación contra robots) al abrirla con un navegador controlado por programa. No se saltó.",
+      "read_date": "2026-11-23",
+      "tool": "chrome"
+    },
+    {
+      "platform": "Indeed",
+      "url": "https://mx.indeed.com/cmp/Banco-Azteca",
+      "what": "«Additional Verification Required» (Cloudflare). No se saltó.",
+      "read_date": "2026-11-23",
+      "tool": "chrome"
+    }
+  ],
+  "api": {
+    "glassdoor_official": {
+      "source_name": "JobsPipe: Glassdoor API key, why there is not one",
+      "source_url": "https://jobspipe.dev/sources/glassdoor",
+      "read_date": "2026-11-23",
+      "tool": "powershell",
+      "status": "verificado-secundaria",
+      "voice": "medio",
+      "text_es": "Según JobsPipe, la API oficial de Glassdoor dejó de responder en agosto de 2025 (error HTTP 410) y nunca hubo una clave de uso libre. Según el artículo de Zuplo, Glassdoor cerró el acceso público a su API en 2021.",
+      "second_url": "https://dev.to/zuplo/what-is-the-glassdoor-api-how-to-use-it-and-alternatives-35d7"
+    }
+  }
+}

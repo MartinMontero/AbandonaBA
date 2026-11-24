@@ -98,3 +98,18 @@ Ronda de investigación profunda. Se leyeron completos los reportes y estados fi
 | Patrimonio del accionista mayoritario en una clasificación reconocida | (sin enlace) | Decisión editorial: no se publica sin método y fecha verificados |
 
 Revisión editorial pendiente de la persona que dictamina: cómo se nombra a las personas en `/transparencia/quien-es-quien/` (solo cargos de la empresa; no se nombra a familiares).
+
+## Opiniones de empleados (2026-11-23)
+
+| Pendiente | Enlace directo | Qué pasó |
+|---|---|---|
+| Calificación y reseñas de Banco Azteca en Glassdoor | https://www.glassdoor.com/Reviews/Banco-Azteca-Reviews-E641153.htm | «Just a moment…» (verificación contra robots); no se saltó. La cifra de 3.4 con 41 reseñas viene de un resultado de búsqueda; otra página dice 3.2 |
+| Calificación y reseñas de Banco Azteca en Indeed | https://mx.indeed.com/cmp/Banco-Azteca | «Additional Verification Required»; no se saltó. 3.8 con 5,734 evaluaciones viene de búsqueda |
+| BBVA en Glassdoor (México, no mundial) | https://www.glassdoor.com/Reviews/BBVA-Reviews-E1237.htm | La cifra de 3.9 es mundial. El enlace usa el número de empresa que aparece en los resultados |
+| BBVA en Indeed (promedio) | https://mx.indeed.com/cmp/Bbva | Hay 7,813 evaluaciones; no se leyó el promedio |
+| Santander México en Indeed | https://mx.indeed.com/cmp/Santander | 3.8 con 12,573 evaluaciones de un resultado de búsqueda |
+| Banorte en Glassdoor (fecha de la cifra) | https://www.glassdoor.com/Reviews/Banorte-Reviews-E8236.htm | 4.1 con 90 reseñas, sin fecha |
+| Banamex en Glassdoor (promedio) | https://www.glassdoor.com/Reviews/Banamex-Reviews-E7833.htm | 1,274 reseñas, sin promedio leído |
+| BanCoppel en Indeed | https://mx.indeed.com/cmp/Bancoppel | 4.1 con 1,168 evaluaciones; la cifra cambia según la página |
+| Santander, Banorte y BanCoppel en la otra plataforma | https://mx.indeed.com/cmp/Banco-Azteca | No se encontraron páginas |
+| Términos de servicio de Glassdoor y de cada proveedor de datos | https://www.openwebninja.com/api/real-time-glassdoor-data | No se leyeron; necesarios antes de la fase 1 (ver docs/DESIGN-OPINIONES.md) |

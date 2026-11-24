@@ -46,7 +46,7 @@ const sources = [
   <details class="acc" id="leer"><summary>Cómo leer esta sección</summary><div class="acc-b">
     <p>Cada dato lleva dos etiquetas. La primera dice <strong>quién lo dice</strong>. La segunda dice <strong>qué tanto lo verificamos</strong>.</p>
     <ul>
-      {Object.entries(voices).map(([k, v]) => <li><span class="tag t-voz">{v}</span> {k === 'calculo' ? 'Una cuenta que hicimos nosotros, con la fórmula a la vista.' : k === 'empresa' ? 'Viene de un documento de la empresa o de una declaración suya.' : k === 'medio' ? 'Lo vimos en un medio de comunicación.' : k === 'tribunal' ? 'Viene de una resolución de un tribunal.' : 'Viene de un documento de una autoridad.'}</li>)}
+      {Object.entries(voices).map(([k, v]) => <li><span class="tag t-voz">{v}</span> {k === 'calculo' ? 'Una cuenta que hicimos nosotros, con la fórmula a la vista.' : k === 'empresa' ? 'Viene de un documento de la empresa o de una declaración suya.' : k === 'plataforma' ? 'Calificaciones de usuarios que publica otra plataforma, como Indeed o Glassdoor.' : k === 'medio' ? 'Lo vimos en un medio de comunicación.' : k === 'tribunal' ? 'Viene de una resolución de un tribunal.' : 'Viene de un documento de una autoridad.'}</li>)}
     </ul>
     <p>Lo que una parte solo afirma se escribe como afirmación suya, nunca como hecho. Cuando algo no está publicado o no lo encontramos, la página dice «no publicado» y qué buscamos.</p>
   </div></details>
