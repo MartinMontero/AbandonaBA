@@ -1,20 +1,29 @@
 ---
 import Base from '../../layouts/Base.astro';
 import TranspNote from '../../components/TranspNote.astro';
-import { T, n } from '../../lib/transparencia';
-const c = T.compensation;
-const sources = [{ title: c.source_name, url: c.source_url, read: c.read_date }];
+import { T, n, minWageDaily } from '../../lib/transparencia';
+import { yearsOfWork } from '../../lib/equivalencias';
+const c = T.compensation.bank;
+const g = T.compensation.group;
+const years = yearsOfWork(g.amount_mdp * 1_000_000, minWageDaily);
+const sources = [
+  { title: g.source_name, url: g.source_url, read: g.read_date },
+  { title: c.source_name, url: c.source_url, read: c.read_date },
+];
 ---
-<Base art="briefcase" eyebrow="Transparencia" title="¿Cuánto ganan los jefes?" description="Lo que Banco Azteca publica sobre el pago a su Presidente del Consejo, su Director General y sus directores." path="/transparencia/directivos/" legal transp claims={['T03']} sources={sources} lead>
+<Base art="briefcase" eyebrow="Transparencia" title="¿Cuánto ganan los jefes?" description="Lo que Grupo Elektra y Banco Azteca publican sobre el pago a consejeros, directivos y personas relacionadas." path="/transparencia/directivos/" legal transp claims={['T03','T11']} sources={sources} lead>
   <TranspNote />
 
   <div class="panel">
-    <h2>Lo que encontramos</h2>
-    <p>El banco publica cada año un reporte de su sistema de remuneración. El de 2025 dice que el sistema cubre al <strong>Presidente del Consejo, al Director General y a 29 directores</strong> de las áreas de negocio y operativas. <span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${c.status}`}>{c.status}</span></p>
-    <p><strong>No publica cantidades en pesos</strong>, ni por persona ni en total. Da porcentajes y no dice sobre qué base están calculados. Por eso no los convertimos a pesos.</p>
+    <h2>El total que publica Grupo Elektra</h2>
+    <p>En su Reporte Anual 2025, Grupo Elektra dice que la cantidad total establecida por la empresa y sus subsidiarias para el ejercicio de 2025, a <strong>consejeros, directivos relevantes e individuos con el carácter de personas relacionadas</strong>, por los servicios prestados por ellos en cualquier carácter, fue de aproximadamente <strong>{n(g.amount_mdp, 1)} millones de pesos</strong>. <span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${g.status}`}>{g.status}</span> <a href={g.source_url} rel="noopener noreferrer">Fuente, p. 125 del PDF</a></p>
+    <p><strong>Es un total de varias personas, no un sueldo.</strong> El reporte no dice cuántas personas lo reciben ni cómo se reparte. Tampoco separa lo que corresponde al banco. Dice que la cantidad se determinó considerando los servicios prestados, los logros de la compañía y diversos eventos que mejoraron su estructura financiera, y que la compensación variable fue autorizada por el Comité de Prácticas Societarias y por el Consejo de Administración.</p>
+    <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> {n(g.amount_mdp * 1_000_000)} pesos ÷ ({n(minWageDaily, 2)} × 365) = {n(years)} años de trabajo al salario mínimo general de 2026. Es una comparación de tamaños de un total de varias personas, no una acusación.</p>
   </div>
 
-  <h2>Los porcentajes que publica</h2>
+  <h2>Lo que publica el banco por separado</h2>
+  <p>El reporte de su sistema de remuneración de 2025 dice que el sistema cubre al <strong>Presidente del Consejo, al Director General y a 29 directores</strong> de las áreas de negocio y operativas. <span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${c.status}`}>{c.status}</span></p>
+  <p><strong>No publica cantidades en pesos.</strong> Da porcentajes y no dice sobre qué base están calculados, por eso no los convertimos a pesos.</p>
   <div class="tbl-wrap">
     <table class="rt">
       <thead><tr><th>Concepto</th><th>Lo que dice el reporte de 2025</th></tr></thead>
@@ -30,13 +39,17 @@ const sources = [{ title: c.source_name, url: c.source_url, read: c.read_date }]
   </div>
   <p class="ref-line">Última actualización del documento, según el propio banco: {c.last_update}. El reporte describe un bono anual con dos partes: el resultado del negocio y el resultado de cada persona.</p>
 
-  <h2>Por qué «no publicado» no es lo mismo que «no existe»</h2>
-  <p>Que un reporte no dé pesos no significa que no se pague ni que se oculte. Significa que en este documento no están. Otros documentos, como el informe anual o los avisos a la bolsa, podrían traer más. No los leímos en esta ronda. <span class="tag t-sin-verificar">sin-verificar</span></p>
+  <h2>Cómo leer estas dos cifras</h2>
+  <ul>
+    <li>Las dos son agregados. Ninguna es el sueldo de una persona y no se pueden comparar entre sí: una es de Grupo Elektra y sus subsidiarias; la otra, de un sistema de pago del banco expresado en porcentajes.</li>
+    <li>Que un documento no dé pesos no significa que no existan. Significa que ese documento no los trae.</li>
+    <li>No estimamos cuánto gana una persona ni publicamos el pago individual de nadie: no encontramos ese dato en los documentos que leímos.</li>
+  </ul>
 
-  <details class="acc" id="no-hacemos"><summary>Lo que no hacemos</summary><div class="acc-b">
+  <details class="acc" id="no-hacemos"><summary>Lo que no encontramos</summary><div class="acc-b">
     <ul>
-      <li>No estimamos cuánto gana una persona.</li>
-      <li>No mostramos un porcentaje como si fuera un sueldo.</li>
+      <li>El pago individual de ningún consejero o director, ni el número de personas detrás del total de {n(g.amount_mdp, 1)} millones.</li>
+      <li>Los avisos a la bolsa y la asamblea de accionistas podrían traer más detalle. No los leímos. <span class="tag t-sin-verificar">sin-verificar</span></li>
       <li>Para comparar con el sueldo de una persona de caja, mira <a href="/transparencia/sueldos/">Sueldos</a> y <a href="/transparencia/equivalencias/">Compáralo tú mismo</a>.</li>
     </ul>
   </div></details>

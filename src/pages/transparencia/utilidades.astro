@@ -2,52 +2,72 @@
 import Base from '../../layouts/Base.astro';
 import Cifra from '../../components/Cifra.astro';
 import TranspNote from '../../components/TranspNote.astro';
-import { fin, n } from '../../lib/transparencia';
-const q1 = fin('f01'), q2 = fin('f02'), h1 = fin('f03'), d1 = fin('f10'), d2 = fin('f11'), imor = fin('f08'), icap = fin('f09');
-const divTotal = d1.value + d2.value;
+import { T, annual, latest, n } from '../../lib/transparencia';
+const peers = T.peers as any[];
+const divs = annual.filter((a: any) => a.dividends !== null && a.year >= 2022);
+const divSum = divs.reduce((s: number, a: any) => s + a.dividends, 0);
+const netSum = divs.reduce((s: number, a: any) => s + a.net_income, 0);
 const sources = [
-  { title: 'Banco Azteca: reporte al 31 de marzo de 2026', url: q1.source_url, read: q1.read_date },
-  { title: 'Banco Azteca: reporte al 30 de junio de 2026', url: h1.source_url, read: h1.read_date },
+  ...annual.map((a: any) => ({ title: a.source_name, url: a.source_url, read: a.read_date })),
+  { title: latest.source_name, url: latest.source_url, read: latest.read_date },
+  ...peers.filter((p) => p.id !== 'banco-azteca').map((p) => ({ title: p.source_name, url: p.source_url, read: p.read_date })),
 ];
-const sign = (v: number) => (v < 0 ? 'pérdida' : 'utilidad');
+const pc = (v: number | null | undefined, d = 1) => (v === null || v === undefined ? 'no leído' : `${n(v, d)}%`);
+const cell = (v: number | null | undefined) => (v === null || v === undefined ? 'no leído' : n(v));
 ---
-<Base art="spark" eyebrow="Transparencia" title="¿Cuánto gana el banco?" description="La utilidad o pérdida de Banco Azteca en 2026, los dividendos que pagó y dos señales de salud, con sus periodos." path="/transparencia/utilidades/" legal transp claims={['T01','T02']} sources={sources} lead>
+<Base art="spark" eyebrow="Transparencia" title="¿Cuánto gana el banco?" description="La utilidad de Banco Azteca de 2021 a 2026, los dividendos que pagó y una comparación con otros cuatro bancos, con las cifras de sus propios reportes." path="/transparencia/utilidades/" legal transp claims={['T01','T02','T14']} sources={sources} lead>
   <TranspNote />
 
-  <h2>Resultado neto de 2026</h2>
-  <p>La utilidad neta es lo que queda después de todos los gastos e impuestos. Si es negativa, el banco la llama pérdida neta. Estas son las cifras del propio banco, cada una con su periodo.</p>
+  <h2>Utilidad neta por año</h2>
+  <p>La utilidad neta es lo que queda después de todos los gastos e impuestos. Cifras en millones de pesos, del propio banco, sin ajustar por inflación.</p>
   <div class="tbl-wrap">
     <table class="rt">
-      <thead><tr><th>Periodo</th><th>Resultado</th><th>Quién lo dice</th></tr></thead>
+      <thead><tr><th>Año</th><th>Utilidad neta</th><th>Dividendos pagados</th><th>Morosidad al cierre</th><th>Capitalización al cierre</th></tr></thead>
       <tbody>
-        <tr><th scope="row">{q1.period}</th><td>{sign(q1.value)} de {n(q1.value)} millones de pesos</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${q1.status}`}>{q1.status}</span> <a href={q1.source_url} rel="noopener noreferrer">Fuente</a></td></tr>
-        <tr><th scope="row">{q2.period}</th><td>{sign(q2.value)} de {n(q2.value)} millones de pesos</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${q2.status}`}>{q2.status}</span> <a href={q2.source_url} rel="noopener noreferrer">Fuente</a></td></tr>
-        <tr><th scope="row">{h1.period}</th><td>{sign(h1.value)} de {n(h1.value)} millones de pesos</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${h1.status}`}>{h1.status}</span> <a href={h1.source_url} rel="noopener noreferrer">Fuente</a></td></tr>
+        {annual.map((a: any) => (
+          <tr><th scope="row">{a.year}</th><td>{n(a.net_income)}</td><td>{a.dividends === null ? 'no leído' : n(a.dividends)}</td><td>{pc(a.imor_pct)}</td><td>{pc(a.icap_pct, 2)}</td></tr>
+        ))}
+        <tr><th scope="row">Enero a septiembre de 2026</th><td>{n(latest.net_ytd)} (en el mismo periodo de 2025: {n(latest.net_ytd_prev)})</td><td>{n(latest.dividends_2026.reduce((s: number, d: any) => s + d.amount, 0))}</td><td>{pc(latest.imor_pct)}</td><td>{pc(latest.icap_pct, 2)}</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="ref-line">El reporte explica que en el segundo trimestre pesaron más el dinero apartado por riesgo de crédito y los gastos de publicidad, y que cambió la valuación del oro. Lo dice el banco; no lo verificamos en otra fuente.</p>
+  <p><span class="tag t-voz">Lo dice la empresa</span> <span class="tag t-verificado-primaria">verificado-primaria</span> La morosidad es la parte de la cartera con pagos atrasados (etapa 3). La capitalización es qué tanto capital respalda los riesgos del banco. En 2025 la morosidad cerró en 6.3%; el banco dice que en 2026 canceló {n(latest.stage3_writeoffs_ytd)} millones de pesos de cartera en etapa 3 que ya estaba reservada al 100%, lo que no afecta los resultados.</p>
 
-  <h2>Dividendos pagados en 2026</h2>
-  <p>Un dividendo es dinero que la empresa reparte a sus accionistas.</p>
-  <ul class="facts">
-    <Cifra big={n(d1.value)} what="millones de pesos de dividendo" period={d1.period} voice={d1.voice} status={d1.status} url={d1.source_url} />
-    <Cifra big={n(d2.value)} what="millones de pesos de dividendo" period={d2.period} voice={d2.voice} status={d2.status} url={d2.source_url} />
-  </ul>
-  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> {n(d1.value)} + {n(d2.value)} = {n(divTotal)} millones de pesos en dos pagos, de enero y abril de 2026. Se muestran junto al resultado de enero a junio ({n(h1.value)} millones) como dos cifras de periodos distintos. Un dividendo no tiene que ser igual a la utilidad de un periodo. Los reportes no dicen a quién se pagaron.</p>
+  <h2>Los últimos cinco trimestres</h2>
+  <div class="tbl-wrap">
+    <table class="rt">
+      <thead><tr><th>Trimestre</th><th>Resultado</th></tr></thead>
+      <tbody>{latest.quarterly_net.map((q: any) => <tr><th scope="row">{q.period}</th><td>{q.value < 0 ? 'pérdida' : 'utilidad'} de {n(Math.abs(q.value))} millones de pesos</td></tr>)}</tbody>
+    </table>
+  </div>
+  <p class="ref-line">Fuente: el resumen financiero del 3T 2026 del propio banco. En el segundo trimestre de 2026 el reporte explica que pesaron el dinero apartado por riesgo de crédito y los gastos de publicidad, y que cambió la valuación del oro.</p>
 
-  <h2>Dos señales de salud</h2>
-  <ul class="facts">
-    <Cifra big={`${imor.value}%`} what="índice de morosidad (parte de la cartera con pagos atrasados)" period="Al 30 de junio de 2026. En junio de 2025 era 4.1%." voice={imor.voice} status={imor.status} url={imor.source_url} />
-    <Cifra big={`${icap.value}%`} what="índice de capitalización (qué tanto capital respalda los riesgos)" period="Al 30 de junio de 2026. Era 15.54% en marzo de 2026 y 14.71% en junio de 2025." voice={icap.voice} status={icap.status} url={icap.source_url} />
+  <h2>Dividendos</h2>
+  <p>Un dividendo es dinero que la empresa reparte a sus accionistas. El banco informa estos pagos: 2022, {n(annual[1].dividends)} millones; 2023, {n(annual[2].dividends)}; 2024, {n(annual[3].dividends)}; 2025, {n(annual[4].dividends)}; y {n(latest.dividends_2026.reduce((s: number, d: any) => s + d.amount, 0))} millones en enero y abril de 2026.</p>
+  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> De 2022 a 2025 el banco pagó {n(divSum)} millones de pesos en dividendos y tuvo {n(netSum)} millones de utilidad neta: {n((divSum / netSum) * 100, 1)}%. Un dividendo no tiene que corresponder a la utilidad del mismo año. Los reportes no dicen a quién se pagaron.</p>
+
+  <h2>Comparación con otros bancos, tercer trimestre de 2026</h2>
+  <p>Cifras de los propios reportes de cada banco, publicados en la Bolsa Mexicana de Valores o en su sitio. Los bancos tienen negocios distintos: Banco Azteca presta sobre todo crédito al consumo. «no leído» significa que no encontramos la cifra en el documento.</p>
+  <div class="tbl-wrap">
+    <table class="rt">
+      <thead><tr><th>Banco</th><th>Utilidad neta del trimestre (millones)</th><th>Morosidad</th><th>Capitalización</th><th>Fuente</th></tr></thead>
+      <tbody>
+        {peers.map((p: any) => (
+          <tr><th scope="row">{p.name}{p.scope === 'grupo financiero' ? ' (cifras del grupo financiero)' : ''}</th><td>{cell(p.net_q3)}</td><td>{pc(p.imor_pct)}</td><td>{pc(p.icap_pct, 2)}</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${p.status}`}>{p.status}</span> <a href={p.source_url} rel="noopener noreferrer">Fuente</a></td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li>BBVA México informa que su rentabilidad sobre capital (ROE) de enero a septiembre de 2026 fue {pc(peers[1].roe_9m_pct)}. Banorte informa {pc(peers[3].roe_9m_pct)} para el grupo y {pc(peers[3].roe_bank_9m_pct)} para el banco. Banamex informa {pc(peers[4].roe_q3_pct)} en el trimestre. Cada banco calcula el ROE a su manera: no los restamos entre sí.</li>
+    <li>No incluimos Santander México en morosidad y capitalización ni BanCoppel: no pudimos leer esas cifras en sus documentos.</li>
   </ul>
-  <p class="ref-line">Para saber si son altas o bajas hay que compararlas con otros bancos y con el mínimo que exige la regulación. No lo hicimos en esta ronda.</p>
 
   <details class="acc" id="no-sabemos"><summary>Lo que no incluimos todavía</summary><div class="acc-b">
     <ul>
-      <li>Resultados de años anteriores y de otros bancos con las mismas cifras: no los leímos. <span class="tag t-sin-verificar">sin-verificar</span></li>
-      <li>Resultados de Grupo Elektra y de otras empresas del grupo.</li>
-      <li>Cifras ajustadas por inflación. Todas las de esta página son nominales (en pesos de cada fecha).</li>
+      <li>La rentabilidad (ROE) de Banco Azteca: su resumen financiero la trae sobre cifras no consolidadas y con una tabla que no pudimos leer con certeza.</li>
+      <li>Resultados de otras empresas del grupo. De Grupo Elektra solo usamos lo que su reporte anual dice con palabras (plantilla, remuneración, dividendos, impuestos); no leímos con certeza su tabla de utilidad neta.</li>
+      <li>Cifras ajustadas por inflación. Todas son nominales (en pesos de cada fecha).</li>
     </ul>
   </div></details>
 </Base>

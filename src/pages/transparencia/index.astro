@@ -3,35 +3,37 @@ import Base from '../../layouts/Base.astro';
 import Art from '../../components/Art.astro';
 import Cifra from '../../components/Cifra.astro';
 import TranspNote from '../../components/TranspNote.astro';
-import { T, fin, mdp, n, voices } from '../../lib/transparencia';
+import { T, latest, ann, n, voices } from '../../lib/transparencia';
 const doors = [
-  { href: '/transparencia/dinero/', t: '¿De dónde sale el dinero?', d: 'Intereses, comisiones y lo que el banco aparta por créditos atrasados.', art: 'store' },
-  { href: '/transparencia/utilidades/', t: '¿Cuánto gana el banco?', d: 'Utilidad o pérdida, dividendos y señales de salud, con sus periodos.', art: 'spark' },
-  { href: '/transparencia/directivos/', t: '¿Cuánto ganan los jefes?', d: 'Lo que el banco publica sobre su sistema de pago a directivos.', art: 'briefcase' },
-  { href: '/transparencia/sueldos/', t: '¿Cuánto pagan al personal?', d: 'Sueldos ofrecidos en ofertas de empleo, junto al salario mínimo.', art: 'clipboard' },
-  { href: '/transparencia/impuestos/', t: 'Impuestos y tribunales', d: 'Lo que reclamó la autoridad, lo que resolvieron los tribunales y lo que responde la empresa.', art: 'shield' },
-  { href: '/transparencia/quien-es-quien/', t: '¿Quién es quién?', d: 'Cómo se relacionan el banco y el grupo, según los propios documentos.', art: 'steps' },
+  { href: '/transparencia/dinero/', t: '¿De dónde sale el dinero?', d: 'Cinco años de intereses, reservas y comisiones del banco.', art: 'store' },
+  { href: '/transparencia/utilidades/', t: '¿Cuánto gana el banco?', d: 'Utilidad por año, dividendos y una comparación con otros bancos.', art: 'spark' },
+  { href: '/transparencia/directivos/', t: '¿Cuánto ganan los jefes?', d: 'Lo que el banco y Grupo Elektra publican sobre pagos a directivos.', art: 'briefcase' },
+  { href: '/transparencia/sueldos/', t: '¿Cuánto pagan al personal?', d: 'Ofertas de empleo, plantilla y salario mínimo.', art: 'clipboard' },
+  { href: '/transparencia/impuestos/', t: 'Impuestos y tribunales', d: 'Lo que dicen la autoridad, los tribunales y la propia empresa.', art: 'shield' },
+  { href: '/transparencia/quien-es-quien/', t: '¿Quién es quién?', d: 'Cómo se relacionan el banco y el grupo, según sus documentos.', art: 'steps' },
   { href: '/transparencia/linea-de-tiempo/', t: 'Línea de tiempo', d: 'Los hechos con fecha, en orden.', art: 'book' },
   { href: '/transparencia/equivalencias/', t: 'Compáralo tú mismo', d: 'Convierte una cantidad en años de salario mínimo.', art: 'spark' },
-  { href: '/transparencia/como-verificarlo/', t: 'Cómo verificarlo tú', d: 'Dónde buscar cada documento y qué no prueba.', art: 'help' },
+  { href: '/transparencia/como-verificarlo/', t: 'Cómo verificarlo tú', d: 'Enlaces directos a cada documento y qué no prueba.', art: 'help' },
   { href: '/transparencia/metodo/', t: 'Método y derecho de réplica', d: 'Las reglas que seguimos y cómo pedir una corrección.', art: 'book' },
 ];
-const f03 = fin('f03'), f07 = fin('f07');
-const ag = T.tax.agreement_2026;
+const a25 = ann(2025);
+const ag = T.tax.elektra;
+const g = T.compensation.group;
 const sources = [
-  { title: 'Banco Azteca: reporte de la Administración al 30 de junio de 2026', url: f03.source_url, read: f03.read_date },
+  { title: latest.source_name, url: latest.source_url, read: latest.read_date },
+  { title: g.source_name, url: g.source_url, read: g.read_date },
   { title: ag.source_name, url: ag.source_url, read: ag.read_date },
 ];
 ---
-<Base art="shield" eyebrow="Para todos" title="Los documentos hablan. Aquí están, con su fuente y su fecha." description="Qué dicen los documentos públicos sobre cómo gana dinero Banco Azteca, qué publica sobre lo que paga a sus directivos y a su personal, y qué dicen las autoridades sobre los impuestos del grupo." path="/transparencia/" legal transp claims={['T01','T07']} sources={sources} lead>
+<Base art="shield" eyebrow="Para todos" title="Los documentos hablan. Aquí están, con su fuente y su fecha." description="Qué dicen los documentos públicos sobre cómo gana dinero Banco Azteca, qué publican el banco y su grupo sobre lo que pagan a directivos y a su personal, y qué dicen la autoridad y la empresa sobre los impuestos." path="/transparencia/" legal transp claims={['T01','T11','T12','T15']} sources={sources} lead>
   <TranspNote />
 
   <h2>Lo esencial</h2>
   <ul class="facts">
-    <Cifra big={n(f03.value)} what="millones de pesos de utilidad neta del banco, de enero a junio de 2026" period="Es una cifra acumulada de seis meses." voice={f03.voice} status={f03.status} url={f03.source_url} />
-    <Cifra big={n(f07.value)} what="millones de pesos de captación (dinero de clientes en el banco)" period="Al 30 de junio de 2026." voice={f07.voice} status={f07.status} url={f07.source_url} />
-    <Cifra big={n(ag.total_mdp)} what="millones de pesos: el acuerdo de pago con el SAT anunciado en enero de 2026" period="En 18 pagos. Según la prensa." voice={ag.voice} status={ag.status} url={ag.source_url} />
-    <Cifra big="No publicado" what="Sueldos de directivos en pesos" period="El banco da porcentajes, sin base." voice="empresa" status="verificado-primaria" url={T.compensation.source_url} />
+    <Cifra big={n(latest.net_ytd)} what="millones de pesos de utilidad neta del banco, de enero a septiembre de 2026" period={`En enero a septiembre de 2025 fueron ${n(latest.net_ytd_prev)} millones.`} voice={latest.voice} status={latest.status} url={latest.source_url} />
+    <Cifra big={n(a25.employees_direct)} what="personas contratadas directamente por el banco, al cierre de 2025" period="Eran 16,036 al cierre de 2022." voice={a25.voice} status={a25.status} url={a25.notes_url} />
+    <Cifra big={`${n(g.amount_mdp, 1)}`} what="millones de pesos: total de pagos a consejeros, directivos relevantes y personas relacionadas de Grupo Elektra en 2025" period="Es un total de varias personas, no un sueldo." voice={g.voice} status={g.status} url={g.source_url} />
+    <Cifra big={n(ag.total_mdp)} what="millones de pesos que Grupo Elektra dice deber pagar en parcialidades al SAT por sus juicios de ISR resueltos" period="Pago inicial de 6,475 millones el 29 de enero de 2026." voice={ag.voice} status={ag.status} url={ag.source_url} />
   </ul>
 
   <h2>¿Qué quieres saber?</h2>

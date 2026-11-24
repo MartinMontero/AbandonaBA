@@ -21,5 +21,8 @@ export const minWageDaily: number = val('minwage_general').value;
 export const minWageBorder: number = val('minwage_border').value;
 export const minWageSource = val('minwage_general');
 
-export const fin = (id: string) => (T.financials as any[]).find((f) => f.id === id);
+export const annual: any[] = T.bank.annual;
+export const latest: any = T.bank.latest;
+export const ann = (year: number) => annual.find((a) => a.year === year);
+export const median = (xs: number[]) => { const s = [...xs].sort((a, b) => a - b); const m = Math.floor(s.length / 2); return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
 export const timeline = [...(T.timeline as any[])].sort((a, b) => a.date.localeCompare(b.date));

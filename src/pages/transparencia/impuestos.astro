@@ -4,23 +4,27 @@ import TranspNote from '../../components/TranspNote.astro';
 import { T, n, voices, minWageDaily } from '../../lib/transparencia';
 import { yearsOfWork } from '../../lib/equivalencias';
 const t = T.tax;
+const ek = t.elektra;
+const so = t.sat_open;
 const y = (m: number) => n(yearsOfWork(m * 1_000_000, minWageDaily));
+const sumBy = (name: string) => so.reductions.rows.filter((r: any) => r.entity.startsWith(name)).reduce((s: number, r: any) => s + r.amount_mxn, 0);
 const rows = [
   { when: '20 de marzo de 2024', who: t.sat_2024, say: `Según el SAT, había adeudos pendientes de más de ${n(t.sat_2024.pending_total_mdp)} millones de pesos: más de ${n(t.sat_2024.pending_old_cases_mdp)} por juicios anteriores o en proceso (monto actualizado) y más de ${n(t.sat_2024.pending_new_credits_mdp)} por créditos emitidos en la administración actual. En los siete juicios de consolidación fiscal, el SAT habla de ${n(t.sat_2024.consolidation_original_mdp)} millones originales, que subieron a ${n(t.sat_2024.consolidation_updated_mdp)} millones con la actualización. También dice que de 2019 a 2024 se pagaron ${n(t.sat_2024.paid_total_mdp)} millones por auditorías y juicios ganados.`, mdp: t.sat_2024.pending_total_mdp },
-  { when: 'Noviembre de 2025', who: t.rulings_2025, say: `Según la prensa, la Suprema Corte dejó firmes sentencias por unos ${n(t.rulings_2025.total_mdp)} millones de pesos (${n(t.rulings_2025.elektra_mdp)} de Elektra y ${n(t.rulings_2025.tv_azteca_mdp)} de TV Azteca). AP informó que rechazó ${t.rulings_2025.amparos_rejected} de ${t.rulings_2025.amparos_total} amparos en casos de más de ${t.rulings_2025.usd_reported_billion} mil millones de dólares.`, mdp: t.rulings_2025.total_mdp },
-  { when: '29 de enero de 2026', who: t.agreement_2026, say: `Grupo Salinas anunció un acuerdo de pago por ${n(t.agreement_2026.total_mdp)} millones de pesos en ${t.agreement_2026.installments} pagos. La prensa informa un primer pago de unos ${n(t.agreement_2026.first_payment_mdp)} millones y ${n(t.agreement_2026.paid_may_2026_mdp)} millones pagados en mayo. ${t.agreement_2026.sat_says_es}`, mdp: t.agreement_2026.total_mdp },
+  { when: '13 de noviembre de 2025', who: ek, say: `Grupo Elektra dice en su reporte anual que los juicios fiscales contra las liquidaciones de ISR de los ejercicios ${ek.years.join(', ')} fueron «resueltos en definitiva» por la Suprema Corte. Según la prensa, la Corte dejó firmes sentencias por unos ${n(t.rulings_2025.total_mdp)} millones de pesos (${n(t.rulings_2025.elektra_mdp)} de Elektra y ${n(t.rulings_2025.tv_azteca_mdp)} de TV Azteca); AP informó que rechazó ${t.rulings_2025.amparos_rejected} de ${t.rulings_2025.amparos_total} amparos en casos de más de ${t.rulings_2025.usd_reported_billion} mil millones de dólares.`, mdp: t.rulings_2025.total_mdp },
+  { when: '29 de enero de 2026', who: ek, say: `Grupo Elektra dice que la autoridad fiscal le autorizó pagar en parcialidades ${n(ek.total_mdp)} millones de pesos más el interés del Código Fiscal de la Federación. Hizo un pago inicial de ${n(ek.initial_payment_mdp)} millones ese día; el resto, ${n(ek.remaining_mdp)} millones más interés, en ${ek.installments} mensualidades desde el 3 de marzo de 2026. La prensa informa que el acuerdo de todo el grupo es de ${n(t.agreement_2026.total_mdp)} millones en ${t.agreement_2026.installments} pagos.`, mdp: ek.total_mdp },
   { when: 'Agosto de 2026', who: t.company_2026, say: `Grupo Salinas dice que ha pagado más de ${n(t.company_2026.paid_total_mdp)} millones de pesos en impuestos. No leímos una confirmación del SAT. Este total y los adeudos reclamados describen cosas distintas: no se restan.`, mdp: t.company_2026.paid_total_mdp },
 ];
-const sources = [t.sat_2024, t.rulings_2025, t.agreement_2026, t.company_2026, t.headline_2024].map((x: any) => ({ title: x.source_name, url: x.source_url, read: x.read_date }));
+const sources = [t.sat_2024, ek, t.rulings_2025, t.agreement_2026, t.company_2026, t.headline_2024, so.page, so.reductions].map((x: any) => ({ title: x.source_name, url: x.source_url, read: x.read_date }));
 ---
-<Base art="shield" eyebrow="Transparencia" title="Impuestos y tribunales" description="Lo que reclamó la autoridad, lo que resolvieron los tribunales y lo que responde la empresa, con fechas." path="/transparencia/impuestos/" legal transp claims={['T05','T06','T07','T08','T09']} sources={sources} lead>
+<Base art="shield" eyebrow="Transparencia" title="Impuestos y tribunales" description="Lo que reclamó la autoridad, lo que resolvieron los tribunales y lo que dice la empresa en sus propios documentos, con fechas." path="/transparencia/impuestos/" legal transp claims={['T05','T06','T07','T08','T09','T12','T13']} sources={sources} lead>
   <TranspNote />
 
   <div class="panel">
     <h2>La situación más reciente que encontramos</h2>
-    <p>En enero de 2026, Grupo Salinas anunció un acuerdo de pago con el SAT por <strong>{n(t.agreement_2026.total_mdp)} millones de pesos</strong> en {t.agreement_2026.installments} pagos. <span class="tag t-voz">Lo dice la prensa</span> <span class={`tag t-${t.agreement_2026.status}`}>{t.agreement_2026.status}</span></p>
-    <p>Según la prensa, el SAT dijo que el acuerdo cumplió con el Código Fiscal de la Federación y con las resoluciones judiciales. El grupo dice que paga <strong>en desacuerdo</strong> y que pagar no significa aceptar que los cobros hayan sido justos. <span class="tag t-voz">Lo dice la empresa</span></p>
-    <p class="ref-line">No leímos el comunicado del SAT ni el del grupo, solo notas de prensa que los citan. Las fuentes difieren un poco en los totales.</p>
+    <p>En su reporte anual de 2025, <strong>Grupo Elektra</strong> dice que los juicios de ISR de los ejercicios {ek.years.join(', ')} quedaron resueltos en definitiva por la Suprema Corte el 13 de noviembre de 2025 y que, por el acuerdo de pagar los adeudos fiscales, el 29 de enero de 2026 la autoridad le autorizó pagar en parcialidades <strong>{n(ek.total_mdp)} millones de pesos</strong> más interés. <span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${ek.status}`}>{ek.status}</span> <a href={ek.source_url} rel="noopener noreferrer">Fuente, pp. 79 y 80 del PDF</a></p>
+    <p>Dice que hizo un pago inicial de {n(ek.initial_payment_mdp)} millones y que el resto, {n(ek.remaining_mdp)} millones más interés, se paga en {ek.installments} mensualidades desde el 3 de marzo de 2026. Dice también que <strong>está al corriente</strong> del esquema de pagos autorizado. Según la prensa, en septiembre de 2026 la presidenta confirmó que se cumple con los pagos. <span class="tag t-voz">Lo dice la prensa</span> <span class="tag t-verificado-secundaria">verificado-secundaria</span> <a href={t.agreement_2026.september_url} rel="noopener noreferrer">Infobae</a></p>
+    <p><strong>La empresa también dice</strong> que existen otros litigios fiscales con «elementos fundados y razonables de defensa» y que esos adeudos «no han adquirido firmeza ni deben ser exigibles». Por esos asuntos, Grupo Elektra y Nueva Elektra del Milenio aseguraron las posibles obligaciones con un embargo administrativo voluntario de su negociación mercantil. El grupo dice que paga <strong>en desacuerdo</strong> y que pagar no significa aceptar que los cobros hayan sido justos. <span class="tag t-voz">Lo dice la empresa</span></p>
+    <p class="ref-line">El monto de {n(ek.total_mdp)} millones es el de Grupo Elektra. La prensa informa de un acuerdo de todo el grupo por {n(t.agreement_2026.total_mdp)} millones, con el SAT diciendo que actuó conforme al Código Fiscal y a las resoluciones judiciales. No leímos el comunicado del SAT ni el de Grupo Salinas.</p>
   </div>
 
   <h2>Lo que se dijo, en orden</h2>
@@ -34,7 +38,23 @@ const sources = [t.sat_2024, t.rulings_2025, t.agreement_2026, t.company_2026, t
       </tbody>
     </table>
   </div>
-  <p class="ref-line">La última columna divide cada cantidad entre un año de salario mínimo general de 2026. Es una comparación de tamaños, no una acusación. Las cantidades son de fechas distintas y no se pueden sumar ni restar entre sí.</p>
+  <p class="ref-line">La última columna divide cada cantidad entre un año de salario mínimo general de 2026. Es una comparación de tamaños, no una acusación. Las cantidades son de fechas distintas y de conceptos distintos: no se pueden sumar ni restar entre sí.</p>
+
+  <h2>Qué muestran las listas del SAT</h2>
+  <p>El SAT publica en datos abiertos listas de contribuyentes (información actualizada al 1 de octubre de 2026). Buscamos por nombre a Grupo Elektra, Nueva Elektra del Milenio, TV Azteca, Banco Azteca y Seguros Azteca. <span class="tag t-voz">Lo dice una autoridad</span> <span class={`tag t-${so.reductions.status}`}>{so.reductions.status}</span></p>
+  <ul>
+    <li><strong>No aparecen</strong> en los archivos «Firmes», «Exigibles», «Cancelados» ni «Condonados» (Art. 21). Una ausencia en una lista no prueba nada por sí sola: las listas solo incluyen los casos que cumplen sus criterios de publicación.</li>
+    <li><strong>Sí aparecen</strong> en el archivo «Reducción de multas (Art. 74 del Código Fiscal de la Federación)», que registra multas que la autoridad redujo:</li>
+  </ul>
+  <div class="tbl-wrap">
+    <table class="rt">
+      <thead><tr><th>Contribuyente</th><th>Fecha de autorización</th><th>Monto del registro (pesos)</th><th>Publicado</th></tr></thead>
+      <tbody>
+        {so.reductions.rows.map((r: any) => <tr><th scope="row">{r.entity}</th><td>{r.authorized}</td><td>{n(r.amount_mxn)}</td><td>{r.published}</td></tr>)}
+      </tbody>
+    </table>
+  </div>
+  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> Suma de los registros con monto: Grupo Elektra {n(sumBy('Grupo Elektra'))} pesos; Nueva Elektra del Milenio {n(sumBy('Nueva Elektra'))}; TV Azteca {n(sumBy('TV Azteca'))}; Banco Azteca {n(sumBy('Banco Azteca'))}. {so.reductions.rows_without_amount_es} Los montos de esta tabla están en pesos, no en millones de pesos. El archivo no dice a qué impuesto o ejercicio corresponde cada multa.</p>
 
   <h2>El titular de «3.8 mil millones de dólares»</h2>
   <p>El 20 de marzo de 2024, Bloomberg Tax publicó que un funcionario fiscal dijo que las empresas de Salinas tenían adeudos por unos {t.headline_2024.usd_billion} mil millones de dólares. <span class="tag t-voz">Lo dice la prensa</span> <span class={`tag t-${t.headline_2024.status}`}>{t.headline_2024.status}</span> Esa cifra coincide con los más de {n(t.headline_2024.mdp)} millones de pesos de la presentación del SAT de ese día (la comparación es nuestra). Era lo que reclamaba la autoridad en 2024. No es un total firme, y después los números cambiaron.</p>
@@ -45,14 +65,16 @@ const sources = [t.sat_2024, t.rulings_2025, t.agreement_2026, t.company_2026, t
       <li><strong>Amparo:</strong> un recurso para pedir a un tribunal que revise si un acto de autoridad respeta la Constitución.</li>
       <li><strong>Sentencia firme:</strong> una sentencia que ya no se puede impugnar.</li>
       <li><strong>Consolidación fiscal:</strong> un régimen que permitía a un grupo juntar ganancias y pérdidas de sus empresas para pagar impuestos sobre el resultado conjunto.</li>
+      <li><strong>Embargo administrativo voluntario:</strong> una garantía que el contribuyente ofrece sobre sus bienes para asegurar el pago de un adeudo mientras lo discute.</li>
     </ul>
   </div></details>
 
   <details class="acc" id="no-sabemos"><summary>Lo que no sabemos</summary><div class="acc-b">
     <ul>
-      <li>No leímos las sentencias de la Suprema Corte. Una nota habla de {n(t.rulings_2025.single_case_note_mdp)} millones para un solo caso. <span class="tag t-sin-verificar">sin-verificar</span></li>
-      <li>No leímos las listas de contribuyentes del SAT.</li>
-      <li>No sabemos cuánto se ha pagado desde mayo de 2026.</li>
+      <li>No leímos las sentencias de la Suprema Corte: no encontramos un comunicado oficial. Una nota habla de {n(t.rulings_2025.single_case_note_mdp)} millones para un solo caso (el ejercicio 2013 de Grupo Elektra). <span class="tag t-sin-verificar">sin-verificar</span></li>
+      <li>No leímos el comunicado del SAT ni el de Grupo Salinas sobre el acuerdo de pago; solo prensa y el reporte anual de Grupo Elektra.</li>
+      <li>No sabemos cuánto se ha pagado después de septiembre de 2026.</li>
+      <li>No leímos las notas a los estados financieros de Grupo Elektra sobre litigios fiscales, ni cuánto de las {n(ek.total_mdp)} millones corresponde a cada empresa del grupo.</li>
     </ul>
   </div></details>
 </Base>

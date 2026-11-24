@@ -187,3 +187,7 @@ Nueva sección `/transparencia/` con botón de linterna en la barra, y 11 págin
 
 Lo leído de fuentes primarias: los reportes trimestrales de Banco Azteca (marzo y junio de 2026), su Sistema de Remuneración 2025 y la presentación del SAT del 20-mar-2024. Lo demás es prensa y se etiqueta así. Sin cifras en pesos de remuneración: el banco solo publica porcentajes sin base.
 Decisiones: «IA» en el texto (decisión tuya); los despliegues los hago yo solo después de tu «GO».
+
+## 15. Novena ronda: investigación profunda de Transparencia (2026-11-23)
+
+Se reescribieron las 11 páginas de `/transparencia/` con documentos primarios: reportes y estados financieros de Banco Azteca de 2021 a 3T 2026, Reporte Anual 2025 de Grupo Elektra (remuneración agregada, plantilla, dividendos, accionistas, créditos fiscales), datos abiertos del SAT, reportes 3T 2026 de cuatro bancos y 13 ofertas de empleo. Claims T01 a T16. Lista de lo bloqueado, con enlaces, en `docs/HUMAN-CHECKS.md`.

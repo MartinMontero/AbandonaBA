@@ -2,42 +2,49 @@
 import Base from '../../layouts/Base.astro';
 import TranspNote from '../../components/TranspNote.astro';
 import { T } from '../../lib/transparencia';
-const s = T.structure;
+const s = T.structure.quarterly;
+const e = T.elektra;
+const subs = e.structure.subsidiaries as any[];
 const sources = [
+  { title: e.structure.source_name, url: e.structure.source_url, read: e.structure.read_date },
+  { title: e.board.source_name, url: e.board.source_url, read: e.board.read_date },
+  { title: e.ownership.source_name, url: e.ownership.source_url, read: e.ownership.read_date },
   { title: s.source_name, url: s.source_url, read: s.read_date },
-  { title: 'Banco Azteca: Sistema de Remuneración 2025', url: T.compensation.source_url, read: T.compensation.read_date },
+  { title: T.compensation.bank.source_name, url: T.compensation.bank.source_url, read: T.compensation.bank.read_date },
   { title: 'Jointly: nota sobre la cena y los cajeros', url: 'https://news.jointly.mx/salinas-pliego-cajeros-banco-azteca-maquinas-40-horas/', read: '2026-11-22' },
 ];
 ---
-<Base art="steps" eyebrow="Transparencia" title="¿Quién es quién?" description="Cómo se relacionan Banco Azteca y su grupo, según los propios documentos del banco." path="/transparencia/quien-es-quien/" legal transp claims={['T10']} sources={sources} lead>
+<Base art="steps" eyebrow="Transparencia" title="¿Quién es quién?" description="Cómo se relacionan Banco Azteca y su grupo, según los propios documentos de la empresa." path="/transparencia/quien-es-quien/" legal transp claims={['T10']} sources={sources} lead>
   <TranspNote />
 
-  <h2>Lo que dicen los documentos del banco</h2>
+  <h2>La estructura, según Grupo Elektra</h2>
+  <p>La página «Estructura Corporativa» de Grupo Elektra lista sus subsidiarias más importantes y el porcentaje que tiene, directa o indirectamente, al {e.structure.as_of}. <span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${e.structure.status}`}>{e.structure.status}</span> <a href={e.structure.source_url} rel="noopener noreferrer">Fuente</a></p>
   <ul class="tree">
-    <li><strong>Grupo Elektra, S. A. B. de C. V.</strong>
+    <li><strong>Grupo Elektra, S.A.B. de C.V.</strong>
       <ul>
-        <li><strong>Banco Azteca, S. A., Institución de Banca Múltiple</strong> — {s.parent_es}
-          <ul>
-            <li><strong>Servicios Laborales y Ejecutivos, S.A. de C.V.</strong> — {s.sle_es}</li>
-          </ul>
-        </li>
+        {subs.map((x) => <li><strong>{x.name}</strong>: {x.pct}%. {x.activity}.</li>)}
       </ul>
     </li>
   </ul>
-  <p><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${s.status}`}>{s.status}</span> <a href={s.source_url} rel="noopener noreferrer">Fuente: reporte al 30 de junio de 2026</a></p>
+  <p class="ref-line">Es una lista de las subsidiarias «más importantes», no de todas. Servicios Laborales y Ejecutivos no aparece en ella.</p>
 
-  <div class="callout"><p><strong>Dos documentos del banco que parecen decir cosas distintas.</strong> El reporte trimestral consolida a Servicios Laborales y Ejecutivos con una participación de {s.sle_pct}%. El reporte del Sistema de Remuneración 2025 dice que Banco Azteca no cuenta con filiales ni subsidiarias. No sabemos por qué. Para entenderlo hay que leer las notas a los estados financieros, que no leímos. <span class="tag t-sin-verificar">sin-verificar</span></p></div>
+  <h2>El banco y la empresa de personal</h2>
+  <ul>
+    <li>{s.parent_es} <span class="tag t-voz">Lo dice la empresa</span> <span class="tag t-verificado-primaria">verificado-primaria</span></li>
+    <li>El mismo reporte dice: «{s.sle_es}» <span class="tag t-voz">Lo dice la empresa</span> <span class="tag t-verificado-primaria">verificado-primaria</span></li>
+  </ul>
+  <div class="callout"><p><strong>Dos documentos del banco que parecen decir cosas distintas.</strong> El reporte trimestral consolida a Servicios Laborales y Ejecutivos con una participación de {s.sle_pct}%. El reporte del Sistema de Remuneración 2025 dice que Banco Azteca no cuenta con filiales ni subsidiarias. No sabemos por qué. Para entenderlo hay que leer las notas a los estados financieros completas, que no leímos con ese fin. <span class="tag t-sin-verificar">sin-verificar</span></p></div>
   <p>Si trabajas en el banco, el patrón que aparece en tu recibo de nómina y en tu registro del IMSS es el dato que importa. Revísalo antes de firmar cualquier cosa.</p>
 
-  <h2>Qué no hay aquí todavía</h2>
-  <ul>
-    <li>Quién es dueño de Grupo Elektra y en qué porcentaje. Eso está en los reportes de la empresa y en los avisos a la bolsa. No los leímos. <span class="tag t-sin-verificar">sin-verificar</span></li>
-    <li>Los miembros del consejo de administración.</li>
-    <li>Otras empresas del grupo, como las de seguros, tiendas y televisión.</li>
-  </ul>
+  <h2>Quién controla Grupo Elektra, según la propia empresa</h2>
+  <p>En los factores de riesgo de su reporte anual, Grupo Elektra dice: {e.ownership.statement_es} <span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${e.ownership.status}`}>{e.ownership.status}</span> <a href={e.ownership.source_url} rel="noopener noreferrer">Fuente, p. 48 del PDF</a></p>
+  <p>El reporte nombra a más personas como accionistas de control. Aquí solo mencionamos a quien tiene un cargo en la empresa y aparece en sus documentos. No publicamos datos de familiares ni de la vida privada de nadie.</p>
+
+  <h2>El consejo de administración</h2>
+  <p>Según la página de Gobierno Corporativo de la empresa, tras la asamblea del 23 de abril de 2026 el consejo quedó con {e.board.members} miembros, {e.board.independents} de ellos independientes. {e.board.honorary_chair_es} {e.board.chair_es} <span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${e.board.status}`}>{e.board.status}</span> <a href={e.board.source_url} rel="noopener noreferrer">Fuente</a></p>
 
   <h2>Declaraciones públicas recientes</h2>
-  <p>La prensa informó de un video del accionista mayoritario de Grupo Elektra, Ricardo Salinas Pliego, en una cena el 17 o 18 de noviembre de 2026. Los medios citan que llamó «estupidez increíble» al aumento del salario mínimo y a la semana de 40 horas. <span class="tag t-voz">Lo dice la prensa</span> <span class="tag t-verificado-secundaria">verificado-secundaria</span> <a href="https://news.jointly.mx/salinas-pliego-cajeros-banco-azteca-maquinas-40-horas/" rel="noopener noreferrer">Nota</a></p>
-  <p>Según la prensa, dijo después que la tecnología no quita trabajo a quien se prepara. No localizamos el mensaje original. <span class="tag t-sin-verificar">sin-verificar</span> Banco Azteca no ha anunciado una cifra, un calendario ni un presupuesto de reducción de personal, según lo que encontramos al 22 de noviembre de 2026.</p>
-  <p class="ref-line">No publicamos aquí datos de su vida privada ni de su patrimonio. No consultamos clasificaciones de riqueza en esta ronda.</p>
+  <p>La prensa informó de un video de Ricardo Salinas Pliego en una cena el 17 o 18 de noviembre de 2026. Los medios citan que llamó «estupidez increíble» al aumento del salario mínimo y a la semana de 40 horas. <span class="tag t-voz">Lo dice la prensa</span> <span class="tag t-verificado-secundaria">verificado-secundaria</span> <a href="https://news.jointly.mx/salinas-pliego-cajeros-banco-azteca-maquinas-40-horas/" rel="noopener noreferrer">Nota</a></p>
+  <p>Según la prensa, dijo después que la tecnología no quita trabajo a quien se prepara. No localizamos el mensaje original. <span class="tag t-sin-verificar">sin-verificar</span> Banco Azteca no ha anunciado una cifra, un calendario ni un presupuesto de reducción de personal, según lo que encontramos al 23 de noviembre de 2026. En su reporte anual, Grupo Elektra dice que el banco seguirá impulsando su transformación hacia transacciones digitales y revisará la operación de sus puntos de venta (p. 79 del PDF).</p>
+  <p class="ref-line">No publicamos aquí datos de su patrimonio ni de su vida privada. No consultamos clasificaciones de riqueza en esta ronda.</p>
 </Base>

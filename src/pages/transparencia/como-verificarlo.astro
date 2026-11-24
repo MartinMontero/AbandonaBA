@@ -1,25 +1,48 @@
 ---
 import Base from '../../layouts/Base.astro';
 import TranspNote from '../../components/TranspNote.astro';
-import { T } from '../../lib/transparencia';
+import { T, latest } from '../../lib/transparencia';
+const RA = 'https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf';
 const guides = [
-  { id: 'estados', t: 'Los resultados del banco', how: 'Entra a la página de información financiera del banco y busca el «Reporte de comentarios y análisis de la Administración» del trimestre. Mira la utilidad o pérdida neta, el índice de morosidad y el de capitalización.', url: 'https://www.grupoelektra.com.mx/es/banco-azteca-financieros', ok: 'sin-verificar', okNote: 'La página cargó con un lector automático, pero no con el navegador. Si no abre, usa el enlace directo de cada reporte (están en las fuentes de cada página).', no: 'Un reporte trimestral no dice por qué cambió un número ni compara con otros bancos.' },
-  { id: 'bancos', t: 'Cualquier banco, en el regulador', how: 'La Comisión Nacional Bancaria y de Valores (CNBV) publica información de los bancos. Busca el banco por nombre y compara las mismas cifras entre varios.', url: 'https://www.gob.mx/cnbv', ok: 'sin-verificar', okNote: 'No abrimos esta página en esta ronda.', no: 'Que un banco tenga cifras publicadas no dice nada sobre cómo trata a sus clientes.' },
-  { id: 'tribunales', t: 'Las sentencias de la Suprema Corte', how: 'El sitio de la Suprema Corte tiene listas de asuntos y sentencias. Busca por número de expediente.', url: 'https://www.scjn.gob.mx', ok: 'sin-verificar', okNote: 'No leímos sentencias en esta ronda.', no: 'Una nota de prensa sobre una sentencia puede dar una cifra distinta de la sentencia misma.' },
-  { id: 'sat', t: 'Lo que dice el SAT', how: 'El SAT y el gobierno publican comunicados y listas. La presentación de marzo de 2024 sobre el caso está publicada en gob.mx.', url: T.tax.sat_2024.source_url, ok: 'verificado-primaria', okNote: 'Leímos este documento.', no: 'Una presentación de la autoridad es su versión. No prueba por sí sola cuánto se debe pagar al final.' },
-  { id: 'sueldos', t: 'Los sueldos ofrecidos', how: 'Busca el mismo puesto, en la misma ciudad y la misma semana, en las bolsas de empleo y en las páginas de cada banco. Compara con el salario mínimo.', url: 'https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca', ok: 'verificado-secundaria', okNote: 'Leímos este listado el 23 de noviembre de 2026.', no: 'Una oferta no es lo que cobra cada persona.' },
-  { id: 'info', t: 'Pedir información pública', how: 'Las dependencias del gobierno están obligadas a responder solicitudes de información pública. Las empresas privadas, en general, no.', url: 'https://www.gob.mx', ok: 'sin-verificar', okNote: 'No verificamos hoy el nombre ni las reglas vigentes de la plataforma nacional de transparencia.', no: 'Que una empresa no responda no prueba nada sobre ella.' },
+  { id: 'banco', t: 'Los resultados de Banco Azteca', how: 'El banco publica cada trimestre un «Reporte de comentarios y análisis de la Administración» y sus estados financieros. Abre el reporte del 3T 2026 y mira la utilidad neta, la morosidad, la capitalización y los dividendos. Los reportes de años anteriores se encuentran en la lista de reportes del banco.',
+    links: [['Reporte del 3T 2026', latest.report_url], ['Estado de resultados del 3T 2026', latest.statement_url], ['Notas a los estados financieros del 4T 2025 (plantilla)', T.bank.annual[4].notes_url], ['Página de información financiera del banco', 'https://www.grupoelektra.com.mx/es/banco-azteca-financieros']],
+    ok: 'verificado-primaria', okNote: 'Leímos estos documentos. La página de información financiera no abre bien en algunos navegadores: usa los enlaces directos a cada PDF.', no: 'Un reporte trimestral no explica por qué cambió una cifra ni compara con otros bancos.' },
+  { id: 'grupo', t: 'Grupo Elektra: remuneración, plantilla, accionistas e impuestos', how: 'El Reporte Anual 2025 es el documento donde la empresa describe, con palabras, su remuneración a consejeros y directivos (p. 125 del PDF), su personal (p. 74), sus dividendos (p. 83), sus accionistas de control (p. 48) y sus créditos fiscales (pp. 79 y 80).',
+    links: [['Reporte Anual 2025 (PDF)', RA], ['Lista de informes anuales', 'https://www.grupoelektra.com.mx/es/informes-anuales'], ['Consejo de administración', 'https://www.grupoelektra.com.mx/es/consejo-de-administracion'], ['Estructura corporativa', 'https://www.grupoelektra.com.mx/es/estructura-corporativa']],
+    ok: 'verificado-primaria', okNote: 'Leímos las páginas citadas.', no: 'Un reporte anual es la versión de la empresa. No prueba por sí solo cómo se reparte un total ni qué piensa una autoridad.' },
+  { id: 'bolsa', t: 'Los reportes de otros bancos', how: 'BBVA México, Santander México y Grupo Financiero Banorte publican sus reportes en la Bolsa Mexicana de Valores y en sus páginas de inversionistas. Banamex los publica en su página de relación con inversionistas, en «Información Financiera Trimestral».',
+    links: [['BBVA México: reporte 3T 2026 (BMV)', T.peers[1].source_url], ['Santander México: reporte 3T 2026 (BMV)', T.peers[2].source_url], ['Banorte: información financiera 3T 2026 (BMV)', T.peers[3].source_url], ['Banamex: informe 3T 2026', T.peers[4].source_url], ['Bolsa Mexicana de Valores', 'https://www.bmv.com.mx/'], ['Página de inversionistas de BBVA México', 'https://investors.bbva.mx/']],
+    ok: 'verificado-primaria', okNote: 'Leímos estos documentos el 23 de noviembre de 2026.', no: 'Cada banco calcula algunos indicadores a su manera (por ejemplo el ROE). Comparar sin revisar las definiciones puede confundir.' },
+  { id: 'cnbv', t: 'La información de todos los bancos, en el regulador', how: 'La Comisión Nacional Bancaria y de Valores publica en su Portafolio de Información datos financieros y operativos de las entidades que supervisa. Busca el sector de banca múltiple y compara las mismas cifras entre bancos.',
+    links: [['Portafolio de Información de la CNBV', 'https://portafolioinfo.cnbv.gob.mx/Paginas/Inicio.aspx'], ['CNBV en gob.mx', 'https://www.gob.mx/cnbv']],
+    ok: 'sin-verificar', okNote: 'La página cargó, pero no extrajimos cifras de ella en esta ronda.', no: 'Que un banco tenga cifras publicadas no dice nada sobre cómo trata a sus clientes.' },
+  { id: 'quejas', t: 'Quejas por institución', how: 'El Buró de Entidades Financieras de la CONDUSEF muestra el desempeño de cada institución, incluidas reclamaciones. Para comparar bancos, busca las reclamaciones por contrato y no solo el número total.',
+    links: [['Buró de Entidades Financieras', 'https://www.buro.gob.mx/']],
+    ok: 'sin-verificar', okNote: 'La página principal cargó, pero la sección de bancos no respondió en nuestras pruebas.', no: 'Muchas quejas no prueban por sí solas que una institución actúe mal: depende del tamaño y del tipo de producto.' },
+  { id: 'sat', t: 'Lo que publica el SAT', how: 'El SAT publica en datos abiertos listas de contribuyentes (firmes, exigibles, cancelados, reducciones de multas) con el nombre de la empresa y, en algunos casos, el monto. Descarga el archivo y busca por nombre. La presentación del caso de marzo de 2024 está en gob.mx.',
+    links: [['SAT, datos abiertos: contribuyentes publicados', 'https://www.sat.gob.mx/minisitio/DatosAbiertos/contribuyentes_publicados.html'], ['SAT: reducción de multas, Art. 74 (CSV)', T.tax.sat_open.reductions.source_url], ['SAT: presentación «Caso Grupo Salinas»', T.tax.sat_2024.source_url]],
+    ok: 'verificado-primaria', okNote: 'Leímos estos archivos.', no: 'Estar o no estar en una lista no prueba cuánto se debe pagar al final. Una presentación de la autoridad es su versión.' },
+  { id: 'tribunales', t: 'Las sentencias de la Suprema Corte', how: 'El sitio de la Suprema Corte tiene listas de asuntos y sentencias; se busca por número de expediente. Según la prensa, el principal asunto de noviembre de 2025 fue el amparo directo en revisión 6321/2024.',
+    links: [['Suprema Corte de Justicia de la Nación', 'https://www.scjn.gob.mx/']],
+    ok: 'sin-verificar', okNote: 'No encontramos un comunicado oficial ni la sentencia: solo prensa.', no: 'Una nota de prensa sobre una sentencia puede dar una cifra distinta de la sentencia misma.' },
+  { id: 'sueldos', t: 'Los sueldos ofrecidos y los promedios oficiales', how: 'Busca el mismo puesto, en la misma ciudad y la misma semana, en las bolsas de empleo y en las páginas de cada banco, y compáralo con el salario mínimo. Data México muestra el salario promedio por ocupación con datos de la ENOE.',
+    links: [['Ofertas de cajero de Banco Azteca (Computrabajo)', 'https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca'], ['Ofertas de cajero de BBVA (Computrabajo)', 'https://mx.computrabajo.com/trabajo-de-cajero-bbva'], ['Data México: cajeros, cobradores y pagadores', T.wage_stats.source_url]],
+    ok: 'verificado-secundaria', okNote: 'Leímos los listados el 23 de noviembre de 2026; la cifra de Data México llegó por una búsqueda y no la releímos en su página.', no: 'Una oferta no es lo que cobra cada persona, y un promedio nacional no es el de un banco.' },
+  { id: 'info', t: 'Pedir información pública', how: 'Las dependencias del gobierno están obligadas a responder solicitudes de información pública. Las empresas privadas, en general, no. La Plataforma Nacional de Transparencia es el punto de entrada para pedirla.',
+    links: [['Plataforma Nacional de Transparencia', 'https://www.plataformadetransparencia.org.mx/']],
+    ok: 'sin-verificar', okNote: 'La página carga, pero no verificamos las reglas vigentes ni qué institución recibe hoy las solicitudes. La página de gob.mx del organismo que antes las coordinaba (INAI) ya no abre.', no: 'Que una empresa no responda no prueba nada sobre ella.' },
 ];
-const sources = [{ title: T.tax.sat_2024.source_name, url: T.tax.sat_2024.source_url, read: T.tax.sat_2024.read_date }];
+const sources = [{ title: T.tax.sat_2024.source_name, url: T.tax.sat_2024.source_url, read: T.tax.sat_2024.read_date }, { title: latest.source_name, url: latest.source_url, read: latest.read_date }];
 ---
-<Base art="help" eyebrow="Transparencia" title="Cómo verificarlo tú" description="Dónde buscar cada documento y qué no prueba." path="/transparencia/como-verificarlo/" legal transp claims={['T05']} sources={sources} lead>
+<Base art="help" eyebrow="Transparencia" title="Cómo verificarlo tú" description="Enlaces directos a cada documento que usamos y qué no prueba." path="/transparencia/como-verificarlo/" legal transp claims={['T01','T05']} sources={sources} lead>
   <TranspNote />
   {guides.map((g, i) => (
     <details class="acc" id={g.id} open={i === 0}>
       <summary>{g.t}</summary>
       <div class="acc-b">
         <p><strong>Cómo:</strong> {g.how}</p>
-        <p><a class="btn tonal" href={g.url} rel="noopener noreferrer">Ir a la fuente oficial</a> <span class={`tag t-${g.ok}`}>{g.ok}</span> {g.okNote}</p>
+        <ul>{g.links.map(([label, url]) => <li><a href={url} rel="noopener noreferrer">{label}</a></li>)}</ul>
+        <p><span class={`tag t-${g.ok}`}>{g.ok}</span> {g.okNote}</p>
         <p><strong>Qué NO prueba:</strong> {g.no}</p>
       </div>
     </details>

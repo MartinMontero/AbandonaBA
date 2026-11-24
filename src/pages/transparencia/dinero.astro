@@ -2,37 +2,47 @@
 import Base from '../../layouts/Base.astro';
 import Cifra from '../../components/Cifra.astro';
 import TranspNote from '../../components/TranspNote.astro';
-import { fin, n, mdp } from '../../lib/transparencia';
+import { annual, latest, n } from '../../lib/transparencia';
 import cambiate from '../../data/cambiate.json';
-const ing = fin('f04'), gas = fin('f05'), est = fin('f06'), con = fin('f12'), pts = fin('f13');
 const loan = (cambiate.institutions[0].products as any[]).find((p) => p.id === 'prestamo-efectivo');
 const op = (cambiate.institutions[0].products as any[]).find((p) => p.id === 'cuenta-operativa');
-const neto = ing.value - gas.value;
+const first = annual[0], last = annual[annual.length - 1];
+const reserveShare = (a: any) => (a.provisions / a.interest_income) * 100;
 const sources = [
-  { title: 'Banco Azteca: reporte de la Administración al 30 de junio de 2026', url: ing.source_url, read: ing.read_date },
+  ...annual.map((a: any) => ({ title: a.source_name, url: a.source_url, read: a.read_date })),
+  { title: latest.source_name, url: latest.source_url, read: latest.read_date },
   { title: 'Banco Azteca: préstamos personales', url: loan.source_url, read: loan.read_date },
   { title: 'Banco Azteca: Cuenta Operativa Azteca', url: op.source_url, read: op.read_date },
 ];
 ---
-<Base art="store" eyebrow="Transparencia" title="¿De dónde sale el dinero?" description="Lo que el banco dice de sus ingresos por intereses, sus gastos y el dinero que aparta por créditos que podrían no pagarse." path="/transparencia/dinero/" legal transp claims={['T01','CB01','CB04']} sources={sources} lead>
+<Base art="store" eyebrow="Transparencia" title="¿De dónde sale el dinero?" description="Cinco años de ingresos por intereses, gastos por intereses, dinero apartado por riesgo de crédito y comisiones de Banco Azteca, según sus propios reportes." path="/transparencia/dinero/" legal transp claims={['T01','CB01','CB04']} sources={sources} lead>
   <TranspNote />
 
-  <h2>Un trimestre, en tres números</h2>
-  <p>Estas cifras son del segundo trimestre de 2026 (abril a junio). Todas vienen del reporte del propio banco.</p>
-  <ul class="facts">
-    <Cifra big={n(ing.value)} what="millones de pesos de ingresos por intereses" period="Intereses que el banco cobra, sobre todo de créditos." voice={ing.voice} status={ing.status} url={ing.source_url} />
-    <Cifra big={n(gas.value)} what="millones de pesos de gastos por intereses" period="Intereses que el banco paga, sobre todo a quien ahorra." voice={gas.voice} status={gas.status} url={gas.source_url} />
-    <Cifra big={n(est.value)} what="millones de pesos apartados por riesgo de crédito" period="Dinero que el banco reserva por créditos que podrían no pagarse." voice={est.voice} status={est.status} url={est.source_url} />
-  </ul>
-  <div class="bars">
-    <label>Ingresos por intereses <meter min="0" max={ing.value} value={ing.value}></meter> <span>{n(ing.value)}</span></label>
-    <label>Gastos por intereses <meter min="0" max={ing.value} value={gas.value}></meter> <span>{n(gas.value)}</span></label>
-    <label>Apartado por riesgo de crédito <meter min="0" max={ing.value} value={est.value}></meter> <span>{n(est.value)}</span></label>
+  <h2>Cinco años, en pesos de cada año</h2>
+  <p>Cifras en millones de pesos, de los estados financieros del propio banco al 31 de diciembre de cada año. Son cifras nominales: no están ajustadas por inflación.</p>
+  <div class="tbl-wrap">
+    <table class="rt">
+      <thead><tr><th>Año</th><th>Ingresos por intereses</th><th>Gastos por intereses</th><th>Apartado por riesgo de crédito</th><th>Comisiones cobradas</th></tr></thead>
+      <tbody>
+        {annual.map((a: any) => (
+          <tr><th scope="row">{a.year}</th><td>{n(a.interest_income)}</td><td>{n(a.interest_expense)}</td><td>{n(a.provisions)}</td><td>{n(a.commissions)}</td></tr>
+        ))}
+        <tr><th scope="row">Tercer trimestre de 2026 (solo ese trimestre)</th><td>{n(latest.ii_q)}</td><td>{n(latest.ie_q)}</td><td>{n(latest.prov_q)}</td><td>—</td></tr>
+      </tbody>
+    </table>
   </div>
-  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> Ingresos por intereses menos gastos por intereses del trimestre: {n(ing.value)} − {n(gas.value)} = {n(neto)} millones de pesos. No incluye comisiones, gastos de operación ni el dinero apartado por riesgo de crédito.</p>
+  <p><span class="tag t-voz">Lo dice la empresa</span> <span class="tag t-verificado-primaria">verificado-primaria</span> Fuente de cada fila: el reporte de resultados y el estado de resultados del 4T de ese año, y para 2026 el del 3T. Los enlaces están al final de la página.</p>
+
+  <h2>Qué tanto se aparta por créditos que podrían no pagarse</h2>
+  <p>El «apartado por riesgo de crédito» (estimación preventiva) es dinero que el banco reserva por créditos que podrían no pagarse. Esta es su proporción frente a los ingresos por intereses de cada año:</p>
+  <ul class="facts">
+    <li><span class="big">{n(reserveShare(first), 1)}%</span><span>en {first.year}</span><span class="more"><span class="tag t-voz">Cálculo propio</span></span></li>
+    <li><span class="big">{n(reserveShare(last), 1)}%</span><span>en {last.year}</span><span class="more"><span class="tag t-voz">Cálculo propio</span></span></li>
+  </ul>
+  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> Apartado por riesgo de crédito ÷ ingresos por intereses del mismo año: {n(first.provisions)} ÷ {n(first.interest_income)} en {first.year} y {n(last.provisions)} ÷ {n(last.interest_income)} en {last.year}. El cálculo no dice por qué cambió.</p>
 
   <h2>Qué tipo de crédito es el negocio</h2>
-  <p>El banco informa que los créditos al consumo son el <strong>{con.value}%</strong> de su cartera bruta al 30 de junio de 2026 (la cartera es el total de créditos que ha dado). <span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${con.status}`}>{con.status}</span> También dice que tiene {n(pts.value)} puntos de contacto.</p>
+  <p>Los créditos al consumo eran el <strong>{first.consumer_pct}%</strong> de la cartera bruta del banco al cierre de {first.year} y el <strong>{latest.consumer_pct}%</strong> al 30 de septiembre de 2026. <span class="tag t-voz">Lo dice la empresa</span> <span class="tag t-verificado-primaria">verificado-primaria</span> El banco declara {n(latest.contact_points)} puntos de contacto en esa fecha.</p>
 
   <h2>Lo que cuesta al cliente, según sus propias páginas</h2>
   <ul class="facts">
@@ -44,8 +54,8 @@ const sources = [
   <details class="acc" id="no-publicado"><summary>Lo que no encontramos</summary><div class="acc-b">
     <ul>
       <li>La comisión que Afore Azteca cobra (0.54% del saldo, según CONSAR) no se convierte en pesos: no encontramos cuánto dinero administra.</li>
-      <li>Las quejas ante CONDUSEF solo sirven para comparar si se dividen entre el número de contratos. No las incluimos hasta tener ese dato.</li>
-      <li>No comparamos con otros bancos en esta ronda. Para compararlos, hay que leer sus reportes con las mismas cifras.</li>
+      <li>Las quejas ante CONDUSEF solo sirven para comparar si se dividen entre el número de contratos. El Buró de Entidades Financieras no cargó en nuestras pruebas, así que no las incluimos.</li>
+      <li>No leímos un desglose completo de los ingresos por producto. El reporte del 3T 2026 solo dice, en palabras, que el aumento de los intereses vino sobre todo de la cartera de consumo.</li>
     </ul>
   </div></details>
 </Base>

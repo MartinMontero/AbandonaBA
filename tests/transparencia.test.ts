@@ -52,9 +52,31 @@ describe('transparencia.json: cada cifra trae fuente, fecha, voz y etiqueta', ()
   it('lo que solo afirma una parte nunca tiene voz de tribunal sin una sentencia leída', () => {
     for (const { label, o } of items) if (o.voice === 'tribunal') expect(o.status, label).toBe('verificado-primaria');
   });
-  it('los porcentajes de remuneración no se presentan como pesos', () => {
-    expect((data as any).compensation.amounts_in_pesos).toBe(false);
-    expect((data as any).compensation.base_stated).toBe(false);
+  it('el banco no publica pesos de remuneración y el grupo publica un agregado, no un pago individual', () => {
+    const c = (data as any).compensation;
+    expect(c.bank.amounts_in_pesos).toBe(false);
+    expect(c.bank.base_stated).toBe(false);
+    expect(c.group.basis).toBe('agregado');
+    expect(c.group.people_count_published).toBe(false);
+  });
+  it('la serie anual del banco trae cinco años consecutivos con fuente de cada documento', () => {
+    const a = (data as any).bank.annual;
+    expect(a.map((x: any) => x.year)).toEqual([2021, 2022, 2023, 2024, 2025]);
+    for (const x of a) for (const k of ['report_url', 'statement_url', 'balance_url', 'notes_url']) expect(x[k], `${x.year} ${k}`).toMatch(/^https:\/\/www\.grupoelektra\.com\.mx\/api\/pdfEkt\/\d+$/);
+  });
+  it('la utilidad neta acumulada de 2026 es la suma de lo que dice el reporte trimestral', () => {
+    const l = (data as any).bank.latest;
+    const q = l.quarterly_net.filter((x: any) => /2026/.test(x.period)).reduce((s: number, x: any) => s + x.value, 0);
+    expect(q).toBe(l.net_ytd);
+  });
+  it('los porcentajes y los pesos publicados por Grupo Elektra para sus impuestos suman', () => {
+    const e = (data as any).elektra.tax;
+    expect(e.initial_payment_mdp + e.remaining_mdp).toBe(e.total_mdp);
+  });
+  it('las ofertas de cajero tienen fecha de lectura y pago mensual', () => {
+    const p = (data as any).pay_postings;
+    expect(p.length).toBeGreaterThanOrEqual(13);
+    for (const x of p) { expect(x.seen_date, x.id).toMatch(/^\d{4}-\d{2}-\d{2}$/); expect(x.period, x.id).toBe('mensual'); expect(x.pay, x.id).toBeGreaterThan(0); }
   });
 });
 

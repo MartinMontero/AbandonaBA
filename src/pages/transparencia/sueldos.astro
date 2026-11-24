@@ -1,40 +1,83 @@
 ---
 import Base from '../../layouts/Base.astro';
 import TranspNote from '../../components/TranspNote.astro';
-import { T, n, pesos, minWageDaily, minWageSource } from '../../lib/transparencia';
-import { toMonthly, timesMinWage, DAYS_PER_MONTH, WEEKS_PER_MONTH } from '../../lib/equivalencias';
-const mwMonthly = minWageDaily * DAYS_PER_MONTH;
+import { T, annual, n, pesos, median, minWageDaily, minWageSource } from '../../lib/transparencia';
+import { toMonthly, timesMinWage, DAYS_PER_MONTH } from '../../lib/equivalencias';
 const posts = (T.pay_postings as any[]).map((p) => ({ ...p, monthly: toMonthly(p.pay, p.period), times: timesMinWage(toMonthly(p.pay, p.period), minWageDaily) }));
+const az = posts.filter((p) => p.employer_id === 'azteca');
+const azCdmx = az.filter((p) => p.cdmx);
+const others = posts.filter((p) => p.employer_id !== 'azteca');
+const bbva = posts.find((p) => p.employer_id === 'bbva')!;
+const mwMonthly = minWageDaily * DAYS_PER_MONTH;
+const mw30 = minWageDaily * 30;
+const below30 = az.filter((p) => p.monthly < mw30);
 const max = Math.max(mwMonthly, ...posts.map((p) => p.monthly));
+const azMed = median(az.map((p) => p.monthly));
+const azCdmxMed = median(azCdmx.map((p) => p.monthly));
+const ws = T.wage_stats;
+const peers = T.peers as any[];
+const bbvaPeer = peers.find((p) => p.id === 'bbva-mexico');
+const santPeer = peers.find((p) => p.id === 'santander-mexico');
 const sources = [
   { title: minWageSource.source_name, url: minWageSource.source_url, read: minWageSource.read_date },
-  ...posts.map((p) => ({ title: `${p.employer}: ${p.role_es}`, url: p.posting_url, read: p.seen_date })),
+  { title: 'Computrabajo: ofertas de cajero de Banco Azteca (23 de noviembre de 2026)', url: az[0].posting_url, read: az[0].seen_date },
+  { title: 'Computrabajo: oferta de BBVA', url: bbva.posting_url, read: bbva.seen_date },
+  { title: 'Computrabajo: oferta de Banorte', url: others.find((p) => p.employer_id === 'banorte').posting_url, read: '2026-11-23' },
+  { title: ws.source_name, url: ws.source_url, read: ws.read_date },
+  { title: 'Banco Azteca: notas a los estados financieros 2025', url: T.structure.notes_employees.source_url, read: T.structure.notes_employees.read_date },
+  { title: T.elektra.employees.source_name, url: T.elektra.employees.source_url, read: T.elektra.employees.read_date },
+  { title: bbvaPeer.source_name, url: bbvaPeer.source_url, read: bbvaPeer.read_date },
+  { title: 'Jointly: nota sobre la cena y los cajeros (noviembre de 2026)', url: 'https://news.jointly.mx/salinas-pliego-cajeros-banco-azteca-maquinas-40-horas/', read: '2026-11-22' },
+  { title: santPeer.source_name, url: santPeer.source_url, read: santPeer.read_date },
 ];
 ---
-<Base art="clipboard" eyebrow="Transparencia" title="¿Cuánto pagan al personal?" description="Sueldos ofrecidos en ofertas de empleo de cajeros, junto al salario mínimo de 2026." path="/transparencia/sueldos/" legal transp claims={['T04']} sources={sources} lead>
+<Base art="clipboard" eyebrow="Transparencia" title="¿Cuánto pagan al personal?" description="Ofertas de empleo de cajeros de Banco Azteca y de otros bancos, junto al salario mínimo de 2026 y a la plantilla que publica cada banco." path="/transparencia/sueldos/" legal transp claims={['T04','T15','T16']} sources={sources} lead>
   <TranspNote />
 
-  <div class="callout"><p><strong>Una oferta no es lo que cobra cada persona.</strong> Muestra el sueldo que la empresa ofrece en una ciudad y un día. Estas dos ofertas son de ciudades distintas y de puestos con nombres distintos. Sirven para ver el orden de magnitud, no para ganar una discusión.</p></div>
+  <div class="callout"><p><strong>Una oferta no es lo que cobra cada persona.</strong> Muestra el sueldo que la empresa ofrece en una ciudad y un día. No sabemos si incluye comisiones, bonos u otros pagos. Sirve para ver el orden de magnitud, no para ganar una discusión.</p></div>
 
-  <h2>Lo que ofrecen, por mes</h2>
+  <h2>Ofertas de cajero de Banco Azteca el {az[0].seen_date}</h2>
+  <p>Leímos {az.length} ofertas de «cajero» publicadas en Computrabajo a nombre de Grupo Salinas, para sucursales de Banco Azteca. Todas dicen un pago mensual.</p>
+  <ul class="facts">
+    <li><span class="big">{pesos(Math.min(...az.map((p) => p.monthly)))}</span><span>la oferta más baja</span><span class="more">{az.find((p) => p.monthly === Math.min(...az.map((x) => x.monthly))).city}</span></li>
+    <li><span class="big">{pesos(azMed)}</span><span>la mediana</span><span class="more"><span class="tag t-voz">Cálculo propio</span></span></li>
+    <li><span class="big">{pesos(Math.max(...az.map((p) => p.monthly)))}</span><span>la oferta más alta</span><span class="more">{az.find((p) => p.monthly === Math.max(...az.map((x) => x.monthly))).city}</span></li>
+  </ul>
   <div class="bars">
-    <label>Salario mínimo general <meter min="0" max={max} value={mwMonthly}></meter> <span>{pesos(mwMonthly)}</span></label>
-    {posts.map((p) => (
-      <label>{p.employer} <meter min="0" max={max} value={p.monthly}></meter> <span>{pesos(p.monthly)}{p.plus_commissions ? ' más comisiones' : ''}</span></label>
-    ))}
+    <label>Salario mínimo general, por mes <meter min="0" max={max} value={mwMonthly}></meter> <span>{pesos(mwMonthly)}</span></label>
+    {az.map((p) => <label>{p.city} <meter min="0" max={max} value={p.monthly}></meter> <span>{pesos(p.monthly)}</span></label>)}
+    {others.map((p) => <label>{p.employer}, {p.city} <meter min="0" max={max} value={p.monthly}></meter> <span>{pesos(p.monthly)}{p.plus_commissions ? ' más comisiones' : ''}</span></label>)}
   </div>
+  {below30.length > 0 && <div class="callout"><p><strong>{below30.length === 1 ? 'Una oferta queda' : `${below30.length} ofertas quedan`} por debajo del salario mínimo mensual</strong> aun contando solo 30 días por mes ({pesos(mw30)}): {below30.map((p) => `${p.city}, ${pesos(p.monthly)}`).join('; ')}. No sabemos si la oferta incluye otros pagos ni si el monto es el sueldo base. Otras ofertas quedan muy cerca de ese mínimo: depende de cuántos días por mes se cuenten ({n(DAYS_PER_MONTH, 1)} en nuestra convención).</p></div>}
+
+  <h2>En la Ciudad de México, el mismo puesto</h2>
   <div class="tbl-wrap">
     <table class="rt">
-      <thead><tr><th>Empleador y puesto</th><th>Ciudad</th><th>Pago ofrecido</th><th>Veces el salario mínimo</th><th>Fuente</th></tr></thead>
+      <thead><tr><th>Empleador</th><th>Ciudad</th><th>Pago ofrecido por mes</th><th>Veces el salario mínimo</th><th>Fuente</th></tr></thead>
       <tbody>
-        {posts.map((p) => (
-          <tr><th scope="row">{p.employer}. {p.role_es}</th><td>{p.city}</td><td>{pesos(p.pay)} al mes{p.plus_commissions ? ' más comisiones' : ''}</td><td>{n(p.times, 2)}</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${p.status}`}>{p.status}</span> Visto el {p.seen_date}. <a href={p.posting_url} rel="noopener noreferrer">Oferta</a></td></tr>
-        ))}
-        <tr><th scope="row">Salario mínimo general de 2026</th><td>Todo el país, salvo la frontera norte</td><td>{n(minWageDaily, 2)} pesos al día, unos {pesos(mwMonthly)} al mes</td><td>1.00</td><td><span class="tag t-voz">Lo dice una autoridad</span> <span class={`tag t-${minWageSource.status}`}>{minWageSource.status}</span> <a href={minWageSource.source_url} rel="noopener noreferrer">Fuente</a></td></tr>
+        {azCdmx.map((p) => <tr><th scope="row">Banco Azteca. {p.role_es}</th><td>{p.city}</td><td>{pesos(p.monthly)}</td><td>{n(p.times, 2)}</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${p.status}`}>{p.status}</span> Visto el {p.seen_date}. <a href={p.posting_url} rel="noopener noreferrer">Listado</a></td></tr>)}
+        <tr><th scope="row">{bbva.employer}. {bbva.role_es}</th><td>{bbva.city}</td><td>{pesos(bbva.monthly)} más comisiones</td><td>{n(bbva.times, 2)}</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${bbva.status}`}>{bbva.status}</span> Visto el {bbva.seen_date}. <a href={bbva.posting_url} rel="noopener noreferrer">Oferta</a></td></tr>
       </tbody>
     </table>
   </div>
-  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> El pago mensual del salario mínimo es {n(minWageDaily, 2)} × {DAYS_PER_MONTH} días. Un pago semanal se pasa a mes con {WEEKS_PER_MONTH} semanas por mes. Son convenciones de este sitio.</p>
+  <p class="ref-line"><span class="tag t-voz">Cálculo propio</span> La mediana de las {azCdmx.length} ofertas de Banco Azteca en la Ciudad de México es {pesos(azCdmxMed)} al mes. La oferta de BBVA, {pesos(bbva.monthly)}, es {n(bbva.monthly / azCdmxMed, 2)} veces esa mediana, y dice «más comisiones». Las ofertas son de colonias y puestos distintos.</p>
+
+  <h2>Lo que dice una estadística oficial</h2>
+  <p>Data México (Secretaría de Economía), con datos de la ENOE del primer trimestre de 2026, reporta un salario promedio mensual de <strong>{pesos(ws.avg_monthly_mxn)}</strong> para «cajeros, cobradores y pagadores», con unas {n(ws.people)} personas ocupadas. <span class="tag t-voz">Lo dice una autoridad</span> <span class={`tag t-${ws.status}`}>{ws.status}</span> <a href={ws.source_url} rel="noopener noreferrer">Fuente</a> {ws.caution_es} Es un promedio de toda la economía, no solo de bancos.</p>
+
+  <h2>Cuántas personas trabajan en cada banco</h2>
+  <div class="tbl-wrap">
+    <table class="rt">
+      <thead><tr><th>Institución</th><th>Personal</th><th>Fecha y alcance</th><th>Fuente</th></tr></thead>
+      <tbody>
+        {annual.filter((a: any) => a.employees_direct).map((a: any) => <tr><th scope="row">Banco Azteca, {a.year}</th><td>{n(a.employees_direct)}</td><td>Al cierre del año; «contratados directamente por la Institución»</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${a.status}`}>{a.status}</span> <a href={a.notes_url} rel="noopener noreferrer">Notas</a></td></tr>)}
+        <tr><th scope="row">BBVA México</th><td>{n(bbvaPeer.employees)}</td><td>Septiembre de 2026 ({n(bbvaPeer.employees_prev)} en septiembre de 2025)</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${bbvaPeer.status}`}>{bbvaPeer.status}</span> <a href={bbvaPeer.source_url} rel="noopener noreferrer">Reporte</a></td></tr>
+        <tr><th scope="row">Santander México</th><td>{n(santPeer.employees)}</td><td>Septiembre de 2026 ({n(santPeer.employees_prev)} en septiembre de 2025); excluye al personal de Tuiio</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${santPeer.status}`}>{santPeer.status}</span> <a href={santPeer.source_url} rel="noopener noreferrer">Reporte</a></td></tr>
+        <tr><th scope="row">Grupo Elektra (todo el grupo, 5 países)</th><td>{n(T.elektra.employees.total)}</td><td>31 de diciembre de 2025; alrededor del {T.elektra.employees.union_pct}% sindicalizado</td><td><span class="tag t-voz">Lo dice la empresa</span> <span class={`tag t-${T.elektra.employees.status}`}>{T.elektra.employees.status}</span> <a href={T.elektra.employees.source_url} rel="noopener noreferrer">Reporte anual</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><p><strong>Para ubicar la cifra de 15,000 cajeros.</strong> Según la prensa, Ricardo Salinas Pliego dijo en noviembre de 2026 que «tenía» 15,000 cajeros. Las notas del banco dicen que, al cierre de 2025, contrataba directamente a {n(annual[4].employees_direct)} personas en total. Las dos cifras no son comparables: no sabemos qué cuenta cada una como «cajero», y el reporte trimestral consolida a una empresa de personal, Servicios Laborales y Ejecutivos, cuyo número de trabajadores no leímos. No hay un número auditado de cajeros.</p></div>
 
   <h2>¿Y tu sueldo?</h2>
   <p>Escribe tu pago y mira dónde queda. No se guarda ni sale de tu teléfono.</p>
@@ -49,9 +92,10 @@ const sources = [
 
   <details class="acc" id="no-sabemos"><summary>Lo que no sabemos</summary><div class="acc-b">
     <ul>
-      <li>No leímos las prestaciones de estas ofertas. Compara también aguinaldo, vacaciones, seguro y bonos.</li>
-      <li>No hay un número de empleados auditado de Banco Azteca: el reporte trimestral no lo informa.</li>
-      <li>Para comparar de verdad, hacen falta ofertas del mismo puesto, en la misma ciudad y la misma semana, de varios bancos. Aquí hay dos.</li>
+      <li>No leímos las prestaciones de las ofertas de Banco Azteca. Compara también aguinaldo, vacaciones, seguro y bonos.</li>
+      <li>El salario mínimo que usamos es el de 2026 publicado por Conasami. Aquí solo comparamos montos publicados: no es un dictamen laboral.</li>
+      <li>No tenemos ofertas de Santander ni de Banamex con pago a la vista: los listados que leímos no lo mostraban.</li>
+      <li>Las ofertas desaparecen y cambian. Las de esta página son del {az[0].seen_date}.</li>
     </ul>
   </div></details>
   <script>import '../../scripts/transp-sueldos.ts';</script>

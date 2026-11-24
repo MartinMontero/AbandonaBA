@@ -66,18 +66,35 @@ Todas están en `docs/LEGAL-REGISTER.md` como «Pregunta para el abogado». Las 
 | Wise y Remitly: cotizaciones con fecha | https://wise.com/mx/ y https://www.remitly.com/mx/es | Muestran el precio solo con datos de sesión |
 | Ofertas que vencen el 2026-11-30 (Nu, Ualá): volver a leerlas | https://nubank.com.mx/cuenta/ | Vencen pronto |
 
-## Parte 3 (Transparencia): lo que se bloqueó o falta y necesita a una persona (2026-11-23)
+## Parte 3 (Transparencia): lo que se bloqueó o falta y necesita a una persona (2026-11-23, segunda ronda)
 
-| Pendiente | Enlace directo | Por qué falta |
+Ronda de investigación profunda. Se leyeron completos los reportes y estados financieros del banco de 2021 a 3T 2026, el Reporte Anual 2025 de Grupo Elektra, el reporte de remuneración, los reportes 3T 2026 de BBVA, Santander, Banorte y Banamex, los archivos de datos abiertos del SAT y 13 ofertas de empleo. Lo siguiente no se pudo leer, o solo se leyó en prensa.
+
+| Pendiente | Enlace directo | Qué pasó |
 |---|---|---|
-| Notas a los estados financieros: qué es Servicios Laborales y Ejecutivos y por qué un reporte consolida el 99.9% y otro dice «sin filiales» | https://www.grupoelektra.com.mx/es/banco-azteca-financieros | La página no cargó en el navegador; los PDF sí con un lector |
-| Resultados de años anteriores y de otros bancos (BBVA, Banorte, Santander, Banamex, BanCoppel) con las mismas cifras | https://www.gob.mx/cnbv | No se leyó la CNBV en esta ronda |
-| Grupo Elektra: resultados, dividendos y quién es dueño de qué | https://www.grupoelektra.com.mx/es/estructura-corporativa | No se leyó |
-| Sentencias de la Suprema Corte (montos por caso, 33,306 millones frente a 48,326) | https://www.scjn.gob.mx | No se encontró un comunicado oficial; solo prensa |
-| Comunicado del SAT sobre el acuerdo de pago de enero de 2026 y pagos posteriores | https://www.gob.mx/sat | Solo se leyó prensa |
-| Comunicado de Grupo Salinas de enero de 2026 y la cifra de 319 mil millones | https://www.excelsior.com.mx/nacional/grupo-salinas-transparenta-balance-tributario | Solo se leyó prensa; sin confirmación del SAT |
-| Listas del SAT de créditos firmes y cancelados | https://www.sat.gob.mx | No se consultaron |
-| Informe anual y avisos a la bolsa con remuneración de directivos en pesos | https://www.bmv.com.mx | No se consultaron; el reporte del banco da solo porcentajes |
-| Ofertas del mismo puesto, ciudad y semana en Banco Azteca, BBVA, Banorte, Santander y Banamex | https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca | Solo hay dos ofertas de ciudades distintas |
-| Plataforma nacional de transparencia: nombre y reglas vigentes | https://www.gob.mx | No se verificó |
-| Cifra de patrimonio del accionista mayoritario en una clasificación reconocida (no incluida a propósito) | (sin enlace) | Decisión editorial: no se publica sin método y fecha verificados |
+| Sentencias de la Suprema Corte de noviembre de 2025 (amparo directo en revisión 6321/2024 y los otros seis) | https://www.scjn.gob.mx/ | Buscadores sin comunicado oficial; solo prensa. Falta confirmar montos por caso (33,306 millones frente a 48,326 en total) |
+| Comunicado del SAT o de Hacienda sobre el acuerdo de pago de enero de 2026 y los pagos posteriores | https://www.gob.mx/sat | No apareció el comunicado; solo prensa que lo cita |
+| Comunicado de Grupo Salinas de enero de 2026 y su balance tributario de agosto (319 mil millones) | https://www.excelsior.com.mx/nacional/grupo-salinas-transparenta-balance-tributario | Solo prensa; sin confirmación del SAT |
+| Buró de Entidades Financieras: reclamaciones por contrato de cada banco | https://www.buro.gob.mx/general_gob.php?id_sector=0&id_periodo=51 | La sección de bancos no respondió (tres intentos en dos navegadores) |
+| Buró de Entidades Financieras, vista mensual | https://www.buro.gob.mx/general_gob_mensual.php?idAnio=2026&idMes=8 | Cargó la portada, no la tabla |
+| CNBV, Portafolio de Información: banca múltiple | https://portafolioinfo.cnbv.gob.mx/Paginas/Inicio.aspx | Cargó, pero no se extrajeron cifras |
+| Página de información financiera de Banco Azteca | https://www.grupoelektra.com.mx/es/banco-azteca-financieros | Se ve en blanco en Chrome; los PDF se descargaron con enlace directo |
+| Tabla de utilidad neta consolidada de Grupo Elektra | https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=84 | El texto extraído mezcla las filas; no se publica ninguna cifra |
+| Notas a los estados financieros consolidados de Grupo Elektra (litigios fiscales por empresa) | https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=232 | No se leyeron completas |
+| ROE y ROA de Banco Azteca (resumen financiero 3T 2026) | https://www.grupoelektra.com.mx/api/pdfEkt/4297 | La tabla se extrae desordenada y las cifras son sobre cifras no consolidadas |
+| Notas del banco sobre Servicios Laborales y Ejecutivos (número de trabajadores) | https://www.grupoelektra.com.mx/api/pdfEkt/4294 | No dicen cuántas personas emplea; falta una nota específica |
+| Morosidad y capitalización de Santander México | https://www.bmv.com.mx/docs-pub/eventemi/eventemi_1599969_1.pdf | La tabla se extrae desordenada |
+| BanCoppel: reportes 2026 | https://www.bancoppel.com/ | El sitio dio «Access Denied» a lectores automáticos; no se localizó el reporte en la BMV |
+| Empleados, ROE del banco y morosidad del banco de Banorte | https://bmv.com.mx/docs-pub/infingps/gpsinfin_1601140_2026-03_2.pdf | Las cifras de Banorte son del grupo financiero |
+| Número de empleados y ROE de Banamex | https://www.banamex.com/inversionistas/assets/pdf/esp/financiera/BanamexEstadosFinancieros3T26.pdf | No se leyó |
+| Dividendos y empleados de Banco Azteca en 2021 | https://www.grupoelektra.com.mx/api/pdfEkt/3427 | El reporte del 4T 2021 solo habla del cuarto trimestre |
+| Reportes de remuneración anteriores (tendencia) | https://www.grupoelektra.com.mx/Documents/ES/remuneracion/Reporte_Anual_del_Sistema_de_Remuneracion_2023.pdf | Solo se leyó el de 2025 |
+| Avisos a la bolsa y asamblea de accionistas de Grupo Elektra (desglose de la remuneración agregada de 4,443.8 millones) | https://www.bmv.com.mx/es/emisoras/eventosrelevantes/ELEKTRA-27-CGEN_CAPIT | Cargó, no se leyó |
+| Resultados trimestrales de Grupo Elektra | https://www.grupoelektra.com.mx/es/resultados-trimestrales | No se leyeron |
+| Página de Data México sobre cajeros (salario promedio) | https://www.economia.gob.mx/datamexico/es/profile/occupation/cajeros-cobradores-y-pagadores | Carga con JavaScript; la cifra llegó por una búsqueda |
+| Sueldos de Santander y Banamex para cajeros (misma ciudad y semana) | https://mx.computrabajo.com/trabajo-de-cajero-banamex | Los listados no mostraban el pago |
+| Sitio de empleo propio de Banco Azteca | https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca | No se localizó su página oficial de empleo; solo el listado de terceros |
+| Plataforma Nacional de Transparencia: reglas vigentes | https://www.plataformadetransparencia.org.mx/ | La página carga; no se verificó qué institución recibe hoy las solicitudes. La página de gob.mx del INAI ya no abre |
+| Patrimonio del accionista mayoritario en una clasificación reconocida | (sin enlace) | Decisión editorial: no se publica sin método y fecha verificados |
+
+Revisión editorial pendiente de la persona que dictamina: cómo se nombra a las personas en `/transparencia/quien-es-quien/` (solo cargos de la empresa; no se nombra a familiares).

@@ -29,3 +29,14 @@ Guardadito (0.01% frente a 0.00% GAT), portabilidad (Art. 18 LTOSF sin el tema),
 | Titular «Salinas Group Owes $3.8 Billion» | No se había encontrado | Existe: Bloomberg Tax, 20-mar-2024; coincide con más de 63,000 millones de pesos de la presentación del SAT del mismo día | Se publica atribuido y con la aclaración de que es la cifra reclamada en 2024 |
 | Estructura del banco | — | Un reporte consolida a Servicios Laborales y Ejecutivos con 99.9%; el reporte de remuneración dice «sin filiales ni subsidiarias» | Se muestran los dos textos sin concluir |
 | Situación de los casos fiscales | La instrucción habla de adeudos y de la sentencia de 2025 | En enero de 2026 el grupo anunció un acuerdo de pago por 32,132 millones en 18 pagos (prensa) | La página muestra primero la situación más reciente |
+
+## Transparencia, segunda ronda (2026-11-23)
+| Tema | Antes | Ahora | Decisión |
+|---|---|---|---|
+| Último trimestre del banco | Las páginas mostraban el 2T 2026 | El banco ya publicó el 3T 2026: utilidad neta de 1,170 millones (1,602 en el año), morosidad de 4.9% y capitalización de 14.04% | Páginas actualizadas al 3T 2026 |
+| «Remuneración de directivos: no publicada» | Se afirmaba que no había pesos | Grupo Elektra publica un agregado de aproximadamente 4,443.8 millones de pesos para consejeros, directivos relevantes y personas relacionadas | Se muestra como agregado, no como sueldo individual. El banco por separado sigue sin dar pesos |
+| Situación de los casos fiscales | Solo prensa | El reporte anual de Grupo Elektra dice que se resolvieron en definitiva el 13-nov-2025 y que se autorizó pagar 24,958 millones en parcialidades | La página abre con la versión de la empresa y la atribuye |
+| Plantilla | Solo la afirmación de 15,000 cajeros | Notas del banco: 13,563 personas contratadas directamente al cierre de 2025 | Se muestran como no comparables |
+| Estructura | Sin fuente primaria de propiedad | Grupo Elektra lista a Banco Azteca como subsidiaria al 100% | Se muestra con su fuente |
+| Archivo de BanCoppel de la BMV | El resultado de búsqueda decía BanCoppel | El PDF era de BanBajío | Se descartó; BanCoppel no se incluye |
+| Ofertas de cajero | Dos ofertas de ciudades distintas | 13 ofertas, tres de Banco Azteca en la Ciudad de México y una de BBVA en Iztapalapa | Se compara en la misma ciudad |

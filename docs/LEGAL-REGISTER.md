@@ -746,25 +746,25 @@ Crédito: Banxico publica una calculadora del Costo Anual Total (CAT) para créd
 
 ## T01 · verificado-primaria · prioridad E
 
-Resultados de Banco Azteca en 2026, según su propio reporte: utilidad neta de 1,806 millones de pesos a marzo, pérdida neta de 1,374 millones en el segundo trimestre y utilidad neta de 432 millones a junio; ingresos por intereses del segundo trimestre de 27,451 millones; morosidad de 5.3% y capitalización de 14.67% a junio.
+Resultados de Banco Azteca según sus propios reportes, en millones de pesos: utilidad neta de 1,448 (2021), 2,814 (2022), 3,092 (2023), 5,523 (2024) y 6,855 (2025); de enero a septiembre de 2026, 1,602 (4,259 en el mismo periodo de 2025), con 1,170 en el tercer trimestre. Ingresos por intereses del 3T 2026: 28,564. Morosidad de 4.9% y capitalización de 14.04% al 30 de septiembre de 2026 (6.3% y 15.50% al cierre de 2025).
 
-**Fuentes:** [Banco Azteca: reportes de la Administración al 31 de marzo y al 30 de junio de 2026](https://www.grupoelektra.com.mx/api/pdfEkt/4259) (leída 2026-11-23)
+**Fuentes:** [Banco Azteca: reporte de la Administración y estados financieros al 30 de septiembre de 2026 y al 31 de diciembre de 2021 a 2025](https://www.grupoelektra.com.mx/api/pdfEkt/4295) (leída 2026-11-23)
 
-**Conflicto abierto:** Son cifras de la empresa. No se compararon con la CNBV ni con otros bancos en esta ronda.
+**Conflicto abierto:** Son cifras de la empresa. El reporte explica la baja de la morosidad con cancelaciones de cartera en etapa 3 ya reservada al 100%. La utilidad neta de 2021 se toma del estado de resultados del año.
 
-**Debe confirmar:** Leer los estados financieros completos y los datos de la CNBV.
+**Debe confirmar:** Contrastar con los datos de la CNBV.
 
 **Pregunta para el abogado:** ¿Es correcto presentar estas cifras con la voz «empresa» y sin compararlas aún con otros bancos?
 
-**Páginas:** /transparencia/dinero/, /transparencia/, /transparencia/utilidades/
+**Páginas:** /transparencia/como-verificarlo/, /transparencia/dinero/, /transparencia/, /transparencia/utilidades/
 
 ## T02 · verificado-primaria · prioridad E
 
-Dividendos: el banco informa pagos de 1,500 millones de pesos el 22 de enero y de 1,500 millones el 23 de abril de 2026.
+Dividendos de Banco Azteca, según sus reportes: 3,500 millones de pesos en 2022 (tres pagos), 1,500 en 2023, 3,500 en 2024 (1,500 y 2,000), 2,160 en 2025 (2,000 y 160) y 3,000 en 2026 hasta septiembre (1,500 el 22 de enero y 1,500 el 23 de abril). Grupo Elektra pagó dividendos de 1,151.05 millones (abril de 2023) y 1,146.91 millones (abril de 2024) y no lista pagos para 2025 en su reporte anual.
 
-**Fuentes:** [Banco Azteca: reporte de la Administración al 30 de junio de 2026](https://www.grupoelektra.com.mx/api/pdfEkt/4259) (leída 2026-11-23)
+**Fuentes:** [Banco Azteca: reportes de la Administración (4T 2022 a 3T 2026)](https://www.grupoelektra.com.mx/api/pdfEkt/4295) (leída 2026-11-23); [Grupo Elektra: Reporte Anual 2025, p. 83 del PDF](https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=83) (leída 2026-11-23)
 
-**Conflicto abierto:** El sitio muestra los dividendos y la utilidad de periodos distintos sin restarlos.
+**Conflicto abierto:** El sitio muestra dividendos y utilidad de periodos distintos sin restarlos. Los reportes no dicen a quién se pagaron. Para 2021 no se leyó el total anual.
 
 **Debe confirmar:** Confirmar en los estados financieros dictaminados a quién se pagaron.
 
@@ -788,11 +788,11 @@ Remuneración de directivos: el sistema cubre al Presidente del Consejo, al Dire
 
 ## T04 · verificado-secundaria · prioridad E
 
-Sueldos ofrecidos el 23 de noviembre de 2026 en un listado de empleo: Banco Azteca, cajero bancario en San Juan del Río, 11,000 pesos al mes; Banorte, cajero universal de apoyo en Texcoco, 14,000 pesos al mes más comisiones.
+Sueldos ofrecidos el 23 de noviembre de 2026 en listados de empleo: 11 ofertas de cajero de Banco Azteca (publicadas a nombre de Grupo Salinas), de 8,400 a 11,360 pesos al mes (mediana 10,000), tres de ellas en la Ciudad de México (9,500, 9,800 y 10,000); BBVA, Personal de Cajas en Iztapalapa, 15,952 pesos al mes más comisiones; Banorte, cajero universal de apoyo en Texcoco, 14,000 pesos más comisiones.
 
-**Fuentes:** [Computrabajo México: listados de cajero](https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca) (leída 2026-11-23)
+**Fuentes:** [Computrabajo México: listado de cajero Banco Azteca](https://mx.computrabajo.com/trabajo-de-cajero-banco-azteca) (leída 2026-11-23); [Computrabajo México: listado de cajero BBVA](https://mx.computrabajo.com/trabajo-de-cajero-bbva) (leída 2026-11-23); [Computrabajo México: cajero universal de Banorte](https://mx.computrabajo.com/trabajo-de-cajero-universal-en-estado-de-mexico) (leída 2026-11-23)
 
-**Conflicto abierto:** Son ciudades distintas y puestos con nombres distintos. Un listado muestra el sueldo ofrecido, no lo que cobra cada persona.
+**Conflicto abierto:** Una oferta de 8,400 pesos mensuales queda por debajo del salario mínimo mensual aun con 30 días por mes. No sabemos si los montos incluyen comisiones u otros pagos. Los puestos y las colonias no son idénticos.
 
 **Debe confirmar:** Leer las ofertas en la página de empleo de cada banco, en la misma ciudad y la misma semana.
 
@@ -828,19 +828,19 @@ Prensa de noviembre de 2025: la Suprema Corte dejó firmes sentencias por unos 4
 
 **Páginas:** /transparencia/impuestos/, /transparencia/linea-de-tiempo/
 
-## T07 · verificado-secundaria · prioridad E
+## T07 · verificado-primaria · prioridad E
 
-Acuerdo de pago de enero de 2026: Grupo Salinas anunció que pagaría 32,132 millones de pesos en 18 pagos; la prensa informa un primer pago de unos 10,400 millones y 13,979 millones pagados en mayo. Según la prensa, el SAT dijo que actuó conforme al Código Fiscal de la Federación y a las resoluciones judiciales. El grupo dice que paga en desacuerdo.
+Acuerdo de pago de enero de 2026: Grupo Elektra dice en su reporte anual que la autoridad le autorizó pagar en parcialidades 24,958 millones de pesos más interés, con un pago inicial de 6,475 millones el 29 de enero de 2026 y el resto (18,483 millones más interés) en 18 mensualidades desde el 3 de marzo de 2026. Según la prensa, el acuerdo de todo el grupo es de 32,132 millones de pesos en 18 pagos, con un primer pago de unos 10,400 millones y 13,979 millones pagados en mayo; el SAT dijo que actuó conforme al Código Fiscal y a las resoluciones judiciales; el grupo dice que paga en desacuerdo.
 
-**Fuentes:** [Expansión, Zeta Tijuana, UnoTV y otros](https://expansion.mx/empresas/2026/01/29/grupo-salinas-paga-al-sat-32-000-mdp-el-63-de-su-deuda-fiscal) (leída 2026-11-23)
+**Fuentes:** [Expansión, Zeta Tijuana, UnoTV y otros](https://expansion.mx/empresas/2026/01/29/grupo-salinas-paga-al-sat-32-000-mdp-el-63-de-su-deuda-fiscal) (leída 2026-11-23); [Grupo Elektra: Reporte Anual 2025, pp. 79 y 80 del PDF](https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=80) (leída 2026-11-23)
 
-**Conflicto abierto:** Las fuentes difieren un poco en los totales. No leímos el comunicado del SAT ni el del grupo.
+**Conflicto abierto:** La cifra de Grupo Elektra (24,958 millones) es primaria; la de todo el grupo (32,132 millones) y los pagos posteriores son de prensa. No se leyó el comunicado del SAT ni el de Grupo Salinas.
 
 **Debe confirmar:** Leer el comunicado del SAT y el del grupo.
 
 **Pregunta para el abogado:** ¿Es correcto presentar el acuerdo como la situación vigente de los casos descritos en T05 y T06?
 
-**Páginas:** /transparencia/impuestos/, /transparencia/, /transparencia/linea-de-tiempo/
+**Páginas:** /transparencia/impuestos/, /transparencia/linea-de-tiempo/
 
 ## T08 · verificado-secundaria · prioridad E
 
@@ -872,9 +872,9 @@ El titular «Salinas Group Owes $3.8 Billion» (Bloomberg Tax, 20 de marzo de 20
 
 ## T10 · verificado-primaria · prioridad E
 
-Estructura: el reporte del banco dice que nace como subsidiaria de Grupo Elektra y que consolida a Servicios Laborales y Ejecutivos con 99.9%; el reporte de remuneración dice que no tiene filiales ni subsidiarias.
+Estructura: el reporte del banco dice que nace como subsidiaria de Grupo Elektra y que consolida a Servicios Laborales y Ejecutivos con 99.9%; el reporte de remuneración dice que no tiene filiales ni subsidiarias. La página «Estructura Corporativa» de Grupo Elektra lista como subsidiarias al 100% a Banco Azteca, Afore Azteca, Seguros Azteca, Seguros Azteca Daños y Punto Casa de Bolsa, entre otras. El reporte anual de Grupo Elektra dice que la mayoría de su capital es controlada por sus accionistas mayoritarios, entre los que nombra a Ricardo B. Salinas Pliego, y la página del consejo lo presenta como Presidente Honorario y uno de los accionistas mayoritarios.
 
-**Fuentes:** [Banco Azteca: reporte de la Administración y Sistema de Remuneración 2025](https://www.grupoelektra.com.mx/api/pdfEkt/4259) (leída 2026-11-23)
+**Fuentes:** [Banco Azteca: reporte al 30 de septiembre de 2026](https://www.grupoelektra.com.mx/api/pdfEkt/4295) (leída 2026-11-23); [Grupo Elektra: Estructura Corporativa](https://www.grupoelektra.com.mx/es/estructura-corporativa) (leída 2026-11-23); [Grupo Elektra: Consejo de Administración](https://www.grupoelektra.com.mx/es/consejo-de-administracion) (leída 2026-11-23); [Grupo Elektra: Reporte Anual 2025, p. 48 del PDF](https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=48) (leída 2026-11-23)
 
 **Conflicto abierto:** Los dos documentos del propio banco parecen decir cosas distintas.
 
@@ -897,3 +897,87 @@ Descuentos al salario (Art. 110): están prohibidos salvo en los casos y con los
 **Pregunta para el abogado:** ¿Puede el banco descontar de la liquidación el saldo de un crédito interno con el patrón sin respetar el tope de un mes de salario y el límite del treinta por ciento del excedente del mínimo?
 
 **Páginas:** /checklist-salida/
+
+## T11 · verificado-primaria · prioridad E
+
+Remuneración agregada: Grupo Elektra dice que la cantidad total establecida por la empresa y sus subsidiarias para 2025 a consejeros, directivos relevantes e individuos con el carácter de personas relacionadas, por los servicios prestados en cualquier carácter, fue de aproximadamente 4,443.8 millones de pesos. El reporte no dice cuántas personas lo reciben.
+
+**Fuentes:** [Grupo Elektra: Reporte Anual 2025, p. 125 del PDF](https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=125) (leída 2026-11-23)
+
+**Conflicto abierto:** Es un total de varias personas de Grupo Elektra y subsidiarias; no es un sueldo individual ni es solo del banco.
+
+**Debe confirmar:** Buscar el desglose en los avisos a la bolsa y en la asamblea de accionistas.
+
+**Pregunta para el abogado:** ¿Es correcto presentar el total como agregado, con su equivalencia en años de salario mínimo como cálculo propio?
+
+**Páginas:** /transparencia/directivos/, /transparencia/
+
+## T12 · verificado-primaria · prioridad E
+
+Impuestos, según Grupo Elektra: los juicios de ISR de los ejercicios 2008, 2010, 2011, 2012 y 2013 fueron resueltos en definitiva por la Suprema Corte el 13 de noviembre de 2025; por el acuerdo de pagar los adeudos, el 29 de enero de 2026 le autorizaron pagar en parcialidades 24,958 millones de pesos más interés. Dice que existen otros litigios con elementos de defensa, que esos adeudos no han adquirido firmeza, que aseguró las posibles obligaciones con un embargo administrativo voluntario y que está al corriente del esquema de pagos.
+
+**Fuentes:** [Grupo Elektra: Reporte Anual 2025, pp. 79 y 80 del PDF](https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=80) (leída 2026-11-23)
+
+**Conflicto abierto:** Es la versión de la empresa. No se leyó la sentencia ni el comunicado del SAT.
+
+**Debe confirmar:** Leer la sentencia de la Suprema Corte y las notas a los estados financieros.
+
+**Pregunta para el abogado:** ¿Se puede presentar la situación como la describe la empresa, atribuida y junto a la versión de la autoridad?
+
+**Páginas:** /transparencia/impuestos/, /transparencia/
+
+## T13 · verificado-primaria · prioridad E
+
+Listas del SAT en datos abiertos (actualizadas al 1 de octubre de 2026): Grupo Elektra, Nueva Elektra del Milenio, TV Azteca, Banco Azteca y Seguros Azteca no aparecen en los archivos Firmes, Exigibles, Cancelados ni Condonados (Art. 21); sí aparecen en el archivo de reducción de multas (Art. 74 del Código Fiscal de la Federación), con montos de entre 65 mil y 42 millones de pesos por registro.
+
+**Fuentes:** [SAT, datos abiertos: contribuyentes publicados y reducción de multas](https://www.sat.gob.mx/minisitio/DatosAbiertos/contribuyentes_publicados.html) (leída 2026-11-23)
+
+**Conflicto abierto:** La búsqueda fue por nombre. No prueba nada por sí sola.
+
+**Debe confirmar:** Releer los archivos cuando el SAT los actualice.
+
+**Pregunta para el abogado:** ¿Es correcto reportar la presencia y la ausencia en esas listas con la aclaración de que no prueban nada por sí solas?
+
+**Páginas:** /transparencia/impuestos/
+
+## T14 · verificado-primaria · prioridad E
+
+Comparación del tercer trimestre de 2026, con cifras de los reportes de cada banco: utilidad neta de 1,170 millones de pesos en Banco Azteca, 24,298 en BBVA México, 9,170 en Santander México, 15,658 en Grupo Financiero Banorte y 5,098 en Banamex; morosidad de 4.9% (Azteca), 1.7% (BBVA), 1.4% (Banorte) y 3.1% (Banamex); capitalización de 14.04%, 19.5%, 22.54% y 23.84%. Santander: morosidad y capitalización no leídas. BanCoppel no incluido.
+
+**Fuentes:** [Reportes del 3T 2026 de cada banco (BMV y sitios de inversionistas)](https://www.bmv.com.mx/docs-pub/infinbnc/bncinfin_1599616_2026-03_2.pdf) (leída 2026-11-23)
+
+**Conflicto abierto:** Los bancos tienen negocios distintos; Banorte es cifra del grupo financiero; los indicadores se calculan de forma distinta.
+
+**Debe confirmar:** Contrastar con la CNBV y leer Santander y BanCoppel.
+
+**Pregunta para el abogado:** ¿Es una comparación justa para presentarla con esas aclaraciones?
+
+**Páginas:** /transparencia/utilidades/
+
+## T15 · verificado-primaria · prioridad E
+
+Personal: las notas a los estados financieros de Banco Azteca dicen que contrataba directamente a 16,036 personas al cierre de 2022, 14,867 en 2023, 13,553 en 2024 y 13,563 en 2025; Grupo Elektra dice 62,298 personas en 5 países al 31 de diciembre de 2025 (3% sindicalizado); BBVA México, 45,414 en septiembre de 2026; Santander México, 21,932 (24,020 un año antes).
+
+**Fuentes:** [Notas a los estados financieros y reportes de cada empresa](https://www.grupoelektra.com.mx/api/pdfEkt/4165) (leída 2026-11-23)
+
+**Conflicto abierto:** No hay un número auditado de cajeros. El reporte del banco consolida a una empresa de personal cuyo número de trabajadores no se leyó.
+
+**Debe confirmar:** Leer las notas completas sobre Servicios Laborales y Ejecutivos.
+
+**Pregunta para el abogado:** ¿Es correcto mostrar estas cifras como no comparables con la de 15,000 cajeros?
+
+**Páginas:** /transparencia/, /transparencia/sueldos/
+
+## T16 · verificado-secundaria · prioridad E
+
+Data México (Secretaría de Economía), con datos de la ENOE del primer trimestre de 2026: salario promedio mensual de 7,070 pesos para «cajeros, cobradores y pagadores», con unas 850,000 personas ocupadas; la página advierte baja precisión estadística.
+
+**Fuentes:** [Data México: cajeros, cobradores y pagadores](https://www.economia.gob.mx/datamexico/es/profile/occupation/cajeros-cobradores-y-pagadores) (leída 2026-11-23)
+
+**Conflicto abierto:** La cifra llegó por una búsqueda; la página carga con JavaScript y no se releyó.
+
+**Debe confirmar:** Leer la página en un navegador.
+
+**Pregunta para el abogado:** ¿Se puede citar con la advertencia de baja precisión?
+
+**Páginas:** /transparencia/sueldos/

@@ -715,3 +715,5 @@ details.acc[open] { background: var(--md-sys-color-surface); }
 
 ul.plain { list-style: none; padding-left: 0; }
 ul.plain li { margin: 4px 0; }
+/* La etiqueta más larga («Transparencia») cabe en la barra lateral sin partirse */
+@media (min-width: 600px) { :root { --rail-width: 6rem; } .navbar a span:last-child { font-size: 0.6875rem; letter-spacing: -0.01em; white-space: nowrap; } }
