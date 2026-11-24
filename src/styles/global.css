@@ -362,6 +362,8 @@ details.card > summary { cursor: pointer; min-height: var(--target); display: fl
 .sources h2, .legend h2 { font-size: var(--type-label); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 var(--space-1); color: var(--md-sys-color-on-surface-variant); }
 .sources ul, .legend ul { font-size: var(--type-small); padding-left: var(--space-3); margin: 0; }
 .share { margin-top: var(--space-4); }
+.share-btns { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.share-note { margin: var(--space-1) 0 0; font-size: var(--type-small); color: var(--md-sys-color-on-surface-variant); }
 .review-panel { margin: var(--space-4) 0 0; border: 2px solid var(--md-sys-color-tertiary); border-radius: var(--radius-lg); padding: var(--space-1) var(--space-3); }
 .review-panel summary { font-weight: 800; cursor: pointer; min-height: var(--target); display: flex; align-items: center; }
 ul.plain { list-style: none; padding: 0; }

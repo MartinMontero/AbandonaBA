@@ -1,15 +1,24 @@
 ---
+// Botones de compartir en todas las páginas. Con tarjeta (card) se agrega la descarga de la imagen.
 import { siteConfig } from '../data/site.config';
-interface Props { card: string; path: string }
-const { card, path } = Astro.props;
+import { shareLinks } from '../lib/share';
+interface Props { path: string; title: string; card?: string; lang?: 'es' | 'en' }
+const { path, title, card, lang = 'es' } = Astro.props;
+const es = lang === 'es';
 const url = siteConfig.siteUrl + path;
-const wa = 'https://wa.me/?text=' + encodeURIComponent(url);
+const links = shareLinks(url, title, es);
+const by = (id: string) => links.find((l) => l.id === id)!;
+const wa = by('whatsapp');
 ---
-<section class="share" aria-labelledby={`compartir-${card}`}>
-  <h2 id={`compartir-${card}`}>Compartir</h2>
-  <p>
-    <a class="btn" href={wa} rel="noopener noreferrer">Enviar por WhatsApp</a>
-    <button type="button" class="btn" data-copy={url}>Copiar enlace</button>
-    <a class="btn" href={`/cards/${card}-1080x1080.png`} download>Descargar tarjeta</a>
-  </p>
+<section class="share" aria-labelledby="compartir">
+  <h2 id="compartir">{es ? 'Compartir' : 'Share'}</h2>
+  <div class="share-btns">
+    <a class="btn" href={wa.href} target="_blank" rel="noopener noreferrer" aria-label={wa.aria}>{wa.label}</a>
+    <button type="button" class="btn" data-copy={url}>{es ? 'Copiar enlace' : 'Copy link'}</button>
+    {links.filter((l) => l.id !== 'whatsapp').map((l) => (
+      <a class="btn" href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.aria} data-copy={l.copy ? url : undefined} data-copy-msg={l.copy ? (es ? 'Enlace copiado. Pégalo en tu historia o en un mensaje de Instagram.' : 'Link copied. Paste it in your story or a message on Instagram.') : undefined}>{l.label}</a>
+    ))}
+    {card && <a class="btn" href={`/cards/${card}-1080x1080.png`} download>{es ? 'Descargar tarjeta' : 'Download card'}</a>}
+  </div>
+  <p class="share-note">{es ? 'Cada botón abre esa plataforma en otra pestaña. Esta página no envía nada hasta que lo tocas. Compartir en redes públicas deja tu nombre en la publicación.' : 'Each button opens that platform in a new tab. This page sends nothing until you tap. Posting on public networks puts your name on the post.'}</p>
 </section>

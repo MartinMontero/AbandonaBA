@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { siteConfig, legalReview, financialReview, editorialReview, statusLabels, isReview } from '../data/site.config';
 import ReviewPanel from '../components/ReviewPanel.astro';
 import ShareRow from '../components/ShareRow.astro';
+import { canShare } from '../lib/share';
 import Art from '../components/Art.astro';
 
 export interface Source { title: string; url: string; read: string }
@@ -149,7 +150,7 @@ const hasToc = tocItems.length >= 3;
               </ul>
             </section>
           )}
-          {card && <ShareRow card={card} path={path} />}
+          {canShare(path) && <ShareRow card={card} path={path} title={title} lang={lang} />}
           {isReview && legal && <ReviewPanel claims={claims} decisions={decisions} />}
         </div>
         {hasToc && (

@@ -88,7 +88,7 @@ export function say(msg: string) {
 document.querySelectorAll<HTMLElement>('[data-copy]').forEach((b) =>
   b.addEventListener('click', async () => {
     const text = b.dataset.copy || '';
-    try { await navigator.clipboard.writeText(text); say('Copiado'); } catch { say('No se pudo copiar. Cópialo a mano.'); }
+    try { await navigator.clipboard.writeText(text); say(b.dataset.copyMsg || 'Copiado'); } catch { say('No se pudo copiar. Cópialo a mano.'); }
   }),
 );
 document.querySelectorAll('[data-print]').forEach((b) => b.addEventListener('click', () => window.print()));

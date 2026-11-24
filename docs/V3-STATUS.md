@@ -191,3 +191,10 @@ Decisiones: «IA» en el texto (decisión tuya); los despliegues los hago yo sol
 ## 15. Novena ronda: investigación profunda de Transparencia (2026-11-23)
 
 Se reescribieron las 11 páginas de `/transparencia/` con documentos primarios: reportes y estados financieros de Banco Azteca de 2021 a 3T 2026, Reporte Anual 2025 de Grupo Elektra (remuneración agregada, plantilla, dividendos, accionistas, créditos fiscales), datos abiertos del SAT, reportes 3T 2026 de cuatro bancos y 13 ofertas de empleo. Claims T01 a T16. Lista de lo bloqueado, con enlaces, en `docs/HUMAN-CHECKS.md`.
+
+## 16. Décima ronda: mapa por recorridos, tarjetas de Transparencia y botones de compartir (2026-11-23)
+
+- `/transparencia/mapa/` se rediseñó en cuatro preguntas de tres pasos (cien cuadros = cien pesos, puente de la utilidad, dividendos contra aportaciones, personal y gastos). Los pasos son enlaces `#a-1`…`#d-3`: funcionan sin JavaScript. Se agregó el estado de resultados de enero a septiembre de 2025 (PDF 4123) para comparar el mismo periodo de dos años.
+- «Lo esencial» en `/transparencia/` son cuatro tarjetas (cifra, imagen, quién lo dice, detalle).
+- **Compartir en todas las páginas** (menos el 404 y las de revisión): WhatsApp, Copiar enlace, Facebook, X e Instagram. Decisión tuya del 2026-11-23: la lista de proveedores no recomendados (Meta, xAI) se relaja solo para estos botones. Siguen siendo enlaces simples: sin SDK, sin scripts ni imágenes de esas empresas, sin solicitudes a terceros hasta que la persona toca. Facebook usa `facebook.com/sharer/sharer.php?u=`, X usa `x.com/intent/post?url=&text=` y WhatsApp usa `wa.me/?text=`. Instagram no tiene enlace para compartir una página: el botón copia el enlace y abre Instagram para pegarlo. **SIN PROBAR:** el flujo real de cada plataforma, que exige iniciar sesión. Con `curl` sin sesión, Facebook devolvió 400 al sharer y X redirigió al inicio de sesión; WhatsApp redirigió a su API y Instagram respondió 200. Probar con un clic en un navegador con sesión.
+
