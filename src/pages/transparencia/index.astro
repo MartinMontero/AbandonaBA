@@ -5,6 +5,7 @@ import Cifra from '../../components/Cifra.astro';
 import TranspNote from '../../components/TranspNote.astro';
 import { T, latest, ann, n, voices } from '../../lib/transparencia';
 const doors = [
+  { href: '/transparencia/mapa/', t: 'Mapa de conexiones', d: 'Todo está conectado. Sigue el dinero y mira con qué se relaciona cada cifra, en dos pasos.', art: 'mapa', feat: true },
   { href: '/transparencia/dinero/', t: '¿De dónde sale el dinero?', d: 'Cinco años de intereses, reservas y comisiones del banco.', art: 'store' },
   { href: '/transparencia/utilidades/', t: '¿Cuánto gana el banco?', d: 'Utilidad por año, dividendos y una comparación con otros bancos.', art: 'spark' },
   { href: '/transparencia/directivos/', t: '¿Cuánto ganan los jefes?', d: 'Lo que el banco y Grupo Elektra publican sobre pagos a directivos.', art: 'briefcase' },
@@ -25,7 +26,7 @@ const sources = [
   { title: ag.source_name, url: ag.source_url, read: ag.read_date },
 ];
 ---
-<Base art="shield" eyebrow="Para todos" title="Los documentos hablan. Aquí están, con su fuente y su fecha." description="Qué dicen los documentos públicos sobre cómo gana dinero Banco Azteca, qué publican el banco y su grupo sobre lo que pagan a directivos y a su personal, y qué dicen la autoridad y la empresa sobre los impuestos." path="/transparencia/" legal transp claims={['T01','T11','T12','T15']} sources={sources} lead>
+<Base art="shield" eyebrow="Para todos" title="Los documentos hablan. Aquí están, con su fuente y su fecha." description="Qué dicen los documentos públicos sobre cómo gana dinero Banco Azteca, qué publican el banco y su grupo sobre lo que pagan a directivos y a su personal, y qué dicen la autoridad y la empresa sobre los impuestos." path="/transparencia/" legal transp claims={['T01','T11','T12','T15','T19']} sources={sources} lead>
   <TranspNote />
 
   <h2>Lo esencial</h2>
@@ -39,7 +40,7 @@ const sources = [
   <h2>¿Qué quieres saber?</h2>
   <ul class="tiles">
     {doors.map((x) => (
-      <li><a class="tile" href={x.href}><Art name={x.art} /><span><h3>{x.t}</h3><p>{x.d}</p></span></a></li>
+      <li class={x.feat ? 'feat' : undefined}><a class="tile" href={x.href}><Art name={x.art} /><span><h3>{x.t}</h3><p>{x.d}</p></span></a></li>
     ))}
   </ul>
 

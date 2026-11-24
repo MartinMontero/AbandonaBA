@@ -756,7 +756,7 @@ Resultados de Banco Azteca según sus propios reportes, en millones de pesos: ut
 
 **Pregunta para el abogado:** ¿Es correcto presentar estas cifras con la voz «empresa» y sin compararlas aún con otros bancos?
 
-**Páginas:** /transparencia/como-verificarlo/, /transparencia/dinero/, /transparencia/, /transparencia/utilidades/
+**Páginas:** /transparencia/como-verificarlo/, /transparencia/dinero/, /transparencia/, /transparencia/mapa/, /transparencia/utilidades/
 
 ## T02 · verificado-primaria · prioridad E
 
@@ -770,7 +770,7 @@ Dividendos de Banco Azteca, según sus reportes: 3,500 millones de pesos en 2022
 
 **Pregunta para el abogado:** ¿Es correcto mostrar dividendos y utilidad neta lado a lado con la aclaración de periodos?
 
-**Páginas:** /transparencia/utilidades/
+**Páginas:** /transparencia/mapa/, /transparencia/utilidades/
 
 ## T03 · verificado-primaria · prioridad E
 
@@ -882,7 +882,7 @@ Estructura: el reporte del banco dice que nace como subsidiaria de Grupo Elektra
 
 **Pregunta para el abogado:** ¿Cómo debe presentarse esta diferencia sin sugerir una conclusión?
 
-**Páginas:** /transparencia/quien-es-quien/
+**Páginas:** /transparencia/mapa/, /transparencia/quien-es-quien/
 
 ## C27 · verificado-primaria · prioridad B
 
@@ -910,7 +910,7 @@ Remuneración agregada: Grupo Elektra dice que la cantidad total establecida por
 
 **Pregunta para el abogado:** ¿Es correcto presentar el total como agregado, con su equivalencia en años de salario mínimo como cálculo propio?
 
-**Páginas:** /transparencia/directivos/, /transparencia/
+**Páginas:** /transparencia/directivos/, /transparencia/, /transparencia/mapa/
 
 ## T12 · verificado-primaria · prioridad E
 
@@ -924,7 +924,7 @@ Impuestos, según Grupo Elektra: los juicios de ISR de los ejercicios 2008, 2010
 
 **Pregunta para el abogado:** ¿Se puede presentar la situación como la describe la empresa, atribuida y junto a la versión de la autoridad?
 
-**Páginas:** /transparencia/impuestos/, /transparencia/
+**Páginas:** /transparencia/impuestos/, /transparencia/, /transparencia/mapa/
 
 ## T13 · verificado-primaria · prioridad E
 
@@ -966,7 +966,7 @@ Personal: las notas a los estados financieros de Banco Azteca dicen que contrata
 
 **Pregunta para el abogado:** ¿Es correcto mostrar estas cifras como no comparables con la de 15,000 cajeros?
 
-**Páginas:** /transparencia/, /transparencia/sueldos/
+**Páginas:** /transparencia/, /transparencia/mapa/, /transparencia/sueldos/
 
 ## T16 · verificado-secundaria · prioridad E
 
@@ -1009,3 +1009,17 @@ Glassdoor no tiene una API pública vigente: según JobsPipe, la API de socios d
 **Pregunta para el abogado:** ¿Pueden mostrarse calificaciones agregadas de Glassdoor e Indeed, atribuidas y con fecha, y enlazar a sus páginas de empresa, dado lo que dicen sus términos de uso?
 
 **Páginas:** /empleos/opiniones/
+
+## T19 · verificado-primaria · prioridad E
+
+Mapa de conexiones de Transparencia. (1) Cada 100 pesos de intereses cobrados por Banco Azteca se reparten según su estado de resultados en 2022, 2023, 2024, 2025 y de enero a septiembre de 2026; el renglón «comisiones, intermediación y otros» se calcula por resta (resultado de la operación menos margen financiero ajustado y menos gastos de administración) y coincide en cada periodo con la suma de los cuatro renglones del estado (comisiones cobradas, comisiones pagadas, resultado por intermediación y otros ingresos). (2) Frases de los reportes del banco que el mapa parafrasea: de enero a septiembre de 2026 los ingresos por intereses suben 2,488 millones, sobre todo por 4,362 millones más en créditos al consumo y 509 menos en cartera comercial; los gastos por intereses bajan 1,446 millones (1,176 por captación, 175 por tesorería y 95 por arrendamiento); la estimación preventiva sube 2,078 millones, cubre 2.32 veces la cartera en etapa 3 y la morosidad es de 4.9%, igual que un año antes; los gastos de administración suben 1,436 millones (2.7%) por operación y publicidad, y «otros ingresos (egresos)» varía 3,240 millones, sobre todo por la valuación del oro. En 2025 el gasto de administración sube 6,560 millones (10.0%) por operación, honorarios, consultoría de TI y publicidad, y los accionistas aprueban aportaciones para futuros aumentos de capital por 2,850, 1,000 y 2,200 millones y dividendos por 2,160 millones. Aportaciones por 1,300 y 1,050 millones en 2023 y 2,250 millones en 2024; ninguna se menciona en 2022 ni de enero a septiembre de 2026. (3) Cálculos propios: dividendos entre utilidad neta, dividendos menos aportaciones, y si dos cifras anuales cambiaron en el mismo sentido o al revés de un año al siguiente; solo describen. (4) Huecos declarados: no se encontró a quién se pagó cada dividendo, cuánto del gasto de administración es de personal, cuántas personas atienden los puntos de contacto, cuántas trabajan en Servicios Laborales y Ejecutivos, cuántas reciben el total de pagos a directivos de Grupo Elektra ni si los juicios fiscales de Grupo Elektra afectan las cuentas del banco; los reportes de resultados del banco de 2025 y del tercer trimestre de 2026 no los mencionan.
+
+**Fuentes:** [Banco Azteca: reporte de la Administración al 30 de septiembre de 2026](https://www.grupoelektra.com.mx/api/pdfEkt/4295) (leída 2026-11-23); [Banco Azteca: estado de resultado integral, enero a septiembre de 2026](https://www.grupoelektra.com.mx/api/pdfEkt/4291) (leída 2026-11-23); [Banco Azteca: reporte de la Administración al 31 de diciembre de 2025](https://www.grupoelektra.com.mx/api/pdfEkt/4166) (leída 2026-11-23); [Banco Azteca: estado de resultado integral al 31 de diciembre de 2025](https://www.grupoelektra.com.mx/api/pdfEkt/4162) (leída 2026-11-23); [Banco Azteca: notas a los estados financieros al 31 de diciembre de 2025](https://www.grupoelektra.com.mx/api/pdfEkt/4165) (leída 2026-11-23); [Grupo Elektra: Reporte Anual 2025, pp. 79 y 80 del PDF](https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=80) (leída 2026-11-23)
+
+**Conflicto abierto:** Las frases de los reportes son la explicación de la empresa; no se contrastaron con un tercero. Los cálculos de «mismo sentido o al revés» usan cuatro o menos cambios anuales: describen, no prueban nada.
+
+**Debe confirmar:** Leer en pantalla los estados de resultados de 2022 a 2024: el texto extraído del PDF desordena las columnas, así que los renglones se comprobaron por suma contra el resultado de la operación y, para 2025 y 2026, contra las variaciones que dice el propio reporte.
+
+**Pregunta para el abogado:** ¿Es correcto presentar como «lo dice la empresa» las frases parafraseadas de los reportes y como «cálculo propio» las comparaciones año con año, sin sugerir una causa, y declarar los huecos como «sin documento»?
+
+**Páginas:** /transparencia/, /transparencia/mapa/

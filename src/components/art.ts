@@ -37,6 +37,9 @@ export const spots: Record<string, string> = {
     <path d="M30 40h48M30 52h32" class="s-foam sw5"/>
     <path d="M98 58h38a12 12 0 0 1 12 12v22a12 12 0 0 1-12 12h-8v14l-14-14H98a12 12 0 0 1-12-12V70a12 12 0 0 1 12-12z" class="f-sun"/>
     <path d="M116 86c-8-6-12-10-8-15 3-3 7-2 8 1 1-3 5-4 8-1 4 5 0 9-8 15z" class="f-coral"/>${star4(136, 26, 8, 'coral')}`,
+  mapa: `<circle cx="80" cy="58" r="50" class="f-s3 o3"/>${ground}
+    <path d="M40 40L80 60L122 38M80 60L58 98M80 60L116 94" class="f-none s-n2 sw5"/>
+    <circle cx="40" cy="40" r="13" class="f-coral"/><circle cx="122" cy="38" r="13" class="f-sun"/><circle cx="58" cy="98" r="12" class="f-leaf"/><circle cx="116" cy="94" r="12" class="f-s2"/><circle cx="80" cy="60" r="17" class="f-n2"/>${star4(140, 64, 8)}${star4(22, 82, 6, 'coral')}`,
   steps: `<circle cx="80" cy="58" r="50" class="f-d2 o3"/>${ground}
     <rect x="18" y="84" width="30" height="24" rx="4" class="f-s3"/><rect x="48" y="68" width="30" height="40" rx="4" class="f-s2"/><rect x="78" y="52" width="30" height="56" rx="4" class="f-s1"/><rect x="108" y="34" width="30" height="74" rx="4" class="f-n2"/>
     <path d="M30 70l22-16 18 8 40-34" class="s-coral sw5"/><path d="M104 22l14 2-2 14z" class="f-coral"/>${star4(124, 18, 8)}${star4(24, 40, 5, 'd1')}`,

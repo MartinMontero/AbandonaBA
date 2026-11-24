@@ -121,3 +121,18 @@ Términos leídos (2026-11-23), para que la persona de prensa y propiedad intele
 - SearchAPI: https://www.searchapi.io/legal/terms
 - ScrapingBee: https://www.scrapingbee.com/terms-and-conditions/
 - Bright Data: https://brightdata.com/license
+
+## Mapa de conexiones (2026-11-23)
+
+Página: `/transparencia/mapa/`. Afirmación: T19 en `docs/LEGAL-REGISTER.md`. Datos: `src/data/mapa-conexiones.json` (piezas y conexiones) y `src/data/transparencia.json` (cifras).
+
+| Pendiente | Enlace directo | Qué pasó |
+|---|---|---|
+| Estados de resultados de 2022, 2023 y 2024: abrir el PDF y confirmar los cuatro renglones entre el margen y el resultado de la operación | https://www.grupoelektra.com.mx/api/pdfEkt/3609 (2022), https://www.grupoelektra.com.mx/api/pdfEkt/3813 (2023), https://www.grupoelektra.com.mx/api/pdfEkt/3988 (2024) | El texto extraído desordena las columnas. Los renglones (comisiones cobradas, comisiones pagadas, intermediación y otros ingresos) se asignaron por el orden fijo del estado y se comprobaron porque suman exactamente el resultado de la operación menos el margen ajustado y menos los gastos de administración. Para 2025 y 2026 se comprobaron además contra las variaciones que dicen los reportes (intermediación: 1,081 millones y 669 millones). Falta verlo en pantalla para 2022 a 2024 |
+| Aportaciones de los accionistas de 2022 a 2024 | https://www.grupoelektra.com.mx/api/pdfEkt/3616 (2022), https://www.grupoelektra.com.mx/api/pdfEkt/3819 (2023), https://www.grupoelektra.com.mx/api/pdfEkt/3992 (2024) | Se leyeron los apartados «Mediante Asamblea…» de cada reporte. En 2022 no se menciona ninguna aportación; el mapa lo dice como «ninguna mencionada», no como cero verificado |
+| Que los reportes del banco no hablan de los juicios fiscales de Grupo Elektra | https://www.grupoelektra.com.mx/api/pdfEkt/4295 y https://www.grupoelektra.com.mx/api/pdfEkt/4166 | Se buscó SAT, juicio y fiscal en el texto de los dos reportes de resultados y no aparecen. Las notas completas del banco (4165) no se leyeron entera; solo las políticas contables |
+| A quién se pagó cada dividendo del banco | https://www.grupoelektra.com.mx/es/estructura-corporativa | La página dice que el banco es subsidiaria al 100% (31 de dic. de 2024). Ningún documento leído dice cuánto de cada dividendo recibió Grupo Elektra. Buscar el aviso a la bolsa o la asamblea |
+| Gasto de personal dentro de los gastos de administración | https://www.grupoelektra.com.mx/api/pdfEkt/4165 | Las notas leídas no desglosan el gasto. Los reportes lo explican con operación, honorarios, consultoría de TI y publicidad. Revisar las notas completas de 2025 |
+| Personal de Servicios Laborales y Ejecutivos | https://www.grupoelektra.com.mx/api/pdfEkt/4295 | El banco la consolida con 99.9%. No se leyó cuántas personas trabajan ahí |
+
+Preguntas para el abogado (ver T19): ¿es correcto presentar como «lo dice la empresa» las frases parafraseadas de los reportes y como «cálculo propio» las comparaciones de «mismo sentido o al revés» (con cuatro cambios anuales o menos), sin sugerir causa?

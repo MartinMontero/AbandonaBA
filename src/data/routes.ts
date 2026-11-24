@@ -19,6 +19,7 @@ export const legalRoutes: { path: string; title: string }[] = [
   { path: '/transparencia/directivos/', title: 'Transparencia: directivos' },
   { path: '/transparencia/utilidades/', title: 'Transparencia: utilidades' },
   { path: '/transparencia/dinero/', title: 'Transparencia: de dónde sale el dinero' },
+  { path: '/transparencia/mapa/', title: 'Transparencia: mapa de conexiones' },
 ];
 
 export const decisions = [

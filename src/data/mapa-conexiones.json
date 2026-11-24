@@ -1,0 +1,89 @@
+{
+  "updated": "2026-11-23",
+  "claim": "T19",
+  "groups": [
+    { "id": "dinero", "name": "El dinero que entra y sale" },
+    { "id": "riesgo", "name": "Riesgo y capital" },
+    { "id": "personas", "name": "Personas" },
+    { "id": "duenos", "name": "Dueños e impuestos" }
+  ],
+  "kinds": {
+    "identidad": { "label": "Es una resta", "help": "Sale del estado de resultados: es aritmética, no interpretación." },
+    "dice": { "label": "Lo dice la empresa", "help": "Un reporte de la empresa lo dice con palabras. Va con su fuente." },
+    "calculo": { "label": "Cálculo propio", "help": "Lo calculamos con las cifras de los reportes. Describe; no prueba que una cosa cause la otra." },
+    "hueco": { "label": "Sin documento", "help": "No encontramos un documento que conecte las dos cosas. Decimos qué revisamos." }
+  },
+  "sources": {
+    "r3t26": { "name": "Banco Azteca: reporte de la Administración al 30 de septiembre de 2026", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4295", "read": "2026-11-23" },
+    "e3t26": { "name": "Banco Azteca: estado de resultado integral, enero a septiembre de 2026", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4291", "read": "2026-11-23" },
+    "r25": { "name": "Banco Azteca: reporte de la Administración al 31 de diciembre de 2025", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4166", "read": "2026-11-23" },
+    "e25": { "name": "Banco Azteca: estado de resultado integral al 31 de diciembre de 2025", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4162", "read": "2026-11-23" },
+    "n25": { "name": "Banco Azteca: notas a los estados financieros al 31 de diciembre de 2025", "url": "https://www.grupoelektra.com.mx/api/pdfEkt/4165", "read": "2026-11-23" },
+    "ra_remun": { "name": "Grupo Elektra: Reporte Anual 2025, p. 125 del PDF", "url": "https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=125", "read": "2026-11-23" },
+    "ra_tax": { "name": "Grupo Elektra: Reporte Anual 2025, pp. 79 y 80 del PDF", "url": "https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=80", "read": "2026-11-23" },
+    "estructura": { "name": "Grupo Elektra: Estructura Corporativa", "url": "https://www.grupoelektra.com.mx/es/estructura-corporativa", "read": "2026-11-23" },
+    "ra_emp": { "name": "Grupo Elektra: Reporte Anual 2025, p. 74 del PDF", "url": "https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=74", "read": "2026-11-23" },
+    "ra_owner": { "name": "Grupo Elektra: Reporte Anual 2025, p. 48 del PDF", "url": "https://www.grupoelektra.com.mx/Documents/ES/Downloads/Reporte-Anual-Grupo-Elektra-2025.pdf#page=48", "read": "2026-11-23" }
+  },
+  "nodes": [
+    { "id": "consumo", "group": "dinero", "short": "Crédito al consumo", "name": "Créditos al consumo", "what": "Préstamos personales y créditos para comprar bienes. Es la parte de la cartera que más pesa.", "unit": "pct", "label": "de la cartera de crédito", "more": "/transparencia/dinero/" },
+    { "id": "ingresos", "group": "dinero", "short": "Intereses cobrados", "name": "Ingresos por intereses", "what": "Lo que el banco cobra de intereses por sus créditos y sus inversiones, antes de restar nada.", "unit": "mdp", "label": "millones de pesos", "more": "/transparencia/dinero/" },
+    { "id": "captacion", "group": "dinero", "short": "Dinero de clientes", "name": "Dinero de clientes (captación)", "what": "El dinero que la gente guarda en cuentas, inversiones y depósitos del banco. Se mide al cierre.", "unit": "mdp", "label": "millones de pesos, al cierre", "more": "/transparencia/dinero/" },
+    { "id": "gastos_int", "group": "dinero", "short": "Intereses pagados", "name": "Intereses que paga el banco", "what": "Lo que el banco paga por el dinero que guarda la gente y por otros préstamos que recibe.", "unit": "mdp", "label": "millones de pesos", "more": "/transparencia/dinero/" },
+    { "id": "admin", "group": "dinero", "short": "Gastos de administración", "name": "Gastos de administración y promoción", "what": "Lo que cuesta operar el banco. El reporte menciona gasto de operación, honorarios, consultoría de TI y publicidad.", "unit": "mdp", "label": "millones de pesos", "more": "/transparencia/dinero/" },
+    { "id": "otros", "group": "dinero", "short": "Comisiones y otros", "name": "Comisiones, intermediación y otros (neto)", "what": "Lo que queda de sumar comisiones cobradas, restar las pagadas y sumar otros resultados. Lo sacamos por resta.", "unit": "mdp", "label": "millones de pesos", "more": "/transparencia/dinero/" },
+    { "id": "utilidad", "group": "dinero", "short": "Utilidad neta", "name": "Utilidad neta", "what": "Lo que queda al final, después de todo lo anterior y de los impuestos.", "unit": "mdp", "label": "millones de pesos", "more": "/transparencia/utilidades/" },
+    { "id": "reserva", "group": "riesgo", "short": "Reserva por riesgo", "name": "Apartado por riesgo de crédito", "what": "Dinero que el banco aparta por créditos que podrían no pagarse. Cuenta como gasto.", "unit": "mdp", "label": "millones de pesos", "more": "/transparencia/dinero/" },
+    { "id": "morosidad", "group": "riesgo", "short": "Morosidad", "name": "Morosidad (IMOR)", "what": "Qué parte de los créditos tiene pagos atrasados. IMOR es el índice de morosidad.", "unit": "pct", "label": "de la cartera", "more": "/transparencia/utilidades/" },
+    { "id": "capital", "group": "riesgo", "short": "Capital", "name": "Capital del banco (ICAP)", "what": "Cuánto capital tiene el banco frente a los riesgos que corre. ICAP es el índice de capitalización.", "unit": "pct", "label": "índice de capitalización", "more": "/transparencia/utilidades/" },
+    { "id": "plantilla", "group": "personas", "short": "Personal del banco", "name": "Personas que contrata el banco", "what": "Empleados que el banco contrata directamente, al cierre del año. Se publica una vez al año.", "unit": "personas", "label": "personas", "more": "/transparencia/sueldos/" },
+    { "id": "sueldos", "group": "personas", "short": "Sueldos ofrecidos", "name": "Sueldos ofrecidos a cajeros", "what": "Lo que dicen las ofertas de empleo del 23 de noviembre de 2026. No es lo que cobra cada persona.", "unit": "fijo", "more": "/transparencia/sueldos/" },
+    { "id": "puntos", "group": "personas", "short": "Puntos de contacto", "name": "Puntos de contacto", "what": "Los lugares de atención que el banco cuenta como suyos.", "unit": "puntos", "label": "puntos de contacto", "more": "/transparencia/dinero/" },
+    { "id": "remuneracion", "group": "personas", "short": "Pagos a directivos", "name": "Pagos a directivos de Grupo Elektra", "what": "Total de 2025 para consejeros y directivos de la empresa y sus subsidiarias. Es un total, no un sueldo.", "unit": "mdp1", "label": "millones de pesos", "more": "/transparencia/directivos/" },
+    { "id": "grupo", "group": "duenos", "short": "Grupo Elektra", "name": "Grupo Elektra", "what": "La empresa dueña del banco, según su propia página de estructura.", "unit": "fijo", "more": "/transparencia/quien-es-quien/" },
+    { "id": "dividendos", "group": "duenos", "short": "Dividendos", "name": "Dividendos", "what": "Dinero que el banco paga a sus accionistas.", "unit": "mdp", "label": "millones de pesos", "more": "/transparencia/utilidades/" },
+    { "id": "aportaciones", "group": "duenos", "short": "Aportaciones", "name": "Aportaciones de los accionistas", "what": "Dinero que los accionistas meten al banco para futuros aumentos de capital.", "unit": "mdp", "label": "millones de pesos", "zero": "Ninguna mencionada en el reporte", "more": "/transparencia/utilidades/" },
+    { "id": "impuestos", "group": "duenos", "short": "Impuestos del banco", "name": "Impuestos a la utilidad del banco", "what": "El impuesto sobre la utilidad que el banco registra en su estado de resultados.", "unit": "mdp", "label": "millones de pesos", "more": "/transparencia/impuestos/" },
+    { "id": "adeudo", "group": "duenos", "short": "Adeudo fiscal del grupo", "name": "Adeudo fiscal de Grupo Elektra", "what": "Lo que Grupo Elektra dice que debe pagar en parcialidades por juicios de impuesto sobre la renta ya resueltos.", "unit": "fijo", "more": "/transparencia/impuestos/" }
+  ],
+  "facts": [
+    { "node": "admin", "src": "r25", "text": "En 2025, el reporte dice que el gasto subió {rs25.admin_delta} millones ({rs25.admin_delta_pct}%), sobre todo por operación, honorarios, consultoría de TI y publicidad." },
+    { "node": "admin", "src": "r3t26", "text": "De enero a septiembre de 2026 subió {rs.admin_delta} millones ({rs.admin_delta_pct}%) frente al mismo periodo de 2025, por operación y publicidad." },
+    { "node": "otros", "src": "r3t26", "text": "Frente a enero–septiembre de 2025, «otros ingresos (egresos)» varió {rs.other_delta} millones. El banco dice que se debe sobre todo a la valuación del oro." },
+    { "node": "otros", "src": "r25", "text": "En 2025 dijo que ese renglón se debía sobre todo a la venta de cartera vencida, menos la valuación del oro." },
+    { "node": "reserva", "src": "r3t26", "text": "Aparte de reservar, el banco canceló cartera ya reservada al 100% por {L.stage3_writeoffs_ytd} millones (enero–septiembre de 2026). Dice que eso no afecta los resultados." },
+    { "node": "grupo", "src": "estructura", "text": "Su página de estructura lista a Banco Azteca como subsidiaria al 100%, al 31 de diciembre de 2024." },
+    { "node": "grupo", "src": "ra_owner", "text": "Su reporte anual dice que la mayoría de su capital la controlan sus accionistas mayoritarios, entre quienes nombra a Ricardo B. Salinas Pliego." }
+  ],
+  "edges": [
+    { "id": "i_ingresos", "kind": "identidad", "from": "ingresos", "to": "utilidad", "sign": "+", "src": "e3t26" },
+    { "id": "i_gastos", "kind": "identidad", "from": "gastos_int", "to": "utilidad", "sign": "−", "src": "e3t26" },
+    { "id": "i_reserva", "kind": "identidad", "from": "reserva", "to": "utilidad", "sign": "−", "src": "e3t26" },
+    { "id": "i_admin", "kind": "identidad", "from": "admin", "to": "utilidad", "sign": "−", "src": "e3t26" },
+    { "id": "i_otros", "kind": "identidad", "from": "otros", "to": "utilidad", "sign": "±", "src": "e3t26" },
+    { "id": "i_impuestos", "kind": "identidad", "from": "impuestos", "to": "utilidad", "sign": "−", "src": "e3t26" },
+
+    { "id": "d_consumo", "kind": "dice", "from": "consumo", "to": "ingresos", "src": "r3t26", "text": "El banco dice que el aumento de sus ingresos por intereses ({rs.interest_income_delta} millones más que de enero a septiembre de 2025) vino sobre todo de los créditos al consumo: {rs.consumer_delta} millones más, con {rs.commercial_delta} millones menos de cartera comercial." },
+    { "id": "d_captacion", "kind": "dice", "from": "captacion", "to": "gastos_int", "src": "r3t26", "text": "El banco dice que sus gastos por intereses bajaron {rs.interest_expense_delta} millones frente a enero–septiembre de 2025: {rs.deposits_part} por productos de captación, {rs.treasury_part} por tesorería y {rs.lease_part} por arrendamiento." },
+    { "id": "d_moroso", "kind": "dice", "from": "morosidad", "to": "reserva", "src": "r3t26", "directed": false, "text": "El banco dice que lo apartado subió {rs.provisions_delta} millones frente a septiembre de 2025, que cubre {rs.stage3_coverage} veces la cartera con riesgo de etapa 3 y que la morosidad fue de {L.imor_pct}%, contra {L.imor_prev_pct}% un año antes." },
+    { "id": "d_aporta", "kind": "dice", "from": "aportaciones", "to": "capital", "src": "r25", "text": "El banco las describe como «aportaciones para futuros aumentos de capital»: cuando la CNBV lo autorice, emitirá acciones nuevas por el mismo monto." },
+    { "id": "d_remun", "kind": "dice", "from": "grupo", "to": "remuneracion", "src": "ra_remun", "directed": false, "text": "Grupo Elektra dice que el total de {grp.amount_mdp} millones es de la empresa y sus subsidiarias, y que cubre a consejeros, directivos relevantes y personas relacionadas. No dice cuántas son." },
+    { "id": "d_adeudo", "kind": "dice", "from": "grupo", "to": "adeudo", "src": "ra_tax", "text": "Grupo Elektra dice que le autorizaron pagar {tx.total_mdp} millones en parcialidades por juicios de ISR ya resueltos, con un pago inicial de {tx.initial_payment_mdp} millones el 29 de enero de 2026. Dice que existen otros litigios que no han adquirido firmeza." },
+
+    { "id": "c_util_div", "kind": "calculo", "from": "utilidad", "to": "dividendos", "directed": false, "calc": { "type": "ratio" }, "inputs": ["r3t26", "r25", "e25"] },
+    { "id": "c_div_aport", "kind": "calculo", "from": "dividendos", "to": "aportaciones", "directed": false, "calc": { "type": "net" }, "inputs": ["r3t26", "r25"] },
+    { "id": "c_cap_div", "kind": "calculo", "from": "capital", "to": "dividendos", "directed": false, "calc": { "type": "comove", "a": "icap", "b": "dividends" }, "inputs": ["r25"] },
+    { "id": "c_cap_aport", "kind": "calculo", "from": "capital", "to": "aportaciones", "directed": false, "calc": { "type": "comove", "a": "icap", "b": "contributions" }, "inputs": ["r25"] },
+    { "id": "c_res_moro", "kind": "calculo", "from": "reserva", "to": "morosidad", "directed": false, "calc": { "type": "comove", "a": "reserve_share", "b": "imor" }, "inputs": ["r25"] },
+    { "id": "c_cons_res", "kind": "calculo", "from": "consumo", "to": "reserva", "directed": false, "calc": { "type": "comove", "a": "consumer", "b": "reserve_share" }, "inputs": ["r25"] },
+    { "id": "c_plan_admin", "kind": "calculo", "from": "plantilla", "to": "admin", "directed": false, "calc": { "type": "comove", "a": "employees", "b": "admin" }, "inputs": ["n25", "r25"] },
+
+    { "id": "h_div_grupo", "kind": "hueco", "from": "dividendos", "to": "grupo", "text": "El banco dice que los dividendos se pagan «a sus accionistas». No encontramos un documento que diga cuánto de cada pago recibió Grupo Elektra.", "looked": ["r3t26", "r25", "n25", "estructura"] },
+    { "id": "h_admin_plan", "kind": "hueco", "from": "admin", "to": "plantilla", "text": "Los reportes explican el gasto de administración con operación, honorarios, consultoría de TI y publicidad. No encontramos cuánto de ese gasto es de personal.", "looked": ["r3t26", "r25", "n25"] },
+    { "id": "h_remun_plan", "kind": "hueco", "from": "remuneracion", "to": "plantilla", "text": "El total de pagos a directivos no dice cuántas personas lo reciben. Por eso no se puede dividir entre personas ni comparar con el personal del banco.", "looked": ["ra_remun"] },
+    { "id": "h_puntos_plan", "kind": "hueco", "from": "puntos", "to": "plantilla", "text": "No encontramos cuántas personas atienden los {L.contact_points} puntos de contacto, ni cuántas de ellas contrata el banco.", "looked": ["r3t26", "n25"] },
+    { "id": "h_sueldos_plan", "kind": "hueco", "from": "sueldos", "to": "plantilla", "text": "Las ofertas son de cajeros. No encontramos cuántos cajeros tiene el banco ni cuánto cobra cada persona: ningún documento da un número auditado de cajeros.", "looked": ["r3t26", "n25", "ra_emp"] },
+    { "id": "h_grupo_plan", "kind": "hueco", "from": "grupo", "to": "plantilla", "text": "El banco consolida a Servicios Laborales y Ejecutivos con {st.sle_pct}%. No leímos cuántas personas trabajan ahí, así que no se puede comparar el personal del banco ({y25.employees_direct}) con el de Grupo Elektra ({emp.total}, en {emp.countries} países).", "looked": ["r3t26", "n25", "ra_emp"] },
+    { "id": "h_adeudo_imp", "kind": "hueco", "from": "adeudo", "to": "impuestos", "text": "Los reportes de resultados del banco (2025 y tercer trimestre de 2026) no mencionan los juicios fiscales de Grupo Elektra. No encontramos un documento que diga si afectan las cuentas del banco.", "looked": ["r3t26", "r25", "n25"] }
+  ]
+}

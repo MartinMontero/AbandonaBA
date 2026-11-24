@@ -1,0 +1,208 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranspNote from '../../components/TranspNote.astro';
+import { n, annual } from '../../lib/transparencia';
+import {
+  periods, defaultPeriod, flow, flowRows, per100, f1, changes, maxPartPer100,
+  groups, kinds, sources, nodes, shown, factsOf, relationsOf, edgeSource, edgeText, calcText, calcByPeriod, looked, inputs, periodRow,
+} from '../../lib/mapa';
+
+const flows = periods.map((p) => ({ p, f: flow(p.key), ch: changes(p.key) }));
+const prevLabel = (k: string) => periods[periods.findIndex((x) => x.key === k) - 1]?.label;
+const sg = (key: string, v: number) => (key === 'ii' ? '' : key === 'op' || key === 'net' ? '=' : key === 'other' ? (v >= 0 ? '+' : '−') : '−');
+const groupName = (id: string) => groups.find((g) => g.id === id)!.name;
+const stmtLinks = periods.map((p) => ({ label: p.label, url: p.key === '2026' ? sources.e3t26.url : (periodRow(p.key) as any).statement_url }));
+const pageSources = [
+  ...Object.values(sources).map((s) => ({ title: s.name, url: s.url, read: s.read })),
+  ...annual.filter((a: any) => a.year >= 2022 && a.year <= 2024).map((a: any) => ({ title: `Banco Azteca: estados financieros ${a.year}`, url: a.statement_url, read: a.read_date })),
+];
+const kindTag = (k: string) => kinds[k].label;
+const partCap = Math.max(0.01, Math.ceil(maxPartPer100 * 100) / 100);
+---
+<Base art="spark" eyebrow="Transparencia" title="Mapa de conexiones" description="Cómo se conectan el dinero, el riesgo, las personas y los dueños de Banco Azteca según sus propios reportes: qué dice la empresa, qué calculamos y qué no encontramos." path="/transparencia/mapa/" legal transp claims={['T01','T02','T10','T11','T12','T15','T19']} sources={pageSources} lead>
+  <TranspNote />
+  <p class="lede">Las cifras de esta sección dependen unas de otras. Aquí ves cómo, en dos pasos. De cada conexión ves quién la dice.</p>
+
+  <div class="mapa">
+    <!-- Paso 1 -->
+    <section id="flujo" aria-labelledby="h-flujo">
+      <p class="step">Paso 1 de 2</p>
+      <h2 id="h-flujo">Sigue el dinero</h2>
+      <p>Por cada 100 pesos de intereses que cobra el banco, ¿cuánto se va en cada cosa? Elige un periodo.</p>
+      <fieldset class="per">
+        <legend class="sr-only">Periodo</legend>
+        <div class="per-opts">
+          {periods.map((p) => (<>
+            <input type="radio" name="periodo" id={`p${p.key}`} checked={p.key === defaultPeriod} />
+            <label for={`p${p.key}`}>{p.label}</label>
+          </>))}
+        </div>
+      </fieldset>
+
+      {flows.map(({ p, f, ch }) => (
+        <div class="flow-box" data-p={p.key}>
+          <p class="flow-sum">De cada 100 pesos que cobró en intereses, el banco terminó con <strong>{f1(f.per.net)}</strong> de utilidad neta en {p.long}.</p>
+          <ol class="flow" aria-label={`Reparto de cada 100 pesos de intereses cobrados en ${p.long}`}>
+            {flowRows.map((r) => {
+              const v = per100(f, r.key);
+              const s = sg(r.key, v);
+              return (
+                <li class={`fl${r.sign === '=' ? ' tot' : ''}`}>
+                  <span class="fl-l">{r.node ? <a class="goto" href={`#n-${r.node}`}>{r.label}</a> : r.label}</span>
+                  <span class="fl-v">{s && <span class="sg" aria-hidden="true">{s}</span>}{f1(Math.abs(v))}</span>
+                  <meter min="0" max="100" value={Math.abs(v)} aria-label={`${r.label}: ${f1(Math.abs(v))} de cada 100 pesos`}></meter>
+                </li>
+              );
+            })}
+          </ol>
+          {ch ? (
+            <p class="flow-ch"><span class="tag t-voz">Cálculo propio</span> Frente a {prevLabel(p.key)}, lo que más cambió por cada 100 pesos: {ch.top.map((t, i) => <>{i > 0 ? ' y ' : ''}<strong>{t.label.toLowerCase()}</strong> (de {f1(t.from)} a {f1(t.to)})</>)}. La utilidad neta pasó de {f1(ch.net.from)} a {f1(ch.net.to)}.</p>
+          ) : (
+            <p class="flow-ch"><span class="tag t-voz">Cálculo propio</span> Es el primer periodo del mapa. El estado de resultados de 2021 no trae el resultado de la operación que usamos.</p>
+          )}
+          {p.key === '2026' && <p class="ref-line">Enero a septiembre son nueve meses. Las proporciones se pueden comparar con años completos; los montos, no.</p>}
+        </div>
+      ))}
+
+      <p class="ref-line"><span class="tag t-voz">Lo dice la empresa</span> <span class="tag t-verificado-primaria">verificado-primaria</span> Cada renglón sale del estado de resultados del banco. «Comisiones, intermediación y otros» lo sacamos por resta y lo comprobamos con los cuatro renglones del estado. Más una participación en otras entidades de menos de {n(partCap, 2)} por cada 100 pesos. Toca un renglón para ver con qué se conecta.</p>
+
+      <details class="acc" id="cifras"><summary>Ver las cifras en millones de pesos</summary><div class="acc-b">
+        <div class="tbl-wrap">
+          <table class="rt">
+            <thead><tr><th scope="col">Renglón</th>{periods.map((p) => <th scope="col">{p.label}</th>)}</tr></thead>
+            <tbody>
+              {[['ii', 'Intereses cobrados'], ['ie', 'Intereses pagados'], ['prov', 'Apartado por riesgo de crédito'], ['admin', 'Gastos de administración y promoción'], ['other', 'Comisiones, intermediación y otros (neto)'], ['op', 'Resultado de la operación'], ['tax', 'Impuestos a la utilidad'], ['part', 'Participación en otras entidades'], ['net', 'Utilidad neta']].map(([key, label]) => (
+                <tr><th scope="row">{label}</th>{flows.map(({ f }) => <td>{n((f as any)[key])}</td>)}</tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="ref-line">Millones de pesos de cada periodo, sin ajustar por inflación. Estados de resultados: {stmtLinks.map((l, i) => <>{i > 0 ? ' · ' : ''}<a href={l.url} rel="noopener noreferrer">{l.label}</a></>)}.</p>
+      </div></details>
+    </section>
+
+    <!-- Paso 2 -->
+    <section id="elegir" aria-labelledby="h-elegir">
+      <p class="step">Paso 2 de 2</p>
+      <h2 id="h-elegir">Explora las conexiones</h2>
+      <p>Elige una pieza. Verás de qué depende, qué dice la empresa y qué no encontramos. Sigue los enlaces de una pieza a otra.</p>
+      <ul class="legend">
+        {Object.entries(kinds).map(([k, v]) => <li><span class={`tag k-${k}`}>{v.label}</span> <span>{v.help}</span></li>)}
+      </ul>
+      <nav aria-label="Piezas del mapa" class="chips">
+        {groups.map((g) => (
+          <div class="chipset">
+            <h3>{g.name}</h3>
+            <ul>{nodes.filter((x) => x.group === g.id).map((x) => <li><a class="chip" href={`#n-${x.id}`}>{x.short}</a></li>)}</ul>
+          </div>
+        ))}
+      </nav>
+
+      <div class="pbar" aria-hidden="true">
+        <span>Cifras de:</span>
+        {periods.map((p) => <label for={`p${p.key}`} class="pchip">{p.label}</label>)}
+      </div>
+
+      <div class="panels">
+        {nodes.map((x) => {
+          const rel = relationsOf(x.id);
+          const facts = factsOf(x.id);
+          const fixed = x.unit === 'fijo';
+          return (
+            <article class={`np${x.id === 'utilidad' ? ' def' : ''}`} id={`n-${x.id}`} tabindex="-1" aria-labelledby={`t-${x.id}`}>
+              <header>
+                <p class="np-g">{groupName(x.group)}</p>
+                <h3 id={`t-${x.id}`}>{x.name}</h3>
+                <p class="np-what">{x.what}</p>
+              </header>
+
+              {fixed ? (() => { const s = shown(x.id, defaultPeriod); return <div class="np-val"><span class="big">{s.big}</span><span>{s.label}</span>{s.note && <span class="more">{s.note}</span>}</div>; })() : periods.map((p) => {
+                const s = shown(x.id, p.key);
+                return <div class="np-val" data-p={p.key}><span class="big">{s.big}</span>{s.label && <span>{s.label}</span>}{s.note && <span class="more">{s.note}</span>}</div>;
+              })}
+
+              {facts.length > 0 && (
+                <section class="rel">
+                  <h4>Lo que dice el reporte</h4>
+                  <ul>{facts.map((f) => <li>{f.text} <a href={f.src.url} rel="noopener noreferrer">Fuente</a></li>)}</ul>
+                </section>
+              )}
+
+              {rel.identidad.length > 0 && (
+                <section class="rel">
+                  <h4><span class="tag k-identidad">{kindTag('identidad')}</span> {rel.identidad.some((r) => r.incoming) ? 'Así se calcula' : 'Entra en el cálculo de'}</h4>
+                  <ul class="eq">
+                    {rel.identidad.map((r) => <li><span class="sg" aria-hidden="true">{r.e.sign}</span> <a class="goto" href={`#n-${r.partner.id}`}>{r.partner.name}</a><span class="sr-only"> ({r.e.sign === '+' ? 'suma' : r.e.sign === '−' ? 'resta' : 'suma o resta'})</span></li>)}
+                  </ul>
+                  <p class="src"><span class="tag t-verificado-primaria">verificado-primaria</span> <a href={edgeSource(rel.identidad[0].e).url} rel="noopener noreferrer">Estado de resultados del banco</a>. El orden es el mismo en cada año.</p>
+                </section>
+              )}
+
+              {rel.dice.length > 0 && (
+                <section class="rel">
+                  <h4><span class="tag k-dice">{kindTag('dice')}</span> Lo que dicen los reportes</h4>
+                  <ul>
+                    {rel.dice.map((r) => (
+                      <li>
+                        <a class="goto" href={`#n-${r.partner.id}`}>{r.partner.name}</a>
+                        <p>{edgeText(r.e)}</p>
+                        <p class="src"><span class="tag t-verificado-primaria">verificado-primaria</span> <a href={edgeSource(r.e).url} rel="noopener noreferrer">{edgeSource(r.e).name}</a></p>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {rel.calculo.length > 0 && (
+                <section class="rel">
+                  <h4><span class="tag k-calculo">{kindTag('calculo')}</span> Lo que calculamos</h4>
+                  <ul>
+                    {rel.calculo.map((r) => (
+                      <li>
+                        <a class="goto" href={`#n-${r.partner.id}`}>{r.partner.name}</a>
+                        {calcByPeriod(r.e)
+                          ? periods.map((p) => <p data-p={p.key}>{calcText(r.e, p.key)}</p>)
+                          : <p>{calcText(r.e)}</p>}
+                        {r.e.calc.type === 'ratio' && <p class="src">Un dividendo puede salir de utilidades de años anteriores. El cálculo no dice de cuáles salió.</p>}
+                        <details class="mini"><summary>Datos usados</summary><ul>{inputs(r.e).map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.name}</a></li>)}</ul></details>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {rel.hueco.length > 0 && (
+                <section class="rel">
+                  <h4><span class="tag k-hueco">{kindTag('hueco')}</span> Lo que no encontramos</h4>
+                  <ul>
+                    {rel.hueco.map((r) => (
+                      <li>
+                        <a class="goto" href={`#n-${r.partner.id}`}>{r.partner.name}</a>
+                        <p>{edgeText(r.e)}</p>
+                        <details class="mini"><summary>Qué revisamos</summary><ul>{looked(r.e).map((s) => <li><a href={s.url} rel="noopener noreferrer">{s.name}</a></li>)}</ul></details>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              <p class="np-nav"><a href="#elegir">↑ Elegir otra pieza</a> <a href="#flujo">↑ Sigue el dinero</a> <a href={x.more}>Ver el detalle</a></p>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  </div>
+
+  <details class="acc" id="limites"><summary>Qué no dice este mapa</summary><div class="acc-b">
+    <ul>
+      <li>Una conexión no es una causa. «Se mueven juntas» describe lo que pasó con pocas cifras; no explica por qué.</li>
+      <li>Son cifras de los documentos que leímos, con su fecha. Si un documento no dice algo, lo marcamos como «sin documento».</li>
+      <li>El mapa no suma lo de Grupo Elektra con lo del banco: son empresas distintas con reportes distintos.</li>
+      <li>Si ves un error, escríbenos desde <a href="/transparencia/metodo/">Método y derecho de réplica</a>.</li>
+    </ul>
+  </div></details>
+
+  <p><a class="btn tonal" href="/transparencia/">Volver a Transparencia</a> <a class="btn tonal" href="/transparencia/como-verificarlo/">Cómo verificarlo tú</a></p>
+  <script>import '../../scripts/transp-mapa.ts';</script>
+</Base>
