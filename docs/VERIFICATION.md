@@ -115,3 +115,7 @@ La lista de lo que aún necesita una persona está en `docs/HUMAN-CHECKS.md`.
 
 ## Pasada v3 (2026-11-23)
 Ver docs/V3-STATUS.md, secciones 3 y 4: valores leidos con Chrome y WebFetch, y discrepancias nuevas.
+
+## Documento de revisión para abogados laboralistas (2026-11-23)
+Se leyeron en el texto vigente publicado por la Cámara de Diputados la LFT (última reforma DOF 14-05-2026), la LSS (DOF 15-01-2026) y la LISR (DOF 01-04-2024). Los PDF se descargaron con `scripts/fundamentos-laborales.py` a `.cache/sources` (ignorada por git); la extracción literal de cada artículo, con su página, queda en `src/data/fundamentos-laborales.json` y alimenta `/revision/documento/`.
+Hallazgos: el límite de 45 días de la conciliación está en el Art. 684-D (no en el 684-E); el Art. 47 trae en su texto la presunción de despido injustificado por falta de aviso y la regla de que la prescripción no corre hasta que el trabajador recibe personalmente el aviso. Se añadió C27 (Art. 110) y C23 pasó a «sin-verificar» por no conservar enlace.

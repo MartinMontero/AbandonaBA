@@ -20,7 +20,7 @@ export function addDays(d: Date, days: number): Date {
 export function computeDeadlines(exit: Date, type: ExitType): Deadline[] {
   const out: Deadline[] = [];
   if (type === 'despido' || type === 'reduccion') {
-    out.push({ id: 'art518', label: 'Reclamar el despido (dos meses)', date: addMonths(exit, 2), article: 'Art. 518', status: 'verificado-primaria', note: 'El plazo corre desde el día siguiente a la separación. Pedir la conciliación lo suspende (Art. 518); confirma con PROFEDET hasta cuándo.' });
+    out.push({ id: 'art518', label: 'Reclamar el despido (dos meses)', date: addMonths(exit, 2), article: 'Art. 518', status: 'verificado-primaria', note: 'El plazo corre desde el día siguiente a la separación. Si el patrón no te entregó personalmente el aviso escrito del despido, el Art. 47 dice que el plazo no empieza a correr hasta que lo recibas; por precaución, cuenta desde la fecha del despido. Pedir la conciliación afecta el plazo (Art. 518 dice que lo suspende y el Art. 521 que lo interrumpe); confirma con PROFEDET hasta cuándo.' });
   }
   if (type === 'rescision') {
     const m = addMonths(exit, 1);

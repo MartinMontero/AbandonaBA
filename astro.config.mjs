@@ -33,6 +33,7 @@ const reviewRoutes = {
       injectRoute({ pattern: '/revision', entrypoint: './src/review/revision.astro' });
       injectRoute({ pattern: '/revision/pruebas', entrypoint: './src/review/pruebas.astro' });
       injectRoute({ pattern: '/revision/dictamen', entrypoint: './src/review/dictamen.astro' });
+      injectRoute({ pattern: '/revision/documento', entrypoint: './src/review/documento.astro' });
     },
   },
 };

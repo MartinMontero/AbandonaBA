@@ -1,0 +1,312 @@
+{
+ "generado": "2026-11-23",
+ "versiones": {
+  "LFT": "14-05-2026",
+  "LSS": "15-01-2026",
+  "LISR": "01-04-2024"
+ },
+ "leyes": {
+  "LFT": {
+   "nombre": "Ley Federal del Trabajo",
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf"
+  },
+  "LSS": {
+   "nombre": "Ley del Seguro Social",
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf"
+  },
+  "LISR": {
+   "nombre": "Ley del Impuesto sobre la Renta",
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf"
+  }
+ },
+ "articulos": {
+  "LFT-5": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "5",
+   "pagina": 3,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=3",
+   "texto": "Artículo 5o.- Las disposiciones de esta Ley son de orden público por lo que no producirá efecto legal, ni impedirá el goce y el ejercicio de los derechos, sea escrita o verbal, la estipulación que establezca:"
+  },
+  "LFT-33": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "33",
+   "pagina": 10,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=10",
+   "texto": "Artículo 33.- Es nula la renuncia que los trabajadores hagan de los salarios devengados, de las indemnizaciones y demás prestaciones que deriven de los servicios prestados, cualquiera que sea la forma o denominación que se le dé.\n\nTodo convenio o liquidación, para ser válido, deberá hacerse por escrito y contener una relación circunstanciada de los hechos que lo motiven y de los derechos comprendidos en él. Será ratificado ante los Centros de Conciliación o al Tribunal según corresponda, que lo aprobará siempre que no contenga renuncia de los derechos de los trabajadores.\n\nCuando el convenio sea celebrado sin la intervención de las autoridades, será susceptible de ser reclamada la nulidad ante el Tribunal, solamente de aquello que contenga renuncia de los derechos de los trabajadores, conservando su validez el resto de las cláusulas convenidas.\n\nArtículo reformado DOF 01-05-2019"
+  },
+  "LFT-47": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "47",
+   "pagina": 15,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=15",
+   "texto": "El patrón que despida a un trabajador deberá darle aviso escrito en el que refiera claramente la conducta o conductas que motivan la rescisión y la fecha o fechas en que se cometieron.\n\nPárrafo reformado DOF 30-11-2012\n\nEl aviso deberá entregarse personalmente al trabajador en el momento mismo del despido o bien, comunicarlo al Tribunal competente, dentro de los cinco días hábiles siguientes, en cuyo caso deberá proporcionar el último domicilio que tenga registrado del trabajador a fin de que la autoridad se lo notifique en forma personal.\n\nPárrafo adicionado DOF 04-01-1980. Reformado DOF 30-11-2012, 01-05-2019\n\nLa prescripción para ejercer las acciones derivadas del despido no comenzará a correr sino hasta que el trabajador reciba personalmente el aviso de rescisión.\n\nPárrafo adicionado DOF 30-11-2012\n\nLa falta de aviso al trabajador personalmente o por conducto del Tribunal, por sí sola presumirá la separación no justificada, salvo prueba en contrario que acredite que el despido fue justificado.\n\nPárrafo adicionado DOF 04-01-1980. Reformado DOF 30-11-2012, 01-05-2019"
+  },
+  "LFT-48": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "48",
+   "pagina": 16,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=16",
+   "texto": "Artículo 48.- El trabajador podrá solicitar ante la Autoridad Conciliadora, o ante el Tribunal si no existe arreglo conciliatorio, que se le reinstale en el trabajo que desempeñaba, o que se le indemnice con el importe de tres meses de salario, a razón del que corresponda a la fecha en que se realice el pago, observando previamente las disposiciones relativas al procedimiento de conciliación previsto en el artículo 684-A y subsiguientes.\n\nPárrafo reformado DOF 01-05-2019\n\nSi en el juicio correspondiente no comprueba el patrón la causa de la rescisión, el trabajador tendrá derecho, además, cualquiera que hubiese sido la acción intentada, a que se le paguen los salarios vencidos computados desde la fecha del despido hasta por un período máximo de doce meses, en términos de lo preceptuado en la última parte del párrafo anterior.\n\nSi al término del plazo señalado en el párrafo anterior no ha concluido el procedimiento o no se ha dado cumplimiento a la sentencia, se pagarán también al trabajador los intereses que se generen sobre el importe de quince meses de salario, a razón del dos por ciento mensual, capitalizable al momento del pago. Lo dispuesto en este párrafo no será aplicable para el pago de otro tipo de indemnizaciones o prestaciones.\n\nPárrafo reformado DOF 01-05-2019\n\nEn caso de muerte del trabajador, dejarán de computarse los salarios vencidos como parte del conflicto, a partir de la fecha del fallecimiento."
+  },
+  "LFT-50": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "50",
+   "pagina": 19,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=19",
+   "texto": "Artículo 50.- Las indemnizaciones a que se refiere el artículo anterior consistirán:\n\nI. Si la relación de trabajo fuere por tiempo determinado menor de un año, en una cantidad igual al importe de los salarios de la mitad del tiempo de servicios prestados; si excediera de un año, en una cantidad igual al importe de los salarios de seis meses por el primer año y de veinte días por cada uno de los años siguientes en que hubiese prestado sus servicios;\n\nII. Si la relación de trabajo fuere por tiempo indeterminado, la indemnización consistirá en veinte días de salario por cada uno de los años de servicios prestados;\n\nFracción reformada DOF 24-12-2024\n\nIII. Además de las indemnizaciones a que se refieren las fracciones anteriores, en el importe de tres meses de salario y el pago de los salarios vencidos e intereses, en su caso, en los términos previstos en el artículo 48 de esta Ley, y\n\nFracción reformada DOF 30-11-2012, 24-12-2024\n\nIV. Para las personas trabajadoras de plataformas digitales la indemnización consistirá en tres meses de salario. Adicionalmente se pagarán veinte días de salario por cada uno de los años de servicios prestados, tomando en cuenta el tiempo efectivamente laborado, como lo establece el artículo 291-D del mismo ordenamiento y los salarios vencidos e intereses, en su caso, en los términos previstos en el artículo 48 de esta Ley.\n\nFracción adicionada DOF 24-12-2024"
+  },
+  "LFT-51": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "51",
+   "pagina": 20,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=20",
+   "texto": "Artículo 51.- Son causas de rescisión de la relación de trabajo, sin responsabilidad para el trabajador:\n\nI. Engañarlo el patrón, o en su caso, la agrupación patronal al proponerle el trabajo, respecto de las condiciones del mismo. Esta causa de rescisión dejará de tener efecto después de treinta días de prestar sus servicios el trabajador;\n\nII. Incurrir el patrón, sus familiares o cualquiera de sus representantes, dentro del servicio, en faltas de probidad u honradez, actos de violencia, amenazas, injurias, hostigamiento y/o acoso sexual, malos tratamientos u otros análogos, en contra del trabajador, cónyuge, padres, hijos o hermanos;\n\nFracción reformada DOF 30-11-2012\n\nIII. Incurrir el patrón, sus familiares o trabajadores, fuera del servicio, en los actos a que se refiere la fracción anterior, si son de tal manera graves que hagan imposible el cumplimiento de la relación de trabajo;\n\nIV. Reducir el patrón el salario del trabajador;\n\nV. No recibir el salario correspondiente en la fecha o lugar convenidos o acostumbrados;\n\nVI. Sufrir perjuicios causados maliciosamente por el patrón, en sus herramientas o útiles de trabajo;\n\nVII. La existencia de un peligro grave para la seguridad o salud del trabajador o de su familia, ya sea por carecer de condiciones higiénicas el establecimiento o porque no se cumplan las medidas preventivas y de seguridad que las leyes establezcan;\n\nVIII. Comprometer el patrón, con su imprudencia o descuido inexcusables, la seguridad del establecimiento o de las personas que se encuentren en él; y\n\nIX. Exigir la realización de actos, conductas o comportamientos que menoscaben o atenten contra la dignidad del trabajador; y\n\nFracción adicionada DOF 30-11-2012\n\nX. Las análogas a las establecidas en las fracciones anteriores, de igual manera graves y de consecuencias semejantes, en lo que al trabajo se refiere.\n\nFracción recorrida DOF 30-11-2012"
+  },
+  "LFT-52": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "52",
+   "pagina": 20,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=20",
+   "texto": "Artículo 52.- El trabajador podrá separarse de su trabajo dentro de los treinta días siguientes a la fecha en que se dé cualquiera de las causas mencionadas en el artículo anterior y tendrá derecho a que el patrón lo indemnice en los términos del artículo 50.\n\nCAPITULO V Terminación de las relaciones de trabajo"
+  },
+  "LFT-59": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "59",
+   "pagina": 22,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=22",
+   "texto": "Artículo 59.- La duración máxima de la jornada ordinaria de trabajo será de cuarenta horas semanales.\n\nArtículo reformado DOF 01-05-2026"
+  },
+  "LFT-61": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "61",
+   "pagina": 22,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=22",
+   "texto": "Artículo 61.- La duración de la jornada diaria será de ocho horas la diurna, siete la nocturna y siete horas y media la mixta.\n\nArtículo reformado DOF 01-05-2026"
+  },
+  "LFT-66": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "66",
+   "pagina": 22,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=22",
+   "texto": "Artículo 66.- La jornada de trabajo podrá prolongarse por circunstancias extraordinarias.\n\nEn estos casos, se abonará como salario por este tiempo un cien por ciento más de lo fijado para las horas ordinarias. El trabajo extraordinario no excederá de doce horas en una semana, las cuales podrán distribuirse en hasta cuatro horas diarias, en un máximo de cuatro días en ese periodo.\n\nArtículo reformado DOF 01-05-2026"
+  },
+  "LFT-76": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "76",
+   "pagina": 24,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=24",
+   "texto": "Artículo 76.- Las personas trabajadoras que tengan más de un año de servicios disfrutarán de un periodo anual de vacaciones pagadas, que en ningún caso podrá ser inferior a doce días laborables, y que aumentará en dos días laborables, hasta llegar a veinte, por cada año subsecuente de servicios.\n\nA partir del sexto año, el periodo de vacaciones aumentará en dos días por cada cinco de servicios.\n\nArtículo reformado DOF 27-12-2022"
+  },
+  "LFT-79": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "79",
+   "pagina": 24,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=24",
+   "texto": "Artículo 79.- Las vacaciones no podrán compensarse con una remuneración.\n\nSi la relación de trabajo termina antes de que se cumpla el año de servicios, el trabajador tendrá derecho a una remuneración proporcionada al tiempo de servicios prestados."
+  },
+  "LFT-80": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "80",
+   "pagina": 24,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=24",
+   "texto": "Artículo 80.- Los trabajadores tendrán derecho a una prima no menor de veinticinco por ciento sobre los salarios que les correspondan durante el período de vacaciones."
+  },
+  "LFT-84": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "84",
+   "pagina": 25,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=25",
+   "texto": "Artículo 84.- El salario se integra con los pagos hechos en efectivo por cuota diaria, gratificaciones, percepciones, habitación, primas, comisiones, prestaciones en especie y cualquiera otra cantidad o prestación que se entregue al trabajador por su trabajo."
+  },
+  "LFT-87": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "87",
+   "pagina": 25,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=25",
+   "texto": "Artículo 87.- Los trabajadores tendrán derecho a un aguinaldo anual que deberá pagarse antes del día veinte de diciembre, equivalente a quince días de salario, por lo menos.\n\nLos que no hayan cumplido el año de servicios, independientemente de que se encuentren laborando o no en la fecha de liquidación del aguinaldo, tendrán derecho a que se les pague la parte proporcional del mismo, conforme al tiempo que hubieren trabajado, cualquiera que fuere éste.\n\nPárrafo reformado DOF 31-12-1975"
+  },
+  "LFT-89": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "89",
+   "pagina": 25,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=25",
+   "texto": "Artículo 89.- Para determinar el monto de las indemnizaciones que deban pagarse a los trabajadores se tomará como base el salario correspondiente al día en que nazca el derecho a la indemnización, incluyendo en él la cuota diaria y la parte proporcional de las prestaciones mencionadas en el artículo 84.\n\nEn los casos de salario por unidad de obra, y en general, cuando la retribución sea variable, se tomará como salario diario el promedio de las percepciones obtenidas en los treinta días efectivamente trabajados antes del nacimiento del derecho. Si en ese lapso hubiese habido aumento en el salario, se tomará como base el promedio de las percepciones obtenidas por el trabajador a partir de la fecha del aumento.\n\nCuando el salario se fije por semana o por mes, se dividirá entre siete o entre treinta, según el caso, para determinar el salario diario.\n\nCAPITULO VI Salario mínimo"
+  },
+  "LFT-110": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "110",
+   "pagina": 28,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=28",
+   "texto": "Artículo 110.- Los descuentos en los salarios de los trabajadores, están prohibidos salvo en los casos y con los requisitos siguientes:\n\nPárrafo reformado DOF 09-01-1974\n\nI. Pago de deudas contraídas con el patrón por anticipo de salarios, pagos hechos con exceso al trabajador, errores, pérdidas, averías o adquisición de artículos producidos por la empresa o establecimiento. La cantidad exigible en ningún caso podrá ser mayor del importe de los salarios de un mes y el descuento será al que convengan el trabajador y el patrón, sin que pueda ser mayor del treinta por ciento del excedente del salario mínimo;"
+  },
+  "LFT-162": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "162",
+   "pagina": 52,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=52",
+   "texto": "Artículo 162.- Los trabajadores de planta tienen derecho a una prima de antigüedad, de conformidad con las normas siguientes:\n\nI. La prima de antigüedad consistirá en el importe de doce días de salario, por cada año de servicios;\n\nII. Para determinar el monto del salario, se estará a lo dispuesto en los artículos 485 y 486;\n\nIII. La prima de antigüedad se pagará a los trabajadores que se separen voluntariamente de su empleo, siempre que hayan cumplido quince años de servicios, por lo menos. Asimismo se pagará a los que se separen por causa justificada y a los que sean separados de su empleo, independientemente de la justificación o injustificación del despido;"
+  },
+  "LFT-437": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "437",
+   "pagina": 137,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=137",
+   "texto": "Artículo 437.- Cuando se trate de reducción de los trabajos en una empresa o establecimiento, se tomará en consideración el escalafón de los trabajadores, a efecto de que sean reajustados los de menor antigüedad."
+  },
+  "LFT-438": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "438",
+   "pagina": 137,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=137",
+   "texto": "Artículo 438.- Si el patrón reanuda las actividades de su empresa o crea una semejante, tendrá las obligaciones señaladas en el artículo 154.\n\nLo dispuesto en el párrafo anterior es aplicable, en el caso de que se reanuden los trabajos de la empresa declarada en estado de concurso o quiebra."
+  },
+  "LFT-439": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "439",
+   "pagina": 137,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=137",
+   "texto": "Artículo 439.- Cuando se trate de la implantación de maquinaria o de procedimientos de trabajo nuevos, que traiga como consecuencia la reducción de personal, a falta de convenio, el patrón deberá obtener la autorización del Tribunal, de conformidad con lo dispuesto en el procedimiento especial colectivo establecido en el artículo 897 y subsecuentes de esta Ley. Los trabajadores reajustados tendrán derecho a una indemnización de cuatro meses de salario, más veinte días por cada año de servicios prestados o la cantidad estipulada en los contratos de trabajo si fuese mayor y a la prima de antigüedad a que se refiere el artículo 162.\n\nArtículo reformado DOF 30-11-2012, 01-05-2019"
+  },
+  "LFT-485": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "485",
+   "pagina": 142,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=142",
+   "texto": "Artículo 485.- La cantidad que se tome como base para el pago de las indemnizaciones no podrá ser inferior al salario mínimo."
+  },
+  "LFT-486": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "486",
+   "pagina": 142,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=142",
+   "texto": "Artículo 486.- Para determinar las indemnizaciones a que se refiere este título, si el salario que percibe el trabajador excede del doble del salario mínimo del área geográfica de aplicación a que corresponda el lugar de prestación del trabajo, se considerará esa cantidad como salario máximo. Si el trabajo se presta en lugares de diferentes áreas geográficas de aplicación, el salario máximo será el doble del promedio de los salarios mínimos respectivos.\n\nArtículo reformado DOF 21-01-1988"
+  },
+  "LFT-516": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "516",
+   "pagina": 261,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=261",
+   "texto": "Artículo 516.- Las acciones de trabajo prescriben en un año, contado a partir del día siguiente a la fecha en que la obligación sea exigible, con las excepciones que se consignan en los artículos siguientes."
+  },
+  "LFT-517": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "517",
+   "pagina": 261,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=261",
+   "texto": "Artículo 517.- Prescriben en un mes:\n\nI. Las acciones de los patrones para despedir a los trabajadores, para disciplinar sus faltas y para efectuar descuentos en sus salarios; y\n\nII. Las acciones de los trabajadores para separarse del trabajo.\n\nEn los casos de la fracción I, la prescripción corre a partir, respectivamente, del día siguiente a la fecha en que se tenga conocimiento de la causa de la separación o de la falta, desde el momento en que se comprueben los errores cometidos, o las pérdidas o averías imputables al trabajador, o desde la fecha en que la deuda sea exigible.\n\nEn los casos de la fracción II, la prescripción corre a partir de la fecha en que se tenga conocimiento de la causa de separación."
+  },
+  "LFT-518": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "518",
+   "pagina": 261,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=261",
+   "texto": "Artículo 518.- Prescriben en dos meses las acciones de los trabajadores que sean separados del trabajo.\n\nLa prescripción corre a partir del día siguiente a la fecha de la separación.\n\nEste término se suspenderá a partir de la fecha de presentación de la solicitud de conciliación a que se refiere el artículo 684-B de esta Ley, y se reanudará al día siguiente en que se actualice cualquiera de las hipótesis previstas en el artículo 521, fracción III de esta Ley.\n\nPárrafo adicionado DOF 01-05-2019\n\nEn lo que se refiere al ejercicio de las acciones jurisdiccionales a que se refiere el primer párrafo, se estará a lo previsto en la fracción III del artículo 521 del presente ordenamiento.\n\nPárrafo adicionado DOF 01-05-2019"
+  },
+  "LFT-521": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "521",
+   "pagina": 262,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=262",
+   "texto": "Artículo 521.- La prescripción se interrumpe:\n\nI. Por la sola presentación de la demanda o de cualquiera promoción ante el Tribunal, independientemente de la fecha de la notificación. Si quien promueve omitió agotar el procedimiento de conciliación no estando eximido de hacerlo, el Tribunal sin fijar competencia sobre el asunto lo remitirá a la Autoridad Conciliadora competente para que inicie el procedimiento de conciliación establecido en el Título Trece Bis de esta Ley. No es obstáculo para la interrupción que el Tribunal sea incompetente;\n\nFracción reformada DOF 30-11-2012, 01-05-2019\n\nII. Si la persona a cuyo favor corre la prescripción reconoce el derecho de aquella contra quien prescribe, de palabra, por escrito o por hechos indudables.\n\nIII. Por la presentación de la solicitud de conciliación a que se refiere el artículo 684-B de esta Ley. La interrupción de la prescripción cesará a partir del día siguiente en que el Centro de Conciliación expida la constancia de no conciliación o en su caso, se determine el archivo del expediente por falta de interés de parte. No es obstáculo para la interrupción que la Autoridad Conciliadora ante la que se promovió sea incompetente.\n\nFracción adicionada DOF 01-05-2019"
+  },
+  "LFT-527": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "527",
+   "pagina": 263,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=263",
+   "texto": "Artículo 527.- La aplicación de las normas de trabajo corresponde a las autoridades federales, cuando se trate de:\n\nI. Ramas industriales y de servicios:\n\nPárrafo reformado DOF 30-11-2012"
+  },
+  "LFT-527-22": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "527",
+   "pagina": 263,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=263",
+   "texto": "22. Servicios de banca y crédito.\n\nNumeral adicionado DOF 30-11-2012"
+  },
+  "LFT-684-B": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "684-B",
+   "pagina": 301,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=301",
+   "texto": "Artículo 684-B.- Antes de acudir a los Tribunales, los trabajadores y patrones deberán asistir al Centro de Conciliación correspondiente para solicitar el inicio del procedimiento de conciliación, con excepción de aquellos supuestos que están eximidos de agotarla, conforme a lo previsto en esta Ley.\n\nArtículo adicionado DOF 01-05-2019"
+  },
+  "LFT-684-D": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "684-D",
+   "pagina": 301,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=301",
+   "texto": "Artículo 684-D.- El procedimiento de conciliación a que se refiere el presente título no deberá exceder de cuarenta y cinco días naturales. La Autoridad Conciliadora tomará las medidas conducentes para que sus actuaciones se ajusten a dicho plazo."
+  },
+  "LFT-685-Ter": {
+   "ley": "LFT",
+   "ley_nombre": "Ley Federal del Trabajo",
+   "articulo": "685 Ter",
+   "pagina": 309,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=309",
+   "texto": "Artículo 685 Ter.- Quedan exceptuados de agotar la instancia conciliatoria, cuando se trate de conflictos inherentes a:\n\nI. Discriminación en el empleo y ocupación por embarazo, así como por razones de sexo, orientación sexual, raza, religión, origen étnico, condición social o acoso u hostigamiento sexual;\n\nII. Designación de beneficiarios por muerte;\n\nIII. Prestaciones de seguridad social por riesgos de trabajo, maternidad, enfermedades, invalidez, vida, guarderías y prestaciones en especie y accidentes de trabajo;\n\nIV. La tutela de derechos fundamentales y libertades públicas, ambos de carácter laboral, entendidos en estos rubros los relacionados con:\n\na) La libertad de asociación, libertad sindical y el reconocimiento efectivo de la negociación colectiva;\n\nb) Trata laboral, así como trabajo forzoso y obligatorio, y\n\nc) Trabajo infantil.\n\nPara la actualización de estas excepciones se debe acreditar la existencia de indicios que generen al tribunal la razonable sospecha, apariencia o presunción de que se están vulnerando alguno de estos derechos;\n\nV. La disputa de la titularidad de contratos colectivos o contratos ley, y\n\nVI. La impugnación de los estatutos de los sindicatos o su modificación.\n\nArtículo adicionado DOF 01-05-2019"
+  },
+  "LSS-109": {
+   "ley": "LSS",
+   "ley_nombre": "Ley del Seguro Social",
+   "articulo": "109",
+   "pagina": 36,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf#page=36",
+   "texto": "Artículo 109. El asegurado que quede privado de trabajo remunerado, pero que haya cubierto inmediatamente antes de tal privación un mínimo de ocho cotizaciones semanales ininterrumpidas, conservará durante las ocho semanas posteriores a la desocupación, el derecho a recibir, exclusivamente la asistencia médica y de maternidad, quirúrgica, farmacéutica y hospitalaria que sea necesaria. Del mismo derecho disfrutarán sus beneficiarios.\n\nEl Ejecutivo Federal podrá solicitar al Consejo Técnico que se amplíe el período de conservación de derechos a que se refiere el párrafo anterior, cuando a su juicio las condiciones económicas y laborales del país así lo requieran, y determinará las condiciones específicas en que operará la conservación de los derechos que al efecto correspondan, los requisitos necesarios para otorgarla y la vigencia que en cada caso se determine. En este supuesto el Gobierno Federal proveerá de manera oportuna y suficiente al Instituto de los recursos necesarios para financiar los costos adicionales que dicha medida represente. El Instituto al efecto deberá llevar registros contables por separado de su operación ordinaria.\n\nPara dichos propósitos, los recursos que el Gobierno Federal destine, deberán considerarse expresamente en el correspondiente Presupuesto de Egresos de la Federación.\n\nLos trabajadores que se encuentren en estado de huelga, recibirán las prestaciones médicas durante el tiempo que dure aquél.\n\nArtículo reformado DOF 20-12-2001"
+  },
+  "LSS-191": {
+   "ley": "LSS",
+   "ley_nombre": "Ley del Seguro Social",
+   "articulo": "191",
+   "pagina": 58,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf#page=58",
+   "texto": "Artículo 191. Durante el tiempo en que el trabajador deje de estar sujeto a una relación laboral, tendrá derecho a:\n\nI. Realizar aportaciones a su cuenta individual, y\n\nII. Retirar parcialmente por situación de desempleo los recursos de la Subcuenta de Retiro, Cesantía en Edad Avanzada y Vejez, a partir del cuadragésimo sexto día natural contado desde el día en que quedó desempleado, en los siguientes términos:\n\na) Si su cuenta individual tiene al menos tres años de haber sido abierta y tiene un mínimo de doce bimestres de cotización al Instituto acreditados en dicha cuenta, podrá retirar en una exhibición la cantidad que resulte al equivalente a treinta días de su último salario base de cotización, con un límite de diez veces el salario mínimo mensual general que rija en el Distrito Federal, o\n\nb) Si su cuenta individual tiene cinco años o más de haber sido abierta, podrá retirar la cantidad que resulte menor entre noventa días de su propio salario base de cotización de las últimas doscientas cincuenta semanas o las que tuviere, o el once punto cinco por ciento del saldo de la Subcuenta de Retiro, Cesantía en Edad Avanzada y Vejez.\n\nLas cantidades a que se refiere este inciso se entregarán en un máximo de seis mensualidades, la primera de las cuales podrá ser por un monto de treinta días de su último salario base de cotización a solicitud del trabajador, conforme a las reglas de carácter general que al efecto expida la Comisión Nacional del Sistema de Ahorro para el Retiro. En caso de que el trabajador se reincorpore a laborar durante el plazo de entrega de los recursos, las mensualidades posteriores a su reincorporación se suspenderán.\n\nEl trabajador que cumpla con los requisitos de antigüedad de la cuenta a que se refiere el primer párrafo de este inciso, podrá optar, en todo caso, por el beneficio señalado en el inciso a).\n\nEl derecho consignado en esta fracción sólo podrán ejercerlo los trabajadores que acrediten con los estados de cuenta correspondientes, no haber efectuado retiros durante los cinco años inmediatos anteriores a la fecha de la solicitud de retiro de recursos.\n\nFracción reformada DOF 26-05-2009"
+  },
+  "LSS-198": {
+   "ley": "LSS",
+   "ley_nombre": "Ley del Seguro Social",
+   "articulo": "198",
+   "pagina": 60,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf#page=60",
+   "texto": "Artículo 198. La disposición que realice el trabajador de los recursos de su cuenta individual por concepto del retiro por situación de desempleo previsto en el artículo 191 fracción II de la presente Ley, disminuirá en igual proporción a las semanas de cotización efectuadas.\n\nLa mencionada disminución se calculará dividiendo el monto acumulado de los recursos de la cuenta individual entre el número de semanas cotizadas hasta el momento de realizarse la disposición de dichos recursos. El monto retirado se dividirá entre el cociente resultante de la anterior operación. El resultado se le restará a las semanas cotizadas.\n\nLos trabajadores que retiren recursos de la Subcuenta de Retiro, Cesantía en Edad Avanzada y Vejez en los términos de lo dispuesto por el mencionado artículo 191 fracción II de la presente Ley, podrán reintegrar total o parcialmente los recursos que hubieren recibido conforme a las disposiciones de carácter general que al efecto expida la Comisión Nacional del Sistema de Ahorro para el Retiro, con el voto favorable del Comité Consultivo y de Vigilancia. En este caso, las semanas de cotización que hubieren sido disminuidas conforme a lo dispuesto en el presente artículo les serán reintegradas proporcionalmente a los recursos que reintegren.\n\nArtículo reformado DOF 26-05-2009"
+  },
+  "LISR-93-XIII": {
+   "ley": "LISR",
+   "ley_nombre": "Ley del Impuesto sobre la Renta",
+   "articulo": "93, fracción XIII",
+   "pagina": 122,
+   "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf#page=122",
+   "texto": "XIII. Los que obtengan las personas que han estado sujetas a una relación laboral en el momento de su separación, por concepto de primas de antigüedad, retiro e indemnizaciones u otros pagos, así como los obtenidos con cargo a la subcuenta del seguro de retiro o a la subcuenta de retiro, cesantía en edad avanzada y vejez, previstas en la Ley del Seguro Social y los que obtengan los trabajadores al servicio del Estado con cargo a la cuenta individual del sistema de ahorro para el retiro, prevista en la Ley del Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado, y los que obtengan por concepto del beneficio previsto en la Ley de Pensión Universal, hasta por el equivalente a noventa veces el salario mínimo general del área geográfica del contribuyente por cada año de servicio o de contribución en el caso de la subcuenta del seguro de retiro, de la subcuenta de retiro, cesantía en edad avanzada y vejez o de la cuenta individual del sistema de ahorro para el retiro. Los años de servicio serán los que se hubieran considerado para el cálculo de los conceptos mencionados. Toda fracción de\n\nmás de seis meses se considerará un año completo. Por el excedente se pagará el impuesto en los términos de este Título."
+  }
+ }
+}

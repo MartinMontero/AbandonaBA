@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
 await new Promise((r) => server.listen(8799, '127.0.0.1', r));
 const base = 'http://127.0.0.1:8799';
 
-const pages = [['/revision/', 'revision'], ['/revision/dictamen/', 'dictamen-en-blanco'], ['/salidas/', 'salidas'], ['/no-firmes/', 'no-firmes'], ['/plazos/', 'plazos'], ['/checklist-salida/', 'checklist-salida']];
+const pages = [['/revision/documento/', 'documento-de-revision-laboral'], ['/revision/', 'revision'], ['/revision/dictamen/', 'dictamen-en-blanco'], ['/salidas/', 'salidas'], ['/no-firmes/', 'no-firmes'], ['/plazos/', 'plazos'], ['/checklist-salida/', 'checklist-salida']];
 const scenarios = [
   { id: '01-cajero-5-anios', label: 'Cajero con cinco años', i: { weeklyBase: '2205.28', commissions: '900', years: '5' } },
   { id: '02-cajero-2-anios', label: 'Cajero con dos años', i: { weeklyBase: '2205.28', commissions: '900', years: '2' } },
@@ -84,22 +84,5 @@ const md = [
 ].join('\n');
 fs.writeFileSync(path.join(root, 'docs', 'ATTORNEY-WALKTHROUGH.md'), md);
 
-fs.writeFileSync(path.join(outDir, 'LEEME.es.md'), [
-  '# Paquete de revisión para el abogado',
-  '',
-  `Fecha de las instantáneas: ${date}.`,
-  '',
-  '**Qué se adjunta.** PDF de la mesa de revisión, de la hoja de dictamen en blanco, de las páginas Salidas, No firmes, Plazos y Checklist, y seis resultados impresos de la calculadora con datos inventados.',
-  '',
-  '**Cómo abrir la herramienta en vivo.** Enlace: [COMPLETAR: URL de la versión de revisión]. Método de acceso: [COMPLETAR: se le enviará un PIN de un solo uso a su correo].',
-  '',
-  '**Qué evaluar primero.** (1) Calculadora y sus decisiones D1 a D5; (2) la página Salidas y el Art. 439; (3) plazos; (4) No firmes esto; (5) checklist. Cada afirmación tiene una pregunta concreta en la mesa de revisión (`/revision/`).',
-  '',
-  '**Cómo nos hace llegar sus hallazgos.** Imprima o guarde como PDF la hoja de dictamen y envíela por el medio que se le indicó por separado. El sitio no recoge nada.',
-  '',
-  'Los PDF son instantáneas de la herramienta en la fecha indicada. Si la herramienta en vivo cambió, manda ella.',
-  '',
-  'Contacto: [COMPLETAR: línea de contacto].',
-  '',
-].join('\n'));
+fs.writeFileSync(path.join(outDir, 'LEEME.es.md'), fs.readFileSync(path.join(root, 'scripts', 'leeme-revision.es.md'), 'utf8').replace('{{FECHA}}', date));
 console.log('review-pack listo:', fs.readdirSync(outDir).length, 'archivos');

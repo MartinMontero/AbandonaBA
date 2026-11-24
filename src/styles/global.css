@@ -701,3 +701,17 @@ details.acc[open] { background: var(--md-sys-color-surface); }
 .facts .cifra { min-width: 0; overflow-wrap: anywhere; }
 .facts .cifra .big { font-size: 1.5rem; }
 @media (max-width: 480px) { .facts:has(.cifra) { grid-template-columns: 1fr; } }
+
+/* Documento de revisión para abogados */
+.ficha { margin: var(--space-3) 0; }
+.ficha h3 { margin-top: 0; }
+.ficha h4 { margin: var(--space-2) 0 4px; font-size: .9375rem; text-transform: uppercase; letter-spacing: .04em; color: var(--md-sys-color-on-surface-variant); }
+.precepto { margin: var(--space-1) 0 var(--space-2); padding: var(--space-2) var(--space-3); border-left: 5px solid var(--md-sys-color-primary); background: var(--md-sys-color-surface-container); border-radius: var(--radius-md); }
+.precepto p { margin: 0 0 var(--space-1); }
+.precepto .nota-reforma { font-size: .8125rem; font-style: italic; color: var(--md-sys-color-on-surface-variant); }
+.precepto footer { font-size: .875rem; font-weight: 600; }
+.ficha .pregunta { padding: var(--space-2); background: var(--md-sys-color-primary-container); border-radius: var(--radius-md); }
+@media print { .ficha, .precepto { break-inside: avoid; } h2 { break-after: avoid; } }
+
+ul.plain { list-style: none; padding-left: 0; }
+ul.plain li { margin: 4px 0; }

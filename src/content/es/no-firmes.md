@@ -45,7 +45,7 @@ Esta hoja está en revisión por un abogado laboral. Los textos de abajo son bor
 <details class="acc" id="despido"><summary>Si te despiden</summary>
 <div class="acc-b">
 
-<span class="tag t-verificado-primaria">verificado-primaria</span> El Art. 47 dice que el patrón debe darte un aviso escrito con las conductas y las fechas, en el momento del despido o ante el Tribunal dentro de cinco días hábiles. Guarda ese papel. El plazo para reclamar un despido es de dos meses (Art. 518). Calcula tus fechas en [Mis plazos](/plazos/).
+<span class="tag t-verificado-primaria">verificado-primaria</span> El Art. 47 dice que el patrón debe darte un aviso escrito con las conductas y las fechas, en el momento del despido o ante el Tribunal dentro de cinco días hábiles. Guarda ese papel. El plazo para reclamar un despido es de dos meses (Art. 518). El mismo Art. 47 dice que ese plazo no empieza a correr hasta que recibas personalmente el aviso, y que si no te lo dan se presume que el despido fue injustificado, salvo prueba en contrario. Por precaución, cuenta los dos meses desde el día del despido. Calcula tus fechas en [Mis plazos](/plazos/).
 
 </div>
 </details>

@@ -7,14 +7,15 @@ const tiers: Record<string, string> = { A: 'Prioridad A: Art. 439 y reducciones 
 ---
 <Base title="Mesa de revisión para abogados" description="Mesa de trabajo para revisar la herramienta." path="/revision/" legal wide claims={['C01','C04','C08','C20']} decisions={['D1','D2','D3','D4','D5']}>
   <h2>Cómo revisar esta herramienta</h2>
+  <p class="lede">Este es el borrador funcionando, no una descripción de él. Se le pide un dictamen sobre lo que la herramienta afirma y calcula. <strong>Empiece por el <a href="/revision/documento/">documento de revisión y verificación</a>:</strong> reúne, por materia, cada afirmación jurídica, el texto vigente del precepto con enlace directo al PDF oficial, la lectura que el sitio le da y la pregunta concreta que se somete a su criterio.</p>
   <ol>
-    <li><strong>Qué es.</strong> Una herramienta gratuita y anónima para trabajadores de un banco en México. Calcula, avisa de plazos y explica rutas de salida. Este sitio es el borrador funcionando, no una descripción.</li>
-    <li><strong>Qué probar primero.</strong> <a href="/calculadora/">Calculadora</a>, <a href="/salidas/">salidas</a>, <a href="/no-firmes/">no firmes esto</a>, <a href="/plazos/">plazos</a> y <a href="/checklist-salida/">checklist de salida</a>.</li>
-    <li><strong>Qué le pedimos.</strong> Para cada afirmación: confirmar, corregir o decir «no se puede confirmar».</li>
-    <li><strong>Las tres etiquetas.</strong> <span class="tag t-verificado-primaria">verificado-primaria</span> leído en la fuente oficial; <span class="tag t-verificado-secundaria">verificado-secundaria</span> visto solo en prensa o sitios de terceros; <span class="tag t-sin-verificar">sin-verificar</span> sin fuente confirmada.</li>
-    <li><strong>Cómo llegan sus hallazgos.</strong> Imprima o guarde como PDF la <a href="/revision/dictamen/">hoja de dictamen</a>. El contacto se entrega por separado por correo. El sitio no recoge nada.</li>
+    <li><strong>Naturaleza de la herramienta.</strong> Información general y calculadora, gratuitas y anónimas, para personas trabajadoras de una institución de crédito. No es asesoría legal ni crea relación abogado-cliente.</li>
+    <li><strong>Qué probar.</strong> <a href="/calculadora/">Calculadora</a> (con las convenciones D1 a D5), <a href="/salidas/">salidas</a>, <a href="/no-firmes/">no firmes esto</a>, <a href="/plazos/">plazos</a> y <a href="/checklist-salida/">checklist de salida</a>.</li>
+    <li><strong>Qué se le pide.</strong> Para cada afirmación: «confirmado», «corregir» o «no se puede confirmar», con su comentario.</li>
+    <li><strong>Etiquetas de verificación.</strong> <span class="tag t-verificado-primaria">verificado-primaria</span> leído completo en el texto oficial vigente; <span class="tag t-verificado-secundaria">verificado-secundaria</span> visto solo en prensa o en sitios de terceros; <span class="tag t-sin-verificar">sin-verificar</span> no se pudo leer y no se usa para calcular.</li>
+    <li><strong>Cómo devolver su dictamen.</strong> Imprima o guarde como PDF la <a href="/revision/dictamen/">hoja de dictamen</a> y envíela por el medio que se le indicó por separado. El sitio no recoge ni envía nada.</li>
   </ol>
-  <p><a class="btn" href="/revision/pruebas/">Pruebas en vivo</a> <a class="btn secondary" href="/revision/dictamen/">Hoja de dictamen</a></p>
+  <p><a class="btn" href="/revision/documento/">Documento de revisión</a> <a class="btn secondary" href="/revision/pruebas/">Pruebas en vivo</a> <a class="btn secondary" href="/revision/dictamen/">Hoja de dictamen</a></p>
 
   <h2>Prioridades</h2>
   {['A','B','C','D'].map((t) => (

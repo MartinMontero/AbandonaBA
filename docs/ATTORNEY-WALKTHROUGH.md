@@ -1,6 +1,6 @@
 # Recorrido para el abogado (generado)
 
-Generado el 2026-11-23 desde el build de revisión con `node scripts/build-review-pack.mjs`. Los valores salen del mismo código de la calculadora (`src/lib/calc.ts`). Todos los datos de entrada son inventados.
+Generado el 2026-11-24 desde el build de revisión con `node scripts/build-review-pack.mjs`. Los valores salen del mismo código de la calculadora (`src/lib/calc.ts`). Todos los datos de entrada son inventados.
 
 Ruta de clics en cada escenario: **Calculadora** › escribir sueldo base semanal, comisiones y años › abrir «Ver el cálculo paso a paso» › cambiar las decisiones D1 a D5 en el bloque «Cómo se cuenta» para ver el otro resultado. La mesa de revisión (`/revision/`) muestra las cinco decisiones lado a lado.
 

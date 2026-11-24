@@ -46,9 +46,9 @@ Prima de antigüedad (Art. 162): doce días de salario por año de servicio; el 
 
 ## C04 · verificado-primaria · prioridad A
 
-Prescripción: Art. 518, dos meses para quien es separado del trabajo (corre desde el día siguiente a la separación y se suspende al pedir la conciliación); Art. 516, un año para las demás acciones; Art. 517 fr. II, un mes para las acciones de los trabajadores para separarse del trabajo; Art. 52, treinta días para separarse por una causa del Art. 51.
+Prescripción: Art. 518, dos meses para quien es separado del trabajo (corre desde el día siguiente a la separación y se suspende al pedir la conciliación); Art. 516, un año para las demás acciones; Art. 517 fr. II, un mes para las acciones de los trabajadores para separarse del trabajo; Art. 52, treinta días para separarse por una causa del Art. 51. El Art. 47 agrega que, en el despido, la prescripción no comienza a correr sino hasta que el trabajador recibe personalmente el aviso de rescisión.
 
-**Fuentes:** [LFT Arts. 516, 517, 518 y 52](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22)
+**Fuentes:** [LFT, texto vigente (última reforma DOF 14-05-2026), Arts. 47, 52, 516, 517, 518 y 521](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=261) (leída 2026-11-23)
 
 **Conflicto abierto:** El conflicto era 'un mes' contra '30 días'. El texto lo explica: el Art. 517 dice un mes y el Art. 52 dice treinta días. El sitio muestra la fecha más temprana.
 
@@ -60,11 +60,11 @@ Prescripción: Art. 518, dos meses para quien es separado del trabajo (corre des
 
 ## C05 · verificado-primaria · prioridad A
 
-Antes de ir al Tribunal hay que pedir la conciliación (Art. 684-B). La conciliación no excede de 45 días naturales (Art. 684-E). Quedan exceptuados de agotarla los conflictos de discriminación, acoso u hostigamiento sexual, seguridad social, beneficiarios por muerte y derechos fundamentales (Art. 685 Ter).
+Antes de ir al Tribunal hay que pedir la conciliación (Art. 684-B). La conciliación no excede de 45 días naturales (Art. 684-D). Quedan exceptuados de agotarla los conflictos de discriminación, acoso u hostigamiento sexual, seguridad social, beneficiarios por muerte y derechos fundamentales (Art. 685 Ter).
 
-**Fuentes:** [LFT Arts. 684-B, 684-E y 685 Ter](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22)
+**Fuentes:** [LFT, texto vigente (última reforma DOF 14-05-2026), Arts. 684-B, 684-D y 685 Ter](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=301) (leída 2026-11-23)
 
-**Conflicto abierto:** El borrador citaba los Arts. 684-A a 684-E para las excepciones. Las excepciones están en el Art. 685 Ter. Ver DISCREPANCIES.md.
+**Conflicto abierto:** La instrucción original citaba los Arts. 684-A a 684-E para las excepciones y el Art. 684-E para el plazo. Leído el texto vigente: las excepciones están en el Art. 685 Ter y el límite de 45 días naturales está en el Art. 684-D (no en el 684-E). Corregido en el sitio.
 
 **Debe confirmar:** La lista completa del Art. 685 Ter, fracción IV.
 
@@ -242,15 +242,15 @@ La aplicación de las normas de trabajo en los servicios de banca y crédito cor
 
 ## C18 · verificado-primaria · prioridad A
 
-Art. 47 (últimos párrafos): el patrón que despide debe dar aviso escrito con la conducta y las fechas; debe entregarlo personalmente en el momento del despido o comunicarlo al Tribunal dentro de cinco días hábiles.
+Art. 47, últimos párrafos: el patrón que despide debe dar aviso escrito con la conducta y las fechas; debe entregarlo personalmente en el momento del despido o comunicarlo al Tribunal dentro de cinco días hábiles. La prescripción de las acciones derivadas del despido no comienza a correr hasta que el trabajador recibe personalmente el aviso. La falta de aviso, por sí sola, presume la separación no justificada, salvo prueba en contrario que acredite que el despido fue justificado.
 
-**Fuentes:** [LFT Art. 47, últimos párrafos](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf) (leída 2026-11-22)
+**Fuentes:** [LFT, texto vigente (última reforma DOF 14-05-2026), Art. 47, últimos párrafos](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=15) (leída 2026-11-23)
 
-**Conflicto abierto:** La presunción de despido injustificado por falta de aviso viene de una fuente secundaria (PROFEDET) y no se leyó en el texto.
+**Conflicto abierto:** Ninguno. La presunción y la regla sobre la prescripción constan en el texto vigente leído el 2026-11-23 (antes se afirmaban con base en una página de PROFEDET).
 
-**Debe confirmar:** El efecto exacto de la falta de aviso.
+**Debe confirmar:** Cómo interactúa la regla del Art. 47 sobre el inicio de la prescripción con el plazo de dos meses del Art. 518.
 
-**Pregunta para el abogado:** ¿Qué efecto tiene hoy la falta de aviso escrito de rescisión?
+**Pregunta para el abogado:** Si el patrón nunca entrega el aviso, ¿el plazo de dos meses del Art. 518 no comienza a correr hasta que el trabajador lo recibe personalmente, como dice el Art. 47?
 
 **Páginas:** /evidencia/, /no-firmes/, /salidas/
 
@@ -310,15 +310,15 @@ BBVA México tiene publicada, en su propia bolsa de trabajo, la oferta «Persona
 
 **Páginas:** /empleos/, /trabajo/
 
-## C23 · verificado-secundaria · prioridad C
+## C23 · sin-verificar · prioridad C
 
 Ofertas y reseñas reportan filtros de contratación en el Grupo Salinas: 'no adeudos con Elektra o Banco Azteca' y 'no haber laborado en Grupo Salinas'; reseñas dicen que no hay recontratación.
 
 **Fuentes:** [Ofertas y reseñas públicas (no archivadas)](https://www.gob.mx/) (leída 2026-11-22)
 
-**Conflicto abierto:** Sin fuente primaria.
+**Conflicto abierto:** No se conserva el enlace a las ofertas ni a las reseñas que contenían estos filtros. Mientras no se localice una oferta concreta con su fecha, la afirmación no debe usarse.
 
-**Debe confirmar:** Ofertas concretas con fecha.
+**Debe confirmar:** Localizar ofertas vigentes con ese texto y archivar su enlace y fecha.
 
 **Pregunta para el abogado:** ¿Es lícito un filtro de 'no haber laborado' en una oferta de empleo?
 
@@ -326,13 +326,13 @@ Ofertas y reseñas reportan filtros de contratación en el Grupo Salinas: 'no ad
 
 ## C24 · sin-verificar · prioridad A
 
-Estructura de empleo: se reporta que el banco posee 99.9% de una empresa de personal; antes de la reforma de subcontratación de 2021 empleaba por terceros. El sitio pide revisar el patrón nombrado en el CFDI de nómina y en el IMSS.
+Estructura de empleo: en su reporte de la Administración al 30 de junio de 2026, Banco Azteca declara que consolida las cifras de Servicios Laborales y Ejecutivos, S.A. de C.V., con una participación de 99.9%. Que esa empresa sea el patrón formal del personal de sucursal, y que antes de la reforma de subcontratación de 2021 el banco empleara por terceros, se reporta pero no está verificado. El sitio pide revisar el patrón nombrado en el CFDI de nómina y en el IMSS. Otro documento del propio banco (Sistema de Remuneración 2025) dice que «Banco Azteca no cuenta con filiales ni subsidiarias».
 
-**Fuentes:** [Informe corporativo (no leído)](https://www.gob.mx/) (leída 2026-11-22)
+**Fuentes:** [Banco Azteca, Reporte de comentarios y análisis de la Administración al 30 de junio de 2026 (la participación de 99.9%)](https://www.grupoelektra.com.mx/api/pdfEkt/4259) (leída 2026-11-23); [Banco Azteca, Sistema de Remuneración 2025 («no cuenta con filiales ni subsidiarias»)](https://www.grupoelektra.com.mx/Documents/ES/remuneracion/Reporte_Anual_del_Sistema_de_Remuneracion_2025.pdf) (leída 2026-11-23)
 
-**Conflicto abierto:** Sin verificar.
+**Conflicto abierto:** Los dos documentos del banco parecen decir cosas distintas. Que Servicios Laborales y Ejecutivos sea el patrón formal del personal no consta en ninguno.
 
-**Debe confirmar:** Registro patronal real de cada persona.
+**Debe confirmar:** El patrón que aparece en el CFDI y en el registro del IMSS de un trabajador concreto, y las notas a los estados financieros.
 
 **Pregunta para el abogado:** Si el patrón es una empresa de personal del mismo grupo, ¿quién responde por la indemnización?
 
@@ -883,3 +883,17 @@ Estructura: el reporte del banco dice que nace como subsidiaria de Grupo Elektra
 **Pregunta para el abogado:** ¿Cómo debe presentarse esta diferencia sin sugerir una conclusión?
 
 **Páginas:** /transparencia/quien-es-quien/
+
+## C27 · verificado-primaria · prioridad B
+
+Descuentos al salario (Art. 110): están prohibidos salvo en los casos y con los requisitos de la ley. El pago de deudas contraídas con el patrón por anticipo de salarios, pagos hechos con exceso, errores, pérdidas, averías o adquisición de artículos producidos por la empresa no puede exceder del importe de los salarios de un mes, y el descuento no puede ser mayor del treinta por ciento del excedente del salario mínimo.
+
+**Fuentes:** [LFT, texto vigente (última reforma DOF 14-05-2026), Art. 110, fracción I](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf#page=28) (leída 2026-11-23)
+
+**Conflicto abierto:** Ninguno. El sitio solo cita la fracción I; no analiza las demás fracciones del Art. 110.
+
+**Debe confirmar:** Cómo se aplica el límite del treinta por ciento del excedente del salario mínimo a quien tiene un crédito de nómina interno con el patrón.
+
+**Pregunta para el abogado:** ¿Puede el banco descontar de la liquidación el saldo de un crédito interno con el patrón sin respetar el tope de un mes de salario y el límite del treinta por ciento del excedente del mínimo?
+
+**Páginas:** /checklist-salida/

@@ -1,0 +1,190 @@
+---
+import Base from '../layouts/Base.astro';
+import { enrichedRegister } from '../lib/claims.mjs';
+import { materias } from '../data/dictamen-laboral';
+import fund from '../data/fundamentos-laborales.json';
+import { calcular } from '../lib/calc';
+
+const reg = enrichedRegister();
+const byId: Record<string, any> = Object.fromEntries(reg.map((c: any) => [c.id, c]));
+const arts = fund.articulos as Record<string, any>;
+const claimsUsed = materias.flatMap((m) => m.fichas.map((f) => f.id));
+const mxn = (n: number) => n.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+const isNota = (p: string) => /^(Párrafo|Fracción|Artículo (reformado|adicionado)|Numeral|Inciso|Fe de erratas|Reforma|Párrafos)/.test(p);
+const paragraphs = (t: string) => t.split('\n\n');
+const fechaLectura = '2026-11-23';
+
+// Sensibilidad de las decisiones D1 a D5 con el ejemplo del recorrido (datos inventados). Mismo código que la calculadora.
+const base = { weeklyBase: 2205.28, commissions: 900, yearsCompleted: 5 };
+const r0 = calcular(base);
+const r1 = calcular({ ...base, art439Days: 121.6 });
+const r3 = calcular({ ...base, vacationBasis: 'encurso' });
+const r4 = calcular({ ...base, commissionPeriod: 'treinta' });
+const r5 = calcular({ ...base, fractionMode: 'proporcional', yearsProportional: 5.7 });
+const decisiones = [
+  { id: 'D1', texto: '«Cuatro meses» del Art. 439: 120 días (lectura del sitio) o 121.6 días (4 × 30.4).', a: r0.A.exits.art439.total, b: r1.A.exits.art439.total, que: 'Indemnización del Art. 439, método A' },
+  { id: 'D2', texto: 'Comisiones semanales: divididas entre 7 (método A) o entre seis días trabajados (método B).', a: r0.A.exits.art439.total, b: r0.B.exits.art439.total, que: 'Indemnización del Art. 439' },
+  { id: 'D3', texto: 'Días de vacaciones en el factor de integración: último año completo (lectura del sitio) o año en curso.', a: r0.A.exits.art439.total, b: r3.A.exits.art439.total, que: 'Indemnización del Art. 439, método A' },
+  { id: 'D4', texto: 'Variable semanal: se capturan 900 pesos como promedio semanal (lectura del sitio) o como total de 30 días.', a: r0.A.exits.art439.total, b: r4.A.exits.art439.total, que: 'Indemnización del Art. 439, método A' },
+  { id: 'D5', texto: 'Fracción de año: solo años completos (lectura del sitio) o proporcional (5.7 años).', a: r0.A.exits.art439.total, b: r5.A.exits.art439.total, que: 'Indemnización del Art. 439, método A' },
+];
+
+const formulas = [
+  { concepto: 'Salario diario base', formula: 'sueldo base semanal ÷ 7', fundamento: 'Art. 89, párr. 3 (salario por semana se divide entre siete)' },
+  { concepto: 'Comisión diaria', formula: 'método A: comisión semanal ÷ 7; método B: comisión semanal ÷ 6', fundamento: 'Art. 89, párr. 2 (promedio de 30 días efectivamente trabajados); decisiones D2 y D4' },
+  { concepto: 'Salario diario integrado (SDI)', formula: '(base + comisión) × (1 + aguinaldo ÷ 365 + vacaciones × 25% ÷ 365)', fundamento: 'Arts. 84 y 89; Arts. 76, 80 y 87 para los factores' },
+  { concepto: 'Prima de antigüedad', formula: '12 × años × mínimo entre el SDI y dos salarios mínimos', fundamento: 'Arts. 162, 485 y 486; decisión D5' },
+  { concepto: 'Reducción por maquinaria (Art. 439)', formula: '120 × SDI + 20 × años × SDI + prima', fundamento: 'Art. 439; decisión D1 (121.6 días)' },
+  { concepto: 'Rescisión por causa del patrón (Arts. 50 y 51)', formula: '90 × SDI + 20 × años × SDI + prima', fundamento: 'Arts. 50 fr. II y III, 51 y 52' },
+  { concepto: 'Despido injustificado (Art. 48)', formula: '90 × SDI + prima (más salarios vencidos según el juicio, sin cuantificar)', fundamento: 'Art. 48 y Art. 162' },
+  { concepto: 'Renuncia', formula: 'solo finiquito; prima solo con 15 años o más', fundamento: 'Art. 162 fr. III' },
+  { concepto: 'Parte exenta de ISR (informativa)', formula: '90 × UMA × años (fracción de más de seis meses = año completo)', fundamento: 'LISR Art. 93 fr. XIII; Transitorio Tercero DOF 27-01-2016' },
+];
+
+const entorno = ['C06', 'C07', 'C12', 'C13', 'C14', 'C15', 'C16', 'C22', 'C23', 'C24', 'C25'].map((id) => byId[id]).filter(Boolean);
+const sinEnlace = (u: string) => /^https:\/\/www\.gob\.mx\/?$/.test(u);
+const conteo = (st: string) => reg.filter((c: any) => c.id.startsWith('C') && !c.id.startsWith('CB') && c.status === st).length;
+const laborales = reg.filter((c: any) => c.id.startsWith('C') && !c.id.startsWith('CB'));
+---
+<Base title="Documento de revisión y verificación para abogados laboralistas" description="Fundamento, lectura aplicada y preguntas concretas para dictamen, con enlace directo a cada precepto." path="/revision/documento/" legal wide claims={claimsUsed} decisions={['D1','D2','D3','D4','D5']}>
+  <p class="lede"><strong>Borrador sin publicar.</strong> Este documento acompaña a la herramienta en funcionamiento. Reúne, por materia, cada afirmación jurídica que hace el sitio, el texto vigente del precepto que la sustenta, la lectura que el sitio le da y la pregunta que se somete a su dictamen. Cada cita lleva un enlace directo a la página del texto oficial.</p>
+
+  <h2 id="datos">Datos de la revisión</h2>
+  <div class="tbl-wrap"><table class="rt">
+    <tbody>
+      <tr><th scope="row">Fecha de lectura de los textos</th><td>{fechaLectura}</td></tr>
+      <tr><th scope="row">Textos legales consultados</th><td><ul>
+        {Object.entries(fund.leyes as Record<string, any>).map(([k, l]) => <li><a href={l.url} rel="noopener noreferrer">{l.nombre} ({k})</a>, texto vigente publicado por la Cámara de Diputados; última reforma publicada: DOF {(fund.versiones as any)[k]}.</li>)}
+      </ul></td></tr>
+      <tr><th scope="row">Naturaleza de la herramienta</th><td>Información general y calculadora para personas trabajadoras de una institución de crédito. No es asesoría legal ni crea relación abogado-cliente. No está afiliada a Banco Azteca ni a Grupo Salinas.</td></tr>
+      <tr><th scope="row">Estado de la revisión legal</th><td>Pendiente. Mientras no conste su dictamen, cada página con contenido jurídico lo indica.</td></tr>
+      <tr><th scope="row">Afirmaciones laborales</th><td>{laborales.length} en total: {conteo('verificado-primaria')} verificadas en fuente primaria, {conteo('verificado-secundaria')} en fuente secundaria y {conteo('sin-verificar')} sin verificar.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="uso">Cómo usar este documento</h2>
+  <ol>
+    <li><strong>Lea la ficha de cada afirmación.</strong> Tiene cinco partes: afirmación del sitio, fundamento (cita literal), lectura aplicada, puntos sometidos a dictamen y pregunta concreta.</li>
+    <li><strong>Verifique el texto citado en el enlace.</strong> El enlace abre el PDF oficial en la página donde está el artículo. La cita es la del texto consolidado, con las notas de reforma que trae el original.</li>
+    <li><strong>Pruebe la herramienta.</strong> Cada ficha enlaza las páginas donde aparece la afirmación. La <a href="/calculadora/">calculadora</a> permite cambiar cada convención (D1 a D5) y ver el resultado con la otra lectura.</li>
+    <li><strong>Responda en la <a href="/revision/dictamen/">hoja de dictamen</a>.</strong> Para cada afirmación: «confirmado», «corregir» o «no se puede confirmar», con un comentario. La hoja se imprime o se guarda como PDF; el sitio no recoge ni envía nada.</li>
+    <li><strong>Prioridad.</strong> Si el tiempo es limitado, revise primero las materias I y II (reducción de personal, formas de terminación, competencia, conciliación y prescripción) y la sección V (fórmulas).</li>
+  </ol>
+
+  <h2 id="criterios">Criterios de verificación</h2>
+  <ul>
+    <li><span class="tag t-verificado-primaria">verificado-primaria</span> El precepto o el dato se leyó completo en el texto oficial vigente (Cámara de Diputados, Diario Oficial de la Federación, dependencia competente).</li>
+    <li><span class="tag t-verificado-secundaria">verificado-secundaria</span> Se vio solo en prensa, en sitios de terceros o en una copia no oficial. No se usa para calcular.</li>
+    <li><span class="tag t-sin-verificar">sin-verificar</span> No se pudo leer. Se muestra aparte, con su etiqueta, y no se utiliza para recomendar ni para calcular.</li>
+  </ul>
+  <p>Ninguna etiqueta se sube sin leer la fuente primaria. Los números de las fórmulas salen de un archivo único de valores con fuente y fecha, y las cifras de este documento se calculan con el mismo código que usa la calculadora.</p>
+
+  <nav aria-label="Índice del documento"><h2 id="indice">Índice</h2>
+    <ul class="plain">
+      {materias.map((m) => <li><a href={`#materia-${m.clave}`}>{m.clave}. {m.titulo}</a></li>)}
+      <li><a href="#formulas">V. Fórmulas de la calculadora y convenciones sometidas a dictamen</a></li>
+      <li><a href="#entorno">VI. Hechos del entorno que el sitio menciona</a></li>
+      <li><a href="#correcciones">VII. Correcciones hechas en esta revisión</a></li>
+      <li><a href="#cierre">VIII. Cómo devolver su dictamen</a></li>
+    </ul>
+  </nav>
+
+  {materias.map((m) => (
+    <section aria-labelledby={`materia-${m.clave}`}>
+      <h2 id={`materia-${m.clave}`}>{m.clave}. {m.titulo}</h2>
+      <p>{m.intro}</p>
+      {m.fichas.map((f) => {
+        const c = byId[f.id];
+        return (
+          <article class="ficha card" id={f.id}>
+            <h3>{f.id} · {f.titulo} <span class={`tag t-${c.status}`}>{c.status}</span></h3>
+            <h4>Afirmación del sitio</h4>
+            <p>{f.afirmacion}</p>
+            <h4>Fundamento (texto vigente)</h4>
+            {f.fundamento.map((k) => {
+              const a = arts[k];
+              return (
+                <blockquote class="precepto">
+                  {paragraphs(a.texto).map((p) => isNota(p) ? <p class="nota-reforma">{p}</p> : <p>{p}</p>)}
+                  <footer>{a.ley_nombre}, Art. {a.articulo} · <a href={a.url} rel="noopener noreferrer">ver en el PDF oficial, p. {a.pagina}</a></footer>
+                </blockquote>
+              );
+            })}
+            {f.extra && (<>
+              <p><strong>Otras fuentes primarias:</strong></p>
+              <ul>{f.extra.map((e) => <li><a href={e.url} rel="noopener noreferrer">{e.name}</a></li>)}</ul>
+            </>)}
+            <h4>Lectura aplicada en el sitio</h4>
+            <p>{f.lectura}</p>
+            <h4>Puntos sometidos a dictamen</h4>
+            <ul>{f.abiertos.map((a) => <li>{a}</li>)}</ul>
+            <p class="pregunta"><strong>Pregunta concreta:</strong> {f.pregunta}</p>
+            <p class="ref-line"><strong>Dónde aparece en el sitio:</strong> {c.pages.length ? c.pages.map((p: string) => <><a href={p}>{p}</a>{' '}</>) : 'solo en este documento'}</p>
+          </article>
+        );
+      })}
+    </section>
+  ))}
+
+  <section aria-labelledby="formulas">
+    <h2 id="formulas">V. Fórmulas de la calculadora y convenciones sometidas a dictamen</h2>
+    <p>La calculadora es una estimación con valores de 2026. Cada fórmula se muestra en el sitio paso a paso, con el artículo al lado. Las cinco decisiones siguientes son convenciones que el sitio adopta por defecto y que muestra también con la lectura alternativa.</p>
+    <div class="tbl-wrap"><table class="rt">
+      <thead><tr><th>Concepto</th><th>Fórmula</th><th>Fundamento</th></tr></thead>
+      <tbody>{formulas.map((f) => <tr><th scope="row">{f.concepto}</th><td>{f.formula}</td><td>{f.fundamento}</td></tr>)}</tbody>
+    </table></div>
+    <h3>Efecto de cada convención</h3>
+    <p>Ejemplo con datos inventados: sueldo base semanal {mxn(base.weeklyBase)}, comisiones semanales {mxn(base.commissions)}, cinco años completos, zona general. El código es el mismo de la <a href="/calculadora/">calculadora</a>; en <a href="/revision/">la mesa de revisión</a> puede cambiar los datos.</p>
+    <div class="tbl-wrap"><table class="rt">
+      <thead><tr><th>Decisión</th><th>Convención del sitio</th><th>Lectura alternativa</th><th>Diferencia</th></tr></thead>
+      <tbody>{decisiones.map((d) => <tr><th scope="row">{d.id}. {d.texto}<br /><small>{d.que}</small></th><td>{mxn(d.a)}</td><td>{mxn(d.b)}</td><td>{mxn(d.b - d.a)}</td></tr>)}</tbody>
+    </table></div>
+    <p class="ref-line">Rondeo: el cálculo se hace con precisión completa y solo se redondea a centavos al mostrarlo. Los vectores de prueba y su ejecución en vivo están en <a href="/revision/pruebas/">Pruebas en vivo</a>.</p>
+    <h3>Otros puntos de método</h3>
+    <ul>
+      <li><strong>Tres meses.</strong> La calculadora entiende «tres meses de salario» (Art. 48 y Art. 50 fr. III) como 90 días de SDI y «cuatro meses» (Art. 439) como 120 días. No hay una regla en el texto que fije los días por mes: se somete a dictamen.</li>
+      <li><strong>Salario a la fecha del pago.</strong> El Art. 48 dice «a razón del que corresponda a la fecha en que se realice el pago». La calculadora usa el salario que la persona captura, sin proyectar aumentos.</li>
+      <li><strong>Salarios vencidos e intereses.</strong> No se cuantifican: dependen de la duración del juicio. El sitio los menciona como «más, según el juicio».</li>
+      <li><strong>Prima de antigüedad.</strong> Se calcula con el salario topado a dos mínimos del área (Arts. 162 fr. II y 486). El tope no se aplica a las indemnizaciones de los Arts. 48, 50 y 439.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="entorno">
+    <h2 id="entorno">VI. Hechos del entorno que el sitio menciona</h2>
+    <p>No son preceptos del texto consolidado: son cifras, acuerdos y programas. Cada fuente tiene su enlace. Donde no se conserva un enlace directo, la tabla lo dice y la afirmación no se usa en ningún cálculo.</p>
+    <div class="tbl-wrap"><table class="rt">
+      <thead><tr><th>Id</th><th>Afirmación</th><th>Estado</th><th>Fuentes y fecha de lectura</th><th>Pendiente</th></tr></thead>
+      <tbody>
+        {entorno.map((c: any) => (
+          <tr id={c.id}>
+            <th scope="row">{c.id}</th><td>{c.statement}</td>
+            <td><span class={`tag t-${c.status}`}>{c.status}</span></td>
+            <td><ul>{c.sources.map((s: any) => <li>{sinEnlace(s.url) ? <>{s.name} · <em>sin enlace directo archivado</em></> : <a href={s.url} rel="noopener noreferrer">{s.name}</a>} · {s.read}</li>)}</ul></td>
+            <td>{c.must_confirm}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="correcciones">
+    <h2 id="correcciones">VII. Correcciones hechas en esta revisión</h2>
+    <p>Al contrastar el sitio con el texto vigente se corrigieron los puntos siguientes. Se listan para que quien revise sepa qué cambió respecto de versiones anteriores.</p>
+    <ol>
+      <li><strong>Plazo de la conciliación.</strong> El límite de 45 días naturales está en el Art. 684-D, no en el 684-E como decía una versión anterior (C05).</li>
+      <li><strong>Falta de aviso de despido.</strong> El Art. 47 establece, en el propio texto, que la falta de aviso presume la separación no justificada y que la prescripción no corre hasta que el trabajador recibe personalmente el aviso. Antes se afirmaba con base en una página de PROFEDET. Las páginas «No firmes esto» y «Mis plazos» ya lo mencionan, con la recomendación de contar el plazo desde el despido por precaución (C18, C04).</li>
+      <li><strong>Reducción de la jornada.</strong> En 2026 rige un máximo de 48 horas semanales, no de 40; el Art. 59 consolidado ya dice cuarenta, pero el Transitorio Segundo del decreto lo hace gradual hasta 2030 (C09).</li>
+      <li><strong>Escalafón y reanudación.</strong> Los Arts. 437 y 438 tratan del escalafón en reducción de trabajos y de la reanudación de actividades; no son un «orden de reajuste» distinto (C01).</li>
+      <li><strong>Competencia.</strong> La competencia federal en servicios de banca y crédito consta en el Art. 527 fr. I, numeral 22 (antes se infería) (C17).</li>
+      <li><strong>Estructura de empleo.</strong> El reporte del banco al 30 de junio de 2026 dice que consolida a Servicios Laborales y Ejecutivos con 99.9%. Otro documento del banco dice que no tiene subsidiarias. No consta cuál es el patrón formal del personal (C24).</li>
+      <li><strong>Filtros de contratación.</strong> No se conserva un enlace a las ofertas que los contenían; pasa a «sin-verificar» (C23).</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="cierre">
+    <h2 id="cierre">VIII. Cómo devolver su dictamen</h2>
+    <p>Imprima o guarde como PDF la <a href="/revision/dictamen/">hoja de dictamen</a>, que trae una fila por afirmación y por decisión, con casillas «confirmado», «corregir» y «no se puede confirmar», una línea de comentario y el espacio para su nombre, cédula profesional, fecha y firma. Envíela por el medio que se le indicó por separado. El sitio no recoge ni envía nada.</p>
+    <p class="ref-line">Este documento se genera con los datos del sitio: si cambia una afirmación, el texto vigente de un artículo o un cálculo, se actualiza al reconstruir. La extracción de los preceptos se hace con <code>scripts/fundamentos-laborales.py</code>.</p>
+    <p class="no-print"><a class="btn" href="/revision/dictamen/">Hoja de dictamen</a> <a class="btn secondary" href="/revision/">Mesa de revisión</a></p>
+  </section>
+</Base>
