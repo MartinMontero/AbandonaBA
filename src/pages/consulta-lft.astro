@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+import { siteConfig } from '../data/site.config';
+const sources = [
+  { title: 'Ley Federal del Trabajo, texto vigente (Cámara de Diputados)', url: 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf', read: '2026-11-25' },
+];
+---
+<Base art="book" eyebrow="Usa inteligencia artificial" title="Consulta la Ley Federal del Trabajo" description="Escribe tu pregunta y te mostramos los artículos oficiales de la LFT que más se relacionan. Te explicamos qué hace la IA, por qué la usamos y qué guardamos (nada)." path="/consulta-lft/" legal lead sources={sources}>
+  <div class="callout" role="note" id="lft-aviso">
+    <p><strong>Esto no es asesoría legal y no crea una relación abogado-cliente.</strong> Es información general que un programa con inteligencia artificial saca del texto de la Ley Federal del Trabajo. Puede equivocarse, omitir algo o no aplicar a tu caso. Verifica todo con una persona abogada laboral en México antes de decidir o firmar; la <a href={siteConfig.profedetUrl} rel="noopener noreferrer">PROFEDET</a> da asesoría gratuita.</p>
+  </div>
+
+  <p id="lft-estado" class="hint" aria-live="polite">Comprobando si la consulta está disponible…</p>
+  <noscript><p class="warning">Esta consulta necesita JavaScript. Puedes leer la ley completa en el <a href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf" rel="noopener noreferrer">PDF oficial de la Cámara de Diputados</a>.</p></noscript>
+
+  <div class="callout info"><p><strong>No escribas datos personales.</strong> Ni tu nombre, CURP, RFC, NSS, nombres de compañeros o jefes, ni detalles que te identifiquen. Pregunta en general: «¿Cuántos días de aguinaldo me corresponden?».</p></div>
+
+  <label for="lft-q" class="field">Tu pregunta sobre la Ley Federal del Trabajo</label>
+  <textarea id="lft-q" maxlength="1000" rows="4" aria-describedby="lft-q-hint" placeholder="Ejemplo: ¿Qué me tienen que pagar si me despiden sin causa?"></textarea>
+  <span id="lft-q-hint" class="hint"><span id="lft-count">0</span> de 1000 caracteres.</span>
+  <p><label><input type="checkbox" id="lft-trans" /> Incluir artículos transitorios (reglas de entrada en vigor de reformas)</label></p>
+  <p><button type="button" class="btn" id="lft-go" disabled>Consultar</button></p>
+
+  <div id="lft-out" aria-live="polite"></div>
+
+  <h2 id="como-funciona">Cómo funciona y qué guardamos</h2>
+  <details class="acc" id="que-hace" open><summary>Qué hace</summary><div class="acc-b">
+    <p>Busca en el texto vigente de la Ley Federal del Trabajo publicado por la Cámara de Diputados (última reforma que conocemos: <strong id="lft-reforma">la fecha aparece cuando el servicio está disponible</strong>) los artículos que más se relacionan con tu pregunta, y te los muestra completos, con su fecha de reforma y un enlace a la página del PDF oficial. Si un artículo está derogado, lo marcamos en rojo.</p>
+    <p id="lft-modo">Cuando está activo el modo de respuesta, un modelo de lenguaje redacta además una respuesta corta usando sólo esos artículos.</p>
+  </div></details>
+  <details class="acc" id="por-que-ia"><summary>Por qué usamos IA</summary><div class="acc-b">
+    <p>La ley tiene más de mil artículos y usa palabras distintas a las de todos los días: tú escribes «me corrieron» y la ley dice «rescisión» o «despido». Un modelo de inteligencia artificial compara el significado de tu pregunta con el de cada artículo, además de una búsqueda por palabras, y así encuentra los que aplican.</p>
+    <p>Si se redacta una respuesta, un modelo abierto especializado en derecho mexicano (Barcenas-8B) sólo puede usar los artículos encontrados. Después, un verificador automático revisa que cada artículo citado esté entre los encontrados. Si algo no se puede verificar, no te mostramos la respuesta: sólo los artículos oficiales, para que los leas tú.</p>
+    <p>Es el único uso de inteligencia artificial de este sitio. Las calculadoras y el resto de las páginas no la usan.</p>
+  </div></details>
+  <details class="acc" id="donde-corre"><summary>Dónde corre y por dónde pasa tu pregunta</summary><div class="acc-b">
+    <p>En una computadora del proyecto, no en un servicio comercial de inteligencia artificial. Tu pregunta viaja cifrada desde tu navegador hasta Cloudflare, que lleva este sitio, y de ahí por un túnel cifrado a esa computadora. Cuando la computadora está apagada, esta página dice «no disponible».</p>
+    <p id="lft-terceros">Hoy ningún otro servicio recibe tu pregunta. Si algún día activamos una verificación externa (por ejemplo, TypeSafe), la pregunta, los artículos encontrados y el borrador se enviarían a ese servicio; lo diremos aquí y en el aviso de arriba antes de que pase.</p>
+  </div></details>
+  <details class="acc" id="que-guardamos"><summary>Qué guardamos y qué no</summary><div class="acc-b">
+    <p><strong>No guardamos nada.</strong> Ni tu pregunta, ni la respuesta, ni tu dirección IP, ni cookies. No hay cuentas. El servidor no lleva registro de visitas y tu pregunta sólo existe en su memoria mientras se responde. Tu navegador tampoco guarda la pregunta.</p>
+    <p>Lo que sí ocurre: igual que en el resto del sitio, Cloudflare ve datos de la conexión, como tu IP. Para no saturar la computadora, hay un límite de consultas por minuto que cuenta el total de consultas, no quién las hace.</p>
+  </div></details>
+  <details class="acc" id="limites"><summary>Límites</summary><div class="acc-b">
+    <ul>
+      <li>Puede equivocarse o mostrar artículos que no aplican a tu situación.</li>
+      <li>Sólo conoce la Ley Federal del Trabajo. No conoce tu contrato, el contrato colectivo, la jurisprudencia, la Ley del Seguro Social ni la del ISR.</li>
+      <li>Si la ley se reformó después de la fecha que mostramos, el texto puede estar desactualizado. Compara siempre con el PDF oficial.</li>
+      <li>No sabe los detalles de tu caso. Una persona abogada laboral sí.</li>
+    </ul>
+    <p>El código es abierto: puedes revisar exactamente qué hace en el <a href={siteConfig.repoUrl} rel="noopener noreferrer">repositorio</a> (carpeta <code>services/lft-rag</code>).</p>
+  </div></details>
+
+  <p class="small"><Disclaimer /></p>
+  <script>import '../scripts/consulta-lft.ts';</script>
+</Base>

@@ -12,3 +12,15 @@ playwright-report
 
 # Fuentes descargadas para verificar valores (no se suben)
 .cache/
+
+# Servicio lft-rag (Python): entorno, secretos, PDF, índices y pesos de modelos
+services/lft-rag/.venv/
+services/lft-rag/.env
+services/lft-rag/data/
+*.gguf
+*.pdf
+# Los PDF del paquete de revisión (npm run review-pack) sí se versionan.
+!docs/review-pack/*.pdf
+*.pkl
+__pycache__/
+.pytest_cache/

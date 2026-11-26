@@ -16,3 +16,15 @@ jobs:
       - run: npx playwright install chromium
       - run: npm run verify
       - run: npm run verify:review
+
+  lft-rag:
+    # Servicio Python de «Consulta la LFT». Pruebas unitarias con backends simulados: no descarga modelos ni el PDF.
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/lft-rag
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --extra dev --locked
+      - run: uv run pytest -v
