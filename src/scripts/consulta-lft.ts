@@ -75,7 +75,7 @@ async function checkStatus() {
     const s = (await r.json()) as { available: boolean; lft_ultima_reforma_dof?: string; decision_backend?: string; generator_backend?: string };
     available = !!s.available;
     if (!available) {
-      estado.textContent = 'La consulta no está disponible en este momento: la computadora que la atiende está apagada o en mantenimiento. Intenta más tarde.';
+      estado.textContent = 'La consulta no está disponible en este momento. Intenta más tarde.';
       return;
     }
     estado.textContent = 'La consulta está disponible.';

@@ -14,13 +14,15 @@
   "observability": { "enabled": false },
   "workers_dev": false,
 
-  // «Consulta la LFT»: el Worker reenvía /api/lft/* al servicio lft-rag (services/lft-rag) por un túnel de Cloudflare.
-  //   LFT_RAG_BASE_URL  (var)     URL pública del túnel, p. ej. https://lft-rag.tu-dominio.mx. Sin ella, la página dice «no disponible».
-  //   LFT_SERVICE_TOKEN (secreto) `npx wrangler secret put LFT_SERVICE_TOKEN`; el mismo valor que LFT_SERVICE_TOKEN en services/lft-rag/.env.
-  // En local, ambos van en .dev.vars (ignorado por git). Ver scripts/start-lft-service.ps1.
-  // Túnel lft-legal-rag (655883bf-3a57-4891-8c15-babe4aead3c8) → http://127.0.0.1:8090 en la máquina del proyecto.
-  "vars": { "LFT_RAG_BASE_URL": "https://lft-rag.abandonabancoazteca.com" },
-  // Límite global (clave fija, no la IP): 20 consultas por minuto por ubicación de Cloudflare, para no saturar la máquina.
+  // «Consulta la LFT» corre completa en Cloudflare (src/lib/lftProxy.ts), sin servidores propios:
+  //   LFT_DB   D1 con el texto oficial de cada fragmento + búsqueda FTS5 (BM25) + manifiesto.
+  //   LFT_VEC  Vectorize con un vector @cf/baai/bge-m3 por fragmento.
+  //   AI       Workers AI, para convertir la pregunta en vector con el mismo modelo.
+  // Carga/actualización: node scripts/lft-cloudflare-index.mjs && powershell -File scripts/lft-cloudflare-load.ps1
+  "d1_databases": [{ "binding": "LFT_DB", "database_name": "lft-rag", "database_id": "7baa8ca5-876d-47f1-954c-e123f2c9642c" }],
+  "vectorize": [{ "binding": "LFT_VEC", "index_name": "lft-articulos" }],
+  "ai": { "binding": "AI" },
+  // Límite global (clave fija, no la IP): 20 consultas por minuto por ubicación de Cloudflare.
   "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4101", "simple": { "limit": 20, "period": 60 } }],
 
   // Dominio propio (zona abandonabancoazteca.com en la cuenta de Cloudflare).
@@ -40,11 +42,14 @@
         "not_found_handling": "404-page",
         "run_worker_first": ["/api/*"]
       },
+      "d1_databases": [{ "binding": "LFT_DB", "database_name": "lft-rag", "database_id": "7baa8ca5-876d-47f1-954c-e123f2c9642c" }],
+      "vectorize": [{ "binding": "LFT_VEC", "index_name": "lft-articulos" }],
+      "ai": { "binding": "AI" },
       "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4102", "simple": { "limit": 20, "period": 60 } }],
       "workers_dev": true,
       "preview_urls": false,
       "observability": { "enabled": false },
-      "vars": { "REVIEW_MODE": "1", "LFT_RAG_BASE_URL": "https://lft-rag.abandonabancoazteca.com" }
+      "vars": { "REVIEW_MODE": "1" }
     }
   }
 }
