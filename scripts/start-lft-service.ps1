@@ -44,7 +44,9 @@ try {
 
   if ($Tunnel) {
     Write-Host "Abriendo el túnel '$TunnelName' (wrangler tunnel run usa cloudflared)..."
-    $tunnelProc = Start-Process -FilePath 'npx' -ArgumentList @('wrangler', 'tunnel', 'run', $TunnelName) -WorkingDirectory $root -PassThru -NoNewWindow
+    # En Windows, 'npx' sin extensión resuelve al script de shell de Unix; Start-Process necesita npx.cmd.
+    $npx = (Get-Command npx.cmd -ErrorAction Stop).Source
+    $tunnelProc = Start-Process -FilePath $npx -ArgumentList @('wrangler', 'tunnel', 'run', $TunnelName) -WorkingDirectory $root -PassThru -NoNewWindow
   }
   Write-Host 'Ctrl+C para detener.'
   Wait-Process -Id $server.Id
