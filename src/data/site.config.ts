@@ -19,7 +19,7 @@ if (legalReview.status === 'firmada' && (legalReview.reviewers.length < 1 || !le
 
 export const siteConfig = {
   name: 'Abandona Banco Azteca',
-  siteUrl: 'https://abandonabancoazteca.mx',
+  siteUrl: 'https://abandonabancoazteca.com',
   repoUrl: 'https://github.com/MartinMontero/AbandonaBA',
   issuesUrl: 'https://github.com/MartinMontero/AbandonaBA/issues',
   quickExitUrl: 'https://www.google.com/',

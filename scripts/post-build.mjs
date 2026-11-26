@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const review = process.argv[2] === 'review';
 const out = path.join(root, review ? 'dist-review' : 'dist');
-const site = 'https://abandonabancoazteca.mx';
+const site = 'https://abandonabancoazteca.com';
 
 function walk(dir, base = dir, acc = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

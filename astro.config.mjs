@@ -39,7 +39,7 @@ const reviewRoutes = {
 };
 
 export default defineConfig({
-  site: 'https://abandonabancoazteca.mx',
+  site: 'https://abandonabancoazteca.com',
   outDir: REVIEW ? './dist-review' : './dist',
   output: 'static',
   trailingSlash: 'always',

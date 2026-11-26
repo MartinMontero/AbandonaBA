@@ -4,7 +4,7 @@ description: "Facts about the statements by Ricardo Salinas Pliego and what rema
 claims: [C01]
 legal: true
 sources:
-  - { title: "Spanish page with all sources", url: "https://abandonabancoazteca.mx/situacion/", read: "2026-11-22" }
+  - { title: "Spanish page with all sources", url: "https://abandonabancoazteca.com/situacion/", read: "2026-11-22" }
 ---
 This is general information. The Spanish page has the full detail and every source.
 

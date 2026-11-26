@@ -14,7 +14,7 @@ function walk(dir: string, out: string[] = []): string[] {
 }
 
 describe('compartir: enlaces', () => {
-  const url = 'https://abandonabancoazteca.mx/transparencia/mapa/';
+  const url = 'https://abandonabancoazteca.com/transparencia/mapa/';
   const links = shareLinks(url, 'Mapa de conexiones');
   it('trae WhatsApp, Facebook, X e Instagram, en ese orden', () => {
     expect(links.map((l) => l.id)).toEqual(['whatsapp', 'facebook', 'x', 'instagram']);
