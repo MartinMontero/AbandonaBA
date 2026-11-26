@@ -37,10 +37,47 @@ export function tokenizeEs(text: string): string[] {
   return toks.filter((x) => !STOPWORDS.has(x) && (x.length > 1 || /^\d$/.test(x)));
 }
 
-/** Consulta FTS5 segura: cada token entre comillas, unidos con OR (BM25 ordena). Máximo 24 tokens. */
+// Palabras de todos los días → términos que usa la LFT. La gente escribe «me corrieron» y la ley dice «rescisión»;
+// sin este puente, la búsqueda trae artículos con palabras parecidas pero de otro tema (p. ej. riesgos de trabajo).
+// Se aplica igual a la búsqueda por palabras y a la de significado. Sólo agrega términos: nunca quita los del usuario.
+// Cada regla se escribe sobre el texto en minúsculas y sin acentos.
+export const LEGAL_SYNONYMS: [RegExp, string][] = [
+  [/\b(corri\w*|corrie\w*|correr|echar\w*|sacaron|despid\w*|despedi\w*|corte de personal|recorte)\b/, 'despido rescisión de la relación de trabajo sin responsabilidad para el patrón aviso escrito indemnización reinstalación'],
+  [/\binjustificad\w*|sin (causa|motivo|razon|decirme|avisar)/, 'despido injustificado indemnización tres meses de salario reinstalación salarios vencidos'],
+  [/\b(acos\w*|hostig\w*|maltrat\w*|humill\w*|grit\w*|amenaz\w*|violencia)\b/, 'hostigamiento acoso sexual rescisión sin responsabilidad para el trabajador separarse indemnización'],
+  [/\b(dejar el trabajo|irme|me voy|separarme|me separo|renunciar por)\b/, 'separarse del trabajo rescisión sin responsabilidad para el trabajador'],
+  [/\b(demand\w*|reclam\w*|plazo\w*|prescri\w*|cuanto tiempo tengo)\b/, 'prescripción prescriben acciones de trabajo dos meses separados del trabajo'],
+  [/\b(home office|desde (mi )?casa|remot\w*|a distancia|teletrabaj\w*)\b/, 'teletrabajo'],
+  [/\b(utilidad\w*|reparto|ptu)\b/, 'participación de los trabajadores en las utilidades de las empresas'],
+  [/\b(embaraz\w*|maternidad|lactan\w*|parto|bebe)\b/, 'madres trabajadoras embarazo descanso antes y después del parto lactancia'],
+  [/\b(paternidad|papa)\b/, 'permiso de paternidad'],
+  [/\b(liquid\w*|finiquito)\b/, 'indemnización terminación de la relación de trabajo prima de antigüedad'],
+  [/\bhoras? extras?\b|\btiempo extra\b/, 'jornada extraordinaria horas extraordinarias prolongar la jornada'],
+  [/\b(maquina\w*|computadora\w*|automatiz\w*|tecnolog\w*|inteligencia artificial)\b/, 'implantación de maquinaria procedimientos de trabajo nuevos reajuste reducción de personal'],
+  [/\b(jefe|jefa|empresa|empleador\w*)\b/, 'patrón persona empleadora'],
+  [/\b(sueldo|paga|pago|quincena)\b/, 'salario'],
+  [/\b(incapacidad|accidente\w*|enfermedad\w*|lesion\w*)\b/, 'riesgos de trabajo accidente de trabajo enfermedad de trabajo incapacidad'],
+  [/\bdescanso\b|\bdia libre\b/, 'día de descanso semanal'],
+  [/\b(discrimin\w*)\b/, 'discriminación'],
+  [/\b(contrato|contratacion)\b/, 'relación de trabajo contrato individual de trabajo'],
+];
+
+/** Términos legales que corresponden a las palabras de la pregunta (vacío si no aplica ninguno). */
+export function legalExpansion(question: string): string {
+  const t = fold(question.toLowerCase());
+  return LEGAL_SYNONYMS.filter(([re]) => re.test(t)).map(([, terms]) => terms).join(' ');
+}
+
+/** Consulta FTS5 segura: cada token entre comillas, unidos con OR (BM25 ordena). Incluye la expansión legal. */
 export function ftsQuery(question: string): string {
-  const uniq = [...new Set(tokenizeEs(question))].slice(0, 24);
+  const uniq = [...new Set([...tokenizeEs(question), ...tokenizeEs(legalExpansion(question))])].slice(0, 40);
   return uniq.map((t) => `"${t.replace(/"/g, '')}"`).join(' OR ');
+}
+
+/** Texto que se convierte en vector: la pregunta tal cual más, si aplica, su traducción a términos de la LFT. */
+export function embeddingText(question: string): string {
+  const exp = legalExpansion(question);
+  return exp ? `${question}\n(Términos de la Ley Federal del Trabajo: ${exp})` : question;
 }
 
 export function rrfFuse(rankings: string[][], k = 60): [string, number][] {

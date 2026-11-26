@@ -1,5 +1,6 @@
 // Uso: node scripts/e2e.mjs [prod|review] [argumentos de playwright...]
-// Levanta el Worker real con `wrangler dev` (producción en 8787, revisión en 8788), corre Playwright y cierra solo sus procesos.
+// Levanta el Worker real con `wrangler dev --local` (sin bindings remotos: CI no tiene credenciales de Cloudflare;
+// las pruebas de /consulta-lft/ simulan /api/lft/* en el navegador) (producción en 8787, revisión en 8788), corre Playwright y cierra solo sus procesos.
 import { spawn, spawnSync } from 'node:child_process';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -37,7 +38,7 @@ let code = 1;
 try {
   for (const t of targets) {
     const log = fs.openSync(path.join(os.tmpdir(), `wrangler-e2e-${t.port}.log`), 'w');
-    const c = spawn(process.execPath, [wrangler, 'dev', ...t.args, '--port', String(t.port), '--ip', '127.0.0.1'], { cwd: root, stdio: ['pipe', log, log], windowsHide: true, env: { ...process.env, NO_COLOR: '1', WRANGLER_SEND_METRICS: 'false' } });
+    const c = spawn(process.execPath, [wrangler, 'dev', '--local', ...t.args, '--port', String(t.port), '--ip', '127.0.0.1'], { cwd: root, stdio: ['pipe', log, log], windowsHide: true, env: { ...process.env, NO_COLOR: '1', WRANGLER_SEND_METRICS: 'false' } });
     children.push(c);
   }
   for (const t of targets) await waitFor(`http://127.0.0.1:${t.port}/`);

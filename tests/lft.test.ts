@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import worker from '../src/worker';
 import { handleLft, MAX_QUESTION_CHARS, EMBEDDING_MODEL, type LftEnv } from '../src/lib/lftProxy';
-import { normalizeArticuloId, tokenizeEs, ftsQuery, rrfFuse } from '../src/lib/lft/normalize';
+import { normalizeArticuloId, tokenizeEs, ftsQuery, rrfFuse, legalExpansion, embeddingText } from '../src/lib/lft/normalize';
 import { createLftClient, describeStatus, isLftQueryResponse, LftServiceError, type LftStatus } from '../src/lib/lftLegalClient';
 
 // ---------------------------------------------------------------------------
@@ -65,10 +65,19 @@ describe('Consulta la LFT dentro del Worker (D1 + Vectorize + Workers AI)', () =
     expect(d.lft_ultima_reforma_dof).toBe('14-05-2026');
     expect(d.disclaimer).toContain('abogado-cliente');
     expect(ai.run).toHaveBeenCalledWith(EMBEDDING_MODEL, { text: ['¿Cuántos días de aguinaldo me tocan?'] });
-    expect(vec.query.mock.calls[0][1]).toMatchObject({ topK: 15, filter: { is_transitorio: false } });
+    expect(vec.query.mock.calls[0][1]).toMatchObject({ topK: 25, filter: { is_transitorio: false } });
     const fts = sqls.find((s) => s.sql.includes('chunks_fts'))!;
     expect(fts.sql).toContain('c.is_transitorio = 0');
     expect(fts.args[0]).toBe('"dias" OR "aguinaldo"');
+  });
+
+  it('cada artículo ocupa un solo lugar aunque tenga varias partes', async () => {
+    const { env } = fakeEnv({ dense: ['c1', 'c5'], lexical: ['c5', 'c1'] });
+    ROWS.push(row('c5', '87', 'Segunda parte del artículo 87.', { part_index: 2, part_total: 2 }));
+    try {
+      const d = await (await handleLft(post({ question: '¿aguinaldo?' }), env)).json();
+      expect(d.filtered_articles.map((a: { articulo_id: string }) => a.articulo_id)).toEqual(['87']);
+    } finally { ROWS.pop(); }
   });
 
   it('incluir transitorios y excluir derogados cambia los filtros', async () => {
@@ -161,6 +170,18 @@ describe('normalización (igual que services/lft-rag)', () => {
     for (const t of ['15-a', '512-d', 'bis', 'ter', '3', 'indemnizacion']) expect(toks).toContain(t);
     expect(toks).not.toContain('del');
     expect(ftsQuery('"; DROP TABLE chunks; --')).toBe('"drop" OR "table" OR "chunks"');
+  });
+
+  it('traduce palabras de todos los días a términos de la LFT', () => {
+    expect(legalExpansion('me corrieron sin decirme por qué')).toMatch(/rescisión.*sin responsabilidad para el patrón/);
+    expect(legalExpansion('¿Qué derechos tengo en home office?')).toContain('teletrabajo');
+    expect(legalExpansion('¿Cuánto tiempo tengo para demandar?')).toContain('prescripción');
+    expect(legalExpansion('mi jefe me acosa')).toContain('hostigamiento');
+    expect(legalExpansion('¿Cuántos días de aguinaldo me tocan?')).toBe('');
+    expect(legalExpansion('¿Me corresponde?')).toBe(''); // «corresponde» no es «correr»
+    expect(embeddingText('aguinaldo')).toBe('aguinaldo');
+    expect(embeddingText('home office')).toContain('Términos de la Ley Federal del Trabajo: teletrabajo');
+    expect(ftsQuery('home office')).toBe('"home" OR "office" OR "teletrabajo"');
   });
 
   it('RRF: score = Σ 1/(k + rank)', () => {

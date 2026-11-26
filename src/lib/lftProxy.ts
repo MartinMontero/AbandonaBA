@@ -10,7 +10,7 @@
 //   GET  /api/lft/articulo/:id      → búsqueda exacta por artículo
 //   POST /api/lft/consulta          → búsqueda híbrida (vectorial + BM25, fusión RRF) → artículos oficiales
 // El límite de frecuencia usa una clave fija (no la IP).
-import { ftsQuery, normalizeArticuloId, rrfFuse } from './lft/normalize';
+import { embeddingText, ftsQuery, normalizeArticuloId, rrfFuse } from './lft/normalize';
 
 export interface RateLimiter { limit(opts: { key: string }): Promise<{ success: boolean }> }
 interface D1Result<T> { results: T[] }
@@ -32,10 +32,10 @@ export const MAX_QUESTION_CHARS = 1000;
 export const MAX_BODY_BYTES = 4096;
 export const EMBEDDING_MODEL = '@cf/baai/bge-m3';
 const LFT_PDF_URL = 'https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf';
-const TOP_K = 15;
+const TOP_K = 25;          // candidatos de cada búsqueda (vectorial y por palabras)
 const RRF_K = 60;
-const RRF_CANDIDATES = 10;
-const MAX_ARTICLES = 5;
+const RRF_CANDIDATES = 25;
+const MAX_ARTICLES = 5;     // artículos distintos que se muestran (las partes de un mismo artículo no ocupan dos lugares)
 
 export const DISCLAIMER_ES = 'Esto no es asesoría legal ni crea una relación abogado-cliente. Es información general obtenida automáticamente del texto de la Ley Federal del Trabajo y puede contener errores u omisiones. Verifica todo con una persona abogada laboral en México; la PROFEDET ofrece asesoría gratuita.';
 const MSG_SOURCES_ONLY = 'Por ahora este servicio sólo muestra fuentes: estos son los artículos oficiales de la Ley Federal del Trabajo más relacionados con tu pregunta, sin una respuesta redactada. Léelos y confírmalos con una persona abogada laboral.';
@@ -82,7 +82,7 @@ export async function retrieve(env: Required<Pick<LftEnv, 'LFT_DB' | 'LFT_VEC' |
   const fts = ftsQuery(question);
   const conds = [includeTransitorios ? '' : 'c.is_transitorio = 0', excludeDerogados ? 'c.is_derogado = 0' : ''].filter(Boolean);
   const [emb, lexical] = await Promise.all([
-    env.AI.run(EMBEDDING_MODEL, { text: [question] }),
+    env.AI.run(EMBEDDING_MODEL, { text: [embeddingText(question)] }),
     fts
       ? env.LFT_DB.prepare(`SELECT c.vid FROM chunks_fts f JOIN chunks c ON c.rowid = f.rowid WHERE chunks_fts MATCH ?1${conds.length ? ' AND ' + conds.join(' AND ') : ''} ORDER BY bm25(chunks_fts) LIMIT ${TOP_K}`).bind(fts).all<{ vid: string }>()
       : Promise.resolve({ results: [] as { vid: string }[] }),
@@ -160,7 +160,8 @@ export async function handleLft(request: Request, env: LftEnv): Promise<Response
     try {
       const hits = await retrieve(env, question, b.include_transitorios === true, b.exclude_derogados === true);
       const m = await meta(env.LFT_DB);
-      const articles = hits.slice(0, MAX_ARTICLES).map((h) => toArticle(h.row, h.rrf));
+      const seen = new Set<string>();
+      const articles = hits.filter((h) => !seen.has(h.row.articulo_id) && seen.add(h.row.articulo_id)).slice(0, MAX_ARTICLES).map((h) => toArticle(h.row, h.rrf));
       return json(200, {
         status: articles.length ? 'SOURCES_ONLY' : 'INSUFFICIENT_CONTEXT',
         answer: articles.length ? MSG_SOURCES_ONLY : MSG_INSUFFICIENT,
