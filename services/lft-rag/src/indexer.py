@@ -64,7 +64,8 @@ def load_embedder(model_id: str) -> Any:
     from sentence_transformers import SentenceTransformer
 
     try:
-        return SentenceTransformer(model_id, device="cpu")
+        # float32 explícito: algunos modelos (p. ej. granite) cargan en bfloat16, mucho más lento en CPU.
+        return SentenceTransformer(model_id, device="cpu", model_kwargs={"torch_dtype": "float32"})
     except Exception as exc:  # noqa: BLE001 - se re-lanza con instrucciones claras
         msg = str(exc)
         if "gated" in msg.lower() or "401" in msg or "403" in msg or "restricted" in msg.lower():
