@@ -18,7 +18,8 @@
   //   LFT_RAG_BASE_URL  (var)     URL pública del túnel, p. ej. https://lft-rag.tu-dominio.mx. Sin ella, la página dice «no disponible».
   //   LFT_SERVICE_TOKEN (secreto) `npx wrangler secret put LFT_SERVICE_TOKEN`; el mismo valor que LFT_SERVICE_TOKEN en services/lft-rag/.env.
   // En local, ambos van en .dev.vars (ignorado por git). Ver scripts/start-lft-service.ps1.
-  // "vars": { "LFT_RAG_BASE_URL": "https://lft-rag.tu-dominio.mx" },
+  // Túnel lft-legal-rag (655883bf-3a57-4891-8c15-babe4aead3c8) → http://127.0.0.1:8090 en la máquina del proyecto.
+  "vars": { "LFT_RAG_BASE_URL": "https://lft-rag.abandonabancoazteca.com" },
   // Límite global (clave fija, no la IP): 20 consultas por minuto por ubicación de Cloudflare, para no saturar la máquina.
   "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4101", "simple": { "limit": 20, "period": 60 } }],
 
@@ -44,7 +45,7 @@
       "workers_dev": true,
       "preview_urls": false,
       "observability": { "enabled": false },
-      "vars": { "REVIEW_MODE": "1" }
+      "vars": { "REVIEW_MODE": "1", "LFT_RAG_BASE_URL": "https://lft-rag.abandonabancoazteca.com" }
     }
   }
 }
