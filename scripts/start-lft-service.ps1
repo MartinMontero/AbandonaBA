@@ -1,5 +1,7 @@
-# Arranca el servicio lft-rag (services/lft-rag) en 127.0.0.1:8090 y, opcionalmente, el túnel de Cloudflare que
-# permite al Worker público alcanzarlo. Uso (PowerShell, desde la raíz del repositorio):
+# Arranca el servicio lft-rag (services/lft-rag) en 127.0.0.1:8090 para Claude Code y pruebas locales.
+# El sitio público YA NO lo usa: /consulta-lft/ corre en Cloudflare (D1 + Vectorize + Workers AI); ver
+# scripts/lft-cloudflare-load.ps1. El túnel (-Tunnel) sólo expone esta API local y no hace falta para el sitio.
+# Uso (PowerShell, desde la raíz del repositorio):
 #
 #   .\scripts\start-lft-service.ps1                 # sólo el servicio local (para `npm run preview` con .dev.vars)
 #   .\scripts\start-lft-service.ps1 -Tunnel         # servicio + túnel con nombre "lft-legal-rag"

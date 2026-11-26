@@ -27,20 +27,20 @@ const sources = [
   <h2 id="como-funciona">Cómo funciona y qué guardamos</h2>
   <details class="acc" id="que-hace" open><summary>Qué hace</summary><div class="acc-b">
     <p>Busca en el texto vigente de la Ley Federal del Trabajo publicado por la Cámara de Diputados (última reforma que conocemos: <strong id="lft-reforma">la fecha aparece cuando el servicio está disponible</strong>) los artículos que más se relacionan con tu pregunta, y te los muestra completos, con su fecha de reforma y un enlace a la página del PDF oficial. Si un artículo está derogado, lo marcamos en rojo.</p>
-    <p id="lft-modo">Cuando está activo el modo de respuesta, un modelo de lenguaje redacta además una respuesta corta usando sólo esos artículos.</p>
+    <p id="lft-modo">No redacta respuestas: te muestra los artículos oficiales para que los leas tú.</p>
   </div></details>
   <details class="acc" id="por-que-ia"><summary>Por qué usamos IA</summary><div class="acc-b">
-    <p>La ley tiene más de mil artículos y usa palabras distintas a las de todos los días: tú escribes «me corrieron» y la ley dice «rescisión» o «despido». Un modelo de inteligencia artificial compara el significado de tu pregunta con el de cada artículo, además de una búsqueda por palabras, y así encuentra los que aplican.</p>
-    <p>Si se redacta una respuesta, un modelo abierto especializado en derecho mexicano (Barcenas-8B) sólo puede usar los artículos encontrados. Después, un verificador automático revisa que cada artículo citado esté entre los encontrados. Si algo no se puede verificar, no te mostramos la respuesta: sólo los artículos oficiales, para que los leas tú.</p>
+    <p>La ley tiene más de mil artículos y usa palabras distintas a las de todos los días: tú escribes «me corrieron» y la ley dice «rescisión» o «despido». Un modelo de inteligencia artificial (bge-m3, un modelo abierto que entiende español) convierte tu pregunta en una «huella de significado» y la compara con la de cada artículo. Además se hace una búsqueda por palabras, y se combinan ambas para encontrar los artículos que aplican.</p>
+    <p>La IA sólo busca: no escribe respuestas ni inventa texto. Lo que ves son los artículos oficiales, copiados del PDF de la Cámara de Diputados por un programa que no usa IA.</p>
     <p>Es el único uso de inteligencia artificial de este sitio. Las calculadoras y el resto de las páginas no la usan.</p>
   </div></details>
   <details class="acc" id="donde-corre"><summary>Dónde corre y por dónde pasa tu pregunta</summary><div class="acc-b">
-    <p>En una computadora del proyecto, no en un servicio comercial de inteligencia artificial. Tu pregunta viaja cifrada desde tu navegador hasta Cloudflare, que lleva este sitio, y de ahí por un túnel cifrado a esa computadora. Cuando la computadora está apagada, esta página dice «no disponible».</p>
-    <p id="lft-terceros">Hoy ningún otro servicio recibe tu pregunta. Si algún día activamos una verificación externa (por ejemplo, TypeSafe), la pregunta, los artículos encontrados y el borrador se enviarían a ese servicio; lo diremos aquí y en el aviso de arriba antes de que pase.</p>
+    <p>Todo corre en Cloudflare, la misma empresa que ya lleva este sitio a tu pantalla: el modelo (Workers AI), la búsqueda (Vectorize) y la copia de la ley (D1). Tu pregunta viaja cifrada desde tu navegador hasta Cloudflare y no sale de ahí: no se manda a otras empresas de inteligencia artificial ni a computadoras del proyecto.</p>
+    <p id="lft-terceros">Hoy ningún otro servicio recibe tu pregunta. Si algún día activamos una verificación externa (por ejemplo, TypeSafe), la pregunta y los artículos encontrados se enviarían a ese servicio; lo diremos aquí y en el aviso de arriba antes de que pase.</p>
   </div></details>
   <details class="acc" id="que-guardamos"><summary>Qué guardamos y qué no</summary><div class="acc-b">
-    <p><strong>No guardamos nada.</strong> Ni tu pregunta, ni la respuesta, ni tu dirección IP, ni cookies. No hay cuentas. El servidor no lleva registro de visitas y tu pregunta sólo existe en su memoria mientras se responde. Tu navegador tampoco guarda la pregunta.</p>
-    <p>Lo que sí ocurre: igual que en el resto del sitio, Cloudflare ve datos de la conexión, como tu IP. Para no saturar la computadora, hay un límite de consultas por minuto que cuenta el total de consultas, no quién las hace.</p>
+    <p><strong>No guardamos nada.</strong> Ni tu pregunta, ni la respuesta, ni tu dirección IP, ni cookies. No hay cuentas ni registro de visitas: tu pregunta sólo existe mientras se busca la respuesta. Tu navegador tampoco la guarda.</p>
+    <p>Lo que sí ocurre: igual que en el resto del sitio, Cloudflare ve datos de la conexión, como tu IP. Para evitar abusos hay un límite de consultas por minuto que cuenta el total de consultas, no quién las hace.</p>
   </div></details>
   <details class="acc" id="limites"><summary>Límites</summary><div class="acc-b">
     <ul>

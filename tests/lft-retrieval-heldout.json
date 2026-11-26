@@ -1,0 +1,14 @@
+[
+  { "q": "Mi patrón no me ha pagado el aguinaldo", "expect": ["87"] },
+  { "q": "¿Me pueden despedir estando embarazada?", "expect": ["133", "170"] },
+  { "q": "Me sacaron del trabajo y no me dieron nada", "expect": ["48", "50", "47"] },
+  { "q": "¿Cuántos días de vacaciones tengo al cumplir 5 años?", "expect": ["76"] },
+  { "q": "¿Qué pasa si trabajo en domingo?", "expect": ["71"] },
+  { "q": "¿Cuál es el horario de la jornada nocturna?", "expect": ["60", "61"] },
+  { "q": "¿Pueden obligarme a quedarme más horas?", "expect": ["68", "66"] },
+  { "q": "Trabajo a distancia, ¿quién paga el internet y la luz?", "expect": ["330-E"] },
+  { "q": "¿Cuánto tiempo tengo para reclamar mi aguinaldo no pagado?", "expect": ["516"] },
+  { "q": "¿Me pueden pagar con vales en lugar de dinero?", "expect": ["101"] },
+  { "q": "Si me voy antes del año, ¿me pagan vacaciones?", "expect": ["79"] },
+  { "q": "¿Qué es la PTU?", "expect": ["117"] }
+]
