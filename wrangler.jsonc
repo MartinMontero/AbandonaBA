@@ -46,6 +46,7 @@
       "vectorize": [{ "binding": "LFT_VEC", "index_name": "lft-articulos" }],
       "ai": { "binding": "AI" },
       "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4102", "simple": { "limit": 20, "period": 60 } }],
+      "routes": [],
       "workers_dev": true,
       "preview_urls": false,
       "observability": { "enabled": false },
