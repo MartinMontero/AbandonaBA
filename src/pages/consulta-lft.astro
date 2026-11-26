@@ -54,4 +54,176 @@ const sources = [
 
   <p class="small"><Disclaimer /></p>
   <script>import '../scripts/consulta-lft.ts';</script>
+
+  {/* ── GUÍA INTERACTIVA DE IA LEGAL ── */}
+  <section id="guia-ia" aria-labelledby="guia-ia-titulo" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--c-rule,#ddd)">
+    <h2 id="guia-ia-titulo">Guía interactiva: cómo funciona la IA legal</h2>
+    <p>Cinco capítulos con laboratorios en vivo para entender qué hace el motor, cómo busca, cómo atrapa errores y cómo se conecta a aplicaciones reales.</p>
+
+    <nav aria-label="Capítulos de la guía" style="display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0">
+      <a href="#guia-panorama" class="btn btn-sm">① Panorama</a>
+      <a href="#guia-simulador" class="btn btn-sm">② Simulador</a>
+      <a href="#guia-candados" class="btn btn-sm">③ Candados</a>
+      <a href="#guia-protocolo" class="btn btn-sm">④ Protocolo</a>
+      <a href="#guia-conexion" class="btn btn-sm">⑤ Conexión</a>
+    </nav>
+
+    {/* ── CAPÍTULO 1: PANORAMA ── */}
+    <details class="acc" id="guia-panorama" open>
+      <summary>Capítulo 1 · Panorama — chatbot vs. motor RAG</summary>
+      <div class="acc-b">
+        <p><strong>¿Por qué no basta un chatbot normal?</strong> Un chatbot convencional responde de memoria: puede inventar artículos, citar números incorrectos o mezclar la ley que era vigente hace tres años con la actual. Este motor usa <em>Generación con Búsqueda Previa</em> (RAG): primero abre el texto oficial de la Ley Federal del Trabajo, luego busca los artículos que aplican, y solo después redacta la respuesta con el libro abierto sobre la mesa.</p>
+        <p><strong>Las 6 piezas del motor:</strong></p>
+        <ol>
+          <li><strong>Embebedor semántico (bge-m3):</strong> convierte tu pregunta en coloquial a una «huella de significado» que se compara con la de cada artículo, aunque uses palabras distintas («me corrieron» ↔ «rescisión sin responsabilidad»).</li>
+          <li><strong>BM25 (búsqueda por palabras exactas):</strong> captura términos jurídicos precisos que el embebedor podría pasar por alto.</li>
+          <li><strong>Fusión RRF:</strong> combina los dos ranqueos anteriores en una sola lista ordenada por relevancia.</li>
+          <li><strong>Cross-Encoder (filtro previo):</strong> re-puntúa con más precisión los 20 artículos finalistas y descarta los que no superan el umbral mínimo de relevancia.</li>
+          <li><strong>Barcenas-8b (redactor):</strong> modelo local de lenguaje que solo puede citar artículos que el filtro aprobó; si intenta inventar uno, el siguiente paso lo atrapa.</li>
+          <li><strong>Verificador determinista de citas:</strong> comprueba con expresiones regulares que cada artículo mencionado exista en la lista aprobada. Si falla, se reintenta una vez; si falla de nuevo, se muestra el texto oficial directamente.</li>
+        </ol>
+        <p class="small">Glosario rápido · <strong>LFT:</strong> Ley Federal del Trabajo — protege salarios, vacaciones, aguinaldo, despidos. <strong>RAG:</strong> la IA busca primero en los libros oficiales antes de contestar. <strong>Alucinación:</strong> cuando una IA redacta con seguridad un dato falso. <strong>NLI:</strong> revisor matemático que detecta si la respuesta contradice el artículo fuente.</p>
+      </div>
+    </details>
+
+    {/* ── CAPÍTULO 2: SIMULADOR ── */}
+    <details class="acc" id="guia-simulador">
+      <summary>Capítulo 2 · Simulador — recorre el proceso paso a paso</summary>
+      <div class="acc-b">
+        <p>Cada consulta real sigue estas 7 etapas. Haz clic en cada una para ver qué ocurre por dentro:</p>
+        <ol>
+          <li><strong>Entrada del usuario:</strong> escribes tu pregunta en lenguaje cotidiano.</li>
+          <li><strong>System One (decisión rápida):</strong> un modelo ligero decide si la pregunta es sobre la LFT; si no lo es, responde de inmediato sin activar el pipeline completo.</li>
+          <li><strong>Embebedor + BM25:</strong> tu pregunta se convierte en vector y se hace búsqueda por palabras; ChromaDB devuelve los 20 artículos candidatos.</li>
+          <li><strong>Fusión RRF:</strong> los dos ranqueos se combinan para obtener una lista única.</li>
+          <li><strong>Cross-Encoder (Candado 1):</strong> cada artículo recibe una puntuación de 0 a 1; solo pasan los que superan el umbral (por defecto 0.65).</li>
+          <li><strong>Barcenas-8b redacta:</strong> genera la respuesta citando solo los artículos aprobados.</li>
+          <li><strong>Verificador + NLI (Candado 2):</strong> comprueba citas y detecta contradicciones lógicas; si algo falla, reintenta o muestra el texto oficial directo.</li>
+        </ol>
+        <div class="callout info">
+          <p><strong>¿Por qué 7 etapas y no solo «pregunta → respuesta»?</strong> Porque en derecho laboral mexicano una respuesta incorrecta puede llevar a que alguien firme una renuncia engañosa o que una PyME enfrente una demanda. Cada etapa adicional es una capa de seguridad.</p>
+        </div>
+        <p><strong>Prueba real:</strong> escribe arriba «¿Qué me tienen que pagar si me despiden sin causa?» y observa cómo el sistema cita específicamente los artículos 48, 50 y 52 de la LFT, con su texto completo y fecha de reforma, en lugar de darte un número de memoria.</p>
+      </div>
+    </details>
+
+    {/* ── CAPÍTULO 3: CANDADOS ── */}
+    <details class="acc" id="guia-candados">
+      <summary>Capítulo 3 · Candados — laboratorio anti-alucinación</summary>
+      <div class="acc-b">
+        <p>El motor usa <strong>dos filtros de seguridad</strong> que actúan en momentos distintos:</p>
+
+        <h3>Candado 1 · Filtro de Relevancia (antes de redactar)</h3>
+        <p>El Cross-Encoder puntúa cada artículo candidato de 0 a 1. Solo pasan los que superan el umbral mínimo (0.65 en producción). Esto evita que la IA redacte con artículos que hablan de temas distintos al tuyo.</p>
+        <ul>
+          <li><strong>Umbral muy bajo (0.20):</strong> se cuelan artículos de fábricas, minas o trabajo doméstico cuando preguntas por teletrabajo; la IA se confunde.</li>
+          <li><strong>Umbral equilibrado (0.65):</strong> solo artículos directamente relevantes pasan; es el valor de producción.</li>
+          <li><strong>Umbral muy alto (0.95):</strong> tan exigente que bloquea artículos útiles; el motor devuelve «ningún artículo encontrado» cuando sí hay respuesta.</li>
+        </ul>
+
+        <h3>Candado 2 · Verificador de Citas + NLI (después de redactar)</h3>
+        <p>Una vez que Barcenas-8b redacta la respuesta, dos revisores la inspeccionan en paralelo:</p>
+        <ul>
+          <li><strong>Capa 1 — Cross-Encoder (~25 ms):</strong> re-puntúa si el párrafo redactado es coherente con los artículos fuente.</li>
+          <li><strong>Capa 2 — Regex exacto (&lt;1 ms):</strong> verifica que todos los números de artículo citados (p. ej. «Art. 84», «Artículo 27») existan en la lista aprobada. Si se menciona un artículo que no estaba en los candidatos, es una alucinación garantizada.</li>
+          <li><strong>Capa 3 — NLI (~35 ms):</strong> detecta contradicciones lógicas; por ejemplo, si la ley dice «3 meses» y la IA escribió «2 meses», el NLI lo marca como contradicción.</li>
+          <li><strong>Capa 4 — Juez IA local (1–3 s):</strong> solo se activa en casos de duda fina de interpretación; evita sobrecargar la respuesta para preguntas simples.</li>
+        </ul>
+
+        <div class="callout">
+          <p><strong>¿Por qué es peligroso «borrar en silencio» una frase no verificada?</strong> Algunos sistemas eliminan automáticamente el fragmento dudoso y entregan el resto. Pero las excepciones legales son exactamente lo que suele «borrarse»: «3 meses de indemnización <em>salvo que el patrón compruebe causa justificada conforme al Art. 47</em>» — si borras lo que va en cursiva, la frase es completamente falsa. Por eso este motor, cuando falla la verificación, muestra el texto oficial directamente en lugar de recortar.</p>
+        </div>
+      </div>
+    </details>
+
+    {/* ── CAPÍTULO 4: PROTOCOLO ── */}
+    <details class="acc" id="guia-protocolo">
+      <summary>Capítulo 4 · Protocolo — cómo usar bien la consulta</summary>
+      <div class="acc-b">
+        <h3>Regla de oro: «Reintentar una vez, luego abstenerse»</h3>
+        <p>Si un candado falla, el motor lo intenta exactamente una vez más. Si falla de nuevo, <strong>se abstiene</strong> y muestra el texto oficial directamente. En derecho laboral, saber abstenerse es la máxima medida de honestidad.</p>
+
+        <table style="width:100%;border-collapse:collapse;font-size:.875rem;margin:1rem 0">
+          <thead>
+            <tr style="background:var(--c-surface,#f5f5f5);font-weight:700">
+              <th style="padding:.5rem .75rem;text-align:left;border-bottom:2px solid var(--c-rule,#ddd)">¿Qué candado falló?</th>
+              <th style="padding:.5rem .75rem;text-align:left;border-bottom:2px solid var(--c-rule,#ddd)">Primer movimiento</th>
+              <th style="padding:.5rem .75rem;text-align:left;border-bottom:2px solid var(--c-rule,#ddd)">Salida segura</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--c-rule,#eee)">
+              <td style="padding:.5rem .75rem"><strong>Relevancia</strong><br/><small>Ningún artículo superó el umbral</small></td>
+              <td style="padding:.5rem .75rem">System One reformula la pregunta con términos jurídicos formales y repite la búsqueda una vez.</td>
+              <td style="padding:.5rem .75rem">Informar con claridad que ningún artículo de la LFT regula ese tema específico.</td>
+            </tr>
+            <tr>
+              <td style="padding:.5rem .75rem"><strong>Sustento</strong><br/><small>Dato contradicho o cita inventada</small></td>
+              <td style="padding:.5rem .75rem">El borrador vuelve a Barcenas-8b señalando exactamente qué cifra o cita contradijo la ley.</td>
+              <td style="padding:.5rem .75rem">Mostrar el texto oficial de los artículos directamente, sin resumen de IA.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Cómo hacer preguntas que funcionan bien</h3>
+        <ul>
+          <li><strong>Sí:</strong> «¿Cuántos días de aguinaldo me corresponden si llevo 8 meses trabajando?»</li>
+          <li><strong>Sí:</strong> «¿Qué dice la LFT sobre el teletrabajo y los gastos de internet?»</li>
+          <li><strong>Sí:</strong> «¿Puede mi patrón descontarme el uniforme de mi salario?»</li>
+          <li><strong>No (demasiado vago):</strong> «¿Qué dice la ley?» — sin contexto, el motor no sabe qué buscar.</li>
+          <li><strong>No (fuera de alcance):</strong> «¿Cuánto me toca de IMSS?» — la LSS aún no está en el índice público; pregunta sobre la LFT.</li>
+          <li><strong>Nunca escribas:</strong> nombre completo, CURP, RFC, NSS, nombre de tu empresa o de compañeros.</li>
+        </ul>
+
+        <h3>Cómo probar que el motor funciona (5 minutos)</h3>
+        <ol>
+          <li>Escribe: «¿Cuántos días de vacaciones me corresponden después de un año?» → debe citar el Art. 76.</li>
+          <li>Escribe: «¿Qué es el aguinaldo?» → debe citar el Art. 87.</li>
+          <li>Escribe: «¿Cuál es el límite de horas extras por semana?» → debe citar el Art. 66.</li>
+          <li>Escribe una pregunta sin relación con la LFT (p. ej. «¿Cómo hago carnitas?») → el motor debe indicar que no hay artículos relevantes, sin inventar nada.</li>
+        </ol>
+      </div>
+    </details>
+
+    {/* ── CAPÍTULO 5: CONEXIÓN ── */}
+    <details class="acc" id="guia-conexion">
+      <summary>Capítulo 5 · Conexión — cómo se integra en apps reales</summary>
+      <div class="acc-b">
+        <p>Aunque nunca tengas que escribir código, importa saber cómo está empaquetado este motor: gracias a sus pruebas automáticas y conectores listos para producción, un sindicato, una defensoría laboral, una PyME o un desarrollador pueden integrarlo manteniendo exactamente los mismos candados de seguridad.</p>
+
+        <h3>Tres formas de conectarse</h3>
+        <dl>
+          <dt><strong>Consola local (Typer CLI)</strong></dt>
+          <dd>Permite actualizar el índice cuando la Cámara de Diputados publica una reforma, hacer consultas directas sin internet y ejecutar las pruebas automáticas de calidad desde una computadora local.
+            <pre style="margin:.5rem 0;padding:.75rem;background:var(--c-surface,#f5f5f5);border-radius:.375rem;font-size:.8rem;overflow-x:auto"># Consulta directa
+lft-rag query "¿Cuántos días de aguinaldo?"
+
+# Re-indexar cuando hay reforma
+lft-rag ingest --law LFT data/raw/LFT.pdf
+
+# Ejecutar las 69 pruebas automáticas
+pytest services/lft-rag/</pre>
+          </dd>
+          <dt style="margin-top:1rem"><strong>API web (FastAPI + JSON)</strong></dt>
+          <dd>Un bridge que permite que apps web, celulares o herramientas de oficina consulten el motor vía HTTP con exactamente los mismos candados activos.
+            <pre style="margin:.5rem 0;padding:.75rem;background:var(--c-surface,#f5f5f5);border-radius:.375rem;font-size:.8rem;overflow-x:auto">POST /v1/legal/query
+{
+  "query": "¿Qué me pagan si me despiden?",
+  "law_filter": "LFT",
+  "top_k": 5
+}</pre>
+          </dd>
+          <dt style="margin-top:1rem"><strong>Cloudflare Workers + Claude Code (MCP)</strong></dt>
+          <dd>El motor se expone como una herramienta MCP (<em>Model Context Protocol</em>) que Claude Code puede llamar directamente, con caché en Workers KV para respuestas repetidas y Zero Trust para que solo el Worker autorizado pueda alcanzar el servidor.
+            <pre style="margin:.5rem 0;padding:.75rem;background:var(--c-surface,#f5f5f5);border-radius:.375rem;font-size:.8rem;overflow-x:auto"># En Claude Code (stdio)
+use_mcp_tool("lft-rag", "query_legal_corpus",
+  {"query": "teletrabajo gastos internet",
+   "law_filter": "LFT"})</pre>
+          </dd>
+        </dl>
+
+        <p class="small">El código es completamente abierto: puedes revisar cada candado, cada prueba y cada conector en el <a href="https://github.com/MartinMontero/AbandonaBA" rel="noopener noreferrer">repositorio público</a> (carpeta <code>services/lft-rag</code>).</p>
+      </div>
+    </details>
+  </section>
 </Base>
