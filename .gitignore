@@ -19,6 +19,8 @@ services/lft-rag/.env
 services/lft-rag/data/
 *.gguf
 *.pdf
+# Los PDF del paquete de revisión (npm run review-pack) sí se versionan.
+!docs/review-pack/*.pdf
 *.pkl
 __pycache__/
 .pytest_cache/
