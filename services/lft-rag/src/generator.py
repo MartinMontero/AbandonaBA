@@ -1,11 +1,4 @@
-"""Pipeline de respuesta: Compuerta 1 (relevancia) → generador Barcenas-8B → verificador de citas → Compuerta 2.
-
-Estados posibles:
-  VERIFIED              respuesta redactada, citas verificadas y respaldo confirmado por el modelo de decisión.
-  UNVERIFIED            hubo borrador pero no se pudo verificar; se devuelven sólo los artículos oficiales.
-  INSUFFICIENT_CONTEXT  ningún artículo superó la compuerta de relevancia; no se llamó al generador.
-  SOURCES_ONLY          generador desactivado (GENERATOR_BACKEND=none); se devuelven los artículos oficiales.
-"""
+"""Pipeline multi-ley (LFT + LSS): Compuerta 1 → generador Barcenas-8B → verificador determinista → Compuerta 2."""
 from __future__ import annotations
 
 import re
@@ -16,7 +9,7 @@ from typing import Any, Literal, Protocol
 import httpx
 from pydantic import BaseModel, Field
 
-from .config import Settings
+from .config import LawCode, LawFilter, Settings
 from .decision import DecisionEngine, NoulQuestion
 from .parser import ARTICLE_ID_CORE, ArticleChunk, normalize_articulo_id
 from .retriever import HybridRetriever, RetrievedCandidate
@@ -24,31 +17,33 @@ from .retriever import HybridRetriever, RetrievedCandidate
 Status = Literal["VERIFIED", "UNVERIFIED", "INSUFFICIENT_CONTEXT", "SOURCES_ONLY"]
 
 LFT_PDF_URL = "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf"
+LSS_PDF_URL = "https://www.diputados.gob.mx/LeyesBiblio/pdf/LSS.pdf"
 
 DISCLAIMER_ES = (
     "Esto no es asesoría legal ni crea una relación abogado-cliente. Es información general generada "
-    "automáticamente a partir del texto de la Ley Federal del Trabajo y puede contener errores u omisiones. "
-    "Verifica todo con una persona abogada laboral en México; la PROFEDET ofrece asesoría gratuita."
+    "automáticamente a partir del texto vigente de la Ley Federal del Trabajo (LFT) y la Ley del Seguro Social (LSS) "
+    "y puede contener errores u omisiones. Verifica todo con una persona abogada laboral en México; "
+    "la PROFEDET ofrece asesoría gratuita."
 )
 MSG_INSUFFICIENT = (
-    "No encontramos en la Ley Federal del Trabajo artículos suficientemente relacionados con tu pregunta como "
-    "para responderla. Intenta reformularla con términos concretos (por ejemplo: «aguinaldo», «vacaciones», "
-    "«despido injustificado») o consulta directamente a una persona abogada laboral."
+    "No encontramos en la Ley Federal del Trabajo ni en la Ley del Seguro Social artículos suficientemente "
+    "relacionados con tu pregunta como para responderla. Intenta reformularla con términos concretos "
+    "(por ejemplo: «aguinaldo», «vacaciones», «despido injustificado», «salario base de cotización») "
+    "o consulta directamente a una persona abogada laboral."
 )
 MSG_UNVERIFIED = (
     "No pudimos verificar automáticamente la respuesta redactada, así que no la mostramos. Abajo están los "
-    "artículos oficiales de la Ley Federal del Trabajo que parecen relacionados con tu pregunta: léelos "
-    "directamente y confírmalos con una persona abogada laboral."
+    "artículos oficiales de la LFT y/o LSS que parecen relacionados con tu pregunta: léelos directamente y "
+    "confírmalos con una persona abogada laboral."
 )
 MSG_SOURCES_ONLY = (
-    "Por ahora este servicio sólo muestra fuentes: estos son los artículos oficiales de la Ley Federal del "
-    "Trabajo más relacionados con tu pregunta, sin una respuesta redactada. Léelos y confírmalos con una "
-    "persona abogada laboral."
+    "Por ahora este servicio sólo muestra fuentes: estos son los artículos oficiales de la LFT y/o LSS más "
+    "relacionados con tu pregunta, sin una respuesta redactada. Léelos y confírmalos con una persona abogada laboral."
 )
 
 RELEVANCE_INSTRUCTIONS = (
-    "Evalúa qué tan útil es este fragmento de la Ley Federal del Trabajo de México para responder la pregunta "
-    "jurídica laboral del usuario."
+    "Evalúa qué tan útil es este fragmento de la Ley Federal del Trabajo (LFT) o de la Ley del Seguro Social (LSS) "
+    "de México para responder la pregunta jurídica del usuario."
 )
 RELEVANCE_CRITERIA = [
     "0: Irrelevante para la pregunta.",
@@ -59,26 +54,26 @@ RELEVANCE_CRITERIA = [
 GATE2_QUESTIONS = {
     "is_supported": NoulQuestion(
         instructions=(
-            "¿Cada afirmación jurídica, cifra y plazo del borrador está respaldada literalmente por los artículos "
-            "de la LFT recuperados (retrieved_articles)?"
+            "¿Cada afirmación jurídica, cifra, plazo y atribución de ley (LFT vs LSS) del borrador está respaldada "
+            "literalmente por los artículos recuperados (retrieved_articles)?"
         ),
         true="Sí: todo lo que afirma el borrador aparece en los artículos recuperados o se sigue directamente de ellos.",
-        false="No: al menos una afirmación, cifra o plazo no está en los artículos recuperados.",
+        false="No: al menos una afirmación, cifra, plazo o ley no está en los artículos recuperados.",
     ),
     "has_hallucinated_citation": NoulQuestion(
         instructions=(
-            "¿El borrador cita algún artículo, fracción, ley o tesis que no aparece en los artículos recuperados, "
-            "o atribuye a un artículo un contenido que no tiene?"
+            "¿El borrador cita algún artículo, fracción, estatuto (LFT/LSS) o tesis que no aparece en los artículos "
+            "recuperados, o atribuye a un artículo un contenido que no tiene?"
         ),
         true="Sí: hay al menos una cita inventada o mal atribuida.",
         false="No: todas las citas corresponden a los artículos recuperados y a su contenido.",
     ),
 }
 
-SYSTEM_PROMPT = """Eres un asistente de investigación sobre la Ley Federal del Trabajo (LFT) de México.
+SYSTEM_PROMPT = """Eres un asistente de investigación sobre la Ley Federal del Trabajo (LFT) y la Ley del Seguro Social (LSS / IMSS) de México.
 Reglas estrictas:
-1. Responde ÚNICAMENTE con base en los artículos de la LFT que se te proporcionan. No uses conocimiento externo.
-2. Cita cada afirmación con el formato «Artículo X, Título Y» usando exactamente los artículos proporcionados.
+1. Responde ÚNICAMENTE con base en los artículos de la LFT y/o LSS que se te proporcionan. No uses conocimiento externo.
+2. Cita cada afirmación indicando siempre la ley y el artículo exactos (p. ej. «Artículo 84 de la LFT», «Artículo 27 de la LSS»), especialmente al contrastar conceptos laborales frente a seguridad social (como salario integrado vs. salario base de cotización).
 3. Si un artículo está marcado como DEROGADO, adviértelo explícitamente y no lo presentes como vigente.
 4. No inventes ni extrapoles cifras, montos, porcentajes ni plazos: sólo repite los que aparecen literalmente.
 5. Si los artículos no bastan para responder, dilo con claridad.
@@ -91,6 +86,7 @@ Reglas estrictas:
 
 
 class ArticleOut(BaseModel):
+    law_code: LawCode = "LFT"
     articulo_id: str
     articulo_label: str
     titulo: str
@@ -112,7 +108,9 @@ class ArticleOut(BaseModel):
     def from_chunk(
         cls, c: ArticleChunk, relevance: float | None = None, rrf: float | None = None
     ) -> ArticleOut:
+        base_url = LSS_PDF_URL if c.law_code == "LSS" else LFT_PDF_URL
         return cls(
+            law_code=c.law_code,
             articulo_id=c.articulo_id,
             articulo_label=c.articulo_label,
             titulo=c.titulo,
@@ -126,7 +124,7 @@ class ArticleOut(BaseModel):
             part_total=c.part_total,
             page_start=c.page_start,
             text=c.body,
-            source_url=f"{LFT_PDF_URL}#page={c.page_start}" if c.page_start else LFT_PDF_URL,
+            source_url=f"{base_url}#page={c.page_start}" if c.page_start else base_url,
             relevance_score=relevance,
             rrf_score=rrf,
         )
@@ -144,38 +142,70 @@ class QueryResponse(BaseModel):
     decision_backend: str
     generator_backend: str
     lft_ultima_reforma_dof: str = ""
+    lss_ultima_reforma_dof: str = ""
+    corpus_version_hash: str = ""
     disclaimer: str = DISCLAIMER_ES
 
 
 # ---------------------------------------------------------------------------
-# Verificador determinista de citas
+# Verificador determinista de citas multi-ley
 # ---------------------------------------------------------------------------
 
 _ID_PIECE = re.sub(r"\(\?P<[a-z]+>", "(?:", ARTICLE_ID_CORE)
 _CITATION_RE = re.compile(
-    r"\b(?:Art[íi]culos?|Arts?\.)\s+(?P<list>" + _ID_PIECE + r"(?:\s*(?:,|\by\b|\be\b|\bo\b|\bal\b|\ba\b)\s*" + _ID_PIECE + r")*)",
+    r"\b(?:Art[íi]culos?|Arts?\.)\s+(?P<list>"
+    + _ID_PIECE
+    + r"(?:\s*(?:,|\by\b|\be\b|\bo\b|\bal\b|\ba\b)\s*"
+    + _ID_PIECE
+    + r")*)",
     re.IGNORECASE,
 )
 _ID_IN_LIST_RE = re.compile(_ID_PIECE, re.IGNORECASE)
+_STATUTE_TAIL_RE = re.compile(
+    r"^[^.;\n]{0,80}?\b(?:de la\s+)?(?P<law>LFT|Ley Federal del Trabajo|LSS|Ley del Seguro Social)\b",
+    re.IGNORECASE,
+)
 _OTHER_LAW_RE = re.compile(
-    r"^[^.;\n]{0,80}?\b(?:de la Constituci[óo]n|constitucional|Apartado\s+[AB]\b|de la Ley (?!Federal del Trabajo)"
-    r"[A-ZÁÉÍÓÚ]|del C[óo]digo|de la LSS|de la LISR|del Reglamento)",
+    r"^[^.;\n]{0,80}?\b(?:de la Constituci[óo]n|constitucional|Apartado\s+[AB]\b|"
+    r"de la Ley (?!Federal del Trabajo|del Seguro Social)[A-ZÁÉÍÓÚ]|"
+    r"del C[óo]digo|de la LISR|del Reglamento)",
     re.IGNORECASE,
 )
 
 
-def extract_citations(answer: str) -> list[str]:
-    """Extrae IDs canónicos de artículos de la LFT citados (singular y plural), ignorando otras leyes y la Constitución."""
-    found: list[str] = []
+def _tail_law_code(tail: str) -> LawCode | None:
+    m = _STATUTE_TAIL_RE.match(tail)
+    if not m:
+        return None
+    raw = m.group("law").lower()
+    if "seguro social" in raw or raw == "lss":
+        return "LSS"
+    return "LFT"
+
+
+def extract_cited_statute_articles(answer: str) -> list[tuple[LawCode | None, str]]:
+    """Extrae pares `(law_code | None, canonical_articulo_id)` ignorando Constitución y leyes no indexadas."""
+    found: list[tuple[LawCode | None, str]] = []
     for m in _CITATION_RE.finditer(answer):
         tail = answer[m.end() : m.end() + 120]
         if _OTHER_LAW_RE.match(tail):
             continue
+        law_code = _tail_law_code(tail)
         for idm in _ID_IN_LIST_RE.finditer(m.group("list")):
             canon = normalize_articulo_id(idm.group(0))
-            if canon and canon not in found:
-                found.append(canon)
+            pair = (law_code, canon)
+            if canon and pair not in found:
+                found.append(pair)
     return found
+
+
+def extract_citations(answer: str) -> list[str]:
+    """Compatibilidad: devuelve los IDs canónicos citados (LFT y LSS)."""
+    out: list[str] = []
+    for _, aid in extract_cited_statute_articles(answer):
+        if aid not in out:
+            out.append(aid)
+    return out
 
 
 @dataclass
@@ -183,9 +213,38 @@ class CitationCheck:
     passed: bool
     cited: list[str]
     missing: list[str]
+    cited_pairs: list[tuple[LawCode | None, str]] | None = None
+
+
+def verify_citations_deterministically(
+    answer: str, allowed_chunks: Sequence[ArticleChunk]
+) -> CitationCheck:
+    pairs = extract_cited_statute_articles(answer)
+    allowed_pairs = {(c.law_code, normalize_articulo_id(c.articulo_id)) for c in allowed_chunks}
+    allowed_ids = {aid for _, aid in allowed_pairs}
+
+    cited_labels: list[str] = []
+    missing: list[str] = []
+    for law_code, aid in pairs:
+        label = f"{law_code}:{aid}" if law_code else aid
+        if label not in cited_labels:
+            cited_labels.append(label)
+        if law_code is not None:
+            if (law_code, aid) not in allowed_pairs:
+                missing.append(label)
+        elif aid not in allowed_ids:
+            missing.append(aid)
+
+    return CitationCheck(
+        passed=bool(pairs) and not missing,
+        cited=cited_labels,
+        missing=missing,
+        cited_pairs=pairs,
+    )
 
 
 def verify_citations(answer: str, allowed_ids: Sequence[str]) -> CitationCheck:
+    """Compatibilidad con pruebas de un solo estatuto."""
     cited = extract_citations(answer)
     allowed = {normalize_articulo_id(a) for a in allowed_ids}
     missing = [c for c in cited if c not in allowed]
@@ -206,7 +265,7 @@ class Generator(Protocol):
 class NoneGenerator:
     name = "none"
 
-    def generate(self, system: str, user: str) -> str:  # pragma: no cover - nunca se invoca
+    def generate(self, system: str, user: str) -> str:  # pragma: no cover
         raise RuntimeError("GENERATOR_BACKEND=none no genera texto")
 
 
@@ -310,11 +369,12 @@ def build_generator(settings: Settings) -> Generator:
 def format_articles_for_prompt(chunks: Sequence[ArticleChunk]) -> str:
     blocks = []
     for i, c in enumerate(chunks, start=1):
+        law_tag = "LEY: LSS (IMSS)" if c.law_code == "LSS" else "LEY: LFT"
         estado = "DEROGADO" if c.is_derogado else "vigente"
         jer = " / ".join(p for p in (c.titulo, c.capitulo, c.seccion) if p)
         parte = f" (Parte {c.part_index}/{c.part_total})" if c.part_total > 1 else ""
         reforma = f"; última reforma DOF {c.reform_date}" if c.reform_date else ""
-        blocks.append(f"[{i}] Artículo {c.articulo_label}{parte} — {jer} — {estado}{reforma}\n{c.body}")
+        blocks.append(f"[{i}] {law_tag} | Artículo {c.articulo_label}{parte} — {jer} — {estado}{reforma}\n{c.body}")
     return "\n\n".join(blocks)
 
 
@@ -332,23 +392,35 @@ class LegalRAG:
         self.generator = generator
 
     def _base(self, status: Status, answer: str, articles: list[ArticleOut]) -> QueryResponse:
+        m = self.retriever.manifest
         return QueryResponse(
             status=status,
             answer=answer,
             filtered_articles=articles,
             decision_backend=self.decision.name,
             generator_backend=self.generator.name,
-            lft_ultima_reforma_dof=str(self.retriever.manifest.get("lft_ultima_reforma_dof", "")),
+            lft_ultima_reforma_dof=str(m.get("lft_ultima_reforma_dof", "")),
+            lss_ultima_reforma_dof=str(m.get("lss_ultima_reforma_dof", "")),
+            corpus_version_hash=str(m.get("corpus_version_hash", "")),
         )
 
-    def gate1(self, question: str, candidates: Sequence[RetrievedCandidate]) -> list[tuple[RetrievedCandidate, float | None]]:
+    def gate1(
+        self, question: str, candidates: Sequence[RetrievedCandidate]
+    ) -> list[tuple[RetrievedCandidate, float | None]]:
         """Compuerta 1: puntúa cada candidato 0..3, descarta < umbral y conserva como máximo N."""
         if not self.decision.enabled:
             return [(c, None) for c in candidates[: self.s.max_filtered_articles]]
         scored: list[tuple[RetrievedCandidate, float | None]] = []
         for c in candidates:
             res = self.decision.score(
-                {"question": question, "passage": c.chunk.text}, RELEVANCE_INSTRUCTIONS, RELEVANCE_CRITERIA
+                {
+                    "question": question,
+                    "law_code": c.chunk.law_code,
+                    "articulo_id": c.chunk.articulo_id,
+                    "passage": c.chunk.text,
+                },
+                RELEVANCE_INSTRUCTIONS,
+                RELEVANCE_CRITERIA,
             )
             if res is None:
                 scored.append((c, None))
@@ -358,9 +430,15 @@ class LegalRAG:
         return scored[: self.s.max_filtered_articles]
 
     def answer(
-        self, question: str, include_transitorios: bool = False, exclude_derogados: bool = False
+        self,
+        question: str,
+        include_transitorios: bool = False,
+        exclude_derogados: bool = False,
+        law_filter: LawFilter = "ALL",
     ) -> QueryResponse:
-        candidates = self.retriever.retrieve(question, include_transitorios, exclude_derogados)
+        candidates = self.retriever.retrieve(
+            question, include_transitorios, exclude_derogados, law_filter=law_filter
+        )
         kept = self.gate1(question, candidates)
         articles = [ArticleOut.from_chunk(c.chunk, rel, c.rrf_score) for c, rel in kept]
         if not kept:
@@ -373,10 +451,10 @@ class LegalRAG:
         context = format_articles_for_prompt(chunks)
         draft = self.generator.generate(SYSTEM_PROMPT, f"ARTÍCULOS RECUPERADOS:\n{context}\n\nPREGUNTA: {question}")
 
-        check = verify_citations(draft, [c.articulo_id for c in chunks])
+        check = verify_citations_deterministically(draft, chunks)
         reasons: list[str] = []
         if not check.cited:
-            reasons.append("El borrador no cita ningún artículo de la LFT.")
+            reasons.append("El borrador no cita ningún artículo de la LFT ni de la LSS.")
         if check.missing:
             reasons.append("Cita artículos que no están entre los recuperados: " + ", ".join(check.missing))
 
@@ -384,9 +462,9 @@ class LegalRAG:
             {
                 "user_query": question,
                 "retrieved_articles": context,
+                "retrieved_metadata": [{"law_code": c.law_code, "articulo_id": c.articulo_id} for c in chunks],
                 "draft_answer": draft,
-                # claves que usa el backend jeff (adaptador ground)
-                "sources": [f"Artículo {c.articulo_label}: {c.body}" for c in chunks],
+                "sources": [f"[{c.law_code}] Artículo {c.articulo_label}: {c.body}" for c in chunks],
                 "answer": draft,
             },
             GATE2_QUESTIONS,

@@ -1,0 +1,21 @@
+[Unit]
+Description=Mexican Legal RAG FastAPI + FastMCP Service (LFT + LSS)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=__PROJECT_DIR__/services/lft-rag
+EnvironmentFile=__PROJECT_DIR__/services/lft-rag/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=__PROJECT_DIR__/services/lft-rag/.venv/bin/uvicorn src.api:app --host 127.0.0.1 --port 8090
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=legal-rag-api
+
+[Install]
+WantedBy=default.target

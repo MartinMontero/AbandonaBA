@@ -37,7 +37,7 @@ class FakeState:
 
 
 def client(settings: Settings, **kw: Any) -> TestClient:
-    return TestClient(create_app(settings, state_factory=lambda s: FakeState(s, **kw)))
+    return TestClient(create_app(settings, state_factory=lambda s: FakeState(s, **kw)), client=("127.0.0.1", 50000))
 
 
 def test_health_reports_manifest(settings: Settings) -> None:

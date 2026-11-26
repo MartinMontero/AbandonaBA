@@ -22,6 +22,16 @@
   "d1_databases": [{ "binding": "LFT_DB", "database_name": "lft-rag", "database_id": "7baa8ca5-876d-47f1-954c-e123f2c9642c" }],
   "vectorize": [{ "binding": "LFT_VEC", "index_name": "lft-articulos" }],
   "ai": { "binding": "AI" },
+  "kv_namespaces": [
+    {
+      "binding": "LEGAL_RAG_CACHE",
+      "id": "8cd579c6b2f54281913bed2f9c94f150",
+      "preview_id": "4028279caafd4fdc90a54a7603f2890d"
+    }
+  ],
+  "secrets": {
+    "required": ["CF_ACCESS_CLIENT_ID", "CF_ACCESS_CLIENT_SECRET"]
+  },
   // Límite global (clave fija, no la IP): 20 consultas por minuto por ubicación de Cloudflare.
   "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4101", "simple": { "limit": 20, "period": 60 } }],
 
@@ -45,6 +55,13 @@
       "d1_databases": [{ "binding": "LFT_DB", "database_name": "lft-rag", "database_id": "7baa8ca5-876d-47f1-954c-e123f2c9642c" }],
       "vectorize": [{ "binding": "LFT_VEC", "index_name": "lft-articulos" }],
       "ai": { "binding": "AI" },
+      "kv_namespaces": [
+        {
+          "binding": "LEGAL_RAG_CACHE",
+          "id": "8cd579c6b2f54281913bed2f9c94f150",
+          "preview_id": "4028279caafd4fdc90a54a7603f2890d"
+        }
+      ],
       "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4102", "simple": { "limit": 20, "period": 60 } }],
       "routes": [],
       "workers_dev": true,

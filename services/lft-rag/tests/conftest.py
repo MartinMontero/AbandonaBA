@@ -44,19 +44,29 @@ class FakeRetriever:
         self.manifest = {"lft_ultima_reforma_dof": "14-05-2026", "pdf_sha256": "abc", "total_chunks": len(self.chunks)}
         self.calls: list[tuple[str, bool, bool]] = []
 
-    def retrieve(self, query: str, include_transitorios: bool = False, exclude_derogados: bool = False) -> list[RetrievedCandidate]:
+    def retrieve(
+        self,
+        query: str,
+        include_transitorios: bool = False,
+        exclude_derogados: bool = False,
+        law_filter: str = "ALL",
+    ) -> list[RetrievedCandidate]:
         self.calls.append((query, include_transitorios, exclude_derogados))
         out = [
             c for c in self.chunks
-            if (include_transitorios or not c.is_transitorio) and not (exclude_derogados and c.is_derogado)
+            if (law_filter == "ALL" or c.law_code == law_filter)
+            and (include_transitorios or not c.is_transitorio)
+            and not (exclude_derogados and c.is_derogado)
         ]
         return [RetrievedCandidate(c, 1.0 / (60 + i), i, i) for i, c in enumerate(out, start=1)]
 
-    def get_article_chunks(self, articulo_query: str, include_transitorios: bool = False) -> list[ArticleChunk]:
+    def get_article_chunks(
+        self, articulo_query: str, include_transitorios: bool = False, law_code: str = "LFT"
+    ) -> list[ArticleChunk]:
         from src.parser import normalize_articulo_id
 
         wanted = normalize_articulo_id(articulo_query)
-        return [c for c in self.chunks if c.articulo_id == wanted]
+        return [c for c in self.chunks if c.law_code == law_code and c.articulo_id == wanted]
 
 
 class FakeDecision:

@@ -3,22 +3,28 @@ name: lft-legal
 description: Verify Mexican labor law (Ley Federal del Trabajo) against the official, locally indexed LFT text before writing or auditing any legal constant, formula, citation or copy in this repo. Use whenever work touches finiquito, liquidación, indemnización, despido, rescisión, aguinaldo, vacaciones (vacaciones dignas), prima vacacional, prima de antigüedad, PTU, salario mínimo, jornada, teletrabajo, subcontratación/outsourcing, IMSS/labor compliance, plazos de prescripción, or any "Art. N" of the LFT — e.g. src/lib/calc.ts, src/lib/deadlines.ts, src/data/*.json, src/content/**, claims-register.
 ---
 
-# LFT legal verification (lft-rag)
+# Legal verification (legal-rag: LFT + LSS)
 
-Use the local `lft-rag` CLI instead of memory for anything the Ley Federal del Trabajo says. It reads the official
-Cámara de Diputados PDF (`services/lft-rag/data/raw/LFT.pdf`), indexed by `lft-rag ingest`.
+Use the local `lft-rag` CLI instead of memory for anything the Ley Federal del Trabajo (`LFT`) or Ley del Seguro Social (`LSS` / IMSS) says. It reads the official Cámara de Diputados PDFs (`services/lft-rag/data/raw/LFT.pdf` and `LSS.pdf`), indexed by `lft-rag ingest` / `lft-rag ingest-all`.
 
 ## Commands (run from `services/lft-rag/`)
 
 ```powershell
-.venv\Scripts\lft-rag.exe inspect-article "87" --json          # exact article text, derogado, reform_date, título/capítulo
-.venv\Scripts\lft-rag.exe inspect-article "3 Bis" --json         # suffixes: "15-A", "512-D Bis", "279 Quáter", "353-Ñ"
-.venv\Scripts\lft-rag.exe query "¿Cuántos días de aguinaldo?" --json   # hybrid search + gates
-.venv\Scripts\lft-rag.exe ingest data\raw\LFT.pdf                 # no-op unless the PDF SHA-256 or embedding model changed
+.venv\Scripts\lft-rag.exe inspect-article "87" --law LFT --json          # exact LFT article text, derogado, reform_date
+.venv\Scripts\lft-rag.exe inspect-article "27" --law LSS --json          # exact LSS (IMSS) article text
+.venv\Scripts\lft-rag.exe inspect-article "3 Bis" --json                 # suffixes: "15-A", "512-D Bis", "279 Quáter", "353-Ñ"
+.venv\Scripts\lft-rag.exe query --law-filter LSS "¿Cuánto es el salario base de cotización?" --json
+.venv\Scripts\lft-rag.exe query --law-filter ALL "¿Diferencia entre salario integrado y SBC?" --json
+.venv\Scripts\lft-rag.exe ingest --law LFT data\raw\LFT.pdf
+.venv\Scripts\lft-rag.exe ingest --law LSS data\raw\LSS.pdf
+.venv\Scripts\lft-rag.exe ingest-all                                     # incremental multi-statute re-index + corpus_version_hash
 ```
 
-HTTP alternative when the service is running (`lft-rag serve`, port 8090; needs `Authorization: Bearer $LFT_SERVICE_TOKEN`
-if set in `services/lft-rag/.env`): `GET /v1/legal/articles/{id}`, `POST /v1/legal/query`, `GET /health`.
+HTTP + Streamable MCP alternative when the service is running (`lft-rag serve`, port 8090):
+- `GET /v1/legal/articles/{law_code}/{id}` (`LFT` or `LSS`), `POST /v1/legal/query` (`law_filter`: `ALL|LFT|LSS`), `GET /health` (exposes `corpus_version_hash` used for Worker KV cache invalidation), and `/mcp` (Streamable HTTP FastMCP).
+- Auth: Zero Trust RS256 `Cf-Access-Jwt-Assertion` (`CF_ACCESS_TEAM_DOMAIN` + `CF_ACCESS_AUD`) or loopback-only `LFT_DEV_BYPASS_TOKEN`.
+- MCP tools: `query_legal_corpus` (with `law_filter`), `inspect_statute_article` (with `law_code`), plus `query_lft` / `inspect_lft_article` aliases.
+- Ops: `ops/service-ctl.sh install` (macOS launchd / Linux systemd), `ops/setup-zero-trust-tunnel.sh`, `ops/rotate-service-token.sh`.
 
 ## Rules
 
