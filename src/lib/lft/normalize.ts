@@ -57,6 +57,8 @@ export const LEGAL_SYNONYMS: [RegExp, string][] = [
   [/\b(jefe|jefa|empresa|empleador\w*)\b/, 'patrón persona empleadora'],
   [/\b(sueldo|paga|pago|quincena)\b/, 'salario'],
   [/\b(incapacidad|accidente\w*|enfermedad\w*|lesion\w*)\b/, 'riesgos de trabajo accidente de trabajo enfermedad de trabajo incapacidad'],
+  [/\bvacacion\w*\b/, 'período de vacaciones días de vacaciones años de servicios no podrán ser inferiores a doce días laborables prima vacacional'],
+  [/\b(domingo\w*|prima dominical)\b/, 'día de descanso semanal domingo prima dominical veinticinco por ciento'],
   [/\bdescanso\b|\bdia libre\b/, 'día de descanso semanal'],
   [/\b(discrimin\w*)\b/, 'discriminación'],
   [/\b(contrato|contratacion)\b/, 'relación de trabajo contrato individual de trabajo'],

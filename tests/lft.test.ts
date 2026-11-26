@@ -179,6 +179,10 @@ describe('normalización (igual que services/lft-rag)', () => {
     expect(legalExpansion('mi jefe me acosa')).toContain('hostigamiento');
     expect(legalExpansion('¿Cuántos días de aguinaldo me tocan?')).toBe('');
     expect(legalExpansion('¿Me corresponde?')).toBe(''); // «corresponde» no es «correr»
+    expect(legalExpansion('¿Cuántos días de vacaciones me tocan?')).toContain('período de vacaciones');
+    expect(legalExpansion('¿Cuántos días de vacaciones tengo al cumplir 5 años?')).toContain('años de servicios');
+    expect(legalExpansion('Si me voy antes del año, ¿me pagan vacaciones?')).toContain('prima vacacional');
+    expect(legalExpansion('¿Qué pasa si trabajo en domingo?')).toContain('prima dominical');
     expect(embeddingText('aguinaldo')).toBe('aguinaldo');
     expect(embeddingText('home office')).toContain('Términos de la Ley Federal del Trabajo: teletrabajo');
     expect(ftsQuery('home office')).toBe('"home" OR "office" OR "teletrabajo"');
