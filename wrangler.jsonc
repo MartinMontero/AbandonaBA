@@ -7,10 +7,20 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // /api/* nunca es un archivo: siempre lo atiende el Worker (proxy de «Consulta la LFT»).
+    "run_worker_first": ["/api/*"]
   },
   "observability": { "enabled": false },
   "workers_dev": false,
+
+  // «Consulta la LFT»: el Worker reenvía /api/lft/* al servicio lft-rag (services/lft-rag) por un túnel de Cloudflare.
+  //   LFT_RAG_BASE_URL  (var)     URL pública del túnel, p. ej. https://lft-rag.tu-dominio.mx. Sin ella, la página dice «no disponible».
+  //   LFT_SERVICE_TOKEN (secreto) `npx wrangler secret put LFT_SERVICE_TOKEN`; el mismo valor que LFT_SERVICE_TOKEN en services/lft-rag/.env.
+  // En local, ambos van en .dev.vars (ignorado por git). Ver scripts/start-lft-service.ps1.
+  // "vars": { "LFT_RAG_BASE_URL": "https://lft-rag.tu-dominio.mx" },
+  // Límite global (clave fija, no la IP): 20 consultas por minuto por ubicación de Cloudflare, para no saturar la máquina.
+  "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4101", "simple": { "limit": 20, "period": 60 } }],
 
   // Dominio propio: DESCOMENTA solo cuando decidas publicar. No se enlaza desde aquí.
   // Requiere que abandonabancoazteca.mx sea una zona en tu cuenta de Cloudflare.
@@ -27,8 +37,10 @@
         "directory": "./dist-review",
         "binding": "ASSETS",
         "html_handling": "auto-trailing-slash",
-        "not_found_handling": "404-page"
+        "not_found_handling": "404-page",
+        "run_worker_first": ["/api/*"]
       },
+      "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4102", "simple": { "limit": 20, "period": 60 } }],
       "workers_dev": true,
       "preview_urls": false,
       "observability": { "enabled": false },

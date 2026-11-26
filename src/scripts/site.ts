@@ -1,4 +1,5 @@
 // Cliente mínimo: salida rápida, aviso sin conexión, copiar, imprimir y service worker. Sin red, sin cookies, sin almacenamiento.
+// (La única petición de red del sitio es la de /consulta-lft/, en scripts/consulta-lft.ts, a /api/lft/* del mismo origen.)
 const exitUrl = document.body.dataset.exitUrl || 'https://www.gob.mx/';
 const go = () => location.replace(exitUrl);
 

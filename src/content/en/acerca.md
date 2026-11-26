@@ -7,7 +7,7 @@ This is a free site with information and calculators for people who work at a ba
 
 **Labels.** Every legal, money or date fact carries one of three labels: verified in the official source, verified only in press or third-party sites, or unverified. We never raise a label without reading the official source.
 
-**Data.** We collect none. No accounts, cookies, analytics or third-party requests. What you type stays on your device. Cloudflare, the network provider, can see connection data such as your IP address; the site cannot prevent that. Use a private window and a personal device. The quick-exit button does not erase browser history.
+**Data.** We collect none. No accounts, cookies, analytics or third-party requests. What you type in the calculators stays on your device. The one exception is the Spanish-only [labor-law lookup](/consulta-lft/), the only part of the site that uses AI: your question travels encrypted through Cloudflare to a computer run by the project, which finds the relevant articles of the Ley Federal del Trabajo and answers. The question, the answer and your IP are not stored, and that computer keeps no visit log. It is not legal advice and creates no attorney-client relationship. Cloudflare, the network provider, can see connection data such as your IP address; the site cannot prevent that. Use a private window and a personal device. The quick-exit button does not erase browser history.
 
 **Reporting errors.** Open an issue on [GitHub](https://github.com/MartinMontero/AbandonaBA/issues). GitHub issues are not anonymous; do not post personal data or documents.
 

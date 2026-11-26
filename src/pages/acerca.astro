@@ -5,12 +5,12 @@ import { siteConfig, legalReview, isReview, statusLabels } from '../data/site.co
 ---
 <Base art="shield" title="Acerca, verificación y privacidad" description="Qué es este sitio, cómo verificamos y qué datos no recogemos." path="/acerca/" legal>
   <ul class="mile cols3">
-    <li><div><span class="big">0 datos</span><span class="what">No recogemos ninguno</span><span class="more">No hay cuentas, cookies, estadísticas ni solicitudes a terceros. Cloudflare, que lleva el sitio, sí ve datos de la conexión: lee «Qué datos recogemos».</span></div></li>
+    <li><div><span class="big">0 datos</span><span class="what">No recogemos ninguno</span><span class="more">No hay cuentas, cookies, estadísticas ni solicitudes a terceros. Cloudflare, que lleva el sitio, sí ve datos de la conexión, y la <a href="/consulta-lft/">Consulta la LFT</a> procesa tu pregunta sin guardarla: lee «Qué datos recogemos».</span></div></li>
     <li><div><span class="big">3 etiquetas</span><span class="what">Cada dato dice cómo se verificó</span><span class="more">Leído en la fuente oficial, visto en prensa o sin verificar.</span></div></li>
     <li><div><span class="big">Abierto</span><span class="what">Código y textos libres</span><span class="more">Código: MIT. Texto: CC BY-SA 4.0.</span></div></li>
   </ul>
   <details class="acc" id="que-es" open><summary>Qué es y qué no es</summary><div class="acc-b">
-  <p>Es un sitio gratuito con información y calculadoras para personas que trabajan en un banco en México. No es un despacho de abogados ni da consejo para tu caso.</p>
+  <p>Es un sitio gratuito con información y calculadoras para personas que trabajan en un banco en México. No es un despacho de abogados ni da consejo para tu caso. Ninguna página, tampoco la consulta con inteligencia artificial, es asesoría legal ni crea una relación abogado-cliente.</p>
   <p><Disclaimer /></p>
   </div></details>
   <details class="acc" id="verificamos"><summary>Cómo verificamos</summary><div class="acc-b">
@@ -20,7 +20,7 @@ import { siteConfig, legalReview, isReview, statusLabels } from '../data/site.co
   <p>La revisión por un abogado laboral {legalReview.status === 'pendiente' ? 'está pendiente' : 'está firmada'}. Eso cambia solo cuando el archivo de configuración del sitio lo dice.</p>
   </div></details>
   <details class="acc" id="datos"><summary>Qué datos recogemos</summary><div class="acc-b">
-  <p>Ninguno. No hay cuentas, cookies, estadísticas ni solicitudes a terceros. Lo que escribes en las calculadoras no sale de tu aparato y no se guarda. Los botones de Compartir son enlaces: no se carga nada de WhatsApp, Facebook, X ni Instagram hasta que los tocas, y entonces esa plataforma abre en otra pestaña y ve tu visita.</p>
+  <p>Ninguno. No hay cuentas, cookies, estadísticas ni solicitudes a terceros. Lo que escribes en las calculadoras no sale de tu aparato y no se guarda. La única excepción es <a href="/consulta-lft/">Consulta la LFT</a>, el único lugar del sitio que usa inteligencia artificial: tu pregunta viaja cifrada por Cloudflare hasta una computadora del proyecto, que busca los artículos de la ley y responde. No se guarda la pregunta, ni la respuesta, ni tu IP, y esa computadora no lleva registro de visitas. En <a href="/consulta-lft/#como-funciona">esa página</a> explicamos qué modelos usa, por qué y sus límites, y avisamos si algún día otro servicio recibe la pregunta. Los botones de Compartir son enlaces: no se carga nada de WhatsApp, Facebook, X ni Instagram hasta que los tocas, y entonces esa plataforma abre en otra pestaña y ve tu visita.</p>
   <p>Lo que sí queda: Cloudflare, que lleva este sitio a tu pantalla, puede ver datos de la conexión, como tu dirección IP. El sitio no puede impedirlo. Usa una ventana privada y un aparato personal. El botón «Salida rápida» te lleva a otra página al instante, pero no borra el historial de tu navegador.</p>
   {isReview && <p>En esta versión de revisión, Cloudflare Access pone su propia cookie de inicio de sesión en tu navegador. El código del sitio no pone ninguna.</p>}
   </div></details>
