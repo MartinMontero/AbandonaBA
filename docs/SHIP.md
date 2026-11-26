@@ -26,6 +26,6 @@ npm run verify
 npx wrangler login
 npx wrangler deploy --env=""
 ```
-Éxito: imprime una URL de `workers.dev` o la de tu dominio. Para activar el dominio propio: en `wrangler.jsonc` descomenta el bloque `routes` (requiere que `abandonabancoazteca.mx` sea una zona de tu cuenta), vuelve a desplegar y comprueba en una ventana privada. Ese paso toca DNS: hazlo solo cuando quieras publicar.
+Éxito: imprime una URL de `workers.dev` o la de tu dominio. Para activar el dominio propio: en `wrangler.jsonc` descomenta el bloque `routes` (requiere que `abandonabancoazteca.com` sea una zona de tu cuenta), vuelve a desplegar y comprueba en una ventana privada. Ese paso toca DNS: hazlo solo cuando quieras publicar.
 
 Para la versión de revisión sigue `docs/REVIEW-DEPLOY.md`.

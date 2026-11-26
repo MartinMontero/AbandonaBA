@@ -23,12 +23,11 @@
   // Límite global (clave fija, no la IP): 20 consultas por minuto por ubicación de Cloudflare, para no saturar la máquina.
   "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4101", "simple": { "limit": 20, "period": 60 } }],
 
-  // Dominio propio: DESCOMENTA solo cuando decidas publicar. No se enlaza desde aquí.
-  // Requiere que abandonabancoazteca.mx sea una zona en tu cuenta de Cloudflare.
-  // "routes": [
-  //   { "pattern": "abandonabancoazteca.mx", "custom_domain": true },
-  //   { "pattern": "www.abandonabancoazteca.mx", "custom_domain": true }
-  // ],
+  // Dominio propio (zona abandonabancoazteca.com en la cuenta de Cloudflare).
+  "routes": [
+    { "pattern": "abandonabancoazteca.com", "custom_domain": true },
+    { "pattern": "www.abandonabancoazteca.com", "custom_domain": true }
+  ],
 
   "env": {
     "review": {

@@ -7,7 +7,7 @@ import path from 'node:path';
 const root = process.cwd();
 const out = path.join(root, 'public', 'cards');
 fs.mkdirSync(out, { recursive: true });
-const base = 'abandonabancoazteca.mx';
+const base = 'abandonabancoazteca.com';
 const note = 'Información general. En revisión por abogado laboral. No es asesoría legal.';
 
 const cards = [
