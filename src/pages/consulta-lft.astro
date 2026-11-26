@@ -1,4 +1,4 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import Disclaimer from '../components/Disclaimer.astro';
 import { siteConfig } from '../data/site.config';
@@ -55,7 +55,7 @@ const sources = [
   <p class="small"><Disclaimer /></p>
   <script>import '../scripts/consulta-lft.ts';</script>
 
-  {/* ── GUÍA INTERACTIVA DE IA LEGAL ── */}
+  <!-- GUÍA INTERACTIVA DE IA LEGAL -->
   <section id="guia-ia" aria-labelledby="guia-ia-titulo" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--c-rule,#ddd)">
     <h2 id="guia-ia-titulo">Guía interactiva: cómo funciona la IA legal</h2>
     <p>Cinco capítulos con laboratorios en vivo para entender qué hace el motor, cómo busca, cómo atrapa errores y cómo se conecta a aplicaciones reales.</p>
@@ -68,7 +68,7 @@ const sources = [
       <a href="#guia-conexion" class="btn btn-sm">⑤ Conexión</a>
     </nav>
 
-    {/* ── CAPÍTULO 1: PANORAMA ── */}
+    
     <details class="acc" id="guia-panorama" open>
       <summary>Capítulo 1 · Panorama — chatbot vs. motor RAG</summary>
       <div class="acc-b">
@@ -86,7 +86,7 @@ const sources = [
       </div>
     </details>
 
-    {/* ── CAPÍTULO 2: SIMULADOR ── */}
+    
     <details class="acc" id="guia-simulador">
       <summary>Capítulo 2 · Simulador — recorre el proceso paso a paso</summary>
       <div class="acc-b">
@@ -107,7 +107,7 @@ const sources = [
       </div>
     </details>
 
-    {/* ── CAPÍTULO 3: CANDADOS ── */}
+    
     <details class="acc" id="guia-candados">
       <summary>Capítulo 3 · Candados — laboratorio anti-alucinación</summary>
       <div class="acc-b">
@@ -136,7 +136,7 @@ const sources = [
       </div>
     </details>
 
-    {/* ── CAPÍTULO 4: PROTOCOLO ── */}
+    
     <details class="acc" id="guia-protocolo">
       <summary>Capítulo 4 · Protocolo — cómo usar bien la consulta</summary>
       <div class="acc-b">
@@ -185,7 +185,7 @@ const sources = [
       </div>
     </details>
 
-    {/* ── CAPÍTULO 5: CONEXIÓN ── */}
+    
     <details class="acc" id="guia-conexion">
       <summary>Capítulo 5 · Conexión — cómo se integra en apps reales</summary>
       <div class="acc-b">
@@ -206,19 +206,15 @@ pytest services/lft-rag/</pre>
           </dd>
           <dt style="margin-top:1rem"><strong>API web (FastAPI + JSON)</strong></dt>
           <dd>Un bridge que permite que apps web, celulares o herramientas de oficina consulten el motor vía HTTP con exactamente los mismos candados activos.
-            <pre style="margin:.5rem 0;padding:.75rem;background:var(--c-surface,#f5f5f5);border-radius:.375rem;font-size:.8rem;overflow-x:auto">POST /v1/legal/query
-{
-  "query": "¿Qué me pagan si me despiden?",
-  "law_filter": "LFT",
-  "top_k": 5
-}</pre>
+            <pre style="margin:.5rem 0;padding:.75rem;background:var(--c-surface,#f5f5f5);border-radius:.375rem;font-size:.8rem;overflow-x:auto">POST /v1/legal/query&#10;&lbrace;
+  &quot;query&quot;: &quot;¿Qué me pagan si me despiden?&quot;,&#10;  &quot;law_filter&quot;: &quot;LFT&quot;,&#10;  &quot;top_k&quot;: 5&#10;&rbrace;</pre>
           </dd>
           <dt style="margin-top:1rem"><strong>Cloudflare Workers + Claude Code (MCP)</strong></dt>
           <dd>El motor se expone como una herramienta MCP (<em>Model Context Protocol</em>) que Claude Code puede llamar directamente, con caché en Workers KV para respuestas repetidas y Zero Trust para que solo el Worker autorizado pueda alcanzar el servidor.
             <pre style="margin:.5rem 0;padding:.75rem;background:var(--c-surface,#f5f5f5);border-radius:.375rem;font-size:.8rem;overflow-x:auto"># En Claude Code (stdio)
 use_mcp_tool("lft-rag", "query_legal_corpus",
-  {"query": "teletrabajo gastos internet",
-   "law_filter": "LFT"})</pre>
+  &lbrace;"query": "teletrabajo gastos internet",
+   "law_filter": "LFT"&rbrace;)</pre>
           </dd>
         </dl>
 
