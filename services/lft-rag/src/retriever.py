@@ -1,4 +1,4 @@
-"""Recuperación híbrida (densa + BM25) fusionada con Reciprocal Rank Fusion, y búsqueda exacta por artículo."""
+"""Recuperación híbrida multi-ley (densa + BM25) fusionada con RRF, y búsqueda exacta por artículo."""
 from __future__ import annotations
 
 import pickle
@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .config import Settings
+from .config import LawCode, LawFilter, Settings
 from .indexer import BM25_FILE, CHROMA_DIR, load_chunks, load_embedder, read_manifest, tokenize_es
 from .parser import ArticleChunk, normalize_articulo_id
 
@@ -32,7 +32,14 @@ def rrf_fuse(rankings: list[list[str]], k: int = 60) -> list[tuple[str, float]]:
     return sorted(scores.items(), key=lambda kv: (-kv[1], kv[0]))
 
 
-def _allowed(c: ArticleChunk, include_transitorios: bool, exclude_derogados: bool) -> bool:
+def _allowed(
+    c: ArticleChunk,
+    include_transitorios: bool,
+    exclude_derogados: bool,
+    law_filter: LawFilter = "ALL",
+) -> bool:
+    if law_filter != "ALL" and c.law_code != law_filter:
+        return False
     if c.is_transitorio and not include_transitorios:
         return False
     if c.is_derogado and exclude_derogados:
@@ -47,7 +54,7 @@ class HybridRetriever:
         manifest = read_manifest(self.index_dir)
         if manifest is None:
             raise IndexNotReady(
-                f"No hay índice en {self.index_dir}. Ejecuta `lft-rag ingest data/raw/LFT.pdf` primero."
+                f"No hay índice en {self.index_dir}. Ejecuta `lft-rag ingest-all` primero."
             )
         self.manifest = manifest
         self.chunks = load_chunks(self.index_dir)
@@ -59,7 +66,6 @@ class HybridRetriever:
         self._embedder = embedder
         self._collection: Any = None
 
-    # Carga perezosa: la búsqueda exacta por artículo no necesita el modelo de embeddings.
     @property
     def embedder(self) -> Any:
         if self._embedder is None:
@@ -75,9 +81,17 @@ class HybridRetriever:
             self._collection = client.get_collection(self.settings.chroma_collection)
         return self._collection
 
-    def _dense(self, query: str, include_transitorios: bool, exclude_derogados: bool) -> list[str]:
+    def _dense(
+        self,
+        query: str,
+        include_transitorios: bool,
+        exclude_derogados: bool,
+        law_filter: LawFilter = "ALL",
+    ) -> list[str]:
         vec = self.embedder.encode([query], normalize_embeddings=True, show_progress_bar=False)[0].tolist()
         conds: list[dict[str, Any]] = []
+        if law_filter != "ALL":
+            conds.append({"law_code": law_filter})
         if not include_transitorios:
             conds.append({"is_transitorio": False})
         if exclude_derogados:
@@ -90,7 +104,13 @@ class HybridRetriever:
         res = self.collection.query(query_embeddings=[vec], n_results=self.settings.dense_top_k, where=where)
         return list(res["ids"][0])
 
-    def _bm25(self, query: str, include_transitorios: bool, exclude_derogados: bool) -> list[str]:
+    def _bm25(
+        self,
+        query: str,
+        include_transitorios: bool,
+        exclude_derogados: bool,
+        law_filter: LawFilter = "ALL",
+    ) -> list[str]:
         tokens = tokenize_es(query)
         if not tokens:
             return []
@@ -101,17 +121,21 @@ class HybridRetriever:
             if scores[i] <= 0:
                 break
             cid = self.bm25_ids[i]
-            if _allowed(self.by_id[cid], include_transitorios, exclude_derogados):
+            if _allowed(self.by_id[cid], include_transitorios, exclude_derogados, law_filter):
                 out.append(cid)
             if len(out) >= self.settings.bm25_top_k:
                 break
         return out
 
     def retrieve(
-        self, query: str, include_transitorios: bool = False, exclude_derogados: bool = False
+        self,
+        query: str,
+        include_transitorios: bool = False,
+        exclude_derogados: bool = False,
+        law_filter: LawFilter = "ALL",
     ) -> list[RetrievedCandidate]:
-        dense = self._dense(query, include_transitorios, exclude_derogados)
-        lexical = self._bm25(query, include_transitorios, exclude_derogados)
+        dense = self._dense(query, include_transitorios, exclude_derogados, law_filter)
+        lexical = self._bm25(query, include_transitorios, exclude_derogados, law_filter)
         fused = rrf_fuse([dense, lexical], k=self.settings.rrf_k)[: self.settings.rrf_candidates]
         d_rank = {cid: i for i, cid in enumerate(dense, start=1)}
         b_rank = {cid: i for i, cid in enumerate(lexical, start=1)}
@@ -121,15 +145,26 @@ class HybridRetriever:
             if cid in self.by_id
         ]
 
-    def get_article_chunks(self, articulo_query: str, include_transitorios: bool = False) -> list[ArticleChunk]:
-        """Búsqueda exacta y determinista por identificador canónico (p. ej. "47", "3o. Bis", "15-A")."""
+    def get_article_chunks(
+        self,
+        articulo_query: str,
+        include_transitorios: bool = False,
+        law_code: LawCode = "LFT",
+    ) -> list[ArticleChunk]:
+        """Búsqueda exacta y determinista por identificador canónico y estatuto (p. ej. "47" LFT, "27" LSS)."""
         wanted = normalize_articulo_id(articulo_query)
         hits = [
             c
             for c in self.chunks
-            if c.articulo_id == wanted and (include_transitorios or not c.is_transitorio)
+            if c.law_code == law_code
+            and c.articulo_id == wanted
+            and (include_transitorios or not c.is_transitorio)
         ]
         if not hits and include_transitorios:
             low = wanted.lower()
-            hits = [c for c in self.chunks if c.is_transitorio and c.articulo_id.lower() == low]
+            hits = [
+                c
+                for c in self.chunks
+                if c.law_code == law_code and c.is_transitorio and c.articulo_id.lower() == low
+            ]
         return sorted(hits, key=lambda c: c.part_index)

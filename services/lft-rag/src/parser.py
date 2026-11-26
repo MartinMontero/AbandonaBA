@@ -11,7 +11,9 @@ import unicodedata
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
+from typing import Literal
 
+LawCode = Literal["LFT", "LSS"]
 TokenCounter = Callable[[str], int]
 
 # ---------------------------------------------------------------------------
@@ -33,10 +35,10 @@ _ADVERBIALS: dict[str, str] = {
 }
 _ADV_RE = r"(?:Bis|Ter|Qu[áa]ter|Cu[áa]ter|Quinquies|Sexies|Septies|Octies|Nonies|Novies|Decies)"
 
-# Núcleo de un identificador: 512-D Bis, 3o. Bis, 15-A, 1º, Único
+# Núcleo de un identificador: 512-D Bis, 3o. Bis, 15-A, 5 A, 1º, Único
 ARTICLE_ID_CORE = (
     r"(?:(?P<num>\d{1,4})\s*(?:o\.?|º\.?|°\.?)?"
-    r"(?:\s*-\s*(?P<letter>[A-ZÑ])(?![a-záéíóúñ]))?"
+    r"(?:\s*(?:-\s*|\s+(?=[A-ZÑ](?:\s+(?:" + _ADV_RE + r")|[.\-–]|$)))(?P<letter>[A-ZÑ])(?![a-záéíóúñ]))?"
     rf"(?:\s+(?P<adv>{_ADV_RE})(?![a-záéíóú]))?"
     r"|(?P<unico>[ÚU]nico))"
 )
@@ -102,6 +104,7 @@ def _id_from_match(m: re.Match[str]) -> tuple[str, str]:
 
 _BOILERPLATE = [
     re.compile(r"^\s*LEY FEDERAL DEL TRABAJO\s*$"),
+    re.compile(r"^\s*LEY DEL SEGURO SOCIAL\s*$"),
     re.compile(r"^\s*C[ÁA]MARA DE DIPUTADOS DEL H\. CONGRESO DE LA UNI[ÓO]N\s*$", re.IGNORECASE),
     re.compile(r"^\s*Secretar[íi]a General\s*$"),
     re.compile(r"^\s*Secretar[íi]a de Servicios Parlamentarios\s*$"),
@@ -157,6 +160,7 @@ class ArticleChunk:
     articulo_label: str
     text: str
     body: str
+    law_code: LawCode = "LFT"
     titulo: str = ""
     capitulo: str = ""
     seccion: str = ""
@@ -326,13 +330,17 @@ def _approx_tokens(text: str) -> int:
     return int(len(text.split()) * 1.35) + 1
 
 
-def _split_into_articles(pages: Sequence[str]) -> list[_Article]:
+def _split_into_articles(pages: Sequence[str], law_code: LawCode = "LFT") -> list[_Article]:
     articles: list[_Article] = []
     titulo = capitulo = seccion = ""
     cur: _Article | None = None
     in_transitorios = False
     decreto_num = 0
-    decreto_title = "Ley Federal del Trabajo (1970), transitorios originales"
+    decreto_title = (
+        "Ley Federal del Trabajo (1970), transitorios originales"
+        if law_code == "LFT"
+        else "Ley del Seguro Social (1995), transitorios originales"
+    )
     decree_part = "transitorio"  # "decreto" antes del encabezado TRANSITORIO(S) dentro de un decreto
     pending_heading: str | None = None  # "titulo" | "capitulo" | "seccion" esperando subtítulo
     collecting_decree_title: list[str] | None = None
@@ -516,10 +524,11 @@ def build_chunks(
     pages: Sequence[str],
     max_tokens: int = 480,
     count_tokens: TokenCounter | None = None,
+    law_code: LawCode = "LFT",
 ) -> list[ArticleChunk]:
     count = count_tokens or _approx_tokens
     chunks: list[ArticleChunk] = []
-    for art in _split_into_articles(pages):
+    for art in _split_into_articles(pages, law_code=law_code):
         paras = _paragraphs(art.lines)
         notes = [p for p in paras if is_note_line(p)]
         substantive = [p for p in paras if not is_note_line(p)]
@@ -540,11 +549,12 @@ def build_chunks(
             prefix = f"{display}.-" if total == 1 else f"{display} (Parte {i}/{total}).-"
             chunks.append(
                 ArticleChunk(
-                    chunk_id=f"{art.articulo_id}::{i}",
+                    chunk_id=f"{law_code.lower()}_art_{art.articulo_id}_part_{i - 1}",
                     articulo_id=art.articulo_id,
                     articulo_label=art.label,
                     text=f"{header}\n{prefix} {g}",
                     body=g,
+                    law_code=law_code,
                     titulo=art.titulo,
                     capitulo=art.capitulo,
                     seccion=art.seccion,
@@ -562,11 +572,14 @@ def build_chunks(
 
 
 def parse_pdf(
-    pdf_path: str | Path, max_tokens: int = 480, count_tokens: TokenCounter | None = None
+    pdf_path: str | Path,
+    max_tokens: int = 480,
+    count_tokens: TokenCounter | None = None,
+    law_code: LawCode = "LFT",
 ) -> tuple[list[ArticleChunk], str]:
     """Lee el PDF y devuelve (chunks, fecha de última reforma)."""
     pages = extract_pages(pdf_path)
-    return build_chunks(pages, max_tokens=max_tokens, count_tokens=count_tokens), extract_reform_version(pages)
+    return build_chunks(pages, max_tokens=max_tokens, count_tokens=count_tokens, law_code=law_code), extract_reform_version(pages)
 
 
 def iter_article_ids(chunks: Iterable[ArticleChunk]) -> list[str]:

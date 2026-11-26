@@ -1,0 +1,19 @@
+# Plantilla de configuración para cloudflared (túnel nombrado legal-rag-origin).
+# Copia a ~/.cloudflared/legal-rag-origin.yml y sustituye los marcadores <...>.
+# Nunca subas credenciales JSON (~/.cloudflared/*.json) ni este archivo con IDs reales si son privados.
+
+tunnel: <TUNNEL_UUID>
+credentials-file: /etc/cloudflared/<TUNNEL_UUID>.json
+
+ingress:
+  - hostname: legal-rag.abandonabancoazteca.com
+    service: http://127.0.0.1:8090
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 10s
+      access:
+        required: true
+        teamName: <CF_ACCESS_TEAM_NAME>
+        audTag:
+          - <CF_ACCESS_AUD>
+  - service: http_status:404

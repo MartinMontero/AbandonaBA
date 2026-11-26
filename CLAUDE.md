@@ -6,14 +6,14 @@ Sitio Astro 7 estático + Worker mínimo (`src/worker.ts`). Pruebas: `npm test` 
 
 - Toda constante, fórmula, plazo o cita de la Ley Federal del Trabajo en `src/lib/*.ts`, `src/data/*` o `src/content/**`
   debe citar un artículo **vigente** verificado con `lft-rag` (skill `.claude/skills/lft-legal/`). No uses memoria.
-- Verifica con: `services/lft-rag/.venv/Scripts/lft-rag.exe inspect-article "<id>" --json` (exacto) o `query "<pregunta>" --json`.
+- Verifica con: `services/lft-rag/.venv/Scripts/lft-rag.exe inspect-article "<id>" --law LFT|LSS --json` (exacto) o `query --law-filter ALL|LFT|LSS "<pregunta>" --json`.
 - `is_derogado: true`, `status: "UNVERIFIED"` o `"INSUFFICIENT_CONTEXT"` bloquean el cambio: avisa en vez de escribirlo.
-- Índice: `lft-rag ingest data/raw/LFT.pdf` en `services/lft-rag/` (omite si el SHA-256 no cambió).
+- Índice multi-ley (LFT + LSS): `lft-rag ingest-all` o `lft-rag ingest --law LFT|LSS data/raw/<LEY>.pdf` en `services/lft-rag/` (omite si el SHA-256 no cambió; actualiza `corpus_version_hash`).
 
 ## Servicio lft-rag (`services/lft-rag/`, Python 3.13, uv)
 
-- Pruebas: `uv run pytest -v` en `services/lft-rag/`. API: `lft-rag serve` → `http://127.0.0.1:8090` (`/health`,
-  `/v1/legal/articles/{id}`, `/v1/legal/query`); bearer `LFT_SERVICE_TOKEN` de `services/lft-rag/.env`.
+- Pruebas: `.venv\Scripts\python.exe -m pytest -v` en `services/lft-rag/`. API + MCP HTTP (`/mcp`): `lft-rag serve` → `http://127.0.0.1:8090` (`/health`, `/v1/legal/articles/{law_code}/{id}`, `/v1/legal/query`, `/mcp`); Zero Trust RS256 (`CF_ACCESS_AUD` + `CF_ACCESS_TEAM_DOMAIN`) o bypass loopback (`LFT_DEV_BYPASS_TOKEN`).
+- Operación: `ops/service-ctl.sh` (launchd/systemd), `ops/setup-zero-trust-tunnel.sh`, `ops/rotate-service-token.sh`. Caché KV del Worker en `src/lib/legalRagClient.ts` (`LEGAL_RAG_CACHE`) invalidada por `corpus_version_hash`.
 - Nunca se suben: `services/lft-rag/.env`, `.dev.vars`, `services/lft-rag/data/` (PDF, índice), `*.gguf`, `*.pkl`.
 - El servicio no registra ni guarda preguntas (uvicorn sin access log). No agregues logs con texto de usuarios.
 

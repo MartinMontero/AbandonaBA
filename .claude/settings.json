@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__legal-rag__query_legal_corpus",
+      "mcp__legal-rag__query_lft",
+      "mcp__legal-rag__inspect_statute_article",
+      "mcp__legal-rag__inspect_lft_article"
+    ]
+  }
+}

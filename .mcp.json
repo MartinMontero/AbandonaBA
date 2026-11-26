@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "legal-rag": {
+      "command": "services/lft-rag/.venv/Scripts/python.exe",
+      "args": ["-m", "src.mcp_server"],
+      "cwd": "services/lft-rag"
+    }
+  }
+}

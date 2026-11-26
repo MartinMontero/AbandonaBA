@@ -1,0 +1,19 @@
+[Unit]
+Description=Cloudflare Tunnel for Mexican Legal RAG Origin
+After=network-online.target legal-rag-api.service
+Wants=network-online.target legal-rag-api.service
+
+[Service]
+Type=simple
+WorkingDirectory=__PROJECT_DIR__/services/lft-rag
+ExecStart=__CLOUDFLARED_BIN__ tunnel --config %h/.cloudflared/legal-rag-origin.yml run legal-rag-origin
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=legal-rag-tunnel
+
+[Install]
+WantedBy=default.target

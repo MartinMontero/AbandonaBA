@@ -44,7 +44,7 @@ def test_extract_citations(text: str, expected: list[str]) -> None:
 def test_constitutional_and_other_laws_are_ignored() -> None:
     text = (
         "Conforme al artículo 123, Apartado A, de la Constitución y al artículo 123 constitucional, "
-        "además del artículo 109 de la Ley del Seguro Social, el Artículo 48 dispone la reinstalación."
+        "además del artículo 109 de la Ley del Impuesto sobre la Renta, el Artículo 48 dispone la reinstalación."
     )
     assert extract_citations(text) == ["48"]
 
