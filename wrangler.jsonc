@@ -29,9 +29,6 @@
       "preview_id": "4028279caafd4fdc90a54a7603f2890d"
     }
   ],
-  "secrets": {
-    "required": ["CF_ACCESS_CLIENT_ID", "CF_ACCESS_CLIENT_SECRET"]
-  },
   // Límite global (clave fija, no la IP): 20 consultas por minuto por ubicación de Cloudflare.
   "ratelimits": [{ "name": "LFT_RATE_LIMITER", "namespace_id": "4101", "simple": { "limit": 20, "period": 60 } }],
 
