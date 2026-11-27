@@ -77,7 +77,7 @@ const hasToc = tocItems.length >= 3;
   <body data-exit-url={siteConfig.quickExitUrl} data-lang={lang}>
     {isReview && <div class="review-banner" role="note">{siteConfig.reviewBanner}</div>}
     <div class="bank-warning" role="note">{es ? siteConfig.bankWarning : 'Do not use bank devices, Wi-Fi or internet to visit this page.'}</div>
-    <div id="offline-banner" class="offline" role="status" hidden>{es ? 'Sin conexión. Puedes seguir usando las páginas que ya abriste.' : 'You are offline. Pages you already opened still work.'}</div>
+    <div id="offline-banner" class="offline" role="status" hidden>{es ? 'Sin conexión. Calculadoras y guías siguen funcionando; la consulta de la LFT con IA y el envío de reportes requieren internet.' : 'You are offline. Calculators and guides still work; the AI labor-law search and error-report form require internet.'}</div>
     <a class="skip" href="#contenido">{es ? 'Saltar al contenido' : 'Skip to content'}</a>
     <header class="top" id="app-bar">
       <a class="brand" href={es ? '/' : '/en/'}>
