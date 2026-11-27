@@ -485,8 +485,8 @@ details.acc[open] { background: var(--md-sys-color-surface); }
 .mile { list-style: none; padding: 0; margin: var(--space-2) 0 var(--space-4); display: grid; gap: var(--space-2); grid-template-columns: 1fr; }
 @media (min-width: 640px) { .mile { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1000px) { .mile.cols3 { grid-template-columns: repeat(3, 1fr); } }
-.mile a { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: var(--space-3); border-radius: var(--radius-lg); background: var(--md-sys-color-surface-container); text-decoration: none; color: var(--md-sys-color-on-surface); border: 2px solid transparent; transition: transform var(--motion-duration-short), box-shadow var(--motion-duration-short), border-color var(--motion-duration-short); }
-.mile a:hover { transform: translateY(-3px); box-shadow: var(--elev-2); border-color: var(--md-sys-color-primary); }
+.mile li > a { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: var(--space-3); border-radius: var(--radius-lg); background: var(--md-sys-color-surface-container); text-decoration: none; color: var(--md-sys-color-on-surface); border: 2px solid transparent; transition: transform var(--motion-duration-short), box-shadow var(--motion-duration-short), border-color var(--motion-duration-short); }
+.mile li > a:hover { transform: translateY(-3px); box-shadow: var(--elev-2); border-color: var(--md-sys-color-primary); }
 .mile .big { font-size: 1.75rem; font-weight: 850; line-height: 1.1; color: var(--md-sys-color-primary); }
 .mile .what { font-weight: 750; font-size: 1.0625rem; }
 .mile .more { font-size: .9375rem; color: var(--md-sys-color-on-surface-variant); }
