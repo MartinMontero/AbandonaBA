@@ -1,0 +1,695 @@
+---
+// Guía Interactiva Ciudadana — Pipeline Local RAG y System One para la LFT
+// Adaptada al sistema de diseño Material 3 del sitio (tokens.css) y CSP estricta ('self').
+---
+
+<section id="guia-ia" class="fg-root" aria-labelledby="overview-heading">
+  <!-- Barra de navegación rápida de la guía + interruptor de Detalle Técnico -->
+  <div class="fg-toolbar">
+    <nav class="fg-jump-nav" aria-label="Capítulos de la guía interactiva">
+      <a href="#overview" class="fg-chip-link">1. Panorama</a>
+      <a href="#simulator" class="fg-chip-link">2. Simulador</a>
+      <a href="#gates" class="fg-chip-link">3. Candados</a>
+      <a href="#playbook" class="fg-chip-link">4. Protocolo</a>
+      <a href="#stack" class="fg-chip-link">5. Conexión</a>
+    </nav>
+
+    <div class="fg-toolbar-actions">
+      <label class="fg-switch-wrap" title="Mostrar u ocultar las notas de ingeniería debajo de cada explicación">
+        <span class="fg-switch-label">Detalle Técnico</span>
+        <input type="checkbox" role="switch" id="fg-tech-switch" checked class="fg-switch-input" aria-label="Mostrar detalles técnicos de ingeniería junto a la explicación sencilla" />
+        <span class="fg-switch-track" aria-hidden="true"><span class="fg-switch-handle"></span></span>
+      </label>
+
+      <button type="button" class="fg-btn-text" data-fg-open-glossary>
+        Glosario ciudadano
+      </button>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       CAPÍTULO 1: PANORAMA GENERAL — QUÉ HACE Y POR QUÉ IMPORTA
+       ==================================================================== -->
+  <section id="overview" aria-labelledby="overview-heading" class="fg-chapter">
+    <div class="fg-chapter-head">
+      <span class="fg-eyebrow-pill fg-pill-primary">CAPÍTULO 1 &bull; POR QUÉ LOS CHATBOTS COMUNES FALLAN EN TEMAS LABORALES</span>
+      <h2 id="overview-heading" class="fg-h2-display">
+        Una IA legal que comprueba cada artículo—o prefiere decirte la verdad antes que adivinar.
+      </h2>
+      <p class="fg-intro">
+        Si le preguntas a un chatbot genérico cuánto te toca de vacaciones, aguinaldo o liquidación en México, puede responderte con total seguridad usando una ley vieja o inventando un artículo que no existe (a esto en tecnología se le llama <em>alucinación</em>). Este proyecto resuelve ese riesgo de raíz: es un <strong>sistema local de investigación jurídica listo para el mundo real</strong>, diseñado exclusivamente para consultar la <em>Ley Federal del Trabajo</em> (LFT) combinando lectura exacta de documentos oficiales, doble motor de búsqueda, un modelo entrenado en derecho mexicano y candados automáticos de verificación.
+      </p>
+
+      <div class="fg-cta-row">
+        <a href="#simulator" id="fg-start-demo" class="btn">
+          Seguir una Pregunta Real Paso a Paso
+        </a>
+        <a href="#gates" class="fg-btn-tonal">
+          Probar los Candados Anti-Mentiras
+        </a>
+        <button type="button" class="fg-btn-text" data-fg-open-glossary>
+          Ver Glosario para No-Programadores
+        </button>
+      </div>
+    </div>
+
+    <!-- Comparativa: Chatbot Genérico vs. Sistema Local LFT -->
+    <div class="fg-compare-grid">
+      <article class="fg-card fg-card-surface">
+        <div class="fg-card-top">
+          <span class="fg-kicker fg-kicker-err">Chatbot de IA Genérico</span>
+          <span class="fg-badge fg-badge-err">Riesgo Alto de Inventar</span>
+        </div>
+        <h3>Responde "de memoria" y mezcla reformas</h3>
+        <ul class="fg-checklist fg-checklist-err">
+          <li>Confunde leyes mexicanas anteriores (como decirte que te tocan 6 días de vacaciones al primer año en vez de 12 tras la reforma de <em>Vacaciones Dignas</em>).</li>
+          <li>Cuando no sabe un dato, inventa números de artículos que suenan convincentes pero son falsos.</li>
+          <li>Manda tus dudas laborales privadas a servidores externos sin comprobar ni una sola cita legal.</li>
+        </ul>
+      </article>
+
+      <article class="fg-card fg-card-highlight">
+        <div class="fg-card-top">
+          <span class="fg-kicker fg-kicker-ok">Sistema Local LFT (RAG + System One)</span>
+          <span class="fg-badge fg-badge-ok">Comprueba o Se Abstiene</span>
+        </div>
+        <h3>Consulta el texto oficial vigente y audita cada frase</h3>
+        <ul class="fg-checklist fg-checklist-ok">
+          <li>Lee directamente el PDF oficial de la <em>Cámara de Diputados</em> con reglas fijas de programación: jamás cambia ni una coma de la ley.</li>
+          <li>Combina búsqueda por significado cotidiano (ChromaDB) + búsqueda de palabras exactas (BM25) antes de que redacte un modelo experto en derecho mexicano.</li>
+          <li>Frena cualquier error mediante dos candados de calidad—y puede correr localmente en tu propia computadora cuidando tu privacidad.</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Las 6 Piezas del Motor -->
+    <div class="fg-subblock">
+      <h3 class="fg-h3-section">Las 6 Piezas del Motor, Explicadas Sin Rodeos</h3>
+      <p class="fg-muted">
+        No necesitas saber programación: piensa en este sistema como una oficina jurídica bien organizada donde cada especialista tiene una sola tarea y audita al anterior. (Puedes apagar o encender los recuadros de <strong>Detalle Técnico</strong> arriba cuando quieras).
+      </p>
+      <div class="fg-pieces-grid">
+        <article class="fg-card fg-card-piece">
+          <div>
+            <span class="fg-badge fg-badge-sec">1. Lectura Oficial Exacta</span>
+            <h4>Lector Determinista en Python</h4>
+            <p>Extrae los PDFs oficiales de la LFT publicados por la <em>Cámara de Diputados</em> usando reglas fijas (no IA). "Determinista" significa que si lo corres cien veces, las cien veces separa exactamente igual cada artículo y fracción, sin alterar una sola palabra.</p>
+          </div>
+          <p class="tech-nuance fg-tech-note">Matiz técnico: Parser determinista en Python sin deriva estocástica; conserva intacta la jerarquía Título &rarr; Capítulo &rarr; Artículo &rarr; Fracción para citas exactas.</p>
+        </article>
+
+        <article class="fg-card fg-card-piece">
+          <div>
+            <span class="fg-badge fg-badge-sec">2. Recepción Inteligente</span>
+            <h4>Capa de Decisión "System One"</h4>
+            <p>Inspirada en el "Sistema 1" de la mente humana (el pensamiento rápido e intuitivo), esta capa lee tu duda en milisegundos, entiende qué tipo de consulta laboral haces y la dirige por el camino correcto sin hacerte esperar.</p>
+          </div>
+          <p class="tech-nuance fg-tech-note">Matiz técnico: Arquitectura flexible que permite usar <strong>Firelex Jeff</strong> de forma 100% local (máxima privacidad) o <strong>TypeSafe Jev</strong> en la nube (enrutamiento tipado ultrarrápido).</p>
+        </article>
+
+        <article class="fg-card fg-card-piece">
+          <div>
+            <span class="fg-badge fg-badge-sec">3. Búsqueda Doble</span>
+            <h4>Búsqueda Híbrida (ChromaDB + BM25)</h4>
+            <p>Busca en la ley de dos maneras al mismo tiempo: por <strong>ideas cotidianas</strong> (si escribes "me corrieron", entiende "rescisión laboral") y por <strong>palabras exactas</strong> (como "Artículo 47" o "prima dominical").</p>
+          </div>
+          <p class="tech-nuance fg-tech-note">Matiz técnico: Combina recuperación densa por vectores semánticos (<strong>ChromaDB</strong>) con recuperación dispersa de coincidencias léxicas exactas (<strong>BM25</strong>).</p>
+        </article>
+
+        <article class="fg-card fg-card-piece">
+          <div>
+            <span class="fg-badge fg-badge-sec">4. Redactor Jurídico Mexicano</span>
+            <h4>Barcenas-8b-Juridico-Mexicano</h4>
+            <p>En lugar de un robot entrenado solo con textos de otros países, quien redacta el borrador es un modelo especializado en leyes de México, obligado a usar únicamente los artículos oficiales encontrados.</p>
+          </div>
+          <p class="tech-nuance fg-tech-note">Matiz técnico: Integra <code>Danielbrdz/Barcenas-8b-Juridico-Mexicano</code> (8 mil millones de parámetros afinados en derecho mexicano) como motor de generación controlada (RAG).</p>
+        </article>
+
+        <article class="fg-card fg-card-piece">
+          <div>
+            <span class="fg-badge fg-badge-sec">5. Doble Aduana de Verdad</span>
+            <h4>Candados de Relevancia y Sustento</h4>
+            <p>Dos filtros estrictos: el primero desecha artículos que no vengan al caso <em>antes</em> de redactar, y el segundo revisa frase por frase que la respuesta coincida al 100% con la ley <em>antes</em> de mostrártela.</p>
+          </div>
+          <p class="tech-nuance fg-tech-note">Matiz técnico: Compuertas de <em>Relevance Filtering</em> (Cross-Encoder previo) y <em>Groundedness Verification</em> (Regex + NLI local + Juez LLM) contra alucinaciones.</p>
+        </article>
+
+        <article class="fg-card fg-card-piece">
+          <div>
+            <span class="fg-badge fg-badge-sec">6. Listo para Uso Real</span>
+            <h4>Herramientas de Producción</h4>
+            <p>No es un experimento de laboratorio: incluye pruebas automáticas de calidad, servidor web para conectarlo a apps ciudadanas, comandos directos y guías de integración moderna.</p>
+          </div>
+          <p class="tech-nuance fg-tech-note">Matiz técnico: Incluye pruebas unitarias (pytest + vitest), servicio backend en <strong>FastAPI + FastMCP</strong>, comandos <strong>Typer CLI</strong> y <strong>Cloudflare Workers</strong>.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 2: SIMULADOR INTERACTIVO DE 7 PASOS
+       ==================================================================== -->
+  <section id="simulator" aria-labelledby="simulator-heading" class="fg-chapter">
+    <div class="fg-chapter-head">
+      <span class="fg-eyebrow-pill fg-pill-tertiary">CAPÍTULO 2 &bull; RECORRIDO INTERACTIVO PASO A PASO</span>
+      <h2 id="simulator-heading">Acompaña una Pregunta Real por las 7 Etapas del Sistema</h2>
+      <p class="fg-muted">
+        Elige uno de los tres casos cotidianos aquí abajo—e incluso activa el botón para <strong>provocar un error de ley vieja a propósito</strong>—para ver con tus propios ojos cómo el sistema busca, redacta, detecta trampas y protege tus derechos.
+      </p>
+    </div>
+
+    <div class="fg-scen-grid" role="radiogroup" aria-label="Selecciona una pregunta de prueba">
+      <button type="button" id="fg-scen-vacation" role="radio" aria-checked="true" class="fg-scen-btn is-active">
+        <span class="fg-scen-kicker">Caso A &bull; Vacaciones Dignas</span>
+        <span class="fg-scen-q">"¿Cuántos días de vacaciones pagadas me tocan al cumplir 3 años?"</span>
+        <span class="fg-scen-hint">Comprueba el Art. 76 vigente (reforma 2023) y la prima del 25%</span>
+      </button>
+
+      <button type="button" id="fg-scen-wifi" role="radio" aria-checked="false" class="fg-scen-btn">
+        <span class="fg-scen-kicker">Caso B &bull; Habla Cotidiana vs. Ley</span>
+        <span class="fg-scen-q">"Hago home office, ¿mi jefe me tiene que ayudar a pagar el internet?"</span>
+        <span class="fg-scen-hint">Traduce lenguaje diario a reglas de <em>Teletrabajo</em> (Art. 330-E)</span>
+      </button>
+
+      <button type="button" id="fg-scen-tariff" role="radio" aria-checked="false" class="fg-scen-btn">
+        <span class="fg-scen-kicker">Caso C &bull; Pregunta Fuera de Tema</span>
+        <span class="fg-scen-q">"¿Cuánto cobra la aduana por importar una camioneta usada de Texas?"</span>
+        <span class="fg-scen-hint">Pon a prueba cómo frena a tiempo y se niega a inventar</span>
+      </button>
+    </div>
+
+    <div class="fg-sim-controls">
+      <div class="fg-sim-left">
+        <div class="fg-engine-row">
+          <span class="fg-switch-label">Motor System One:</span>
+          <button type="button" id="fg-engine-toggle" class="fg-btn-tonal fg-btn-sm">
+            <span class="fg-dot" aria-hidden="true"></span>
+            <span id="fg-engine-label">Local: Firelex Jeff</span>
+          </button>
+        </div>
+
+        <label class="fg-switch-wrap">
+          <span class="fg-switch-label">Simular "Resbalón de Ley Vieja"</span>
+          <input type="checkbox" role="switch" id="fg-bug-switch" class="fg-switch-input" aria-label="Simular un error de memoria de ley antigua en el borrador de la IA" />
+          <span class="fg-switch-track" aria-hidden="true"><span class="fg-switch-handle"></span></span>
+        </label>
+      </div>
+
+      <div class="fg-sim-nav">
+        <button type="button" id="fg-prev-step" class="fg-btn-outline">&larr; Anterior</button>
+        <button type="button" id="fg-next-step" class="btn">Siguiente Paso &rarr;</button>
+      </div>
+    </div>
+
+    <div class="fg-sim-layout">
+      <ol id="fg-step-list" class="fg-step-rail" aria-label="Etapas del proceso de consulta"></ol>
+      <div id="fg-stage-detail" class="fg-stage-card" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 3: LABORATORIO DE CANDADOS ANTI-ALUCINACIÓN
+       ==================================================================== -->
+  <section id="gates" aria-labelledby="gates-heading" class="fg-chapter">
+    <div class="fg-chapter-head">
+      <span class="fg-eyebrow-pill fg-pill-primary">CAPÍTULO 3 &bull; CÓMO SE ATRAPAN LOS INVENTOS DE LA IA</span>
+      <h2 id="gates-heading">Dos Filtros de Seguridad: Uno Antes de Escribir y Otro Después</h2>
+      <p class="fg-muted">
+        En temas legales, una inteligencia artificial suele equivocarse por una de dos razones: <strong>porque el buscador le entregó artículos que no venían al caso</strong>, o <strong>porque leyó mal el artículo correcto</strong>. Mueve el control interactivo aquí abajo para ver cómo funciona el primer filtro y explora las 4 capas que revisan cada respuesta.
+      </p>
+    </div>
+
+    <div class="fg-lab-box">
+      <div class="fg-lab-head">
+        <div>
+          <span class="fg-kicker fg-kicker-ok">Candado 1 (Antes de Redactar) &bull; Laboratorio en Vivo</span>
+          <h3>Filtro de Relevancia (Calificación Mínima de Pase)</h3>
+          <p class="fg-muted">Pregunta: <em>"¿Mi patrón debe pagar parte de mi luz e internet si trabajo desde casa?"</em></p>
+        </div>
+        <div class="fg-readout-box">
+          <span class="fg-readout-label">Calificación Mínima</span>
+          <span id="fg-cutoff-readout" class="fg-readout-val">0.65</span>
+        </div>
+      </div>
+
+      <div class="fg-slider-wrap">
+        <label for="fg-cutoff-slider" class="fg-slider-label">
+          Desliza la exigencia del filtro (Muy baja = se cuelan leyes de fábricas que confunden a la IA; Muy alta = bloqueas artículos útiles):
+        </label>
+        <input type="range" id="fg-cutoff-slider" min="0.20" max="0.95" step="0.05" value="0.65" class="fg-slider" />
+        <div class="fg-slider-scale">
+          <span>0.20 (Flojo / Ruido)</span>
+          <span>0.65 (Producción)</span>
+          <span>0.95 (Muy estricto)</span>
+        </div>
+      </div>
+
+      <div id="fg-relevance-verdict" class="fg-verdict fg-verdict-ok" aria-live="polite"></div>
+      <div id="fg-chunks-grid" class="fg-chunks-grid"></div>
+    </div>
+
+    <div class="fg-subblock">
+      <span class="fg-kicker fg-kicker-ok">Por Debajo del Capó &bull; Rapidez + Rigor Jurídico</span>
+      <h3>Cómo se Combinan 4 Revisores sin Hacer Lenta tu Computadora</h3>
+      <p class="fg-muted">
+        Si pusiéramos a un modelo gigante a revisar cada palabra, una computadora local tardaría demasiado en contestar. Por eso el sistema trabaja en equipo como un embudo: usa revisores ultrarrápidos primero y solo llama al "Juez Experto" cuando hay una duda fina de interpretación. Haz clic en cada capa:
+      </p>
+
+      <div class="fg-eng-tabs" role="tablist" aria-label="Capas del motor de verificación">
+        <button type="button" role="tab" aria-selected="true" id="fg-eng-tab-0" class="fg-eng-tab is-active">
+          <span class="fg-eng-time">Capa 1 &bull; ~25 ms</span>
+          <span class="fg-eng-name">Cross-Encoder</span>
+          <span class="fg-eng-sub">Filtro previo a redactar</span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" id="fg-eng-tab-1" class="fg-eng-tab">
+          <span class="fg-eng-time">Capa 2 &bull; &lt;1 ms</span>
+          <span class="fg-eng-name">Reglas Exactas (Regex)</span>
+          <span class="fg-eng-sub">Citas y cifras reales</span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" id="fg-eng-tab-2" class="fg-eng-tab">
+          <span class="fg-eng-time">Capa 3 &bull; ~35 ms</span>
+          <span class="fg-eng-name">Detector Lógico NLI</span>
+          <span class="fg-eng-sub">Detecta contradicciones</span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" id="fg-eng-tab-3" class="fg-eng-tab">
+          <span class="fg-eng-time">Capa 4 &bull; 1–3 seg</span>
+          <span class="fg-eng-name">Juez IA Local</span>
+          <span class="fg-eng-sub">Desempate de matices</span>
+        </button>
+      </div>
+
+      <div id="fg-eng-panel" role="tabpanel" aria-live="polite" class="fg-eng-panel"></div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 4: PROTOCOLO ANTE FALLOS ("REINTENTAR UNA VEZ, LUEGO ABSTENERSE")
+       ==================================================================== -->
+  <section id="playbook" aria-labelledby="playbook-heading" class="fg-chapter">
+    <div class="fg-chapter-head">
+      <span class="fg-eyebrow-pill fg-pill-secondary">CAPÍTULO 4 &bull; QUÉ PASA CUANDO UN CANDADO DETIENE LA RESPUESTA</span>
+      <h2 id="playbook-heading">Por Qué "Reintentar Una Vez y Si No, Abstenerse" Protege a Trabajadores y PyMEs</h2>
+      <p class="fg-muted">
+        En una charla casual con un chatbot, que te diga "no pude verificarlo" parece poco servicial. En derecho laboral mexicano, <strong>saber abstenerse es la máxima medida de honestidad y seguridad</strong>: un mal consejo inventado puede hacer que alguien firme una renuncia engañosa o que un pequeño negocio enfrente una demanda en el Centro de Conciliación Laboral.
+      </p>
+    </div>
+
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de decisiones ante fallos">
+      <table>
+        <thead>
+          <tr>
+            <th>¿Qué Candado Falló?</th>
+            <th>Primer Movimiento (Máx. 1 Intento)</th>
+            <th>Salida Segura</th>
+            <th>Jamás Hacer Esto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Candado de Relevancia</strong><br /><span class="fg-muted">Ningún artículo superó el puntaje mínimo</span></td>
+            <td>System One traduce tus palabras cotidianas a términos jurídicos formales de la LFT y vuelve a buscar en ChromaDB + BM25 una sola vez.</td>
+            <td><strong>Abstenerse con claridad:</strong> informar que ningún artículo de la LFT regula ese tema.</td>
+            <td class="fg-text-err">Dejar que la IA conteste "de memoria" sin artículos en mano.</td>
+          </tr>
+          <tr>
+            <td><strong>Candado de Sustento</strong><br /><span class="fg-muted">Dato contradicho o artículo mal citado</span></td>
+            <td>Devolver el borrador a <code>Barcenas-8b</code> señalándole exactamente qué cifra o cita contradijo la ley para que lo corrija (1 vez).</td>
+            <td><strong>Respaldo transparente:</strong> frenar el resumen de la IA y mostrar directamente el texto oficial de los artículos de la LFT.</td>
+            <td class="fg-text-err">Borrar en silencio pedazos o excepciones de una oración legal.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-lab-box">
+      <div class="fg-lab-head">
+        <div>
+          <span class="fg-kicker fg-kicker-err">Prueba Interactiva &bull; Riesgo Legal Real en México</span>
+          <h3>Por Qué Es Peligrosísimo "Recortar en Silencio" una Frase No Verificada</h3>
+          <p class="fg-muted">
+            Algunos sistemas borran automáticamente cualquier fragmento dudoso y entregan el resto de la frase. Activa el interruptor para ver cómo recortar una excepción voltea por completo el sentido de una liquidación en México:
+          </p>
+        </div>
+        <label class="fg-switch-wrap">
+          <span class="fg-switch-label">Simular Recorte Silencioso</span>
+          <input type="checkbox" role="switch" id="fg-strip-switch" class="fg-switch-input" aria-label="Simular el borrado silencioso de una cláusula de excepción legal" />
+          <span class="fg-switch-track" aria-hidden="true"><span class="fg-switch-handle"></span></span>
+        </label>
+      </div>
+
+      <div id="fg-strip-box" class="fg-strip-box">
+        <p id="fg-strip-sentence" class="fg-strip-sent">
+          "Conforme a la Ley Federal del Trabajo, una persona despedida tiene derecho a 3 meses de salario por indemnización constitucional, <mark>salvo que el patrón compruebe una causa justificada de rescisión sin responsabilidad conforme al Artículo 47</mark>."
+        </p>
+        <p id="fg-strip-exp" class="fg-strip-exp">
+          Regla jurídica completa: Refleja con exactitud tanto el derecho a la indemnización (Art. 48) como la excepción por despido justificado (Art. 47).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       CAPÍTULO 5: DEL CÓDIGO AL MUNDO REAL (CONEXIÓN CON APPS Y HERRAMIENTAS)
+       ==================================================================== -->
+  <section id="stack" aria-labelledby="stack-heading" class="fg-chapter">
+    <div class="fg-chapter-head">
+      <span class="fg-eyebrow-pill fg-pill-tertiary">CAPÍTULO 5 &bull; CÓMO SE USA EN LA VIDA DIARIA</span>
+      <h2 id="stack-heading">Cómo se Conectan Ciudadanos, Despachos y Aplicaciones Web</h2>
+      <p class="fg-muted">
+        Aunque tú nunca tengas que escribir una línea de código, importa mucho cómo está empaquetado este motor: gracias a sus pruebas automáticas y conectores listos para producción, un sindicato, una defensoría laboral, una PyME o un desarrollador pueden integrarlo en páginas web, celulares o herramientas de oficina manteniendo exactamente los mismos candados de seguridad.
+      </p>
+    </div>
+
+    <div class="fg-code-shell">
+      <div class="fg-code-bar">
+        <div class="fg-iface-tabs" role="tablist" aria-label="Inspeccionar interfaces reales del sistema">
+          <button type="button" role="tab" aria-selected="true" id="fg-iface-tab-cli" class="fg-iface-tab is-active">Typer CLI (Consola Local)</button>
+          <button type="button" role="tab" aria-selected="false" id="fg-iface-tab-api" class="fg-iface-tab">FastAPI (Puente para Apps)</button>
+          <button type="button" role="tab" aria-selected="false" id="fg-iface-tab-edge" class="fg-iface-tab">Cloudflare Workers y Claude Code</button>
+        </div>
+        <button type="button" id="fg-copy-snippet" class="fg-btn-outline fg-btn-sm">Copiar Ejemplo</button>
+      </div>
+      <div class="fg-code-body">
+        <p id="fg-iface-desc" class="fg-muted"></p>
+        <pre id="fg-iface-code" class="fg-pre" tabindex="0" aria-label="Ejemplo de código"></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diálogo Modal Accesible de Glosario -->
+  <div id="fg-dialog-backdrop" class="fg-dialog-backdrop fg-hidden">
+    <div id="fg-dialog" role="alertdialog" aria-modal="true" aria-labelledby="fg-dialog-title" aria-describedby="fg-dialog-desc" class="fg-dialog">
+      <div class="fg-dialog-head">
+        <div>
+          <span class="fg-kicker fg-kicker-ok">Glosario Ciudadano y Estándares</span>
+          <h2 id="fg-dialog-title">Términos Clave en Español Sencillo</h2>
+        </div>
+        <button type="button" id="fg-dialog-close-top" class="fg-btn-outline fg-btn-sm" aria-label="Cerrar ventana">&times;</button>
+      </div>
+      <div id="fg-dialog-desc" class="fg-dialog-body">
+        <ul class="fg-glossary-list">
+          <li><strong>LFT (Ley Federal del Trabajo):</strong> La ley que protege y regula los derechos y obligaciones laborales en México (salarios, vacaciones, teletrabajo, aguinaldo, reparto de utilidades y despidos).</li>
+          <li><strong>LSS (Ley del Seguro Social / IMSS):</strong> La ley que regula seguridad social, semanas cotizadas, salario base de cotización e incapacidades ante el IMSS.</li>
+          <li><strong>RAG (Generación con Búsqueda Previa):</strong> Obligar a la IA a buscar primero en los libros oficiales de la ley y responder con el libro abierto en la mesa, en lugar de adivinar de memoria.</li>
+          <li><strong>Alucinación:</strong> Cuando una IA redacta con mucha seguridad un dato falso o un artículo inventado.</li>
+          <li><strong>System One (Capa de Decisión Rápida):</strong> El "recepcionista veloz" (local con <em>Firelex Jeff</em> o en la nube con <em>TypeSafe Jev</em>) que clasifica tu pregunta antes de hacer la búsqueda profunda.</li>
+          <li><strong>Inferencia Lógica (NLI):</strong> Un revisor matemático que comprueba si lo que escribió la IA realmente se desprende del artículo oficial o lo contradice.</li>
+        </ul>
+      </div>
+      <div class="fg-dialog-foot">
+        <button type="button" id="fg-dialog-close-bottom" class="btn">Entendido</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>import '../scripts/guia-lft.ts';</script>
+
+<style>
+  .fg-root {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--md-sys-color-outline-variant);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .fg-hidden { display: none !important; }
+  .fg-muted { color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem; }
+  .fg-text-err { color: var(--md-sys-color-error); font-weight: 600; }
+
+  .fg-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    background: var(--md-sys-color-surface-container);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: var(--radius-md);
+  }
+  .fg-jump-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .fg-chip-link {
+    display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 0.875rem;
+    border-radius: var(--radius-full); background: var(--md-sys-color-surface-container-high);
+    color: var(--md-sys-color-on-surface); text-decoration: none; font-size: var(--type-small); font-weight: 600;
+  }
+  .fg-chip-link:hover { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+  .fg-toolbar-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+
+  /* Switch M3 */
+  .fg-switch-wrap { display: inline-flex; align-items: center; gap: 0.625rem; min-height: var(--target); cursor: pointer; user-select: none; }
+  .fg-switch-label { font-size: var(--type-small); font-weight: 600; color: var(--md-sys-color-on-surface-variant); }
+  .fg-switch-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .fg-switch-track {
+    position: relative; width: 3.25rem; height: 2rem; border-radius: var(--radius-full);
+    background: var(--md-sys-color-surface-container-highest); border: 2px solid var(--md-sys-color-outline);
+    transition: background var(--motion-duration-short), border-color var(--motion-duration-short);
+    flex-shrink: 0;
+  }
+  .fg-switch-handle {
+    position: absolute; top: 50%; left: 0.25rem; width: 1rem; height: 1rem; border-radius: 50%;
+    background: var(--md-sys-color-outline); transform: translateY(-50%);
+    transition: transform var(--motion-duration-short), width var(--motion-duration-short), height var(--motion-duration-short), background var(--motion-duration-short);
+  }
+  .fg-switch-input:checked + .fg-switch-track { background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); }
+  .fg-switch-input:checked + .fg-switch-track .fg-switch-handle {
+    background: var(--md-sys-color-on-primary); width: 1.375rem; height: 1.375rem; transform: translate(1.25rem, -50%);
+  }
+  .fg-switch-input:focus-visible + .fg-switch-track { outline: 3px solid var(--md-sys-color-primary); outline-offset: 2px; }
+
+  /* Botones */
+  .fg-btn-tonal {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: var(--target);
+    padding: 0 1.25rem; border-radius: var(--radius-full); border: 0; cursor: pointer; text-decoration: none;
+    background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);
+    font: inherit; font-size: var(--type-small); font-weight: 700;
+  }
+  .fg-btn-text {
+    display: inline-flex; align-items: center; justify-content: center; min-height: var(--target);
+    padding: 0 1rem; border-radius: var(--radius-full); border: 0; cursor: pointer; background: transparent;
+    color: var(--md-sys-color-primary); font: inherit; font-size: var(--type-small); font-weight: 700;
+  }
+  .fg-btn-text:hover { background: var(--md-sys-color-surface-container-high); }
+  .fg-btn-outline {
+    display: inline-flex; align-items: center; justify-content: center; min-height: var(--target);
+    padding: 0 1.125rem; border-radius: var(--radius-full); border: 1px solid var(--md-sys-color-outline);
+    background: var(--md-sys-color-surface); color: var(--md-sys-color-on-surface); cursor: pointer;
+    font: inherit; font-size: var(--type-small); font-weight: 600;
+  }
+  .fg-btn-outline:disabled, .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .fg-btn-sm { min-height: 2.5rem; padding: 0 0.875rem; }
+  .fg-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--md-sys-color-primary); }
+
+  /* Capítulos */
+  .fg-chapter { display: flex; flex-direction: column; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--md-sys-color-outline-variant); }
+  .fg-chapter:first-of-type { border-top: 0; padding-top: 0; }
+  .fg-chapter-head h2 { margin: 0.5rem 0; }
+  .fg-h2-display { font-size: clamp(1.625rem, 2.2vw + 1rem, 2.35rem); line-height: 1.15; }
+  .fg-intro { font-size: 1.0625rem; color: var(--md-sys-color-on-surface-variant); max-width: 52rem; }
+  .fg-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: var(--space-1); }
+
+  .fg-eyebrow-pill {
+    display: inline-flex; align-items: center; padding: 0.25rem 0.75rem; border-radius: var(--radius-full);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;
+  }
+  .fg-pill-primary { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+  .fg-pill-secondary { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+  .fg-pill-tertiary { background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container); }
+
+  /* Tarjetas */
+  .fg-compare-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-2); }
+  @media (min-width: 840px) { .fg-compare-grid { grid-template-columns: 1fr 1fr; } }
+  .fg-pieces-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-2); }
+  @media (min-width: 640px) { .fg-pieces-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .fg-pieces-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .fg-card {
+    padding: var(--space-3); border-radius: var(--radius-md);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    background: var(--md-sys-color-surface-container);
+    display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-2);
+  }
+  .fg-card-highlight { background: var(--md-sys-color-surface-container-high); border: 2px solid var(--md-sys-color-primary); }
+  .fg-card-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+  .fg-card h3, .fg-card h4 { margin: 0.35rem 0; }
+  .fg-card p { font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); margin: 0; }
+  .fg-kicker { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+  .fg-kicker-ok { color: var(--md-sys-color-primary); }
+  .fg-kicker-err { color: var(--md-sys-color-error); }
+  .fg-badge { display: inline-block; padding: 0.2rem 0.55rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 700; }
+  .fg-badge-ok { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+  .fg-badge-err { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
+  .fg-badge-sec { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+
+  .fg-checklist { margin: 0; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); }
+  .fg-tech-note {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.78rem !important;
+    padding: 0.75rem; border-radius: var(--radius-sm);
+    background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface) !important;
+  }
+
+  /* Simulador */
+  .fg-scen-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+  @media (min-width: 760px) { .fg-scen-grid { grid-template-columns: repeat(3, 1fr); } }
+  .fg-scen-btn {
+    text-align: left; padding: var(--space-2); border-radius: var(--radius-md); cursor: pointer; font: inherit;
+    border: 1px solid var(--md-sys-color-outline-variant); background: var(--md-sys-color-surface-container);
+    display: flex; flex-direction: column; gap: 0.25rem; min-height: 4rem;
+  }
+  .fg-scen-btn.is-active { border: 2px solid var(--md-sys-color-primary); background: var(--md-sys-color-surface-container-high); }
+  .fg-scen-kicker { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--md-sys-color-primary); }
+  .fg-scen-q { font-size: 0.9375rem; font-weight: 700; color: var(--md-sys-color-on-surface); }
+  .fg-scen-hint { font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); }
+
+  .fg-sim-controls {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2);
+    padding: var(--space-2); border-radius: var(--radius-md);
+    background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant);
+  }
+  .fg-sim-left { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+  .fg-engine-row { display: flex; align-items: center; gap: 0.5rem; }
+  .fg-sim-nav { display: flex; align-items: center; gap: 0.5rem; }
+
+  .fg-sim-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-2); align-items: start; }
+  @media (min-width: 840px) { .fg-sim-layout { grid-template-columns: 5fr 7fr; } }
+  .fg-step-rail { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .fg-rail-btn {
+    width: 100%; text-align: left; padding: 0.875rem 1rem; border-radius: var(--radius-md); cursor: pointer; font: inherit;
+    border: 1px solid var(--md-sys-color-outline-variant); background: var(--md-sys-color-surface-container);
+    display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; min-height: 3.25rem;
+  }
+  .fg-rail-btn.is-current { border: 2px solid var(--md-sys-color-primary); background: var(--md-sys-color-surface-container-highest); font-weight: 700; }
+  .fg-rail-title { font-size: 0.875rem; color: var(--md-sys-color-on-surface); }
+  .fg-rail-dot {
+    width: 1.5rem; height: 1.5rem; border-radius: 50%; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800;
+  }
+  .fg-rail-dot.st-pass { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+  .fg-rail-dot.st-warn, .fg-rail-dot.st-repair { background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container); }
+  .fg-rail-dot.st-abstain { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
+
+  .fg-stage-card {
+    padding: var(--space-3); border-radius: var(--radius-md);
+    background: var(--md-sys-color-surface-container-high); border: 1px solid var(--md-sys-color-outline-variant);
+    display: flex; flex-direction: column; gap: var(--space-2); min-height: 20rem;
+  }
+  .fg-stage-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--md-sys-color-outline-variant); }
+  .fg-mono-muted { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.78rem; color: var(--md-sys-color-on-surface-variant); }
+  .fg-pill { padding: 0.25rem 0.625rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 700; }
+  .fg-pill-ok { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+  .fg-pill-warn { background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container); }
+  .fg-pill-err { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
+  .fg-stage-title { margin: 0; font-size: 1.25rem; }
+  .fg-stage-plain { margin: 0; font-size: 0.96875rem; line-height: 1.6; }
+  .fg-metric-box {
+    display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+    padding: 0.875rem 1rem; border-radius: var(--radius-sm);
+    background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant);
+  }
+  .fg-metric-label { font-size: 0.8125rem; font-weight: 600; color: var(--md-sys-color-on-surface-variant); }
+  .fg-metric-value { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.875rem; font-weight: 700; color: var(--md-sys-color-primary); text-align: right; }
+  .fg-tech-box { padding: 0.875rem 1rem; border-radius: var(--radius-sm); background: var(--md-sys-color-surface-container-highest); }
+  .fg-tech-head { display: block; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--md-sys-color-on-surface-variant); margin-bottom: 0.25rem; }
+  .fg-tech-body { margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.78rem; line-height: 1.5; }
+
+  /* Laboratorio de Relevancia & 4 Capas */
+  .fg-lab-box {
+    padding: var(--space-3); border-radius: var(--radius-md);
+    background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant);
+    display: flex; flex-direction: column; gap: var(--space-2);
+  }
+  .fg-lab-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+  .fg-lab-head h3 { margin: 0.25rem 0; }
+  .fg-readout-box { padding: 0.5rem 1rem; border-radius: var(--radius-sm); background: var(--md-sys-color-surface-container-highest); text-align: right; }
+  .fg-readout-label { display: block; font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant); }
+  .fg-readout-val { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 1.375rem; font-weight: 800; color: var(--md-sys-color-primary); }
+  .fg-slider-wrap { display: flex; flex-direction: column; gap: 0.35rem; }
+  .fg-slider-label { font-size: 0.8125rem; font-weight: 600; color: var(--md-sys-color-on-surface-variant); }
+  .fg-slider { width: 100%; accent-color: var(--md-sys-color-primary); height: 2rem; cursor: pointer; }
+  .fg-slider-scale { display: flex; justify-content: space-between; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant); }
+  .fg-verdict { padding: 0.875rem 1rem; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; }
+  .fg-verdict-ok { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+  .fg-verdict-warn { background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container); }
+  .fg-verdict-err { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
+
+  .fg-chunks-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+  @media (min-width: 720px) { .fg-chunks-grid { grid-template-columns: 1fr 1fr; } }
+  .fg-chunk-card { padding: var(--space-2); border-radius: var(--radius-sm); border: 1px solid var(--md-sys-color-outline-variant); display: flex; flex-direction: column; gap: 0.4rem; }
+  .fg-chunk-card.is-pass { background: var(--md-sys-color-surface-container-high); border-color: var(--md-sys-color-primary); }
+  .fg-chunk-card.is-drop { background: var(--md-sys-color-surface); opacity: 0.65; }
+  .fg-chunk-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+  .fg-chunk-title { font-size: 0.8125rem; font-weight: 700; }
+  .fg-chunk-badge { padding: 0.15rem 0.5rem; border-radius: var(--radius-sm); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.75rem; font-weight: 700; background: var(--md-sys-color-surface-container-highest); }
+  .fg-chunk-badge.is-pass { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+  .fg-chunk-sum { margin: 0; font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); }
+  .fg-chunk-hint { margin: 0; font-size: 0.8125rem; font-weight: 600; }
+
+  .fg-eng-tabs { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+  @media (min-width: 760px) { .fg-eng-tabs { grid-template-columns: repeat(4, 1fr); } }
+  .fg-eng-tab {
+    text-align: left; padding: var(--space-2); border-radius: var(--radius-md); cursor: pointer; font: inherit;
+    border: 1px solid var(--md-sys-color-outline-variant); background: var(--md-sys-color-surface-container);
+    display: flex; flex-direction: column; gap: 0.2rem; min-height: 4rem;
+  }
+  .fg-eng-tab.is-active { border: 2px solid var(--md-sys-color-primary); background: var(--md-sys-color-surface-container-high); }
+  .fg-eng-time { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.75rem; font-weight: 700; color: var(--md-sys-color-primary); }
+  .fg-eng-name { font-size: 0.9375rem; font-weight: 700; color: var(--md-sys-color-on-surface); }
+  .fg-eng-sub { font-size: 0.78rem; color: var(--md-sys-color-on-surface-variant); }
+  .fg-eng-panel {
+    padding: var(--space-3); border-radius: var(--radius-md);
+    background: var(--md-sys-color-surface-container-high); border: 1px solid var(--md-sys-color-outline-variant);
+    display: flex; flex-direction: column; gap: var(--space-2);
+  }
+  .fg-eng-title { margin: 0; font-size: 1.125rem; }
+  .fg-eng-meta { margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.78rem; font-weight: 700; color: var(--md-sys-color-primary); }
+  .fg-eng-plain { margin: 0; }
+
+  /* Demo recorte silencioso */
+  .fg-strip-box {
+    padding: var(--space-2); border-radius: var(--radius-sm);
+    background: var(--md-sys-color-surface-container-highest); border-left: 4px solid var(--md-sys-color-primary);
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .fg-strip-box.is-danger { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); border-left-color: var(--md-sys-color-error); }
+  .fg-strip-sent { margin: 0; font-size: 1rem; line-height: 1.6; }
+  .fg-strip-sent mark { padding: 0.1rem 0.35rem; border-radius: 0.25rem; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 700; }
+  .fg-strip-exp { margin: 0; font-size: 0.8125rem; font-weight: 600; }
+
+  /* Conexión */
+  .fg-code-shell { border-radius: var(--radius-md); background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); overflow: hidden; }
+  .fg-code-bar {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem;
+    padding: 0.75rem 1rem; background: var(--md-sys-color-surface-container-high); border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  }
+  .fg-iface-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .fg-iface-tab {
+    min-height: 2.5rem; padding: 0 0.875rem; border-radius: var(--radius-sm); border: 0; cursor: pointer;
+    font: inherit; font-size: 0.8125rem; font-weight: 600; background: var(--md-sys-color-surface); color: var(--md-sys-color-on-surface);
+  }
+  .fg-iface-tab.is-active { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 700; }
+  .fg-code-body { padding: var(--space-3); display: flex; flex-direction: column; gap: 0.75rem; }
+  .fg-pre {
+    margin: 0; padding: var(--space-2); border-radius: var(--radius-sm);
+    background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.8125rem; overflow-x: auto; line-height: 1.5;
+  }
+
+  /* Modal Glosario */
+  .fg-dialog-backdrop {
+    position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center;
+    padding: var(--space-2); background: color-mix(in srgb, var(--md-sys-color-scrim) 55%, transparent);
+  }
+  .fg-dialog {
+    width: 100%; max-width: 38rem; max-height: 85vh; overflow-y: auto;
+    border-radius: var(--radius-lg); background: var(--md-sys-color-surface-container-high);
+    color: var(--md-sys-color-on-surface); padding: var(--space-3); border: 1px solid var(--md-sys-color-outline-variant);
+    box-shadow: var(--elev-3); display: flex; flex-direction: column; gap: var(--space-2);
+  }
+  .fg-dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-2); }
+  .fg-dialog-head h2 { margin: 0.25rem 0 0; }
+  .fg-glossary-list { margin: 0; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); }
+  .fg-glossary-list strong { color: var(--md-sys-color-on-surface); }
+  .fg-dialog-foot { display: flex; justify-content: flex-end; }
+</style>
