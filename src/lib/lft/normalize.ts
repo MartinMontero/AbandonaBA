@@ -60,6 +60,7 @@ export const LEGAL_SYNONYMS: [RegExp, string][] = [
   [/\b(dias? de vacacion\w*|vacaciones\b.*\b(dias?|anos?)|cuantos dias\b.*\bvacacion\w*)\b/, 'periodo anual de vacaciones pagadas doce días laborables años de servicios'],
   [/\b(antes del ano|primer ano|proporcional\w*|no ha? complet\w*|menos de un ano|no cumpl\w* (?:un |el )?ano)\b/, 'termina antes de que se cumpla el año de servicios remuneración proporcionada al tiempo de servicios prestados'],
   [/\b(domingo\w*|prima dominical)\b/, 'día de descanso semanal domingo prima dominical veinticinco por ciento'],
+  [/\bdescanso\b.*\b(semana\w*|semanal)\b|\b(semana\w*|semanal)\b.*\bdescanso\b/, 'por cada seis días de trabajo disfrutará el trabajador de un día de descanso semanal con goce de salario íntegro'],
   [/\bdescanso\b|\bdia libre\b/, 'día de descanso semanal'],
   [/\b(discrimin\w*)\b/, 'discriminación'],
   [/\b(contrato|contratacion)\b/, 'relación de trabajo contrato individual de trabajo'],
