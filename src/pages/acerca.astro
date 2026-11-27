@@ -16,7 +16,7 @@ import { siteConfig, legalReview, isReview, statusLabels } from '../data/site.co
   <details class="acc" id="verificamos"><summary>Cómo verificamos</summary><div class="acc-b">
   <p>Cada dato legal, de dinero o de fecha lleva una etiqueta:</p>
   <ul>{Object.entries(statusLabels).map(([k, v]) => <li><span class={`tag t-${k}`}>{k}</span> {v}</li>)}</ul>
-  <p>Nunca subimos una etiqueta sin leer la fuente oficial y anotar la fecha. Los valores viven en un solo archivo, con su fuente y fecha, y las calculadoras leen de ahí. Para corregir un valor, abre un issue en el repositorio o manda un cambio.</p>
+  <p>Nunca subimos una etiqueta sin leer la fuente oficial y anotar la fecha. Los valores viven en un solo archivo, con su fuente y fecha, y las calculadoras leen de ahí. Para corregir un valor, usa el formulario en <a href="#errores">Reportar un error</a>.</p>
   <p>La revisión por un abogado laboral {legalReview.status === 'pendiente' ? 'está pendiente' : 'está firmada'}. Eso cambia solo cuando el archivo de configuración del sitio lo dice.</p>
   </div></details>
   <details class="acc" id="datos"><summary>Qué datos recogemos</summary><div class="acc-b">
@@ -24,10 +24,68 @@ import { siteConfig, legalReview, isReview, statusLabels } from '../data/site.co
   <p>Lo que sí queda: Cloudflare, que lleva este sitio a tu pantalla, puede ver datos de la conexión, como tu dirección IP. El sitio no puede impedirlo. Usa una ventana privada y un aparato personal. El botón «Salida rápida» te lleva a otra página al instante, pero no borra el historial de tu navegador.</p>
   {isReview && <p>En esta versión de revisión, Cloudflare Access pone su propia cookie de inicio de sesión en tu navegador. El código del sitio no pone ninguna.</p>}
   </div></details>
-  <details class="acc" id="errores"><summary>Reportar un error</summary><div class="acc-b">
-  <p>Abre un issue en <a href={siteConfig.issuesUrl} rel="noopener noreferrer">GitHub</a>. Los issues de GitHub no son anónimos. No publiques datos personales ni documentos.</p>
+  <details class="acc" id="errores" open><summary>Reportar un error</summary><div class="acc-b">
+    <p>¿Encontraste un número equivocado, un enlace roto o algo que no se entiende? Cuéntanos aquí abajo. No necesitas cuenta ni conocimientos técnicos.</p>
+    <div class="callout info" role="note">
+      <p><strong>No escribas datos personales.</strong> Por tu seguridad, no incluyas tu nombre, correo, teléfono, CURP, RFC, NSS, nombre de tu sucursal ni documentos.</p>
+    </div>
+
+    <div id="rep-status" hidden aria-live="polite"></div>
+
+    <form id="rep-form" class="rep-form" novalidate>
+      <p>
+        <label for="rep-tipo" class="field">1. ¿Qué pasó?</label>
+        <select id="rep-tipo" required>
+          <option value="dato">Un dato, fecha o cálculo parece estar mal</option>
+          <option value="pagina">Algo no funciona o se ve mal en la página</option>
+          <option value="ley">Cambió una ley o falta información importante</option>
+          <option value="sugerencia">Tengo una idea o sugerencia para mejorar</option>
+        </select>
+      </p>
+
+      <p>
+        <label for="rep-pagina" class="field">2. ¿En qué parte del sitio? (opcional)</label>
+        <select id="rep-pagina">
+          <option value="General / Todo el sitio">En general / No estoy seguro</option>
+          <option value="Inicio">Inicio</option>
+          <option value="Calculadora">Calcular (finiquito / liquidación)</option>
+          <option value="Plazos">Plazos</option>
+          <option value="Consulta la LFT">Consulta la LFT (IA)</option>
+          <option value="Empleos">Empleos</option>
+          <option value="Emprender">Emprender</option>
+          <option value="Cámbiate">Cámbiate (clientes)</option>
+          <option value="Transparencia">Transparencia</option>
+          <option value="Ayuda gratis">Ayuda gratis</option>
+        </select>
+      </p>
+
+      <p>
+        <label for="rep-titulo" class="field">3. Resumen corto</label>
+        <input type="text" id="rep-titulo" maxlength="120" required placeholder="Ejemplo: La calculadora marca un día menos en vacaciones" />
+      </p>
+
+      <p>
+        <label for="rep-detalle" class="field">4. Cuéntanos los detalles</label>
+        <textarea id="rep-detalle" rows="4" maxlength="2000" required aria-describedby="rep-detalle-hint" placeholder="Qué esperabas ver y qué apareció en su lugar…"></textarea>
+        <span id="rep-detalle-hint" class="hint"><span id="rep-count">0</span> de 2000 caracteres.</span>
+      </p>
+
+      <div class="sr-only" aria-hidden="true">
+        <label for="rep-web">No llenar este campo</label>
+        <input type="text" id="rep-web" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <p>
+        <label><input type="checkbox" id="rep-confirm" required /> Confirmo que no incluí datos personales (nombre, correo, CURP, NSS o empresa).</label>
+      </p>
+
+      <p><button type="submit" class="btn" id="rep-submit">Enviar reporte</button></p>
+    </form>
+
+    <p><button type="button" class="btn" id="rep-reset" hidden>Enviar otro reporte</button></p>
   </div></details>
   <details class="acc" id="licencias"><summary>Licencias</summary><div class="acc-b">
   <p>Código: MIT. Texto: CC BY-SA 4.0. <a href={siteConfig.repoUrl} rel="noopener noreferrer">Código abierto</a>.</p>
   </div></details>
+  <script>import '../scripts/reporte.ts';</script>
 </Base>

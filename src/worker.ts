@@ -3,8 +3,9 @@
 // el único uso de IA del sitio (ver /consulta-lft/ y /acerca/#datos).
 // No registra nada, no guarda IP, user agent ni preguntas, y no usa KV, D1, R2 ni colas.
 import { handleLft, LFT_PREFIX, type LftEnv } from './lib/lftProxy';
+import { handleReport, REPORT_PATH, type ReportEnv } from './lib/issueReport';
 
-interface Env extends LftEnv { ASSETS: { fetch(request: Request): Promise<Response> }; REVIEW_MODE?: string }
+interface Env extends LftEnv, ReportEnv { ASSETS: { fetch(request: Request): Promise<Response> }; REVIEW_MODE?: string }
 
 const CSP = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'";
 
@@ -23,6 +24,7 @@ export function secure(res: Response, env: { REVIEW_MODE?: string }): Response {
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const { pathname } = new URL(request.url);
+    if (pathname === REPORT_PATH) return secure(await handleReport(request, env), env);
     if (pathname.startsWith(LFT_PREFIX)) return secure(await handleLft(request, env), env);
     const res = await env.ASSETS.fetch(request);
     return secure(res, env);
